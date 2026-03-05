@@ -1,6 +1,6 @@
 from app import db
 from datetime import datetime
-from models.tags import note_tags
+from models.note_tags import note_tags
 
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
