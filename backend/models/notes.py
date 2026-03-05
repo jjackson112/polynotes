@@ -1,7 +1,8 @@
 from app import db
 from datetime import datetime
+from models.tags import note_tags
 
-class Notes(db.Model):
+class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user_id"), nullable=False)
     title = db.Column(db.String(50), nullable=False)
@@ -9,6 +10,7 @@ class Notes(db.Model):
     language = db.Column(db.String(50), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
+    tags = db.relationship("Tag", secondary=note_tags, backref="notes")
 
     def to_dict(self):
         return {
