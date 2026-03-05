@@ -13,9 +13,5 @@ def create_app():
 
 # Connect SQL to app
     db.init_app(app)
-
-    # require an object to write operations to
-    # db.session.add()
-    # db.session.commit()
-
+    
     return app
