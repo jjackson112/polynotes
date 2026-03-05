@@ -2,11 +2,11 @@ from app import db
 
 note_tags = db.Table(
     "note_tags",
-    db.Column("note_id", db.Integer, db.ForeignKey("notes.id")),
-    db.Column("tag_id", db.Integer, db.ForeignKey("tags.id"))
+    db.Column("note_id", db.Integer, db.ForeignKey("note.id")),
+    db.Column("tag_id", db.Integer, db.ForeignKey("tag.id"))
 )
 
-class Note_Tag(db.Model):
+class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False)
 

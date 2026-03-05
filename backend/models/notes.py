@@ -4,7 +4,7 @@ from models.tags import note_tags
 
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user_id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     title = db.Column(db.String(50), nullable=False)
     content = db.Column(db.String(1000), nullable=False)
     language = db.Column(db.String(50), nullable=False)
@@ -15,7 +15,7 @@ class Note(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "username": self.username,
+            "username": self.user_id,
             "title": self.title,
             "content": self.content,
             "language": self.language,
