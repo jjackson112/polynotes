@@ -8,6 +8,12 @@ def create_app():
     app = Flask(__name__)
 
 # Database configuration
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///polynotes.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///polynotes.db"
 
+# Connect SQL to app
+    db.init_app(app)
 
+    db.session.add()
+    db.session.commit()
+
+    return app
