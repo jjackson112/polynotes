@@ -9,11 +9,13 @@ def create_app():
 
 # Database configuration
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///polynotes.db"
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Connect SQL to app
     db.init_app(app)
 
-    db.session.add()
-    db.session.commit()
+    # require an object to write operations to
+    # db.session.add()
+    # db.session.commit()
 
     return app
