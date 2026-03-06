@@ -44,7 +44,14 @@ def create_note():
     if not data:
         return jsonify({"Invalid JSON"}), 400
     
-    db.session.add()
+    note = Note(
+        title=data.get("title"),
+        content=data.get("content"),
+        language=data.get("language"),
+        user_id=data.get("user_id")
+    )
+    
+    db.session.add(note)
     db.session.commit()
     
     return jsonify(), 200
