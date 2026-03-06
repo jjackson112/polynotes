@@ -19,6 +19,7 @@ class Note(db.Model):
             "title": self.title,
             "content": self.content,
             "language": self.language,
+            "tags": [t.name for t in self.tags]
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }

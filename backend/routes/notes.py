@@ -11,7 +11,7 @@ notes_bp = Blueprint("notes", __name__, url_prefix='/api/notes')
 @notes_bp.route("/<int:user_id>", methods=["GET"])
 def get_note(user_id):
     language = request.args.get("language")
-    tag = request.args.get("tags")
+    tag = request.args.get("tag")
     
     query = Note.query.filter_by(user_id=user_id)
     
@@ -21,7 +21,7 @@ def get_note(user_id):
     if tag:
         query =Note.query.join(Note.tags).filter(Tag.name == tag)
     
-    notes = query.all() # list of SQLAlchemy objects not JSON
+    notes = query.all() # list of SQLAlchemy objects, not JSON
 
     results =[]
 
@@ -34,7 +34,7 @@ def get_note(user_id):
             "language": note.language
         })
 
-    return jsonify(results), 200
+    return jsonify([note.to_dict() for note in notes]), 200
 
 
 @notes_bp.route("/", methods=["POST"])
