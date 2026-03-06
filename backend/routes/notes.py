@@ -57,9 +57,11 @@ def create_note():
         tag = Tag.query.filter_by(name=name).first()
     
         if not tag:
-            tag 
+            tag = Tag(name=name)
+
+        note.tags.append(tag)
     
     db.session.add(note)
     db.session.commit()
     
-    return jsonify(), 200
+    return jsonify(note.to_dict()), 201
