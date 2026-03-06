@@ -48,8 +48,16 @@ def create_note():
         title=data.get("title"),
         content=data.get("content"),
         language=data.get("language"),
-        user_id=data.get("user_id")
+        user_id=data.get("user_id"),
     )
+
+    tag_names = data.get("tags", [])
+
+    for name in tag_names:
+        tag = Tag.query.filter_by(name=name).first()
+    
+        if not tag:
+            tag 
     
     db.session.add(note)
     db.session.commit()
