@@ -65,3 +65,19 @@ def create_note():
     db.session.commit()
     
     return jsonify(note.to_dict()), 201
+
+@notes_bp.route("/<int:id>", methods=["PATCH"])
+def update_note(user_id):
+
+    note = Note.query.get_or_404(user_id)
+
+    data = request.get_json()
+
+    if not data:
+        return jsonify(note), 201
+    
+    db.session.commit()
+
+    return jsonify(note.to_dict())
+
+
