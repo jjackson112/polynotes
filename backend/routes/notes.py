@@ -19,7 +19,7 @@ def get_note(user_id):
         query = query.filter_by(language=language)
 
     if tag:
-        query =Note.query.join(Note.tags).filter(Tag.name == tag)
+        query = query.join(Note.tags).filter(Tag.name == tag)
     
     notes = query.all() # list of SQLAlchemy objects, not JSON
 
@@ -111,4 +111,4 @@ def delete_note(note_id):
     db.session.delete(note)
     db.session.commit()
 
-    return jsonify({"message":"Note deleted"}), 200
+    return jsonify({"message":"Note deleted"}), 200 # or return "", 204 - request succeeded but no content returned
