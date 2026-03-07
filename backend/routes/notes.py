@@ -85,6 +85,11 @@ def update_note(note_id):
 
     if "language" in data:
         note.language = data["language"]
+
+    # update tags - optional
+    # clear tag + attach new ones
+    if "tags" in data:
+        note.tags.clear()
     
     db.session.commit()
 
