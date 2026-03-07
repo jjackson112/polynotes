@@ -23,15 +23,6 @@ def get_note(user_id):
     
     notes = query.all() # list of SQLAlchemy objects, not JSON
 
-    # objects → dictionaries → Flask converts to JSON
-    for note in notes:
-        notes.append({
-            "id": note.id,
-            "title": note.title,
-            "content": note.content,
-            "language": note.language
-        })
-
     return jsonify([note.to_dict() for note in notes]), 200
 
 
