@@ -56,6 +56,7 @@ def create_note():
     
         if not tag:
             tag = Tag(name=name)
+            db.session.add(tag)
 
         note.tags.append(tag)
     
