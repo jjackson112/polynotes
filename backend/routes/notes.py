@@ -103,4 +103,12 @@ def update_note(note_id):
 
     return jsonify(note.to_dict()), 200
 
+@notes_bp.route("/<int:note_id>", methods=["DELETE"])
+def delete_note(note_id):
 
+    note = Note.query.get_or_404(note_id)
+
+    db.session.delete(note)
+    db.session.commit()
+
+    return jsonify({"Error deleted"}), 200
