@@ -66,18 +66,18 @@ def create_note():
     
     return jsonify(note.to_dict()), 201
 
-@notes_bp.route("/<int:id>", methods=["PATCH"])
-def update_note(user_id):
+@notes_bp.route("/<int:note_id>", methods=["PATCH"])
+def update_note(note_id):
 
-    note = Note.query.get_or_404(user_id)
+    note = Note.query.get_or_404(note_id)
 
     data = request.get_json()
 
     if not data:
-        return jsonify(note), 201
+        return jsonify({"error": "Invalid JSON"}), 400
     
     db.session.commit()
 
-    return jsonify(note.to_dict())
+    return jsonify(note.to_dict()), 200
 
 
