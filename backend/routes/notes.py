@@ -90,6 +90,14 @@ def update_note(note_id):
     # clear tag + attach new ones
     if "tags" in data:
         note.tags.clear()
+
+    for name in data["tags"]:
+        tag = Tag.query.filter_by(name=name).first()
+
+        if not tag:
+            tag = Tag(name=name)
+        
+        note.tags.append(tag)
     
     db.session.commit()
 
