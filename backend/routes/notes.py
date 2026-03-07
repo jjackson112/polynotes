@@ -23,11 +23,9 @@ def get_note(user_id):
     
     notes = query.all() # list of SQLAlchemy objects, not JSON
 
-    results =[]
-
     # objects → dictionaries → Flask converts to JSON
     for note in notes:
-        results.append({
+        notes.append({
             "id": note.id,
             "title": note.title,
             "content": note.content,
@@ -42,7 +40,7 @@ def create_note():
     data = request.get_json()
 
     if not data:
-        return jsonify({"Invalid JSON"}), 400
+        return jsonify({"error": "Invalid JSON"}), 400
     
     note = Note(
         title=data.get("title"),
@@ -89,6 +87,7 @@ def update_note(note_id):
     # update tags - optional
     # clear tag + attach new ones
     if "tags" in data:
+
         note.tags.clear()
 
     for name in data["tags"]:
@@ -96,7 +95,7 @@ def update_note(note_id):
 
         if not tag:
             tag = Tag(name=name)
-        
+
         note.tags.append(tag)
     
     db.session.commit()
