@@ -111,4 +111,4 @@ def delete_note(note_id):
     db.session.delete(note)
     db.session.commit()
 
-    return jsonify({"Error deleted"}), 200
+    return jsonify({"message":"Note deleted"}), 200
