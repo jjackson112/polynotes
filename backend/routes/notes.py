@@ -103,7 +103,8 @@ def update_note(note_id, current_user):
 @token_required
 def delete_note(note_id, current_user):
 
-    note = Note.query.get_or_404(note_id)
+    # if the note exists but belongs to another person, a 404 error appears
+    note = Note.query.filter_by(id=note_id, user_id=current_user).first_or_404()
 
     db.session.delete(note)
     db.session.commit()
