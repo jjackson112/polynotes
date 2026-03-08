@@ -1,7 +1,7 @@
 import os
 import jwt
 from functools import wraps
-from flask import request, jsonify
+from flask import request, jsonify, current_app
 from models.user import User
 from jwt import ExpiredSignatureError, InvalidTokenError
 
@@ -28,8 +28,16 @@ def token_required(f):
             return jsonify({'error': 'Token is missing'}), 401
         
         try:
-            data = jwt.decode(token, os.getenv('SECRET_KEY'), algorithms=['HS256'])
-            current_user = User.query.get(data['user_id'])
+            # Try to get secret from Flask config first, then Environment
+            secret = current_app.config.get('SECRET_KEY') or os.getenv('SECRET_KEY')
+            
+            if not secret:
+                return jsonify({'error': 'Server configuration error (Secret Key missing)'}), 500
+            
+            data = jwt.decode(token, secret, algorithms=['HS256'])
+            
+            # User.query.filter_by(id=data['user_id']).first() could work too
+            current_user = User.query.get(data['user_id']) 
 
             if not current_user:
                 return jsonify({'error': 'User not found!'}), 404
