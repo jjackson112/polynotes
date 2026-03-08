@@ -8,9 +8,9 @@ from flask import Blueprint, request, jsonify
 import datetime
 from models.user import User
 
-user_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
+auth_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
 
-@user_bp.route("/login", methods=["POST"])
+@auth_bp.route("/login", methods=["POST"])
 def login():
     data = request.get_json()
     username = data.get('username')
@@ -26,10 +26,12 @@ def login():
         'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)},
         os.getenv('SECRET_KEY'), algorithm='HS256')
     
-    return jsonify({'token': token
-    })
+    return jsonify({
+        'token': token,
+        'user': user.to_dict() # Helpful to send user info back on login
+    }), 200
 
-@user_bp.route("/register", methods=["POST"])
+@auth_bp.route("/register", methods=["POST"])
 def register():
     data = request.get_json()
     username = data.get('username')
