@@ -9,7 +9,7 @@ from services.token import token_required
 
 notes_bp = Blueprint("notes", __name__, url_prefix='/api/notes')
 
-@notes_bp.route("/<int:user_id>", methods=["GET"])
+@notes_bp.route("/", methods=["GET"])
 @token_required
 def get_note(current_user):
     language = request.args.get("language")
