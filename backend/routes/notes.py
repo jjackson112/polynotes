@@ -5,15 +5,17 @@ from flask import Blueprint, request, jsonify
 from app import db
 from models.notes import Note
 from models.tags import Tag
+from services.token import token_required
 
 notes_bp = Blueprint("notes", __name__, url_prefix='/api/notes')
 
 @notes_bp.route("/<int:user_id>", methods=["GET"])
-def get_note(user_id):
+@token_required
+def get_note(current_user):
     language = request.args.get("language")
     tag = request.args.get("tag")
     
-    query = Note.query.filter_by(user_id=user_id)
+    query = Note.query.filter_by(user_id=current_user.id)
     
     if language:
         query = query.filter_by(language=language)
@@ -27,7 +29,8 @@ def get_note(user_id):
 
 
 @notes_bp.route("/", methods=["POST"])
-def create_note():
+@token_required
+def create_note(current_user):
     data = request.get_json()
 
     if not data:
@@ -37,7 +40,7 @@ def create_note():
         title=data.get("title"),
         content=data.get("content"),
         language=data.get("language"),
-        user_id=data.get("user_id"),
+        user_id=current_user.id,
     )
 
     tag_names = data.get("tags", [])
@@ -57,7 +60,8 @@ def create_note():
     return jsonify(note.to_dict()), 201
 
 @notes_bp.route("/<int:note_id>", methods=["PATCH"])
-def update_note(note_id):
+@token_required
+def update_note(note_id, current_user):
 
     note = Note.query.get_or_404(note_id)
 
@@ -96,7 +100,8 @@ def update_note(note_id):
     return jsonify(note.to_dict()), 200
 
 @notes_bp.route("/<int:note_id>", methods=["DELETE"])
-def delete_note(note_id):
+@token_required
+def delete_note(note_id, current_user):
 
     note = Note.query.get_or_404(note_id)
 
