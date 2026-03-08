@@ -27,10 +27,10 @@ def get_note(current_user):
     per_page = request.args.get("limit", 20, type=int)
 
     # Flask has built-in paginate() to replace all() 
-    # return pagination object that has the data
+    # return pagination object - the container - that has the data - the items attribute
     notes = query.paginate(page=page, per_page=per_page) 
 
-    return jsonify([note.to_dict() for note in notes]), 200
+    return jsonify([note.to_dict() for note in notes.items]), 200
 
 
 @notes_bp.route("/", methods=["POST"])
