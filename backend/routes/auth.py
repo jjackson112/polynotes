@@ -41,7 +41,8 @@ def register():
     if not username or not password or not email:
         return({'error': "Username, email, and password are required"}), 400
 
-    existing_user = User(username=username)
+    # old line created a new local object instead of querying the database
+    existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
     if existing_user:
         return jsonify({'error': "Username has already been taken."}), 400
     

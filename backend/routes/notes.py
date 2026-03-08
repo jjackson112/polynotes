@@ -23,7 +23,12 @@ def get_note(current_user):
     if tag:
         query = query.join(Note.tags).filter(Tag.name == tag)
     
-    notes = query.all() # list of SQLAlchemy objects, not JSON
+    page = request.args.get("page", type=int)
+    per_page = request.args.get("limit", 20, type=int)
+
+    # Flask has built-in paginate() to replace all() 
+    # return pagination object that has the data
+    notes = query.paginate(page=page, per_page=per_page) 
 
     return jsonify([note.to_dict() for note in notes]), 200
 
