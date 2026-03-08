@@ -62,8 +62,8 @@ def create_note(current_user):
 @notes_bp.route("/<int:note_id>", methods=["PATCH"])
 @token_required
 def update_note(note_id, current_user):
-
-    note = Note.query.get_or_404(note_id)
+    # Fetch the note but verify owner
+    note = Note.query.filter_by(id=note_id, user_id=current_user).first_or_404()
 
     data = request.get_json()
 
