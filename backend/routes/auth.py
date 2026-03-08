@@ -2,12 +2,13 @@
 # Login route verifies credentials + returns the JWT
 # Register route hashes the password + saves the new user to the database
 import jwt
+import os
 from app import db
 from flask import Blueprint, request, jsonify
 import datetime
 from models.user import User
 
-user_bp = Blueprint("user", __name__, url_prefix='/api/notes')
+user_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
 
 @user_bp.route("/login", methods=["POST"])
 def login():
@@ -34,7 +35,7 @@ def register():
     username = data.get('username')
     password = data.get('password')
 
-    if not username or password:
+    if not username or not password:
         return({'error': "Username and password are required"}), 400
 
     existing_user = User(username=username)
