@@ -30,8 +30,13 @@ def get_note(current_user):
     # return pagination object - the container - that has the data - the items attribute
     notes = query.paginate(page=page, per_page=per_page, error_out=False) 
 
-    return jsonify([note.to_dict() for note in notes.items]), 200
-
+    return jsonify({
+        "page": notes.page,
+        "per_page": notes.per_page,
+        "total": notes.total,
+        "pages": notes.pages,
+        "items": [note.to_dict() for note in notes.items]
+    }), 200
 
 @notes_bp.route("/", methods=["POST"])
 @token_required
