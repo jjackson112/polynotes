@@ -3,7 +3,8 @@ from models.user import User
 from models.notes import Note
 
 def seed_data():
-    with create_app.app_context():
+    app = create_app()
+    with app.app_context():
         print("Dropping all tables...")
         db.drop_all()
 
@@ -13,10 +14,10 @@ def seed_data():
         print("Seeding data...")
 
         user1 = User(username="jazz", email="jazz@example.com")
-        note1 = User(
-            "title": "",
-            "language": "",
-            "tags": ""
+        note1 = Note(
+            title = "",
+            language = "",
+            tags = ""
         )
 
         db.session.add_all([user1, note1])
