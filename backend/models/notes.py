@@ -11,7 +11,8 @@ class Note(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
     
-    user = db.relationship("User", backref="notes")
+    # foreign key exists 
+    user = db.relationship("User", back_populates="notes")
     tags = db.relationship("Tag", secondary=note_tags, backref="notes")
 
     def to_dict(self):
