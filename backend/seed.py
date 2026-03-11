@@ -22,16 +22,15 @@ def seed_data():
 
         user1.set_password("password123")
 
+        tag1 = Tag(name = "español")
+
         note1 = Note(
             title = "Primera nota",
             content = "Estoy aprendiendo Flask",
             language = "es",
-            user = user1
+            user = user1,
+            tags=[tag1]
         )
-
-        tag1 = Tag(name = "español")
-
-        note1.tags.append(tag1)
 
         db.session.add_all([user1, note1, tag1])
         db.session.commit()
