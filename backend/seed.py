@@ -26,7 +26,13 @@ def seed_data():
             language = "es",
         )
 
-        db.session.add_all([user1, note1])
+        tag1 = Tag(
+            name = "español"
+        )
+
+        note1.tags.append(tag1)
+
+        db.session.add_all([user1, note1, tag1])
         db.session.commit()
 
         print("Seeding complete!")
