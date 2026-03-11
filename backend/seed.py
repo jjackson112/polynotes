@@ -1,9 +1,11 @@
 from app import db, create_app
 from models.user import User  
 from models.notes import Note
+from models.tags import Tag # even if not used it must be imported so that SQLAlchemy can register the table
 
 def seed_data():
     app = create_app()
+
     with app.app_context():
         print("Dropping all tables...")
         db.drop_all()
@@ -13,11 +15,15 @@ def seed_data():
 
         print("Seeding data...")
 
-        user1 = User(username="jazz", email="jazz@example.com")
+        user1 = User(
+            username="jazz", 
+            email="jazz@example.com"
+        )
+
         note1 = Note(
-            title = "",
-            language = "",
-            tags = ""
+            title = "Primera nota",
+            content = "Estoy aprendiendo Flask",
+            language = "es",
         )
 
         db.session.add_all([user1, note1])
