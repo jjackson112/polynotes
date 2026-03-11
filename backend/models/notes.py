@@ -10,12 +10,14 @@ class Note(db.Model):
     language = db.Column(db.String(50), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    user = db.relationship("User", backref="notes")
     tags = db.relationship("Tag", secondary=note_tags, backref="notes")
 
     def to_dict(self):
         return {
             "id": self.id,
-            "username": self.user_id,
+            "user_id": self.user_id,
             "title": self.title,
             "content": self.content,
             "language": self.language,

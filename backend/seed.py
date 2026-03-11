@@ -24,6 +24,7 @@ def seed_data():
             title = "Primera nota",
             content = "Estoy aprendiendo Flask",
             language = "es",
+            user_id = user1
         )
 
         tag1 = Tag(
