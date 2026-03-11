@@ -9,7 +9,7 @@ class User(db.Model):
     password_hash = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     
-    notes = db.relationship("Note", back_populates="author", lazy=True)
+    notes = db.relationship("Note", back_populates="user", lazy=True)
 
     def to_dict(self):
         return {

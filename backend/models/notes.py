@@ -13,7 +13,7 @@ class Note(db.Model):
     
     # foreign key exists 
     user = db.relationship("User", back_populates="notes")
-    tags = db.relationship("Tag", secondary=note_tags, backref="notes")
+    tags = db.relationship("Tag", secondary=note_tags, backref="tags")
 
     def to_dict(self):
         return {
