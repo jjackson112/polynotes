@@ -20,6 +20,8 @@ def seed_data():
             email="jazz@example.com"
         )
 
+        user1.set_password("password123")
+
         note1 = Note(
             title = "Primera nota",
             content = "Estoy aprendiendo Flask",
@@ -27,9 +29,7 @@ def seed_data():
             user = user1
         )
 
-        tag1 = Tag(
-            name = "español"
-        )
+        tag1 = Tag(name = "español")
 
         note1.tags.append(tag1)
 
