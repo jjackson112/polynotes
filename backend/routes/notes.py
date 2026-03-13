@@ -38,6 +38,14 @@ def get_note(current_user):
         "items": [note.to_dict() for note in notes.items]
     }), 200
 
+# single-resource endpoint - simplifies frontend logic + prevents unnecessary large queries
+@notes_bp.route("/int:<note_id>", methods=["GET"])
+@token_required
+def get_single_note(note_id, current_user):
+    note = Note.query.filter_by(id=note_id, user_id=current_user.id).first_or_404()
+
+    return jsonify(note.to_dict()), 200
+
 @notes_bp.route("/", methods=["POST"])
 @token_required
 def create_note(current_user):
