@@ -96,14 +96,14 @@ def update_note(note_id, current_user):
 
         note.tags.clear()
 
-    for name in data["tags"]:
-        tag = Tag.query.filter_by(name=name).first()
-
-        if not tag:
-            tag = Tag(name=name)
-            db.session.add(tag)
-
-        note.tags.append(tag)
+        for name in data["tags"]:
+            tag = Tag.query.filter_by(name=name).first()
+    
+            if not tag:
+                tag = Tag(name=name)
+                db.session.add(tag)
+    
+            note.tags.append(tag)
     
     db.session.commit()
 
@@ -114,7 +114,7 @@ def update_note(note_id, current_user):
 def delete_note(note_id, current_user):
 
     # if the note exists but belongs to another person, a 404 error appears
-    note = Note.query.filter_by(id=note_id, user_id=current_user).first_or_404()
+    note = Note.query.filter_by(id=note_id, user_id=current_user.id).first_or_404()
 
     db.session.delete(note)
     db.session.commit()
