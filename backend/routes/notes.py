@@ -23,7 +23,7 @@ def get_note(current_user):
     if tag:
         query = query.join(Note.tags).filter(Tag.name == tag)
     
-    page = request.args.get("page", type=int)
+    page = request.args.get("page", 1, type=int)
     per_page = request.args.get("limit", 20, type=int)
 
     # Flask has built-in paginate() to replace all() 
@@ -98,11 +98,11 @@ def update_note(note_id, current_user):
 
         for name in data["tags"]:
             tag = Tag.query.filter_by(name=name).first()
-    
+
             if not tag:
                 tag = Tag(name=name)
                 db.session.add(tag)
-    
+
             note.tags.append(tag)
     
     db.session.commit()
