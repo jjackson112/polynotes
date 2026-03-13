@@ -15,7 +15,7 @@ def get_note(current_user):
     language = request.args.get("language")
     tag = request.args.get("tag")
     
-    query = Note.query.filter_by(user_id=current_user.id)
+    query = Note.query.filter_by(Note.user_id == current_user.id)
     
     if language:
         query = query.filter_by(language=language)
