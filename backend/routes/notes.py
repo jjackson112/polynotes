@@ -6,8 +6,29 @@ from app import db
 from models.notes import Note
 from models.tags import Tag
 from services.token import token_required
+from services.note_service import create_note
 
 notes_bp = Blueprint("notes", __name__, url_prefix='/api/notes')
+
+@notes_bp.route("/", methods=["POST"])
+@token_required
+def create_note(current_user):
+    data = request.get_json()
+
+    if not data:
+        return jsonify({"error": "Invalid JSON"}), 400
+    
+    note = note_service.create_note(current_user.id, data)
+    
+    return jsonify(note.to_dict()), 201
+
+# single-resource endpoint - simplifies frontend logic + prevents unnecessary large queries
+@notes_bp.route("/int:<note_id>", methods=["GET"])
+@token_required
+def get_single_note(note_id, current_user):
+    note = Note.query.filter_by(id=note_id, user_id=current_user.id).first_or_404()
+
+    return jsonify(note.to_dict()), 200
 
 @notes_bp.route("/", methods=["GET"])
 @token_required
@@ -37,45 +58,6 @@ def get_note(current_user):
         "pages": notes.pages,
         "items": [note.to_dict() for note in notes.items]
     }), 200
-
-# single-resource endpoint - simplifies frontend logic + prevents unnecessary large queries
-@notes_bp.route("/int:<note_id>", methods=["GET"])
-@token_required
-def get_single_note(note_id, current_user):
-    note = Note.query.filter_by(id=note_id, user_id=current_user.id).first_or_404()
-
-    return jsonify(note.to_dict()), 200
-
-@notes_bp.route("/", methods=["POST"])
-@token_required
-def create_note(current_user):
-    data = request.get_json()
-
-    if not data:
-        return jsonify({"error": "Invalid JSON"}), 400
-    
-    note = Note(
-        title=data.get("title"),
-        content=data.get("content"),
-        language=data.get("language"),
-        user_id=current_user.id,
-    )
-
-    tag_names = data.get("tags", [])
-
-    for name in tag_names:
-        tag = Tag.query.filter_by(name=name).first()
-    
-        if not tag:
-            tag = Tag(name=name)
-            db.session.add(tag)
-
-        note.tags.append(tag)
-    
-    db.session.add(note)
-    db.session.commit()
-    
-    return jsonify(note.to_dict()), 201
 
 @notes_bp.route("/<int:note_id>", methods=["PATCH"])
 @token_required
