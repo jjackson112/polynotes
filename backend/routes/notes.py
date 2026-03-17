@@ -7,7 +7,7 @@ from app import db
 from models.notes import Note
 from models.tags import Tag
 from services.token import token_required
-from services.note_service import create_note
+import services.note_service as note_service
 
 notes_bp = Blueprint("notes", __name__, url_prefix='/api/notes')
 
@@ -24,7 +24,7 @@ def create_note(current_user):
     return jsonify(note.to_dict()), 201
 
 # single-resource endpoint - simplifies frontend logic + prevents unnecessary large queries
-@notes_bp.route("/int:<note_id>", methods=["GET"])
+@notes_bp.route("/<int:note_id>", methods=["GET"])
 @token_required
 def get_single_note(note_id, current_user):
     note = Note.query.filter_by(id=note_id, user_id=current_user.id).first_or_404()
