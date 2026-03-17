@@ -13,4 +13,10 @@ def require_fields(data):
         if not value or not str(value).strip():
             return f"{field.capitalize()} is required"
 
+
+    allowed_languages = ["Spanish", "Mandarin", "Italian"]
+
+    if data.get("language") not in allowed_languages:  
+        return "Invalid language"  
+
     return None
