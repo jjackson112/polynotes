@@ -1,5 +1,6 @@
 # consider querying the database by note or tag
 # move beyond CRUD - real apps search, filter, and note relationships and tags
+# fetching data, updating fields, deleting rows - not business logic
 
 from flask import Blueprint, request, jsonify
 from app import db
@@ -79,21 +80,6 @@ def update_note(note_id, current_user):
 
     if "language" in data:
         note.language = data["language"]
-
-    # update tags - optional
-    # clear tag + attach new ones
-    if "tags" in data:
-
-        note.tags.clear()
-
-        for name in data["tags"]:
-            tag = Tag.query.filter_by(name=name).first()
-
-            if not tag:
-                tag = Tag(name=name)
-                db.session.add(tag)
-
-            note.tags.append(tag)
     
     db.session.commit()
 

@@ -6,7 +6,7 @@ from app import db
 from models.notes import Note
 from models.tags import Tag
 
-# create notes
+# create notes - managed relationships + enforcing that tags must exist
 def create_note(user_id, data):
 
     note = Note(
@@ -29,8 +29,27 @@ def create_note(user_id, data):
     
     db.session.add(note)
     db.session.commit()
+
+    return note # access to created note
     
-# list notes
-# update notes
-# delete notes
+# list notes - fine in routes
+
+# update notes - move tag handling logic here
+def attach_tags(data):
+    # update tags - optional
+    # clear tag + attach new ones
+    if "tags" in data:
+
+        note.tags.clear()
+
+        for name in data["tags"]:
+            tag = Tag.query.filter_by(name=name).first()
+
+            if not tag:
+                tag = Tag(name=name)
+                db.session.add(tag)
+
+            note.tags.append(tag)
+
+# delete notes - fine in routes
 
