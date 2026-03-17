@@ -70,18 +70,6 @@ def update_note(note_id, current_user):
 
     if not data:
         return jsonify({"error": "Invalid JSON"}), 400
-    
-    # change the fields now - don't just fetch, read JSON + commit the note
-    if "title" in data:
-        note.title = data["title"]
-    
-    if "content" in data:
-        note.content = data["content"]
-
-    if "language" in data:
-        note.language = data["language"]
-    
-    db.session.commit()
 
     return jsonify(note.to_dict()), 200
 
