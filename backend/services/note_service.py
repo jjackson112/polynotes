@@ -1,6 +1,6 @@
 # no need for separate JSON file - db already has permanent storage
 # Note model is the class, the routes are the blueprint
-# db session commits changes
+# create, update, + delete note, attach tags + filter logic
 
 from app import db
 from models.notes import Note
