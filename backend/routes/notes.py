@@ -33,7 +33,7 @@ def get_single_note(note_id, current_user):
 
 @notes_bp.route("/", methods=["GET"])
 @token_required
-def get_note(current_user):
+def get_notes_list(current_user):
     language = request.args.get("language")
     tag = request.args.get("tag")
     
@@ -71,6 +71,7 @@ def update_note(note_id, current_user):
     if not data:
         return jsonify({"error": "Invalid JSON"}), 400
 
+    note = note_service.update_note(note, data)
     return jsonify(note.to_dict()), 200
 
 @notes_bp.route("/<int:note_id>", methods=["DELETE"])
