@@ -19,8 +19,6 @@ def attach_tags(note, tag_names):
 
         note.tags.append(tag)
 
-        return note # access to created note
-
 # create notes - managed relationships + enforcing that tags must exist
 def create_note(user_id, data):
 
@@ -42,7 +40,7 @@ def create_note(user_id, data):
 # list notes - fine in routes
 
 # update notes - fetch data logic remains in routes
-def update_note(note, data)
+def update_note(note, data):
     
     # change the fields now - don't just fetch, read JSON + commit the note
     if "title" in data:
