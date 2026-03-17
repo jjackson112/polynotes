@@ -10,4 +10,7 @@ def require_fields(data):
     for field in required_fields:
         value = data.get(field)
 
+        if not value or not str(value).strip():
+            return f"{field.capitalize()} is required"
+
     return None
