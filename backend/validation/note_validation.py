@@ -54,6 +54,6 @@ def validate_language(value):
     allowed_languages = ["spanish", "mandarin", "italian"]
 
     if normalized not in allowed_languages:
-        return "Invalid language"
+        return None, "Invalid language"
 
-    return None
+    return normalized, None
