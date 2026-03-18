@@ -5,7 +5,7 @@ ALLOWED_LANGUAGES = ["spanish", "mandarin", "italian"]
 
 def validate_language(value):
     if not value or not str(value).strip():
-        return "Language is required"
+        return None, "Language is required"
     
     normalized = value.strip().lower()
 
@@ -26,11 +26,13 @@ def validate_create_note(data):
         if not value or not str(value).strip():
             return f"{field.capitalize()} is required"
         
-    error, normalized = validate_language(data.get("language"))
+    normalized, error = validate_language(data.get("language"))
     if error:
         return error
 
     data["language"] = normalized
+
+    return None
 
 # validate what is in the fields - PATCH
 def validate_update_note(data):
@@ -52,9 +54,11 @@ def validate_update_note(data):
             return "Content cannot be empty"
         
     if "language" in data:
-        error = validate_language(data["language"])
+        normalized, error = validate_language(data["language"])
         if error:
             return error
+        
+        data["language"] = normalized
         
     if "tags" in data:
         if not isinstance(data["tags"], list):
