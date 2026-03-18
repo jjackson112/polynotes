@@ -1,6 +1,19 @@
 # helper method for activity + catch bad data before it hits the db
 # split validation for POST + PATCH
 
+ALLOWED_LANGUAGES = ["spanish", "mandarin", "italian"]
+
+def validate_language(value):
+    if not value or not str(value).strip():
+        return "Language is required"
+    
+    normalized = value.strip().lower()
+
+    if normalized not in ALLOWED_LANGUAGES:
+        return None, "Invalid language"
+
+    return normalized, None
+
 def validate_create_note(data):
     if not data:
         return "Invalid JSON"
@@ -13,11 +26,11 @@ def validate_create_note(data):
         if not value or not str(value).strip():
             return f"{field.capitalize()} is required"
         
-    error = validate_language(data.get("language"))
+    error, normalized = validate_language(data.get("language"))
     if error:
         return error
 
-    return None
+    data["language"] = normalized
 
 # validate what is in the fields - PATCH
 def validate_update_note(data):
@@ -43,17 +56,8 @@ def validate_update_note(data):
         if error:
             return error
         
+    if "tags" in data:
+        if not isinstance(data["tags"], list):
+            return "Tags must be a list"
+        
     return None
-
-def validate_language(value):
-    if not value or not str(value).strip():
-        return "Language is required"
-    
-    normalized = value.strip().lower()
-
-    allowed_languages = ["spanish", "mandarin", "italian"]
-
-    if normalized not in allowed_languages:
-        return None, "Invalid language"
-
-    return normalized, None
