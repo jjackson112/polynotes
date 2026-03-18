@@ -12,12 +12,10 @@ def require_fields(data):
 
         if not value or not str(value).strip():
             return f"{field.capitalize()} is required"
-
-
-    allowed_languages = ["spanish", "mandarin", "italian"]
-
-    if data.get("language") not in allowed_languages:  
-        return "Invalid language"  
+        
+    error = validate_language(data.get("language"))
+    if error:
+        return error
 
     return None
 
@@ -41,7 +39,21 @@ def validate_update_note(data):
             return "Content cannot be empty"
         
     if "language" in data:
-        if not data["language"] or not str(data["language"]).strip():
-            return "Language cannot be empty"
+        error = validate_language(data["language"])
+        if error:
+            return error
         
+    return None
+
+def validate_language(value):
+    if not value or not str(value).strip():
+        return "Language is required"
+    
+    normalized = value.strip().lower()
+
+    allowed_languages = ["spanish", "mandarin", "italian"]
+
+    if normalized not in allowed_languages:
+        return "Invalid language"
+
     return None
