@@ -14,7 +14,7 @@ def require_fields(data):
             return f"{field.capitalize()} is required"
 
 
-    allowed_languages = ["Spanish", "Mandarin", "Italian"]
+    allowed_languages = ["spanish", "mandarin", "italian"]
 
     if data.get("language") not in allowed_languages:  
         return "Invalid language"  
