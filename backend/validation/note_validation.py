@@ -1,7 +1,7 @@
 # helper method for activity + catch bad data before it hits the db
 # split validation for POST + PATCH
 
-def require_fields(data):
+def validate_create_note(data):
     if not data:
         return "Invalid JSON"
     

@@ -8,7 +8,7 @@ from models.notes import Note
 from models.tags import Tag
 from services.token import token_required
 import services.note_service as note_service
-from validation.note_validation import require_fields
+from validation.note_validation import validate_create_note
 from validation.note_validation import validate_update_note
 
 notes_bp = Blueprint("notes", __name__, url_prefix='/api/notes')
@@ -23,7 +23,7 @@ def create_note(current_user):
     
     note = note_service.create_note(current_user.id, data)
 
-    error = require_fields(data)
+    error = validate_create_note(data)
 
     if error:
         return jsonify({"error": error}), 400
