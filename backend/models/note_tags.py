@@ -1,4 +1,4 @@
-from app import db
+from extensions import db
 
 # association or junction table 
 note_tags = db.Table(

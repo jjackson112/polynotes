@@ -1,11 +1,8 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from extensions import db
 from routes.health import health_bp
 from routes.auth import auth_bp
 from routes.notes import notes_bp
-
-# create the database without the app and initialize later
-db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)

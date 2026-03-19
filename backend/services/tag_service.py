@@ -2,7 +2,7 @@
 # find existing tags
 # avoid reduplicating tags
 
-from app import db
+from extensions import db
 from models.tags import Tag
 
 def get_or_create_tags(tag_names):

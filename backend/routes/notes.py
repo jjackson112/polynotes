@@ -3,7 +3,7 @@
 # fetching data, updating fields, deleting rows - not business logic
 
 from flask import Blueprint, request, jsonify
-from app import db
+from extensions import db
 from models.notes import Note
 from models.tags import Tag
 from services.token import token_required

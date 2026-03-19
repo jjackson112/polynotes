@@ -3,7 +3,7 @@
 # Register route hashes the password + saves the new user to the database
 import jwt
 import os
-from app import db
+from extensions import db
 from flask import Blueprint, request, jsonify
 import datetime
 from models.user import User

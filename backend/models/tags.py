@@ -1,4 +1,4 @@
-from app import db
+from extensions import db
 from models.note_tags import note_tags
 
 class Tag(db.Model):

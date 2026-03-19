@@ -2,7 +2,7 @@
 # Note model is the class, the routes are the blueprint
 # create, update, + delete note, attach tags + filter logic
 
-from app import db
+from extensions import db
 from models.notes import Note
 from models.tags import Tag
 
