@@ -45,7 +45,7 @@ def register():
     password = data.get('password')
     email = data.get('email')
 
-    if not username or not password or not email:
+    if not username.strip() or not password.strip() or not email.strip():
         return jsonify({'error': "Username, email, and password are required"}), 400
 
     # old line created a new local object instead of querying the database
