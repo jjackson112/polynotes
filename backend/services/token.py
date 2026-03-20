@@ -1,9 +1,9 @@
 import os
 import jwt
+from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
 from functools import wraps
 from flask import request, jsonify, current_app
 from models.user import User
-from jwt import ExpiredSignatureError, InvalidTokenError
 
 # JWT is stateless - not stored in db - has 3 parts
 # Payload is the data - user_id, etc.
