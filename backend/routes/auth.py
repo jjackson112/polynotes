@@ -21,10 +21,17 @@ def login():
         return jsonify({'error': "Invalid username or password"}), 401
 
     # Generate JWT token
-    token = jwt.encode({
-        'user_id': user.id,
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)},
-        os.getenv('SECRET_KEY'), algorithm='HS256')
+    token = jwt.encode(
+        {
+            'user_id': user.id,
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
+        },
+        os.getenv('SECRET_KEY'), 
+        algorithm='HS256'
+    )
+
+    if isinstance(token, bytes):
+        token = token.decode('utf-8')
     
     return jsonify({
         'token': token,
@@ -39,7 +46,7 @@ def register():
     email = data.get('email')
 
     if not username or not password or not email:
-        return({'error': "Username, email, and password are required"}), 400
+        return jsonify({'error': "Username, email, and password are required"}), 400
 
     # old line created a new local object instead of querying the database
     existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
