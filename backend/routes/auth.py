@@ -20,17 +20,15 @@ def login():
     if not user or not user.check_password(password):
         return jsonify({'error': "Invalid username or password"}), 401
 
+    secret = os.getenv('SECRET_KEY')
+    if not secret:
+        return jsonify({"error": "Server misconfiguration"}), 500 
+
     # Generate JWT token
-    token = jwt.encode(
-        {
+    token = jwt.encode({
             'user_id': user.id,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
-        },
-        secret = os.getenv('SECRET_KEY'),
-        if not secret:
-            return jsonify({"error": "Server misconfiguration"}), 500 
-        algorithm='HS256'
-    )
+        }, secret, algorithm='HS256')
 
     if isinstance(token, bytes):
         token = token.decode('utf-8')
