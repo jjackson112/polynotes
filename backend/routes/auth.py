@@ -12,9 +12,9 @@ auth_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
-    data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
+    data = request.get_json() or {}
+    username = data.get('username', '').strip()
+    password = data.get('password', '').strip()
 
     user = User.query.filter_by(username=username).first()
     if not user or not user.check_password(password):
@@ -26,7 +26,9 @@ def login():
             'user_id': user.id,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
         },
-        os.getenv('SECRET_KEY'), 
+        secret = os.getenv('SECRET_KEY'),
+        if not secret:
+            return jsonify({"error": "Server misconfiguration"}), 500 
         algorithm='HS256'
     )
 
