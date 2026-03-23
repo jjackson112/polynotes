@@ -28,7 +28,7 @@ def login():
     token = jwt.encode({
             'user_id': user.id,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
-        }, secret, algorithm='HS256')
+        }, secret, algorithm='HS256') # HS256 to decode and catch expired/invalid tokens
     
     if isinstance(token, bytes):
         token = token.decode('utf-8')

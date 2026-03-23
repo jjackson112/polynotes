@@ -1,8 +1,8 @@
-import os
+from flask import request, jsonify, current_app
 import jwt
 from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
+import os
 from functools import wraps
-from flask import request, jsonify, current_app
 from models.user import User
 
 # JWT is stateless - not stored in db - has 3 parts
@@ -54,3 +54,10 @@ def token_required(f):
         # pass the current_user object into the route function
         return f(current_user, *args, **kwargs)
     return decorated
+
+# Add a protected route to test decorator 
+# 401 for requests with an invalid token or an absent one
+@auth_bp.route("/protected", methods=["GET"])
+@token_required
+def protected_route(user):
+    return jsonify({"message": f"Hello {user.username}, your token is valid!"})
