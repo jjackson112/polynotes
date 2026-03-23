@@ -29,7 +29,7 @@ def login():
             'user_id': user.id,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
         }, secret, algorithm='HS256')
-
+    
     if isinstance(token, bytes):
         token = token.decode('utf-8')
     
