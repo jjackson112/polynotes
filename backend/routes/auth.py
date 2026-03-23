@@ -60,3 +60,16 @@ def register():
     db.session.commit()
 
     return jsonify({'message': "User registered successfully."}), 201
+
+
+# Add a protected route to test decorator 
+# 401 for requests with an invalid token or an absent one
+@auth_bp.route("/protected", methods=["GET"])
+@token_required
+def protected_route(user):
+    return jsonify({"message": f"Hello {user.username}, your token is valid!"})
+
+# stateless JWT, nothing happens server-side
+@auth_bp.route("/logout", methods=["POST"])
+def logout():
+    return jsonify({"message": "Logged out successfully. Token removed from client"}), 200

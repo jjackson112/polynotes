@@ -54,10 +54,3 @@ def token_required(f):
         # pass the current_user object into the route function
         return f(current_user, *args, **kwargs)
     return decorated
-
-# Add a protected route to test decorator 
-# 401 for requests with an invalid token or an absent one
-@auth_bp.route("/protected", methods=["GET"])
-@token_required
-def protected_route(user):
-    return jsonify({"message": f"Hello {user.username}, your token is valid!"})
