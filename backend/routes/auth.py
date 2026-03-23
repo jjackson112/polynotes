@@ -24,7 +24,7 @@ def login():
     if not secret:
         return jsonify({"error": "Server misconfiguration"}), 500 
 
-    # Generate JWT token
+    # Generate JWT token - payload (data)
     token = jwt.encode({
             'user_id': user.id,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
