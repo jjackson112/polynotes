@@ -40,10 +40,10 @@ def login():
 
 @auth_bp.route("/register", methods=["POST"])
 def register():
-    data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
-    email = data.get('email')
+    data = request.get_json() or {}
+    username = data.get('username', '').strip()
+    password = data.get('password', '').strip()
+    email = data.get('email', '').strip()
 
     if not username.strip() or not password.strip() or not email.strip():
         return jsonify({'error': "Username, email, and password are required"}), 400
