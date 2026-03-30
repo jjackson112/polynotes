@@ -5,6 +5,7 @@ from extensions import db
 from routes.health import health_bp
 from routes.auth import auth_bp
 from routes.notes import notes_bp
+from utils
 
 def create_app():
     # load variables from .env
