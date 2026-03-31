@@ -69,7 +69,7 @@ def register():
     return jsonify({'message': "User registered successfully."}), 201
 
 # refresh endpoint validates the user, but gives them a new access token without logging in again
-@auth_bp.route("/refresh", methods=['GET'])
+@auth_bp.route("/refresh", methods=['POST'])
 def refresh():
     data = request.get_json()
     if not data:
@@ -86,7 +86,7 @@ def refresh():
             return jsonify({'error': 'Server configuration error (Secret Key missing)'}), 500
 
         payload = jwt.decode(refresh_token, secret, algorithms=["HS256"])
-        user = db.session.get(User, data["user_id"]) 
+        user = db.session.get(User, payload["user_id"]) 
 
         if not user:
             return jsonify({'error': 'User not found!'}), 404
