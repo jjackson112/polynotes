@@ -7,7 +7,6 @@ from extensions import db
 from flask import Blueprint, request, jsonify
 import datetime
 from models.user import User
-from routes.auth import token_required
 
 auth_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
 
