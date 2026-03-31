@@ -25,16 +25,23 @@ def login():
         return jsonify({"error": "Server misconfiguration"}), 500 
 
     # Generate JWT token - payload (data)
+    # access only token
     token = jwt.encode({
             'user_id': user.id,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
         }, secret, algorithm='HS256') # HS256 to decode and catch expired/invalid tokens
     
+    refresh_token = jwt.encode({
+        'user_id': user.id,
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(days=5)
+    }, secret, algorithm='HS256')
+
     if isinstance(token, bytes):
         token = token.decode('utf-8')
     
     return jsonify({
         'token': token,
+        'refresh_token' : refresh_token,
         'user': user.to_dict() # Helpful to send user info back on login
     }), 200
 
