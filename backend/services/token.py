@@ -1,6 +1,6 @@
-from flask import request, jsonify, current_app
 import jwt
-from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
+from jwt import ExpiredSignatureError, InvalidTokenError
+from flask import request, jsonify, current_app
 import os
 from functools import wraps
 from models.user import User
@@ -29,8 +29,7 @@ def token_required(f):
         
         try:
             # Try to get secret from Flask config first, then Environment
-            secret = current_app.config.get('SECRET_KEY') or os.getenv('SECRET_KEY')
-            
+            secret = current_app.config['SECRET_KEY']
             if not secret:
                 return jsonify({'error': 'Server configuration error (Secret Key missing)'}), 500
             
