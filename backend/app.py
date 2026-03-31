@@ -5,7 +5,7 @@ from extensions import db
 from routes.health import health_bp
 from routes.auth import auth_bp
 from routes.notes import notes_bp
-from utils
+from utils import auth_potected_bp
 
 def create_app():
     # load variables from .env
@@ -23,5 +23,6 @@ def create_app():
     app.register_blueprint(auth_bp)
     app.register_blueprint(health_bp)
     app.register_blueprint(notes_bp)
+    app.register_blueprint(auth_potected_bp)
     
     return app
