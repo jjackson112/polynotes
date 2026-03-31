@@ -4,7 +4,7 @@
 import jwt
 import os
 from extensions import db
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, current_app
 import datetime
 from models.user import User
 
@@ -79,6 +79,27 @@ def refresh():
     if not refresh_token:
         return jsonify({"error": "Missing refresh token"}), 401
     
+    try:
+        # Try to get secret from Flask config first, then Environment
+        secret = current_app.config['SECRET_KEY']
+        if not secret:
+            return jsonify({'error': 'Server configuration error (Secret Key missing)'}), 500
+
+        payload = jwt.decode(refresh_token, secret, algorithms=["HS256"])
+        user = db.session.get(User, data["user_id"]) 
+
+        if not user:
+            return jsonify({'error': 'User not found!'}), 404
+            
+    except ExpiredSignatureError:
+        return jsonify({'error': 'Token is invalid or expired! Login in again.'}), 401
+    
+    except InvalidTokenError:
+        return jsonify({'error': 'Invalid token!'}), 401
+    
+    except Exception as e:
+        return jsonify({'error': f'Unexpected error: {str(e)}'}), 500
+
 
 # stateless JWT, nothing happens server-side
 # @auth_bp.route("/logout", methods=["POST"])
