@@ -68,6 +68,18 @@ def register():
 
     return jsonify({'message': "User registered successfully."}), 201
 
+# refresh endpoint validates the user, but gives them a new access token without logging in again
+@auth_bp.route("/refresh", methods=['GET'])
+def refresh():
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "Data not found"}), 401
+    
+    refresh_token = data.get("refresh_token")
+    if not refresh_token:
+        return jsonify({"error": "Missing refresh token"}), 401
+    
+
 # stateless JWT, nothing happens server-side
 # @auth_bp.route("/logout", methods=["POST"])
 # def logout():
