@@ -1,7 +1,7 @@
 import jwt
 from jwt import ExpiredSignatureError, InvalidTokenError
 from flask import request, jsonify, current_app
-import os
+from extensions import db
 from functools import wraps
 from models.user import User
 
@@ -15,7 +15,7 @@ from models.user import User
 
 def token_required(f):
     @wraps(f)
-    def decorated(*args, **kwargs):
+    def decorated(*args, **kwargs): # args - extra positional arguments, kwargs - extra named arguments
         token = None
 
         # Authorization header check tells system it's a JWT
@@ -36,7 +36,7 @@ def token_required(f):
             data = jwt.decode(token, secret, algorithms=['HS256'])
             
             # User.query.filter_by(id=data['user_id']).first() could work too
-            current_user = User.query.get(data['user_id']) 
+            current_user = db.session.get(User, data["user_id"]) 
 
             if not current_user:
                 return jsonify({'error': 'User not found!'}), 404

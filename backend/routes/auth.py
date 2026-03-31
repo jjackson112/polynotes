@@ -62,6 +62,6 @@ def register():
     return jsonify({'message': "User registered successfully."}), 201
 
 # stateless JWT, nothing happens server-side
-@auth_bp.route("/logout", methods=["POST"])
-def logout():
-    return jsonify({"message": "Logged out successfully. Token removed from client"}), 200
+# @auth_bp.route("/logout", methods=["POST"])
+# def logout():
+#    return jsonify({"message": "Logged out successfully. Token removed from client"}), 200
