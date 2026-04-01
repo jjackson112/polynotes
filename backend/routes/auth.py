@@ -2,6 +2,7 @@
 # Login route verifies credentials + returns the JWT
 # Register route hashes the password + saves the new user to the database
 import jwt
+from jwt import ExpiredSignatureError, InvalidTokenError
 import os
 from extensions import db
 from flask import Blueprint, request, jsonify, current_app
@@ -69,6 +70,7 @@ def register():
     return jsonify({'message': "User registered successfully."}), 201
 
 # refresh endpoint validates the user, but gives them a new access token without logging in again
+# used sparingly compared to the access token
 @auth_bp.route("/refresh", methods=['POST'])
 def refresh():
     data = request.get_json()
@@ -90,6 +92,14 @@ def refresh():
 
         if not user:
             return jsonify({'error': 'User not found!'}), 404
+        
+        # issue new token
+        new_access_token = jwt.encode({
+            'user_id': user.id,
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
+        }, secret, algorithms='HS256')
+
+        return jsonify({"token": new_access_token}), 200
             
     except ExpiredSignatureError:
         return jsonify({'error': 'Token is invalid or expired! Login in again.'}), 401
