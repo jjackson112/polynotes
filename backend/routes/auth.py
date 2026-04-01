@@ -73,7 +73,7 @@ def register():
 # used sparingly compared to the access token
 @auth_bp.route("/refresh", methods=['POST'])
 def refresh():
-    data = request.get_json()
+    data = request.get_json() or {}
     if not data:
         return jsonify({"error": "Data not found"}), 401
     
