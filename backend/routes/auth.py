@@ -21,7 +21,7 @@ def login():
     if not user or not user.check_password(password):
         return jsonify({'error': "Invalid username or password"}), 401
 
-    secret = os.getenv('SECRET_KEY')
+    secret = current_app.config['SECRET_KEY']
     if not secret:
         return jsonify({"error": "Server misconfiguration"}), 500 
 
@@ -82,7 +82,6 @@ def refresh():
         return jsonify({"error": "Missing refresh token"}), 401
     
     try:
-        # Try to get secret from Flask config first, then Environment
         secret = current_app.config['SECRET_KEY']
         if not secret:
             return jsonify({'error': 'Server configuration error (Secret Key missing)'}), 500
@@ -97,7 +96,10 @@ def refresh():
         new_access_token = jwt.encode({
             'user_id': user.id,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
-        }, secret, algorithms='HS256')
+        }, secret, algorithm='HS256')
+
+        if isinstance(refresh_token, bytes):
+            refresh_token = refresh_token.decode('utf-8')
 
         return jsonify({"token": new_access_token}), 200
             
