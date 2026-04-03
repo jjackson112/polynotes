@@ -5,7 +5,7 @@ from extensions import db
 from routes.health import health_bp
 from routes.auth import auth_bp
 from routes.notes import notes_bp
-from utils import auth_protected_bp
+from routes.auth_protected import auth_protected_bp
 
 def create_app():
     # load variables from .env
