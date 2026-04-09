@@ -9,3 +9,7 @@ from extensions import db
 @pytest.fixture
 def client(create_app):
     return create_app.test_client()
+
+def test_health(client):
+    res = client.get("/api/health")
+    assert res.status_code == 200
