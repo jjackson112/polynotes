@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify
 from services.token import token_required
 
-auth_protected_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
+auth_protected_bp = Blueprint("auth_protected", __name__, url_prefix='/api/auth')
 
 # Add a protected route to test decorator 
 # 401 for requests with an invalid token or an absent one
