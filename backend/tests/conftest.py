@@ -20,7 +20,7 @@ def app():
 
     with app.app_context():
         db.create_all()
-        yield db
+        yield app
         db.drop_all()
 
 # test client fixture
@@ -47,9 +47,9 @@ def new_user(client):
     # token = login_res.get_json()["token"]
     assert login_res.status_code == 200
     data = login_res.get_json()
-    assert "token" in data
+    assert "token" in data # a successful login must return the token
 
     return {
         "token": token,
-        "headers": {"Authorization": f"Bearer {token}"}
+        "headers": {"Authorization": f"Bearer {'token'}"}
     }
