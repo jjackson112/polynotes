@@ -44,3 +44,7 @@ def new_user(client):
         "token": token,
         "headers": {"Authorization": f"Bearer {token}"}
     }
+
+def test_protected_route(client, new_user):
+    res = client.get("/api/protected", headers=new_user["headers"])
+    assert res.status_code == 200
