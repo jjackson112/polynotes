@@ -43,7 +43,11 @@ def new_user(client):
         "password": "password123"
     })
 
-    token = login_res.json["token"]
+    # do not assume that login always works
+    # token = login_res.get_json()["token"]
+    assert login_res.status_code == 200
+    data = login_res.get_json()
+    assert "token" in data
 
     return {
         "token": token,
