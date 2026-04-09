@@ -47,6 +47,7 @@ def new_user(client):
     # token = login_res.get_json()["token"]
     assert login_res.status_code == 200
     data = login_res.get_json()
+    token = data["token"]
     assert "token" in data # a successful login must return the token
 
     return {
