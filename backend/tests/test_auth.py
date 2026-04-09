@@ -29,5 +29,18 @@ def db_session(create_app):
 def new_user(client):
     client.post("/api/register", json={
         "email": "jazz@example.com",
+        "username": "jazz",
         "password": "password123"
     })
+
+    login_res = client.post("/api/login", json={
+        "username": "jazz",
+        "password": "password123"
+    })
+
+    token = login_res.json["token"]
+
+    return {
+        "token": token,
+        "headers": {"Authorization": f"Bearer {token}"}
+    }
