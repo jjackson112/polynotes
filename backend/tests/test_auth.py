@@ -10,13 +10,24 @@ from extensions import db
 def client(create_app):
     return create_app.test_client()
 
+# test client fixture
 def test_health(client):
     res = client.get("/api/health")
     assert res.status_code == 200
 
+# db fixture
 @pytest.fixture
 def db_session(create_app):
     with app.app_context():
         db.create_all()
         yield db
         db.drop_all()
+
+# auth helper texture
+# no more repeating register/login for each test
+@pytest.fixture
+def new_user(client):
+    client.post("/api/register", json={
+        "email": "jazz@example.com",
+        "password": "password123"
+    })
