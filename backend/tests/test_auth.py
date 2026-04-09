@@ -13,3 +13,10 @@ def client(create_app):
 def test_health(client):
     res = client.get("/api/health")
     assert res.status_code == 200
+
+@pytest.fixture
+def db_session(create_app):
+    with app.app_context():
+        db.create_all()
+        yield db
+        db.drop_all()
