@@ -11,3 +11,10 @@ def test_protected_route(client, new_user):
 def test_protected_no_token(client):
     res = client.get("/api/protected")
     assert res.status_code == 401
+
+def test_protected_invalid_token(client):
+    res = client.get(
+        "/api/protected",
+        headers={"Authorization": "Bearer invalidtoken"}
+    )
+    assert res.status_code == 401
