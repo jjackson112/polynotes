@@ -66,3 +66,11 @@ def test_refresh_token(client, new_user):
     assert res.status_code == 200
     data = res.get_json()
     assert "access_token" in data
+
+# test for invalid or expired refresh tokens
+def test_refresh_invalid_token():
+    res = client.post("/api/refresh", json={
+        "refresh_token": "fake"
+    })
+
+    assert res.status_code == 401
