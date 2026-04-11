@@ -47,11 +47,22 @@ def new_user(client):
     # token = login_res.get_json()["token"]
     assert login_res.status_code == 200
     data = login_res.get_json()
-    assert "token" in data # a successful login must return the token
+    assert access_token in data # a successful login must return the token
 
-    token = data["token"]
+    access_token = data["access_token"]
 
     return {
-        "token": token,
-        "headers": {"Authorization": f"Bearer {token}"}
+        "access_token": data["access_token"],
+        "refresh_token": data["refresh_token"],
+        "headers": {"Authorization": f"Bearer {data['access_token']}"}
     }
+
+# refresh fixture
+def test_refresh_token(client, new_user):
+    res = client.post("/api/refresh", json={
+        "refresh_token": new_user["refresh_token"]
+    })
+
+    assert res.status_code == 200
+    data = res.get_json()
+    assert "access_token" in data
