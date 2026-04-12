@@ -38,7 +38,8 @@ function Login() {
             console.error("Login failed", data)
         }
 
-        // Store token
+        // Store token - persistence layer to restore on reload
+        localStorage.setItem("token", data.token)
 
         // Update state
         setUserLoggedIn(true)
