@@ -17,7 +17,7 @@ function Register() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(form)
+            body: JSON.stringify(registerForm)
         })
 
         const data = await res.json()
@@ -36,19 +36,21 @@ function Register() {
             <input
                 placeholder="username"
                 value="username"
-                onChange={(e) => setForm({...form, username: e.target.value})}
+                onChange={(e) => setRegisterForm({...form, username: e.target.value})}
             />
             <input
                 placeholder="email"
                 value= "email"
-                onChange={(e) => setForm({...form, email: e.target.value})}
+                onChange={(e) => setRegisterForm({...form, email: e.target.value})}
             />
             <input
                 placeholder="password"
                 value="password"
-                onChange={(e) => setForm({...form, password: e.target.value})}
+                onChange={(e) => setRegisterForm({...form, password: e.target.value})}
             />
             <button type="submit">Register</button>
         </form>
     )}
 }
+
+export default Register
