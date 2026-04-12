@@ -30,5 +30,25 @@ function Register() {
         } catch (err) {
             console.error("Network error:", err)
         }
-    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input
+                placeholder="username"
+                value="username"
+                onChange={(e) => setForm({...form, username: e.target.value})}
+            />
+            <input
+                placeholder="email"
+                value= "email"
+                onChange={(e) => setForm({...form, email: e.target.value})}
+            />
+            <input
+                placeholder="password"
+                value="password"
+                onChange={(e) => setForm({...form, password: e.target.value})}
+            />
+            <button type="submit">Register</button>
+        </form>
+    )}
 }
