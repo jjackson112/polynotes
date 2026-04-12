@@ -1,5 +1,6 @@
 import './App.css'
 import Login from './pages/Login';
+import Register from './pages/Register'
 import { useEffect } from "react";
 
 {/* Test backend connection */}
@@ -16,6 +17,7 @@ function App() {
     <div>
       <h1>Polynotes Frontend</h1>
       <Login />
+      <Register />
     </div>
   )
 }
