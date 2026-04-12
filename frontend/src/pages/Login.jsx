@@ -6,37 +6,48 @@ function Login() {
         username: "",
         password: ""
     })
+
+    {/* Fetch all notes */}
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        console.log("Logging in")
+
+        try {
+            const res = await fetch("http://localhost:5000/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(form)
+        })
+
+        const data = await res.json()
+        console.log("Login response", data)
+
+        if (!res.ok) {
+            console.error("Login failed")
+        }
+
+        // later store taken 
+
+    } catch (err) {
+        console.error("Network error:", err)
+    }
 }
 
-{/* Fetch all notes */}
-const handleSubmit = async (e) => {
-    e.preventDefault()
-    console.log("Logging in")
-
-    const res = await fetch("http://localhost:5000/api/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(form)
-    })
-
-    const data = await res.json()
-    console.log(data)
+    return (
+        <form onSubmit={handleSubmit}>
+            <input
+                placeholder="username"
+                onChange={(e) => setForm({...form, username: e.target.value})}
+            />
+            <input
+                placeholder="password"
+                onChange={(e) => setForm({...form, password: e.target.value})}
+            />
+            <button type="submit">Login</button>
+        </form>
+    )
 }
-
-return (
-    <form onSubmit={handleSubmit}>
-        <input
-            placeholder="username"
-            onChange={(e) => setForm({...form, username: e.target.value})}
-        />
-        <input
-            placeholder="password"
-            onChange={(e) => setForm({...form, password: e.target.value})}
-        />
-        <button type="submit">Login</button>
-    </form>
-)
 
 export default Login
