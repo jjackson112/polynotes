@@ -6,12 +6,15 @@ from routes.health import health_bp
 from routes.auth import auth_bp
 from routes.notes import notes_bp
 from routes.auth_protected import auth_protected_bp
+from flask_cors import CORS
 
 def create_app():
     # load variables from .env
     load_dotenv()
 
     app = Flask(__name__)
+
+    CORS(app, resources={r"/api/*": {"origins": "*"}})
 
     # Database configuration
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "fallback_dev_secret")
