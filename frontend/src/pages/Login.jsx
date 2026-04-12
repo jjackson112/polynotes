@@ -35,7 +35,7 @@ function Login() {
             if (token) {
                 setUserLoggedIn(true)
             }
-        }) 
+        }, []) 
         localStorage.getItem("token": data.token)
 
     } catch (err) {
