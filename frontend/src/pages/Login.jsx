@@ -49,17 +49,23 @@ function Login() {
 }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                placeholder="username"
-                onChange={(e) => setForm({...form, username: e.target.value})}
-            />
-            <input
-                placeholder="password"
-                onChange={(e) => setForm({...form, password: e.target.value})}
-            />
-            <button type="submit">Login</button>
-        </form>
+        <div>
+            {userLoggedIn ? (
+                <h2>Logged in</h2>
+            ) : (
+                <form onSubmit={handleSubmit}>
+                    <input
+                        placeholder="username"
+                        onChange={(e) => setForm({...form, username: e.target.value})}
+                    />
+                    <input
+                        placeholder="password"
+                        onChange={(e) => setForm({...form, password: e.target.value})}
+                    />
+                    <button type="submit">Login</button>
+                </form>
+            )}
+        </div>
     )
 }
 
