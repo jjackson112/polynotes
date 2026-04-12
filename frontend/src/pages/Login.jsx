@@ -6,6 +6,7 @@ function Login() {
         username: "",
         password: ""
     })
+    const [userLoggedIn, setUserLoggedIn] = useState(false)
 
     {/* Fetch all notes */}
     const handleSubmit = async (e) => {
@@ -28,7 +29,14 @@ function Login() {
             console.error("Login failed", data)
         }
 
-        // later store taken 
+        // later store taken
+        useEffect(() => {
+            const token = localStorage.getItem("token")
+            if (token) {
+                setUserLoggedIn(true)
+            }
+        }) 
+        localStorage.getItem("token": data.token)
 
     } catch (err) {
         console.error("Network error:", err)
