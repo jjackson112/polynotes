@@ -14,4 +14,7 @@ function App() {
   return <h1>Polynotes Frontend</h1>
 }
 
+
+    const { title, content, language, tags } = newNote
+
 export default App

@@ -20,5 +20,23 @@ const handleSubmit = async (e) => {
         },
         body: JSON.stringify(form)
     })
+
+    const data = await res.json()
+    console.log(data)
 }
 
+return (
+    <form onSubmit={handleSubmit}>
+        <input
+            placeholder="username"
+            onChange={(e) => setForm({...form, username: e.target.value})}
+        />
+        <input
+            placeholder="password"
+            onChange={(e) => setForm({...form, password: e.target.value})}
+        />
+        <button type="submit">Login</button>
+    </form>
+)
+
+export default Login
