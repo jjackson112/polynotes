@@ -18,7 +18,7 @@ Faker==40.1.0
 filelock==3.18.0
 Flask==3.1.0
 Flask-Bcrypt==1.0.1
-flask-cors==6.0.0
+flask-cors==6.0.2
 Flask-JWT-Extended==4.7.1
 Flask-Login==0.6.3
 Flask-Mail==0.10.0
