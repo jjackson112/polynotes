@@ -25,7 +25,7 @@ function Login() {
         console.log("Login response", data)
 
         if (!res.ok) {
-            console.error("Login failed")
+            console.error("Login failed", data)
         }
 
         // later store taken 
