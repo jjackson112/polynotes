@@ -37,6 +37,9 @@ function Login() {
         // centralized auth replacing stored token + updating login state
         login(data.token)
 
+        // clear form after logging in 
+        setForm({ username: "", password: ""})
+
     } catch (err) {
         console.error("Network error:", err)
     }
