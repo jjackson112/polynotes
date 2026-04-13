@@ -47,6 +47,22 @@ function Login() {
     } catch (err) {
         console.error("Network error:", err)
     }
+
+    // test function for protected route
+    const hitProtectedRoute = async () => {
+        const token = localStorage.getItem("token")
+
+        try {
+            const res = await fetch("http://localhost:5000/api/auth/protected", {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+        } catch (err) {
+            console.log("Error", err)
+        }
+    }   
 }
 
     return (
