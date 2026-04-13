@@ -9,16 +9,6 @@ function Login() {
         password: ""
     })
 
-    // app load to initialize state
-    const [userLoggedIn, setUserLoggedIn] = useState(false)
-
-    useEffect(() => {
-        const token = localStorage.getItem("token")
-        if (token) {
-            setUserLoggedIn(true)
-        }
-    }, []) 
-
     {/* Fetch all notes */}
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -75,12 +65,6 @@ function Login() {
             console.log("Error", err)
         }
     }   
-
-    // logout function
-    const handleLogout = () => {
-        localStorage.removeItem("token")
-        setUserLoggedIn(false)
-    } 
 
     return (
         <div>
