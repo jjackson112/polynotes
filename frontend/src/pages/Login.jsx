@@ -10,7 +10,30 @@ function Login() {
         password: ""
     })
 
-    const { login, logout, userLoggedIn } = useAuth()
+    const { token, login, logout, userLoggedIn } = useAuth()
+
+    // test function for protected route
+    const hitProtectedRoute = async () => {
+
+        if (!token) {
+            console.error("No token found")
+            return
+        }
+
+        try {
+            const res = await fetch("http://localhost:5000/api/auth/protected", {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            const data = await res.json()
+            console.log("Protected response:", data)
+
+        } catch (err) {
+            console.log("Error", err)
+        }
+    }  
 
     {/* Fetch all notes */}
     const handleSubmit = async (e) => {
@@ -43,31 +66,7 @@ function Login() {
     } catch (err) {
         console.error("Network error:", err)
     }
-}
-
-    // test function for protected route
-    const hitProtectedRoute = async () => {
-        const { token } = useAuth() // const token = localStorage.getItem("token")
-
-        if (!token) {
-            console.error("No token found")
-            return
-        }
-
-        try {
-            const res = await fetch("http://localhost:5000/api/auth/protected", {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            const data = await res.json()
-            console.log("Protected response:", data)
-
-        } catch (err) {
-            console.log("Error", err)
-        }
-    }   
+} 
 
     return (
         <div>
