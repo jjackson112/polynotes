@@ -76,6 +76,12 @@ function Login() {
         }
     }   
 
+    // logout function
+    const handleLogout = () => {
+        localStorage.removeItem("token")
+        setUserLoggedIn(false)
+    } 
+
     return (
         <div>
             {userLoggedIn ? (
