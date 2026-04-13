@@ -78,10 +78,12 @@ function Login() {
             ) : (
                 <form onSubmit={handleSubmit}>
                     <input
+                        value={form.username} // controlled input by React not the browser
                         placeholder="username"
                         onChange={(e) => setForm({...form, username: e.target.value})}
                     />
                     <input
+                        value={form.password} // controlled input always matches what's in the input + re-renders properly
                         placeholder="password"
                         onChange={(e) => setForm({...form, password: e.target.value})}
                     />
