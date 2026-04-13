@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+{/* useEffect → checks localStorage → restores login */}
 
 {/* Create state for login form */}
 function Login() {
@@ -36,6 +38,7 @@ function Login() {
 
         if (!res.ok) {
             console.error("Login failed", data)
+            return // stop execution so this doesn't run on failure
         }
 
         // Store token - persistence layer to restore on reload
@@ -47,6 +50,7 @@ function Login() {
     } catch (err) {
         console.error("Network error:", err)
     }
+}
 
     // test function for protected route
     const hitProtectedRoute = async () => {
@@ -66,7 +70,6 @@ function Login() {
             console.log("Error", err)
         }
     }   
-}
 
     return (
         <div>
