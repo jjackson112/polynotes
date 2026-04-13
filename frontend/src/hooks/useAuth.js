@@ -3,7 +3,10 @@ import { useState, useEffect } from "react";
 export function useAuth() {
     // token !== null means user is logged in - do I need both?
     const [token, setToken] = useState(null)
-    const userLoggedIn = !!token // is this value truthy? Is there a token?
+
+    // no setter needed - it's a derived state
+    // is this value truthy? Is there a token?
+    const userLoggedIn = !!token 
 
     // restore session on load
     useEffect(() => {
@@ -11,7 +14,6 @@ export function useAuth() {
 
         if (storedToken) {
             setToken(storedToken)
-            userLoggedIn(true)
         }
     }, [])
 
@@ -19,14 +21,12 @@ export function useAuth() {
     const login = (newToken) => {
         localStorage.setItem("token", newToken)
         setToken(newToken)
-        userLoggedIn(true)
     }
     
     // logout function
     const logout = () => {
         localStorage.removeItem("token")
         setToken(null)
-        userLoggedIn(false)
     } 
 
     return {
