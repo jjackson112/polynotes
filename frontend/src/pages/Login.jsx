@@ -15,7 +15,7 @@ function Login() {
     {/* Fetch all notes */}
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log("Logging in")
+        // console.log("Logging in")
 
         try {
             const res = await fetch("http://localhost:5000/api/auth/login", {
@@ -27,7 +27,7 @@ function Login() {
         })
 
         const data = await res.json()
-        console.log("Login response", data)
+        // console.log("Login response", data)
 
         if (!res.ok) {
             console.error("Login failed", data)
@@ -46,7 +46,7 @@ function Login() {
 }
 
     // test function for protected route
-    const hitProtectedRoute = async () => {
+    {/* const hitProtectedRoute = async () => {
         const token = localStorage.getItem("token")
 
         if (!token) {
@@ -66,7 +66,7 @@ function Login() {
 
         } catch (err) {
             console.log("Error", err)
-        }
+        } */}
     }   
 
     return (
@@ -86,10 +86,10 @@ function Login() {
                         onChange={(e) => setForm({...form, password: e.target.value})}
                     />
                     <button type="submit">Login</button>
+                    <button type="submit">Logout</button>
                 </form>
             )}
-            <button onClick={hitProtectedRoute} disabled={!userLoggedIn}>Test protected route</button>
-            <button onClick={handleLogout}>Logout</button>
+            {/* <button onClick={hitProtectedRoute} disabled={!userLoggedIn}>Test protected route</button> */}
         </div>
     )
 }

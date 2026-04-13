@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 
 export function useAuth() {
+    // token !== null means user is logged in - do I need both?
     const [token, setToken] = useState(null)
-    const [userLoggedIn, setUserLoggedIn] = useState(false)
+    const userLoggedIn = !!token // is this value truthy? Is there a token?
 
     // restore session on load
     useEffect(() => {
@@ -10,7 +11,7 @@ export function useAuth() {
 
         if (storedToken) {
             setToken(storedToken)
-            setUserLoggedIn(true)
+            userLoggedIn(true)
         }
     }, [])
 
@@ -18,14 +19,14 @@ export function useAuth() {
     const login = (newToken) => {
         localStorage.setItem("token", newToken)
         setToken(newToken)
-        setUserLoggedIn(true)
+        userLoggedIn(true)
     }
     
     // logout function
     const logout = () => {
         localStorage.removeItem("token")
         setToken(null)
-        setUserLoggedIn(false)
+        userLoggedIn(false)
     } 
 
     return {
