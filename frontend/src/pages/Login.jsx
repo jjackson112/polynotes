@@ -59,6 +59,9 @@ function Login() {
                     Authorization: `Bearer ${token}`,
                 },
             })
+            const data = await res.json()
+            console.log("Protected response:", data)
+
         } catch (err) {
             console.log("Error", err)
         }
@@ -82,6 +85,7 @@ function Login() {
                     <button type="submit">Login</button>
                 </form>
             )}
+            <button onClick={hitProtectedRoute}>Test protected route</button>
         </div>
     )
 }
