@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 {/* useEffect → checks localStorage → restores login */}
 
@@ -8,6 +9,8 @@ function Login() {
         username: "",
         password: ""
     })
+
+    const { login, userLoggedIn } = useAuth()
 
     {/* Fetch all notes */}
     const handleSubmit = async (e) => {
@@ -31,11 +34,8 @@ function Login() {
             return // stop execution so this doesn't run on failure
         }
 
-        // Store token - persistence layer to restore on reload
-        localStorage.setItem("token", data.token)
-
-        // Update state
-        setUserLoggedIn(true)
+        // centralized auth replacing stored token + updating login state
+        login(data.token)
 
     } catch (err) {
         console.error("Network error:", err)
