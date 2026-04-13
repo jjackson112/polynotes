@@ -10,7 +10,7 @@ function Login() {
         password: ""
     })
 
-    const { login, userLoggedIn } = useAuth()
+    const { login, logout, userLoggedIn } = useAuth()
 
     {/* Fetch all notes */}
     const handleSubmit = async (e) => {
@@ -46,8 +46,8 @@ function Login() {
 }
 
     // test function for protected route
-    {/* const hitProtectedRoute = async () => {
-        const token = localStorage.getItem("token")
+    const hitProtectedRoute = async () => {
+        const { token } = useAuth() // const token = localStorage.getItem("token")
 
         if (!token) {
             console.error("No token found")
@@ -66,13 +66,17 @@ function Login() {
 
         } catch (err) {
             console.log("Error", err)
-        } */}
+        }
     }   
 
     return (
         <div>
             {userLoggedIn ? (
-                <h2>Logged in</h2>
+                <div>
+                    <h2>Logged in</h2>
+                    <button onClick={logout}>Logout</button>
+                    <button onClick={hitProtectedRoute}>Test Protected Route</button>
+                </div>
             ) : (
                 <form onSubmit={handleSubmit}>
                     <input
@@ -86,10 +90,8 @@ function Login() {
                         onChange={(e) => setForm({...form, password: e.target.value})}
                     />
                     <button type="submit">Login</button>
-                    <button type="submit">Logout</button>
                 </form>
             )}
-            {/* <button onClick={hitProtectedRoute} disabled={!userLoggedIn}>Test protected route</button> */}
         </div>
     )
 }
