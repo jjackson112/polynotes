@@ -56,6 +56,11 @@ function Login() {
     const hitProtectedRoute = async () => {
         const token = localStorage.getItem("token")
 
+        if (!token) {
+            console.error("No token found")
+            return
+        }
+
         try {
             const res = await fetch("http://localhost:5000/api/auth/protected", {
                 method: "GET",
@@ -90,7 +95,7 @@ function Login() {
                     <button type="submit">Login</button>
                 </form>
             )}
-            <button onClick={hitProtectedRoute}>Test protected route</button>
+            <button onClick={hitProtectedRoute} disabled={!userLoggedIn}>Test protected route</button>
         </div>
     )
 }
