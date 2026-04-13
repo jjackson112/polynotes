@@ -102,6 +102,7 @@ function Login() {
                 </form>
             )}
             <button onClick={hitProtectedRoute} disabled={!userLoggedIn}>Test protected route</button>
+            <button onClick={handleLogout}>Logout</button>
         </div>
     )
 }
