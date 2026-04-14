@@ -1,6 +1,7 @@
 import './App.css'
 import Login from './pages/Login';
 import { useEffect } from "react";
+import { AuthProvider } from './context/AuthContext';
 
 {/* Test backend connection */}
 
@@ -21,5 +22,7 @@ function App() {
 }
 
 {/*const { title, content, language, tags } = newNote */}
-
+<AuthProvider>
+  <App />
+</AuthProvider>
 export default App
