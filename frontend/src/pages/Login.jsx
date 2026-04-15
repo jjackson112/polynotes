@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
+import { AuthProvider } from "../context/AuthContext";
 
 {/* useEffect → checks localStorage → restores login */}
 
@@ -10,7 +11,7 @@ function Login() {
         password: ""
     })
 
-    const { token, login, logout, userLoggedIn } = useAuth()
+    const { token, login, logout, userLoggedIn } = useAuth();
 
     // test function for protected route
     const hitProtectedRoute = async () => {
