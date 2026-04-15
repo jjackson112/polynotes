@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from './pages/Login';
 import { useEffect } from "react";
 import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 
 {/* Test backend connection */}
 
@@ -21,7 +22,14 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+
+        <Route path="/dashboard" 
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   )
