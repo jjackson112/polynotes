@@ -70,7 +70,7 @@ function Login() {
             if(userLoggedIn) {
                 navigate("/dashboard")
             }
-        })
+        }, [userLoggedIn])
 
         // clear form after logging in 
         setForm({ username: "", password: ""})
