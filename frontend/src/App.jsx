@@ -1,4 +1,5 @@
 import './App.css'
+import { Routes, Route } from "react-router-dom";
 import Login from './pages/Login';
 import { useEffect } from "react";
 import { AuthProvider } from './context/AuthContext';
@@ -17,6 +18,11 @@ function App() {
     <div>
       <h1>Polynotes Frontend</h1>
       <Login />
+
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
     </div>
   )
 }
