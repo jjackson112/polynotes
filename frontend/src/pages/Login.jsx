@@ -62,6 +62,8 @@ function Login() {
 
         // centralized auth replacing stored token + updating login state
         login(data.token)
+        // after login succeeds user is directed to the dashboard
+        navigate("/dashboard")
 
         // clear form after logging in 
         setForm({ username: "", password: ""})
