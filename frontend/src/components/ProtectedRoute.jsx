@@ -1,5 +1,6 @@
 import { useAuth } from "../hooks/useAuth";
 
+// check auth state
 function ProtectedRoute({ children }) {
     const { userLoggedIn } = useAuth();
 

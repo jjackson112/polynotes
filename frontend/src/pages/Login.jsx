@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
-import { AuthProvider } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 {/* useEffect → checks localStorage → restores login */}
 
@@ -12,6 +12,8 @@ function Login() {
     })
 
     const { token, login, logout, userLoggedIn } = useAuth();
+
+    const navigate = useNavigate();
 
     // test function for protected route
     const hitProtectedRoute = async () => {
