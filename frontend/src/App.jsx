@@ -25,8 +25,8 @@ function App() {
   return (
     <div>
       <h1>Polynotes Frontend</h1>
-      <Login />
       <Status />
+      <Login />
     </div>
   )
 }
