@@ -43,7 +43,6 @@ function Login() {
         }
     }  
 
-    {/* Fetch all notes */}
     const handleSubmit = async (e) => {
         e.preventDefault()
         // console.log("Logging in")
@@ -79,12 +78,17 @@ function Login() {
     }
 } 
 
+    const handleLogout = () => {
+        logout()
+        navigate("/")
+    }
+
     return (
         <div>
             {userLoggedIn ? (
                 <div>
                     <h2>Logged in</h2>
-                    <button onClick={logout}>Logout</button>
+                    <button onClick={handleLogout}>Logout</button>
                     <button onClick={hitProtectedRoute}>Test Protected Route</button>
                 </div>
             ) : (
