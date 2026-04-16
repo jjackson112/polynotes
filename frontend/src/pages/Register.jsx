@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { api } from "../api/api";
 
 function Register() {
     const [registerForm, setRegisterForm] = useState({
@@ -12,20 +13,7 @@ function Register() {
         console.log("Successful register")
 
         try {
-            const res = await fetch("http://localhost:5000/api/auth/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(registerForm)
-        })
-
-        const data = await res.json()
-        console.log("Register response", data)
-
-        if (!res.ok) {
-            console.log("Register unsuccessful", data)
-        }
+            const data = await api.post("/auth/register", registerForm)
 
         } catch (err) {
             console.error("Network error:", err)
@@ -35,16 +23,19 @@ function Register() {
     return (
         <form onSubmit={handleSubmit}>
             <input
+                value={registerForm.username}
                 placeholder="username"
-                onChange={(e) => setRegisterForm({...form, username: e.target.value})}
+                onChange={(e) => setRegisterForm({...registerForm, username: e.target.value})}
             />
             <input
+                value={registerForm.email}
                 placeholder="email"
-                onChange={(e) => setRegisterForm({...form, email: e.target.value})}
+                onChange={(e) => setRegisterForm({...registerForm, email: e.target.value})}
             />
             <input
+                value={registerForm.password}
                 placeholder="password"
-                onChange={(e) => setRegisterForm({...form, password: e.target.value})}
+                onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
             />
             <button type="submit">Register</button>
         </form>
