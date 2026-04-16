@@ -89,7 +89,7 @@ function Login() {
                 <div>
                     <h2>Logged in</h2>
                     <button onClick={handleLogout}>Logout</button>
-                    <button onClick={hitProtectedRoute}>Test Protected Route</button>
+                    <button onClick={hitProtectedRoute} disabled={!userLoggedIn}>Test Protected Route</button>
                 </div>
             ) : (
                 <form onSubmit={handleSubmit}>
