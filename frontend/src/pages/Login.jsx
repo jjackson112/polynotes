@@ -18,7 +18,7 @@ function Login() {
         if(userLoggedIn) {
             navigate("/dashboard")
         }
-    }, [userLoggedIn])
+    }, [userLoggedIn, navigate])
 
     // test function for protected route
     const hitProtectedRoute = async () => {
@@ -69,7 +69,7 @@ function Login() {
         login(data.token)
 
         // after login succeeds user is directed to the dashboard
-        // optional - login(data.token) does the same as navigate("/dashboard")
+        // optional - login(data.token) triggers login() like navigate("/dashboard")
 
         // clear form after logging in 
         setForm({ username: "", password: ""})
