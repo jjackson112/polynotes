@@ -22,6 +22,13 @@ function Register() {
             login(data.token)
             navigate("/dashboard")
 
+            // clear form 
+            setRegisterForm ({
+                username: "",
+                email: "",
+                password: ""
+            })
+
         } catch (err) {
             console.error("Network error:", err)
         }
