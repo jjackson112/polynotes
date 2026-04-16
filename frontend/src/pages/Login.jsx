@@ -12,8 +12,13 @@ function Login() {
     })
 
     const { token, login, logout, userLoggedIn } = useAuth();
-
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(userLoggedIn) {
+            navigate("/dashboard")
+        }
+    }, [userLoggedIn])
 
     // test function for protected route
     const hitProtectedRoute = async () => {
@@ -60,17 +65,11 @@ function Login() {
             return // stop execution so this doesn't run on failure
         }
 
-        // centralized auth replacing stored token + updating login state
+        // centralized auth replacing stored token + updating login state - successful login
         login(data.token)
 
         // after login succeeds user is directed to the dashboard
-        navigate("/dashboard")
-
-        useEffect(() => {
-            if(userLoggedIn) {
-                navigate("/dashboard")
-            }
-        }, [userLoggedIn])
+        // optional - login(data.token) does the same as navigate("/dashboard")
 
         // clear form after logging in 
         setForm({ username: "", password: ""})
