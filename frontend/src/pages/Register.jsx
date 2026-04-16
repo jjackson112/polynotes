@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 
@@ -9,18 +10,19 @@ function Register() {
         password: ""
     })
 
+    const { login } = useAuth()
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
         try {
-            const data = await api.post("/auth/register", registerForm)
+            const response = await api.post("/auth/register", registerForm)
+            const data = response.data
             console.log("Successful register")
 
             // centralized auth replacing stored token + updating login state - successful login
             login(data.token)
-            navigate("/dashboard")
 
             // clear form 
             setRegisterForm ({
@@ -28,6 +30,9 @@ function Register() {
                 email: "",
                 password: ""
             })
+
+            navigate("/dashboard")
+
 
         } catch (err) {
             console.error("Network error:", err)
