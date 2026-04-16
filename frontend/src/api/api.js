@@ -14,5 +14,20 @@ export const api = {
         })
 
         return res.json()
+    },
+
+    post: async (endpoint, body) => {
+        const token = localStorage.getItem("token")
+
+        const res = await fetch(`${BASE_URL}${endpoint}`, {
+            method: "POST",
+            headers: {
+                "content-Type": "application/json",
+                Authorization: token ? `Bearer ${token}` : "",
+            },
+            body: JSON.stringify(body),
+        })
+
+        return res.json()
     }
 }
