@@ -12,6 +12,8 @@ function Login() {
         password: ""
     })
 
+    const [error, setError] = useState("")
+
     const { login, logout, userLoggedIn } = useAuth();
     const navigate = useNavigate();
 
@@ -39,7 +41,7 @@ function Login() {
             setForm({ username: "", password: ""})
 
         } catch (err) {
-            console.error("Network error:", err)
+            setError(err.response?.data?.message || "Login failed")
         }
     } 
 
@@ -50,6 +52,7 @@ function Login() {
 
     return (
         <div>
+            {error && <p>{error}</p>}
             {userLoggedIn ? (
                 <div>
                     <h2>Logged in</h2>
