@@ -11,7 +11,7 @@ function Register() {
     })
 
     const [loading, setLoading] = useState(false)
-
+    const [error, setError] = useState("")
 
     const { login } = useAuth()
     const navigate = useNavigate()
@@ -20,6 +20,7 @@ function Register() {
         e.preventDefault()
 
         setLoading(true)
+        setError("")
 
         try {
             const response = await api.post("/auth/register", registerForm)
@@ -39,7 +40,7 @@ function Register() {
 
 
         } catch (err) {
-            console.error("Network error:", err)
+            setError("Network error:", err)
         } finally {
             setLoading(false)
         }
@@ -64,7 +65,7 @@ function Register() {
                 placeholder="password"
                 onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
             />
-            <button type="submit">Register</button>
+            <button type="submit" disabled={loading}>Register</button>
         </form>
     )
 }
