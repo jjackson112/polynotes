@@ -26,7 +26,8 @@ function Login() {
         // console.log("Logging in")
 
         try {
-            const data = await api.post("/auth/login", form)
+            const response = await api.post("/auth/login", form)
+            const data = response.data
 
             // centralized auth replacing stored token + updating login state - successful login
             login(data.token)
@@ -63,6 +64,7 @@ function Login() {
                     />
                     <input
                         value={form.password} // controlled input always matches what's in the input + re-renders properly
+                        type="password"
                         placeholder="password"
                         onChange={(e) => setForm({...form, password: e.target.value})}
                     />

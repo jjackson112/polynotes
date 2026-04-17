@@ -29,7 +29,6 @@ function Register() {
 
             // auto-login after registering - smooth UX
             login(data.token)
-            navigate("/login")
 
             // clear form 
             setRegisterForm ({
@@ -37,6 +36,8 @@ function Register() {
                 email: "",
                 password: ""
             })
+
+            navigate("/login")
 
         } catch (err) {
             setError(err.response?.data?.message || "Registration failed:")
