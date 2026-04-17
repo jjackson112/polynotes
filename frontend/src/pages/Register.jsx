@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +9,6 @@ function Register() {
         password: ""
     })
 
-    const { login } = useAuth()
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
@@ -21,8 +19,7 @@ function Register() {
             const data = response.data
             console.log("Successful register")
 
-            // centralized auth replacing stored token + updating login state - successful login
-            login(data.token)
+            localStorage.setItem("token", data.token)
 
             // clear form 
             setRegisterForm ({
@@ -31,7 +28,7 @@ function Register() {
                 password: ""
             })
 
-            navigate("/dashboard")
+            navigate("/login")
 
 
         } catch (err) {
@@ -48,11 +45,13 @@ function Register() {
             />
             <input
                 value={registerForm.email}
+                type="email"
                 placeholder="email"
                 onChange={(e) => setRegisterForm({...registerForm, email: e.target.value})}
             />
             <input
                 value={registerForm.password}
+                type="password"
                 placeholder="password"
                 onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
             />
