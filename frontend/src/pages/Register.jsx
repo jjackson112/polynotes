@@ -39,7 +39,7 @@ function Register() {
             })
 
         } catch (err) {
-            setError("Registration failed:", err)
+            setError(err.response?.data?.message || "Registration failed:")
         } finally {
             setLoading(false)
         }
