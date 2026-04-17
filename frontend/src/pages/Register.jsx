@@ -27,7 +27,9 @@ function Register() {
             const data = response.data
             console.log("Successful register")
 
+            // auto-login after registering - smooth UX
             login(data.token)
+            navigate("/login")
 
             // clear form 
             setRegisterForm ({
@@ -35,9 +37,6 @@ function Register() {
                 email: "",
                 password: ""
             })
-
-            navigate("/login")
-
 
         } catch (err) {
             setError("Registration failed:", err)
@@ -48,6 +47,7 @@ function Register() {
 
     return (
         <form onSubmit={handleSubmit}>
+            {error && <p>{error}</p>} 
             <input
                 value={registerForm.username}
                 placeholder="username"
