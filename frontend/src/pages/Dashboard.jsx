@@ -7,8 +7,10 @@ function Dashboard() {
     useEffect(() => {
         const fetchData = async() => {
             try {
-                const request = await api.get("/auth/protected")  
+                const response = await api.get("/auth/protected") 
+                const data = response.data 
                 console.log(data)
+                
             } catch (err) {
                 console.error(err)
             }
