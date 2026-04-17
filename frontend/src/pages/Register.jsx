@@ -65,7 +65,7 @@ function Register() {
                 placeholder="password"
                 onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
             />
-            <button type="submit" disabled={loading}>Register</button>
+            <button type="submit" disabled={loading}>{loading ? "Registering" : "Register"}</button>
         </form>
     )
 }
