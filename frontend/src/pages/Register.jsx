@@ -40,7 +40,7 @@ function Register() {
 
 
         } catch (err) {
-            setError("Network error:", err)
+            setError("Registration failed:", err)
         } finally {
             setLoading(false)
         }
