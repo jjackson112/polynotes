@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import { useEffect } from "react";
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import Dashboard from "./pages/Dashboard";
 
 {/* Test backend connection */}
 
