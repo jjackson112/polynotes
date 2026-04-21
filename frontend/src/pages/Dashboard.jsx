@@ -18,7 +18,11 @@ function Dashboard() {
         fetchData()
     }, [])
 
-    return <h1>Dashboard (Protected) </h1>
+    return (
+        <div>
+            <h1>Dashboard (Protected)</h1>
+        </div>
+    )
 }
 
 export default Dashboard;

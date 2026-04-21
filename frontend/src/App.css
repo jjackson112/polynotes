@@ -1,3 +1,16 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+}
+
+.container {
+  max-width: 500px;
+  margin: auto;
+  padding: 2rem;
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;
