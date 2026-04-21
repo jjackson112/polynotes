@@ -28,7 +28,7 @@ function Login() {
         // console.log("Logging in")
 
         try {
-            const response = await api.post("/auth/login", form)
+            const data = await api.post("/auth/login", form)
 
             // centralized auth replacing stored token + updating login state - successful login
             login(data.access_token)
@@ -40,7 +40,7 @@ function Login() {
             setForm({ username: "", password: ""})
 
         } catch (err) {
-            setError("Login failed")
+            setError(err.message || "Login failed")
         }
     } 
 
