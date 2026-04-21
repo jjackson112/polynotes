@@ -10,7 +10,6 @@ export function AuthProvider({ children }) {
     // restore session on load
     useEffect(() => {
         const storedToken = localStorage.getItem("token")
-
         if (storedToken) {
             setToken(storedToken)
         }
@@ -28,7 +27,7 @@ export function AuthProvider({ children }) {
         setToken(null)
     } 
 
-    const userLoggedIn = !!token;
+    const userLoggedIn = Boolean(token)
 
     return (
         <AuthContext.Provider value={{ token, login, logout, userLoggedIn }}>

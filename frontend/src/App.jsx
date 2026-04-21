@@ -19,8 +19,6 @@ function App() {
   return (
     <div>
       <h1>Polynotes Frontend</h1>
-      <Login />
-
       <Routes>
         <Route path="/" element={<Login />} />
 
@@ -38,7 +36,5 @@ function App() {
 
 //*const { title, content, language, tags } = newNote
 
-<AuthProvider>
   <App />
-</AuthProvider>
 export default App
