@@ -1,4 +1,5 @@
 import { useAuth } from "../hooks/useAuth";
+import { Navigate } from "react-router-dom";
 
 // check auth state
 function ProtectedRoute({ children }) {

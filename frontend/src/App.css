@@ -16,21 +16,26 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: var(--primary-bg);
+  color: var(--text);
 }
 
 .container {
   max-width: 500px;
-  margin: auto;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 2rem;
 }
 
 /* Form Styles */
 form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
-  background: var(--primary-bg);
+  background: var(--card);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
@@ -65,14 +70,4 @@ button {
 
 button:hover {
   background: var(--secondary-hover);
-}
-
-.container {
-  max-width: 500px;
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
 }
