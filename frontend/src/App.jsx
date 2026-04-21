@@ -35,5 +35,4 @@ function App() {
 
 //*const { title, content, language, tags } = newNote
 
-  <App />
 export default App
