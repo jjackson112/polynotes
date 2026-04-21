@@ -3,36 +3,39 @@
 const BASE_URL = "http://localhost:5000/api";
 
 export const api = {
-    get: async (endpoint) => {
-        const token = localStorage.getItem("token")
+  get: async (endpoint) => {
+    const token = localStorage.getItem("token");
 
-        const res = await fetch(`${BASE_URL}${endpoint}`, {
-            method: "GET",
-            headers: {
-                Authorization: token ? `Bearer ${token}` : "",
-            }
-        })
+    const res = await fetch(`${BASE_URL}${endpoint}`, {
+      headers: token
+        ? { Authorization: `Bearer ${token}` }
+        : {},
+    });
 
-        if (!res.ok) {
-            throw new Error("Request failed")
-        }
+    if (!res.ok) throw new Error("GET request failed");
 
-        return res.json()
+    return res.json();
+  },
 
-    },
+  post: async (endpoint, body) => {
+    const token = localStorage.getItem("token");
 
-    post: async (endpoint, body) => {
-        const token = localStorage.getItem("token")
+    const headers = {
+      "Content-Type": "application/json",
+    };
 
-        const res = await fetch(`${BASE_URL}${endpoint}`, {
-            method: "POST",
-            headers: {
-                "content-Type": "application/json",
-                Authorization: token ? `Bearer ${token}` : "",
-            },
-            body: JSON.stringify(body),
-        })
-
-        return res.json()
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
     }
-}
+
+    const res = await fetch(`${BASE_URL}${endpoint}`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) throw new Error("POST request failed");
+
+    return res.json();
+  },
+};
