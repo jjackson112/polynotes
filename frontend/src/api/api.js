@@ -13,7 +13,12 @@ export const api = {
             }
         })
 
+        if (!res.ok) {
+            throw new Error("Request failed")
+        }
+
         return res.json()
+
     },
 
     post: async (endpoint, body) => {
