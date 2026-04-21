@@ -1,3 +1,16 @@
+:root {
+  --primary-bg: #f4f4f4;
+  --primary: #000000;
+  --card: #ffffff;
+  --text: #222;
+  --muted: #666;
+
+  --secondary: #4f46e5;
+  --secondary-hover: #4338ca;
+
+  --border: #ddd;
+}
+
 /* Global Styles */
 body {
   margin: 0;
