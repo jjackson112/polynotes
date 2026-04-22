@@ -7,7 +7,7 @@ function Dashboard() {
     useEffect(() => {
         const fetchData = async() => {
             try {
-                const response = await api.get("/auth/protected") 
+                const response = await api.get("/auth/login") 
                 const data = response.data 
                 console.log(data)
                 
