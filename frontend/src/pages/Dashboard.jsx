@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import { api } from "../api/api";
 
 // /dashboard  → ProtectedRoute  → Dashboard renders
-// protected logic will live here - GET requests
+// protected logic will live here - GET requests to authenticate data
+
 function Dashboard() {
     useEffect(() => {
         const fetchData = async() => {
             try {
-                const response = await api.get("/auth/login") 
-                const data = response.data 
+                const data = await api.get("/auth/protected") 
                 console.log(data)
                 
             } catch (err) {

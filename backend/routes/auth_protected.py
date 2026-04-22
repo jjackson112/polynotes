@@ -8,4 +8,9 @@ auth_protected_bp = Blueprint("auth_protected", __name__, url_prefix='/api/auth'
 @auth_protected_bp.route("/protected", methods=["GET"])
 @token_required
 def protected_route(user):
-    return jsonify({"message": f"Hello {user.username}, your token is valid!"})
+    if not user:
+        return jsonify({"error": "User not found!"}), 500
+    
+    return jsonify({
+        "message": f"Hello {user.username}, your token is valid!"
+    })
