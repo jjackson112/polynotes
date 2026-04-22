@@ -12,7 +12,7 @@ export const api = {
         : {},
     });
 
-    if (!res.ok) throw new Error("GET request failed");
+    if (!res.ok) throw new Error(`GET failed: ${res.status}`);
 
     return res.json();
   },
