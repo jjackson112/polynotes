@@ -1,4 +1,16 @@
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+
 function Header() {
+
+    const { logout } = useAuth();
+    const navigate = useNavigate();
+    
+    const handleLogout = () => {
+        logout()
+        navigate("/")
+    }
+
     return (
         <header>
             <h2 className="header-container">Dashboard</h2>
@@ -9,7 +21,7 @@ function Header() {
                 className="border px-3 py-1 rounded"
             />
 
-            <button>Logout</button>
+            <button className={handleLogout}>Logout</button>
         </header>
     )
 }

@@ -14,7 +14,7 @@ function Login() {
 
     const [error, setError] = useState("")
 
-    const { login, logout, userLoggedIn } = useAuth();
+    const { login, userLoggedIn } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -43,11 +43,7 @@ function Login() {
             setError(err.message || "Login failed")
         }
     } 
-
-    const handleLogout = () => {
-        logout()
-        navigate("/")
-    }
+}
 
     return (
         <div className="container">
