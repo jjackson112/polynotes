@@ -56,13 +56,12 @@ function Login() {
             {userLoggedIn ? (
                 <div>
                     <h2>Logged in</h2>
-                    <button onClick={handleLogout}>Logout</button>
                 </div>
             ) : (
                 <form onSubmit={handleSubmit} className="login-form">
                     <h1>Polynotes</h1>
                     <p>Login to continue</p>
-                    
+
                     <input
                         className="login-input"
                         value={form.username} // controlled input by React not the browser
