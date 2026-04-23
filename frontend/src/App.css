@@ -5,7 +5,7 @@
   --text: #222;
   --muted: #666;
 
-  --secondary: #4f46e5;
+  --secondary: #1020cf;
   --secondary-hover: #4338ca;
 
   --border: #ddd;
@@ -20,7 +20,7 @@ body {
 }
 
 .container {
-  max-width: 500px;
+  max-width: 450px;
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
@@ -29,7 +29,7 @@ body {
   padding: 2rem;
 }
 
-/* Form Styles */
+/* Login Form Styles */
 .login-form {
   width: 100%;
   display: flex;
@@ -42,10 +42,10 @@ body {
 }
 
 .login-input {
-  height: 30px;
+  height: 50px;
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--primary);
+  background-color: var(--primary-bg);
   color: var(--primary);
   padding: 0.9rem;
   border-radius: 10px;
@@ -70,4 +70,5 @@ body {
 
 .login-btn:hover {
   background: var(--secondary-hover);
+  color: var(--card)
 }

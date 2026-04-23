@@ -7,9 +7,7 @@ export const api = {
     const token = localStorage.getItem("token");
 
     const res = await fetch(`${BASE_URL}${endpoint}`, {
-      headers: token
-        ? { Authorization: `Bearer ${token}` }
-        : {},
+      headers: { Authorization: `Bearer ${token}`}
     });
 
     if (!res.ok) throw new Error(`GET failed: ${res.status}`)
