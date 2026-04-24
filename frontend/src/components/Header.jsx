@@ -12,8 +12,8 @@ function Header() {
     }
 
     return (
-        <header>
-            <h2 className="header-container">Dashboard</h2>
+        <header className="header-container">
+            <h2>Dashboard</h2>
 
             <input
                 type="text"
@@ -21,7 +21,7 @@ function Header() {
                 className="border px-3 py-1 rounded"
             />
 
-            <button className={handleLogout}>Logout</button>
+            <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
         </header>
     )
 }
