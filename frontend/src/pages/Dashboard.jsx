@@ -44,11 +44,7 @@ function Dashboard() {
                         <div className="card">
                             <h2>Recent Notes</h2>
                             <p>Here is where the most recent notes will appear</p>
-                        </div>
-
-                        <div className="card">
-                            <h2>Quick Actions</h2>
-                            <button>New Note</button>
+                            <button className="new-note-btn">New Note</button>
                         </div>
                     </section>
                 </main>

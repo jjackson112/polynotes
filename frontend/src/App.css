@@ -73,6 +73,19 @@ body {
   color: var(--card)
 }
 
+/* Header Styles */
+.logout-btn {
+  background: var(--card);
+  padding: 5px;
+  border-radius: 4px;
+  margin-left: 50px;
+}
+
+.logout-btn:hover {
+  background: var(--secondary-hover);
+  color: var(--card);
+}
+
 /* Dashboard Styles */
 .dashboard-main {
   padding: 24px;
@@ -98,4 +111,16 @@ body {
   padding: 20px;
   border-radius: 12px;
   background: white;
+}
+
+.new-note-btn {
+  background: var(--card);
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 4px;
+}
+
+.new-note-btn:hover {
+  background: var(--secondary-hover);
+  color: var(--card)
 }
