@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { api } from "../api/api";
 import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
+import Footer from "../components/Footer";
 
 // /dashboard  → ProtectedRoute  → Dashboard renders
 // protected logic will live here - GET requests to authenticate data
@@ -20,9 +22,26 @@ function Dashboard() {
     }, [])
 
     return (
-        <div>
-            <h1>Dashboard</h1>
-            <Header />
+        <div className="app-layout">
+            <Sidebar />
+
+            <div className="main-wrapper">
+                <Header />
+
+                <main className="dashboard-main">
+                    <h1>Welcome</h1>
+
+                    <section>
+                        <h2>Recent Notes</h2>
+                    </section>
+
+                    <section>
+                        <h2>Quick Actions</h2>
+                    </section>
+                </main>
+
+                <Footer />
+            </div>
         </div>
     )
 }
