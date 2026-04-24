@@ -29,14 +29,27 @@ function Dashboard() {
                 <Header />
 
                 <main className="dashboard-main">
-                    <h1>Welcome</h1>
-
-                    <section>
-                        <h2>Recent Notes</h2>
+                    <section className="welcome-card">
+                        <h1>Welcome</h1>
+                        <p>Ready to organize?</p>
                     </section>
 
-                    <section>
-                        <h2>Quick Actions</h2>
+                    <section className="stats-grid">
+                        <div className="card">Total Notes: 12</div>
+                        <div className="card">Favorites: 4</div>
+                        <div className="card">Archived: 2</div>
+                    </section>
+
+                    <section className="notes-grid">
+                        <div className="card">
+                            <h2>Recent Notes</h2>
+                            <p>Here is where the most recent notes will appear</p>
+                        </div>
+
+                        <div className="card">
+                            <h2>Quick Actions</h2>
+                            <button>New Note</button>
+                        </div>
                     </section>
                 </main>
 

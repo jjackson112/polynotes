@@ -72,3 +72,30 @@ body {
   background: var(--secondary-hover);
   color: var(--card)
 }
+
+/* Dashboard Styles */
+.dashboard-main {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+
+.card,
+.welcome-card {
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+}
