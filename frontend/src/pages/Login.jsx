@@ -43,37 +43,29 @@ function Login() {
             setError(err.message || "Login failed")
         }
     } 
-}
 
     return (
         <div className="container">
             {error && <p>{error}</p>}
 
-            {userLoggedIn ? (
-                <div>
-                    <h2>Logged in</h2>
-                </div>
-            ) : (
-                <form onSubmit={handleSubmit} className="login-form">
-                    <h1>Polynotes</h1>
-                    <p>Login to continue</p>
-
-                    <input
-                        className="login-input"
-                        value={form.username} // controlled input by React not the browser
-                        placeholder="username"
-                        onChange={(e) => setForm({...form, username: e.target.value})}
-                    />
-                    <input
-                        className="login-input"
-                        value={form.password} // controlled input always matches what's in the input + re-renders properly
-                        type="password"
-                        placeholder="password"
-                        onChange={(e) => setForm({...form, password: e.target.value})}
-                    />
-                    <button type="submit" className="login-btn">Login</button>
-                </form>
-            )}
+            <form onSubmit={handleSubmit} className="login-form">
+                <h1>Polynotes</h1>
+                <p>Login to continue</p>
+                <input
+                    className="login-input"
+                    value={form.username} // controlled input by React not the browser
+                    placeholder="username"
+                    onChange={(e) => setForm({...form, username: e.target.value})}
+                />
+                <input
+                    className="login-input"
+                    value={form.password} // controlled input always matches what's in the input + re-renders properly
+                    type="password"
+                    placeholder="password"
+                    onChange={(e) => setForm({...form, password: e.target.value})}
+                />
+                <button type="submit" className="login-btn">Login</button>
+            </form>
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { api } from "../api/api";
+import Header from "../components/Header";
 
 // /dashboard  → ProtectedRoute  → Dashboard renders
 // protected logic will live here - GET requests to authenticate data
@@ -20,7 +21,8 @@ function Dashboard() {
 
     return (
         <div>
-            <h1>Dashboard (Protected)</h1>
+            <h1>Dashboard</h1>
+            <Header />
         </div>
     )
 }
