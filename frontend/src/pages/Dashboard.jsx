@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../api/api";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
@@ -8,11 +8,18 @@ import Footer from "../components/Footer";
 // protected logic will live here - GET requests to authenticate data
 
 function Dashboard() {
+    const [notes, setNotes] = useState([])
+    const [total, setTotal] = useState([0])
+
     useEffect(() => {
         const fetchData = async() => {
             try {
                 const res = await api.get("/api/notes") 
                 console.log(res.data)
+
+                // wire data into state
+                setNotes(res.data.items)
+                setTotal(res.data.total)
                 
             } catch (err) {
                 console.error(err)
@@ -35,7 +42,7 @@ function Dashboard() {
                     </section>
 
                     <section className="stats-grid">
-                        <div className="card">Total Notes: 12</div>
+                        <div className="card">Total Notes: {total}</div>
                         <div className="card">Favorites: 4</div>
                         <div className="card">Archived: 2</div>
                     </section>
