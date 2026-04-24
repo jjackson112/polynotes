@@ -11,8 +11,8 @@ function Dashboard() {
     useEffect(() => {
         const fetchData = async() => {
             try {
-                const data = await api.get("/auth/protected") 
-                console.log(data)
+                const res = await api.get("/api/notes") 
+                console.log(res.data)
                 
             } catch (err) {
                 console.error(err)
@@ -30,7 +30,7 @@ function Dashboard() {
 
                 <main className="dashboard-main">
                     <section className="welcome-card">
-                        <h1>Welcome</h1>
+                        <h2>Welcome</h2>
                         <p>Ready to organize?</p>
                     </section>
 
