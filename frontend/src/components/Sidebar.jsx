@@ -1,7 +1,14 @@
+// <a> reloads the whole page + browser - can also feel slower or reset React state
+// Link changes the route instantly with no page reload like a real app
+// NavLink is better for sidebar - highlights active page automatically
+
+import { Link } from "react-router-dom";
+
 function Sidebar() {
     return (
         <aside>
-
+            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/notes">Notes</Link>
         </aside>
     )
 }

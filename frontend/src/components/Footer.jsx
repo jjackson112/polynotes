@@ -1,7 +1,7 @@
 function Footer() {
     return (
         <footer>
-            <h4> © Copyright | 2026 </h4>
+            <h4> © PolyNotes | 2026 </h4>
         </footer>
     )
 }
