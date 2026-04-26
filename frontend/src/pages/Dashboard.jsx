@@ -9,7 +9,8 @@ import Footer from "../components/Footer";
 
 function Dashboard() {
     const [notes, setNotes] = useState([])
-    const [total, setTotal] = useState([0])
+    const [total, setTotal] = useState(0)
+    const favoriteCount = notes.filter(note => note.favorite).length
 
     useEffect(() => {
         const fetchData = async() => {
@@ -43,14 +44,14 @@ function Dashboard() {
 
                     <section className="stats-grid">
                         <div className="card">Total Notes: {total}</div>
-                        <div className="card">Favorites: 4</div>
+                        <div className="card">Favorites: {favoriteCount}</div>
                         <div className="card">Archived: 2</div>
                     </section>
 
                     <section className="notes-grid">
                         <div className="card">
                             <h2>Recent Notes</h2>
-                            <div className="notes">
+                            <div className="recent-notes">
                                 {notes.slice(0,3).map(note => (
                                     <div key={note.id}>
                                         <h3>{note.title}</h3>
