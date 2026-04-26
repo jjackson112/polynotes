@@ -50,7 +50,14 @@ function Dashboard() {
                     <section className="notes-grid">
                         <div className="card">
                             <h2>Recent Notes</h2>
-                            <p>Here is where the most recent notes will appear</p>
+                            <div className="notes">
+                                {notes.slice(0,3).map(note => (
+                                    <div key={note.id}>
+                                        <h3>{note.title}</h3>
+                                        <p>{note.content}</p>
+                                    </div>
+                                ))}
+                            </div>
                             <button className="new-note-btn">New Note</button>
                         </div>
                     </section>

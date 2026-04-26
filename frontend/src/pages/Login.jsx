@@ -49,7 +49,6 @@ function Login() {
             {error && <p>{error}</p>}
 
             <form onSubmit={handleSubmit} className="login-form">
-                <h1>Polynotes</h1>
                 <p>Login to continue</p>
                 <input
                     className="login-input"
