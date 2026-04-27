@@ -33,7 +33,9 @@ function Dashboard() {
 
     return (
         <div className="app-layout">
-            <Sidebar />
+            <div className="sidebar-wrapper">
+                <Sidebar />
+            </div>
 
             <div className="main-wrapper">
                 <Header />

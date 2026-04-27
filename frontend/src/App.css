@@ -1,14 +1,22 @@
 :root {
-  --primary-bg: #f4f4f4;
+  --primary-bg: #FBDFCE;
   --primary: #000000;
-  --card: #ffffff;
-  --text: #222;
-  --muted: #666;
+  --surface: #ffffff;
+  --card: #fffaf7;
 
-  --secondary: #1020cf;
-  --secondary-hover: #4338ca;
+  --text: #2b211b;
+  --muted: #7A6D64;
 
-  --border: #ddd;
+  --input-color: #f4f4f4;
+
+  --primary: #7A5640;
+  --primary-hover: #654632;
+
+  --accent: #FAB182;
+  --accent-soft: #C78C67;
+
+  --border: #e7cdbd;
+  --shadow: rgba(122, 86, 64, 0.12);
 }
 
 /* Global Styles */
@@ -29,6 +37,54 @@ body {
   padding: 2rem;
 }
 
+.app-layout {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 3px;
+  padding: 5px;
+}
+
+/* Sidebar Styles */
+.sidebar-wrapper {
+  width: 240px;
+  min-height: 100vh;
+  background: var(--accent-soft);
+  color: #fffaf7;
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+.sidebar-logo h2 {
+  margin: 0 0 32px;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.sidebar-wrapper nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar-nav a {
+  text-decoration: none;
+  color: var(--card);
+  padding: 12px 14px;
+  border-radius: 12px;
+  transition: 0.2s ease;
+}
+
+.sidebar-nav a:hover {
+  background: #C78C67;
+}
+
+.sidebar-nav a.active {
+  background: #FAB182;
+  color: #2b211b;
+}
+
 /* Login Form Styles */
 .login-form {
   width: 100%;
@@ -45,7 +101,7 @@ body {
   height: 50px;
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--primary-bg);
+  background-color: var(--input-color);
   color: var(--primary);
   padding: 0.9rem;
   border-radius: 10px;
@@ -53,7 +109,6 @@ body {
   outline: none;
   font-size: 16px;
 }
-
 
 .login-btn {
   padding: 0.9rem;
@@ -69,21 +124,21 @@ body {
 }
 
 .login-btn:hover {
-  background: var(--secondary-hover);
-  color: var(--card)
+  background: var(--primary-hover);
+  color: var(--surface)
 }
 
 /* Header Styles */
 .logout-btn {
-  background: var(--card);
+  background: var(--primary-bg);
   padding: 5px;
   border-radius: 4px;
   margin-left: 50px;
 }
 
 .logout-btn:hover {
-  background: var(--secondary-hover);
-  color: var(--card);
+  background: var(--primary-hover);
+  color: var(--surface);
 }
 
 /* Dashboard Styles */
@@ -110,7 +165,7 @@ body {
 .welcome-card {
   padding: 20px;
   border-radius: 12px;
-  background: white;
+  background: var(--surface);
 }
 
 .new-note-btn {

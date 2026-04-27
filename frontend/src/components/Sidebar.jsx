@@ -10,6 +10,9 @@ function Sidebar() {
             <nav>
                 <Link to="/dashboard">Dashboard</Link>
                 <Link to="/notes">Notes</Link>
+                <Link to="/favorites">Favorites</Link>
+                <Link to="/categories">Categories</Link>
+                <Link to="/tags">Tags</Link>
             </nav>
         </aside>
     )
