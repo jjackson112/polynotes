@@ -11,6 +11,7 @@ function Dashboard() {
     const [notes, setNotes] = useState([])
     const [total, setTotal] = useState(0)
     const favoriteCount = notes.filter(note => note.favorite).length
+    const [pages, setPages] = useState(1)
 
     useEffect(() => {
         const fetchData = async() => {
@@ -21,6 +22,7 @@ function Dashboard() {
                 // wire data into state
                 setNotes(res.data.items)
                 setTotal(res.data.total)
+                setPages(res.data.pages)
                 
             } catch (err) {
                 console.error(err)
@@ -45,7 +47,7 @@ function Dashboard() {
                     <section className="stats-grid">
                         <div className="card">Total Notes: {total}</div>
                         <div className="card">Favorites: {favoriteCount}</div>
-                        <div className="card">Archived: 2</div>
+                        <div className="card">Pages: {pages}</div>
                     </section>
 
                     <section className="notes-grid">
