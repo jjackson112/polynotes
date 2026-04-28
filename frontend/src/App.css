@@ -95,7 +95,7 @@ body {
 
 /* Sidebar Styles */
 .sidebar-wrapper {
-  width: 240px;
+  width: 200px;
   min-height: 100vh;
   background: var(--accent);
   color: #fffaf7;

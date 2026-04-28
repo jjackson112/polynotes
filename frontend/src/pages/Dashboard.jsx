@@ -3,6 +3,7 @@ import { api } from "../api/api";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 // /dashboard  → ProtectedRoute  → Dashboard renders
 // protected logic will live here - GET requests to authenticate data
@@ -12,6 +13,8 @@ function Dashboard() {
     const [total, setTotal] = useState(0)
     const favoriteCount = notes.filter(note => note.favorite).length
     const [pages, setPages] = useState(1)
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async() => {
@@ -63,7 +66,7 @@ function Dashboard() {
                                     </div>
                                 ))}
                             </div>
-                            <button onClick={() => Navigate("/notes/new")} className="new-note-btn">New Note</button>
+                            <button onClick={() => navigate("/notes/new")} className="new-note-btn">New Note</button>
                         </div>
                     </section>
                 </main>
