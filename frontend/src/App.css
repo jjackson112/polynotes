@@ -135,6 +135,16 @@ body {
   color: #2b211b;
 }
 
+.mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.mobile-menu.show {
+  max-height: 300px;
+}
+
 /* Login Form Styles */
 .login-form {
   width: 100%;

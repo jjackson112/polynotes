@@ -13,14 +13,18 @@ function Sidebar() {
         <aside>
             <nav>
                 <button className="hamburger" onClick={() => setOpen(!open)}>
-                    <Menu size={22} />
+                    {open ? <X /> : <Menu size={22} />}
                 </button>
                 
-                <Link to="/dashboard">Dashboard</Link>
-                <Link to="/notes">Notes</Link>
-                <Link to="/favorites">Favorites</Link>
-                <Link to="/categories">Categories</Link>
-                <Link to="/tags">Tags</Link>
+                {open && (
+                    <div className="mobile-menu">
+                        <Link to="/dashboard">Dashboard</Link>
+                        <Link to="/notes">Notes</Link>
+                        <Link to="/favorites">Favorites</Link>
+                        <Link to="/categories">Categories</Link>
+                        <Link to="/tags">Tags</Link>
+                    </div>
+                )}
             </nav>
         </aside>
     )
