@@ -47,6 +47,7 @@ function Dashboard() {
                     <section className="welcome-card">
                         <h2>Welcome</h2>
                         <p>Ready to take notes?</p>
+                        <p>You have {total} notes</p>
                     </section>
 
                     <section className="stats-grid">

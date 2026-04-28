@@ -118,15 +118,15 @@ body {
   gap: 10px;
 }
 
-.sidebar-nav a {
+.sidebar-wrapper nav a {
   text-decoration: none;
-  color: var(--card);
+  color: var(--text);
   padding: 12px 14px;
   border-radius: 12px;
   transition: 0.2s ease;
 }
 
-.sidebar-nav a:hover {
+.sidebar-wrapper a:hover {
   background: #C78C67;
 }
 

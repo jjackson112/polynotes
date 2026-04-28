@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { api } from "../api/api"
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 
@@ -15,7 +16,9 @@ function NewNote() {
     const handleSave = async () => {
         try {
             const res = await api.post("/api/notes", { title, content });
-            navigate(`/notes/${res.data.id}`)
+            navigate("/dashboard")
+            console.log("Saved note", res.data)
+
         } catch (err) {
             console.error("Failed to save note", err)
         }
