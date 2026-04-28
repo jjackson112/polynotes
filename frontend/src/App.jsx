@@ -17,7 +17,6 @@ function App() {
 
   return (
     <div>
-      <h1>Polynotes</h1>
       <Routes>
         <Route path="/" element={<Login />} />
 

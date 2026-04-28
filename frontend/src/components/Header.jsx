@@ -1,5 +1,6 @@
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { Search, NotebookPen } from "lucide-react";
 
 function Header() {
 
@@ -13,11 +14,15 @@ function Header() {
 
     return (
         <header className="header-container">
-            <input
-                type="text"
-                placeholder="Search notes"
-                className="border px-3 py-1 rounded"
-            />
+            <div className="brand-icon">
+                <NotebookPen size={28} />
+                <h1>Polynotes</h1>
+            </div>
+
+            <div className="search-box">
+                <input type="text" placeholder="Search" />
+                <Search size={18} color="#2b211b" />
+            </div>
             <button onClick={handleLogout} className="logout-btn">Logout</button>
         </header>
     )

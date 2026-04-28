@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api/api";
+import { NotebookPen } from "lucide-react";
 
 {/* useEffect → checks localStorage → restores login */}
 
