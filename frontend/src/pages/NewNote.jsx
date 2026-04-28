@@ -27,11 +27,15 @@ function NewNote() {
             <Sidebar />
 
             <input 
+                value={title} // controlled input
                 placeholder="Note Title"
+                onChange={(e) => setTitle(e.target.value)}
             />
 
             <textarea
+                value={content}
                 placeholder="Write new note"
+                onChange={(e) => setContent(e.target.value)}
             />
 
             <button onSubmit={handleSave}>Save</button>
