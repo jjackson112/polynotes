@@ -246,12 +246,18 @@ body {
 }
 
 @media (max-width: 768px) {
-  .sidebar {
+  .header-container {
+    flex-wrap: wrap;
+  }
+
+  .sidebar-wrapper {
     position: fixed;
     left: -100%;
   }
 
-  .sidebar.open {
-    left: 0;
+  .search-box {
+    order: 3;
+    width: 100%;
+    max-width: none;
   }
 }
