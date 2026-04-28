@@ -17,7 +17,7 @@ function Sidebar() {
                 </button>
                 
                 {open && (
-                    <div className="mobile-menu">
+                    <div className={`mobile-menu ${open ? "show" : "hide"}`}>
                         <Link to="/dashboard">Dashboard</Link>
                         <Link to="/notes">Notes</Link>
                         <Link to="/favorites">Favorites</Link>
