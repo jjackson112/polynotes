@@ -43,7 +43,7 @@ function Dashboard() {
                 <main className="dashboard-main">
                     <section className="welcome-card">
                         <h2>Welcome</h2>
-                        <p>Ready to organize?</p>
+                        <p>Ready to take notes?</p>
                     </section>
 
                     <section className="stats-grid">
@@ -63,7 +63,7 @@ function Dashboard() {
                                     </div>
                                 ))}
                             </div>
-                            <button className="new-note-btn">New Note</button>
+                            <button onClick={() => Navigate("/notes/new")} className="new-note-btn">New Note</button>
                         </div>
                     </section>
                 </main>
