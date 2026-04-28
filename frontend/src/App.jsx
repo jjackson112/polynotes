@@ -1,9 +1,10 @@
 import './App.css'
 import { Routes, Route } from "react-router-dom";
-import Login from './pages/Login';
 import { useEffect } from "react";
+import Login from './pages/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from "./pages/Dashboard";
+import NewNote from "./pages/NewNote";
 
 {/* Test backend connection */}
 
@@ -19,7 +20,6 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Login />} />
-
         <Route path="/dashboard" 
           element={
             <ProtectedRoute>
@@ -27,6 +27,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/notes/new" element={<NewNote />} />
       </Routes>
     </div>
   )
