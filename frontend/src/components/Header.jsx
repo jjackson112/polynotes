@@ -24,6 +24,7 @@ function Header() {
                 <input type="text" placeholder="Search" />
                 <Search className="search-icon" size={22} color="#2b211b" />
             </div>
+            
             <button onClick={handleLogout} className="logout-btn">Logout</button>
         </header>
     )
