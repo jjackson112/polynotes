@@ -64,7 +64,8 @@ button {
 }
 
 .header-title {
-  color: var(--text)
+  color: var(--text);
+  font-size: clamp(1.6rem, 3vw, 3rem);
 }
 
 .brand-icon {
@@ -77,7 +78,7 @@ button {
 .search-box {
   display: flex;
   flex: 1;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   gap: 8px;
   background: var(--card);
@@ -162,18 +163,6 @@ button {
   background: none;
   border: none;
   cursor: pointer;
-}
-
-.mobile-menu {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.mobile-menu.show {
-  display: flex;
-  flex-direction: column;
-  max-height: 300px;
 }
 
 /* Login Form Styles */
@@ -273,6 +262,14 @@ button {
   .sidebar-wrapper {
     position: fixed;
     left: -100%;
+    top: 0;
+    height: 100vh;
+    z-index: 1000;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar-wrapper.show {
+    left: 0;
   }
 
   .search-box {
