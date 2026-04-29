@@ -64,7 +64,7 @@ function Login() {
                     placeholder="password"
                     onChange={(e) => setForm({...form, password: e.target.value})}
                 />
-                <button type="submit" className="login-btn">Login</button>
+                <button type="submit" className="login-button">Login</button>
             </form>
         </div>
     )
