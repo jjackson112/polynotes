@@ -310,6 +310,7 @@ button:hover {
   border: 1px solid var(--muted);
   background: var(--surface);
   cursor: pointer;
+  appearance: none;
 }
 
 @media (max-width: 768px) {
