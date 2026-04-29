@@ -27,7 +27,8 @@ function NewNote() {
             setSuccess("Note saved successfully.")
             console.log("Saved note", res.data)
             navigate("/dashboard", {state: {message : "Note created"}})
-
+            // navigate after a short delay - 600 is a custom status code
+            // setTimeout(() => navigate("/dashboard"), 600);
         } catch (err) {
             console.error("Failed to save note", err)
             setError("Note not saved. Try again.")
