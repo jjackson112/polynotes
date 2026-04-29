@@ -289,6 +289,29 @@ button:hover {
   gap: 1rem;
 }
 
+.category-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.category-label {
+  background: var(--accent-soft);
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-weight: 500;
+  color: var(--text)
+}
+
+.category-select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--muted);
+  background: var(--surface);
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .app-layout {
     grid-template-columns: 1fr;
