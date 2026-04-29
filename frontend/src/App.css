@@ -47,6 +47,12 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
+button {
+  border: none;
+  transition: 0.2s ease;
+  font-weight: 600;
+}
+
 /* Header Styles */
 
 .header-container {
@@ -256,6 +262,10 @@ body {
 }
 
 @media (max-width: 768px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+
   .header-container {
     flex-wrap: wrap;
   }
