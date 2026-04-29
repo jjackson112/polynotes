@@ -242,15 +242,16 @@ button:hover {
   padding: 1rem;
   border-radius: 12px;
   border: 1px solid var(--border);
+  color: var(--text);
 }
 
 .new-note-title {
   font-size: 1.2rem;
-  color: var(--text);
 }
 
 .new-note-content {
   min-height: 300px;
+  resize: vertical;
 }
 
 @media (max-width: 768px) {
