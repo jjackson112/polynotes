@@ -14,7 +14,7 @@ function NewNote() {
 
     const handleSave = async () => {
         e.prevent.default()
-        
+
         try {
             const res = await api.post("/api/notes", { title, content });
             navigate("/dashboard")
@@ -26,29 +26,31 @@ function NewNote() {
     }
 
     return (
-        <main>
+        <>
             <Header />
+                <main className="new-note-page">
+                <form className="new-note-form" onSubmit={handleSave}>
+                    <input 
+                    className="new-note-title"
+                    value={title} // controlled input
+                    placeholder="Note Title"
+                    onChange={(e) => setTitle(e.target.value)}
+                    />
 
-            <form>
-                <input 
-                className="note-title"
-                value={title} // controlled input
-                placeholder="Note Title"
-                onChange={(e) => setTitle(e.target.value)}
-                />
-
-                <textarea
-                    className=""
-                    value={content}
-                    placeholder="Write new note"
-                    onChange={(e) => setContent(e.target.value)}
-                />
-
-                <button onSubmit={handleSave}>Save</button>
-                <button onClick={() => navigate("/dashboard")}>Cancel</button>
-            </form>
-        </main>
-    )
+                    <textarea
+                        className="new-note-content"
+                        value={content}
+                        placeholder="Write new note"
+                        onChange={(e) => setContent(e.target.value)}
+                    />
+                    <div className="new-note-buttons">
+                        <button type="submit" className="save-button">Save</button>
+                        <button type="button" className="cancel-button" onClick={() => navigate("/dashboard")}>Cancel</button>
+                    </div>
+                </form>
+            </main>
+        </>
+    )   
 }
 
 export default NewNote;
