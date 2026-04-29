@@ -223,6 +223,7 @@ button:hover {
 }
 
 .note-card {
+  display: flex;
   background: var(--card);
   border-radius: 12px;
   padding: 1rem;

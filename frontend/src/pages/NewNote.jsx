@@ -55,6 +55,23 @@ function NewNote() {
                     required minLength={3}
                     />
 
+                    <div className="category-dropdown">  
+                        <label className="category-label">Category</label>
+
+                        <select 
+                            className="category-select" 
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
+                        >
+                            <option value="All">All</option>
+                            <option value="English">English</option>
+                            <option value="Hawaiian">Hawaiian</option>
+                            <option value="Italian">Italian</option>
+                            <option value="Mandarin">Mandarin</option>
+                            <option value="Spanish">Spanish</option>
+                        </select>
+                    </div>
+
                     <textarea
                         className="new-note-content"
                         value={content}
