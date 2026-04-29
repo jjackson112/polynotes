@@ -13,18 +13,24 @@ function NewNote() {
     const [content, setContent] = useState("")
 
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState("")
+    const [success, setSuccess] = useState("")
 
     const handleSave = async () => {
         e.preventDefault()
         setLoading(true)
+        setError("")
+        setSuccess("")
 
         try {
             const res = await api.post("/api/notes", { title, content });
-            navigate("/dashboard", {state: {message : "Note created"}})
+            setSuccess("Note saved successfully.")
             console.log("Saved note", res.data)
+            navigate("/dashboard", {state: {message : "Note created"}})
 
         } catch (err) {
             console.error("Failed to save note", err)
+            setError("Note not saved. Try again.")
         } finally {
             setLoading(false)
         }
