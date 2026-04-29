@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
+import { Heart } from "react-feather";
 
 // /dashboard  → ProtectedRoute  → Dashboard renders
 // protected logic will live here - GET requests to authenticate data
@@ -61,9 +62,13 @@ function Dashboard() {
                             <h2>Recent Notes</h2>
                             <div className="recent-notes">
                                 {notes.slice(0,3).map(note => (
-                                    <div key={note.id}>
-                                        <h3>{note.title}</h3>
-                                        <p>{note.content}</p>
+                                    <div key={note.id} className="note-cards">
+                                        <h3 className="note-card-title">{note.title}</h3>
+                                        <Heart 
+                                            fill={note.favorite ? "#2b211b" : "none"}
+                                            stroke="#2b211b"
+                                        />
+                                        <p className="note-card-content">{note.content}</p>
                                     </div>
                                 ))}
                             </div>

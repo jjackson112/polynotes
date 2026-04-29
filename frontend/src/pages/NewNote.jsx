@@ -16,14 +16,17 @@ function NewNote() {
     const [error, setError] = useState("")
     const [success, setSuccess] = useState("")
 
-    const handleSave = async () => {
+    const categories = ["All", "English", "Hawaiian", "Italian", "Mandarin", "Spanish"]
+    const [category, setCategory] = useState("All")
+
+    const handleSave = async (e) => {
         e.preventDefault()
         setLoading(true)
         setError("")
         setSuccess("")
 
         try {
-            const res = await api.post("/api/notes", { title, content });
+            const res = await api.post("/notes", { title, content });
             setSuccess("Note saved successfully.")
             console.log("Saved note", res.data)
             navigate("/dashboard", {state: {message : "Note created"}})
@@ -60,6 +63,7 @@ function NewNote() {
                         minLength={10}
                     />
                     <div className="new-note-buttons">
+                        <button type="button" className="fav-button">Add to Favorites</button>
                         <button type="submit" disabled={!title || !content || !loading} className="save-button">{loading ? "Saving" : "Save"}</button>
                         <button type="button" className="cancel-button" onClick={() => navigate("/dashboard")}>Cancel</button>
                     </div>

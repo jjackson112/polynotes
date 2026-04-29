@@ -119,12 +119,11 @@ button:hover {
   width: 240px;
   min-height: 100vh;
   background: var(--accent);
-  color: #fffaf7;
-  padding: 24px 18px;
   display: flex;
   flex-direction: column;
   border-right: 1px solid rgba(255,255,255,0.08);
   transition: left 0.3s ease;
+  cursor: pointer;
 }
 
 .sidebar-wrapper.open {
@@ -152,18 +151,17 @@ button:hover {
 }
 
 .sidebar-wrapper a:hover {
-  background: #C78C67;
+  background: var(--accent-soft);
 }
 
 .sidebar-nav a.active {
-  background: #FAB182;
-  color: #2b211b;
+  background: var(--accent);
+  color: var(--text);
 }
 
 .hamburger {
   background: none;
   border: none;
-  cursor: pointer;
 }
 
 /* Login Form Styles */
