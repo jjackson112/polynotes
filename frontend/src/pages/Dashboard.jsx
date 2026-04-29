@@ -19,7 +19,7 @@ function Dashboard() {
     useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await api.get("/api/notes") 
+                const res = await api.get("/notes") 
                 console.log(res.data)
 
                 // wire data into state
