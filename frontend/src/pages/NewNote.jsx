@@ -12,8 +12,11 @@ function NewNote() {
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
 
+    const [loading, setLoading] = useState(false)
+
     const handleSave = async () => {
-        e.prevent.default()
+        e.preventDefault()
+        setLoading(true)
 
         try {
             const res = await api.post("/api/notes", { title, content });
@@ -22,6 +25,8 @@ function NewNote() {
 
         } catch (err) {
             console.error("Failed to save note", err)
+        } finally {
+            setLoading(false)
         }
     }
 
