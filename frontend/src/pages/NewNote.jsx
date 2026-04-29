@@ -20,7 +20,7 @@ function NewNote() {
 
         try {
             const res = await api.post("/api/notes", { title, content });
-            navigate("/dashboard")
+            navigate("/dashboard", {state: {message : "Note created"}})
             console.log("Saved note", res.data)
 
         } catch (err) {
