@@ -68,8 +68,8 @@ function Dashboard() {
                                             <h3 className="note-card-title">{note.title}</h3>
                                             <Heart 
                                                 className="favorite-icon"
-                                                fill={note.favorite ? "#2b211b" : "none"}
-                                                stroke="#2b211b"
+                                                fill={note.favorite ? "#654632" : "none"}
+                                                stroke={note.favorite ? "#654632": "#2b211b"}
                                             />
                                         </div>
 

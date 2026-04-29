@@ -247,6 +247,11 @@ button:hover {
   height: 18px;
 }
 
+.note-card-content {
+  line-height: 1.4;
+  color: var(--muted);
+}
+
 /* New Note Page Styles */
 
 .new-note-page {
