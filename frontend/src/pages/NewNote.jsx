@@ -44,7 +44,7 @@ function NewNote() {
                         onChange={(e) => setContent(e.target.value)}
                     />
                     <div className="new-note-buttons">
-                        <button type="submit" className="save-button">Save</button>
+                        <button type="submit" disabled={!title || !content} className="save-button">Save</button>
                         <button type="button" className="cancel-button" onClick={() => navigate("/dashboard")}>Cancel</button>
                     </div>
                 </form>
