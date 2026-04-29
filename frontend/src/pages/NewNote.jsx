@@ -35,6 +35,7 @@ function NewNote() {
                     value={title} // controlled input
                     placeholder="Note Title"
                     onChange={(e) => setTitle(e.target.value)}
+                    required minLength={3}
                     />
 
                     <textarea
@@ -42,6 +43,7 @@ function NewNote() {
                         value={content}
                         placeholder="Write new note"
                         onChange={(e) => setContent(e.target.value)}
+                        minLength={10}
                     />
                     <div className="new-note-buttons">
                         <button type="submit" disabled={!title || !content} className="save-button">Save</button>
