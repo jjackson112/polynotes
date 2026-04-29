@@ -305,12 +305,14 @@ button:hover {
 }
 
 .category-select {
-  padding: 6px 10px;
-  border-radius: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
   border: 1px solid var(--muted);
   background: var(--surface);
   cursor: pointer;
   appearance: none;
+  border: none;
+  background: var(--card);
 }
 
 @media (max-width: 768px) {
