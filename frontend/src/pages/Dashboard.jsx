@@ -58,21 +58,29 @@ function Dashboard() {
                     </section>
 
                     <section className="notes-grid">
-                        <div className="card">
+                        <div className="note-cards">
                             <h2>Recent Notes</h2>
+                            <button onClick={() => navigate("/notes/new")} className="new-note-btn">New Note</button>
                             <div className="recent-notes">
                                 {notes.slice(0,3).map(note => (
-                                    <div key={note.id} className="note-cards">
-                                        <h3 className="note-card-title">{note.title}</h3>
-                                        <Heart 
-                                            fill={note.favorite ? "#2b211b" : "none"}
-                                            stroke="#2b211b"
-                                        />
-                                        <p className="note-card-content">{note.content}</p>
+                                    <div key={note.id} className="note-card">
+                                        <div className="note-card-header">
+                                            <h3 className="note-card-title">{note.title}</h3>
+                                            <Heart 
+                                                className="favorite-icon"
+                                                fill={note.favorite ? "#2b211b" : "none"}
+                                                stroke="#2b211b"
+                                            />
+                                        </div>
+
+                                        <p className="note-card-content">
+                                            {note.content.length > 80 
+                                                ? note.content.slice(0, 80) + "..."
+                                                : note.content}
+                                        </p>
                                     </div>
                                 ))}
                             </div>
-                            <button onClick={() => navigate("/notes/new")} className="new-note-btn">New Note</button>
                         </div>
                     </section>
                 </main>
