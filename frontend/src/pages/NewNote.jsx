@@ -28,7 +28,7 @@ function NewNote() {
     return (
         <>
             <Header />
-                <main className="new-note-page">
+            <main className="new-note-page">
                 <form className="new-note-form" onSubmit={handleSave}>
                     <input 
                     className="new-note-title"
