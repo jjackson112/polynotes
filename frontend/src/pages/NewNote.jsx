@@ -51,7 +51,7 @@ function NewNote() {
                         minLength={10}
                     />
                     <div className="new-note-buttons">
-                        <button type="submit" disabled={!title || !content} className="save-button">Save</button>
+                        <button type="submit" disabled={!title || !content || !loading} className="save-button">{loading ? "Saving" : "Save"}</button>
                         <button type="button" className="cancel-button" onClick={() => navigate("/dashboard")}>Cancel</button>
                     </div>
                 </form>
