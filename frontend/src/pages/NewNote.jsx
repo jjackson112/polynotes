@@ -41,6 +41,8 @@ function NewNote() {
             <Header />
             <main className="new-note-page">
                 <form className="new-note-form" onSubmit={handleSave}>
+                    {error && <p className="new-note-error">{error}</p>}
+                    {success && <p className="new-note-success">{success}</p>}
                     <input 
                     className="new-note-title"
                     value={title} // controlled input
