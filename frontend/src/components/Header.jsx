@@ -1,7 +1,6 @@
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { Search, NotebookPen } from "lucide-react";
-import { useState } from "react";
 
 function Header() {
 
@@ -24,7 +23,7 @@ function Header() {
                 <input type="text" placeholder="Search" />
                 <Search className="search-icon" size={22} color="#2b211b" />
             </div>
-            
+
             <button onClick={handleLogout} className="logout-btn">Logout</button>
         </header>
     )
