@@ -17,7 +17,7 @@ function Sidebar() {
             <aside>
                 <nav className={`sidebar-wrapper ${open ? "show" : ""}`}>
                     <Link to="/dashboard">Dashboard</Link>
-                    <Link to="/notes">Notes</Link>
+                    <Link to="/notes" onClick={() => setOpen(false)}>Notes</Link>
                     <Link to="/favorites">Favorites</Link>
                     <Link to="/categories">Categories</Link>
                     <Link to="/tags">Tags</Link>
