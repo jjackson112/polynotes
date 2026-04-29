@@ -254,6 +254,12 @@ button:hover {
   resize: vertical;
 }
 
+.new-note-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
 @media (max-width: 768px) {
   .app-layout {
     grid-template-columns: 1fr;
