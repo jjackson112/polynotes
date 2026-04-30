@@ -96,7 +96,7 @@ button:hover {
   padding: 10px 14px;
   border-radius: 12px;
   width: 100%;
-  max-width: 420px;
+  max-width: 300px;
 }
 
 .search-box input {
@@ -296,7 +296,7 @@ button:hover {
 .form-metadata {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 
