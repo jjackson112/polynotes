@@ -7,14 +7,6 @@ export const AuthContext = createContext()
 export function AuthProvider({ children }) {
     const [token, setToken] = useState(null)
 
-    // restore session on load
-    useEffect(() => {
-        const storedToken = localStorage.getItem("token")
-        if (storedToken) {
-            setToken(storedToken)
-        }
-    }, [])
-
     // login function
     const login = (newToken) => {
         localStorage.setItem("token", newToken)

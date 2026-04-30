@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api/api";
-import { NotebookPen } from "lucide-react";
 
 {/* useEffect → checks localStorage → restores login */}
 
@@ -32,7 +31,7 @@ function Login() {
             const data = await api.post("/auth/login", form)
 
             // centralized auth replacing stored token + updating login state - successful login
-            login(data.token)
+            // login(data.token) - not storing the token cannot save note check useAuth.js or AuthContext
 
             // after login succeeds user is directed to the dashboard
             // optional - login(data.token) triggers login() like navigate("/dashboard")
