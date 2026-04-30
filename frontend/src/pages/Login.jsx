@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { createApi } from "../api/api";
+import { api } from "../api/api";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
@@ -14,14 +14,8 @@ function Login() {
 
     const [error, setError] = useState("")
 
-    const { login, userLoggedIn, token } = useAuth();
+    const { login, userLoggedIn } = useAuth();
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if(userLoggedIn) {
-            navigate("/dashboard")
-        }
-    }, [userLoggedIn, navigate])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -33,12 +27,14 @@ function Login() {
 
             // centralized auth replacing stored token + updating login state - successful login
             login(data.token)
-            
+
             // after login succeeds user is directed to the dashboard
             // optional - login(data.token) triggers login() like navigate("/dashboard")
 
             // clear form after logging in 
             setForm({ username: "", password: ""})
+
+            navigate("/dashboard")
 
         } catch (err) {
             setError(err.message || "Login failed")

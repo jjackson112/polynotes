@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createApi } from "../api/api";
 import Header from "../components/Header";
 
 // UI input → state → submit → API
