@@ -23,12 +23,12 @@ function Dashboard() {
         const fetchData = async() => {
             try {
                 const res = await api.get("/notes") 
-                console.log(res.data)
+                console.log(res)
 
                 // wire data into state
-                setNotes(res.data.items)
-                setTotal(res.data.total)
-                setPages(res.data.pages)
+                setNotes(res.items)
+                setTotal(res.total)
+                setPages(res.pages)
                 
             } catch (err) {
                 console.error(err)
