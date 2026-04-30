@@ -1,6 +1,6 @@
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { Search, NotebookPen } from "lucide-react";
+import { Search, NotebookPen, Menu, X } from "lucide-react";
 
 function Header() {
 
@@ -14,6 +14,10 @@ function Header() {
 
     return (
         <header className="header-container">
+            <div className="">
+                <Menu size={22} />
+            </div>
+
             <div className="brand-icon">
                 <NotebookPen size={40} />
                 <h1 className="header-title">Polynotes</h1>

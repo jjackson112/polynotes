@@ -15,6 +15,8 @@ function Dashboard() {
     const favoriteCount = notes.filter(note => note.favorite).length
     const [pages, setPages] = useState(1)
 
+    const [sidebarOpen, setSidebarOpen] = useState(false)
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -42,7 +44,8 @@ function Dashboard() {
             </div>
 
             <div className="main-wrapper">
-                <Header />
+                <Header toggleSidebar={() => setSidebarOpen(v => !v)} />
+                <Sidebar open={sidebarOpen} setOpen={setSidebarOpen} />
 
                 <main className="dashboard-main">
                     <section className="welcome-card">
