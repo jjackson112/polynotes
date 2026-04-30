@@ -28,7 +28,7 @@ function NewNote() {
         setSuccess("")
 
         try {
-            const res = await api.post("/notes", { title, content });
+            const res = await api.post("/notes", { title, content, category, tag });
             setSuccess("Note saved successfully.")
             console.log("Saved note", res.data)
             navigate("/dashboard", {state: {message : "Note created"}})
