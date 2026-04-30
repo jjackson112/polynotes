@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { api } from "../api/api";
 import Header from "../components/Header";
 
 // UI input → state → submit → API
@@ -82,7 +83,7 @@ function NewNote() {
                                 type="text"
                                 placeholder="grammar, verb, vocab"
                                 value={tag}
-                                onChange={() => setTag(e.target.value)}
+                                onChange={(e) => setTag(e.target.value)}
                             />
                         </div>
                     </div>

@@ -14,7 +14,7 @@ function Login() {
 
     const [error, setError] = useState("")
 
-    const { login, userLoggedIn } = useAuth();
+    const { login } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
