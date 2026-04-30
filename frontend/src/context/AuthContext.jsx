@@ -1,4 +1,6 @@
-import { createContext, useState, useEffect } from "react";
+// React state (AuthContext) knows the user is logged in
+
+import { createContext, useState } from "react";
 
 // create context
 export const AuthContext = createContext()

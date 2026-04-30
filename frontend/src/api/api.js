@@ -1,4 +1,5 @@
 // central API layer - just call it from here
+// API layer separately looks into localStorage
 
 const BASE_URL = "http://localhost:5000/api";
 
