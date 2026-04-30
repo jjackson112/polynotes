@@ -19,6 +19,8 @@ function NewNote() {
     const categories = ["All", "English", "Hawaiian", "Italian", "Mandarin", "Spanish"]
     const [category, setCategory] = useState("All")
 
+    const [tag, setTag] = useState("")
+
     const handleSave = async (e) => {
         e.preventDefault()
         setLoading(true)
@@ -55,21 +57,35 @@ function NewNote() {
                     required minLength={3}
                     />
 
-                    <div className="category-dropdown">  
-                        <label className="category-label">Category</label>
+                    <div className="form-metadata">
+                        <div className="category-dropdown">  
+                            <label className="category-label">Category</label>
 
-                        <select 
-                            className="category-select" 
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                        >
-                            <option value="All">All</option>
-                            <option value="English">English</option>
-                            <option value="Hawaiian">Hawaiian</option>
-                            <option value="Italian">Italian</option>
-                            <option value="Mandarin">Mandarin</option>
-                            <option value="Spanish">Spanish</option>
-                        </select>
+                            <select 
+                                className="category-select" 
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                            >
+                                <option value="All">All</option>
+                                <option value="English">English</option>
+                                <option value="Hawaiian">Hawaiian</option>
+                                <option value="Italian">Italian</option>
+                                <option value="Mandarin">Mandarin</option>
+                                <option value="Spanish">Spanish</option>
+                            </select>
+                        </div>
+
+                        <div className="tag-field">
+                            <label className="tag-label">Tag</label>
+        
+                            <input
+                                className="tag-input"
+                                type="text"
+                                placeholder="grammar, verb, vocab"
+                                value={tag}
+                                onChange={() => setTag(e.target.value)}
+                            />
+                        </div>
                     </div>
 
                     <textarea

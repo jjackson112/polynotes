@@ -289,14 +289,14 @@ button:hover {
   gap: 1rem;
 }
 
-.category-dropdown {
+.category-dropdown, .tag-field {
   display: flex;
   align-items: center;
   gap: 10px;
   margin: 12px 0;
 }
 
-.category-label {
+.category-label, .tag-label {
   background: var(--accent-soft);
   padding: 6px 12px;
   border-radius: 10px;
@@ -313,6 +313,13 @@ button:hover {
   appearance: none;
   border: none;
   background: var(--card);
+}
+
+.tag-input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--muted);
+  max-width: 350px;
 }
 
 @media (max-width: 768px) {
