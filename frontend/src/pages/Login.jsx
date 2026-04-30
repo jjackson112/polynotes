@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+import { createApi } from "../api/api";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { api } from "../api/api";
 
 {/* useEffect → checks localStorage → restores login */}
 
@@ -14,7 +14,7 @@ function Login() {
 
     const [error, setError] = useState("")
 
-    const { login, userLoggedIn } = useAuth();
+    const { login, userLoggedIn, token } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -29,10 +29,11 @@ function Login() {
 
         try {
             const data = await api.post("/auth/login", form)
+            console.log("Login response:", data)
 
             // centralized auth replacing stored token + updating login state - successful login
-            // login(data.token) - not storing the token cannot save note check useAuth.js or AuthContext
-
+            login(data.token)
+            
             // after login succeeds user is directed to the dashboard
             // optional - login(data.token) triggers login() like navigate("/dashboard")
 
