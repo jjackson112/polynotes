@@ -289,6 +289,13 @@ button:hover {
   gap: 1rem;
 }
 
+.form-metadata {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .category-dropdown, .tag-field {
   display: flex;
   align-items: center;
@@ -320,6 +327,7 @@ button:hover {
   border-radius: 8px;
   border: 1px solid var(--muted);
   max-width: 350px;
+  color: var(--text);
 }
 
 @media (max-width: 768px) {
