@@ -3,13 +3,16 @@
 // NavLink is better for sidebar - highlights active page automatically
 
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { X } from "lucide-react";
 
 function Sidebar({ open, setOpen }) {
-    const [open, setOpen] = useState(false)
 
     return (
         <aside className={`sidebar-wrapper ${open ? "open" : ""}`}>
+            <button className="close-btn" onClick={() => setOpen(false)}>
+                <X size={22} />
+            </button>
+            
             <nav>
                 <Link to="/dashboard" onClick={() => setOpen(false)}>Dashboard</Link>
                 <Link to="/notes" onClick={() => setOpen(false)}>Notes</Link>

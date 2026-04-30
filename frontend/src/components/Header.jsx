@@ -2,7 +2,7 @@ import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { Search, NotebookPen, Menu, X } from "lucide-react";
 
-function Header() {
+function Header({ toggleSidebar }) {
 
     const { logout } = useAuth();
     const navigate = useNavigate();
@@ -14,12 +14,12 @@ function Header() {
 
     return (
         <header className="header-container">
-            <div className="">
+            <button className="hamburger" onClick={toggleSidebar}>
                 <Menu size={22} />
-            </div>
+            </button>
 
             <div className="brand-icon">
-                <NotebookPen size={40} />
+                <NotebookPen size={36} />
                 <h1 className="header-title">Polynotes</h1>
             </div>
 

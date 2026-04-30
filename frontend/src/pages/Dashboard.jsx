@@ -39,13 +39,10 @@ function Dashboard() {
 
     return (
         <div className="app-layout">
-            <div className="sidebar-wrapper">
-                <Sidebar />
-            </div>
+            <Sidebar open={sidebarOpen} setOpen={setSidebarOpen} />
 
             <div className="main-wrapper">
                 <Header toggleSidebar={() => setSidebarOpen(v => !v)} />
-                <Sidebar open={sidebarOpen} setOpen={setSidebarOpen} />
 
                 <main className="dashboard-main">
                     <section className="welcome-card">
