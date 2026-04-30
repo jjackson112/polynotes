@@ -30,10 +30,15 @@ function NewNote() {
         try {
             const res = await api.post("/notes", { title, content, category, tag });
             setSuccess("Note saved successfully.")
-            console.log("Saved note", res.data)
+            console.log("Saved note", res)
             navigate("/dashboard", {state: {message : "Note created"}})
             // navigate after a short delay - 600 is a custom status code
             // setTimeout(() => navigate("/dashboard"), 600);
+
+            console.log("TOKEN:", localStorage.getItem("token"));
+            console.log("REQUEST PAYLOAD:", { title, content, category, tag });
+            console.log("RESPONSE:", res);
+
         } catch (err) {
             console.error("Failed to save note", err)
             setError("Note not saved. Try again.")
@@ -97,7 +102,7 @@ function NewNote() {
                     />
                     <div className="new-note-buttons">
                         <button type="button" className="fav-button">Add to Favorites</button>
-                        <button type="submit" disabled={!title || !content || !loading} className="save-button">{loading ? "Saving" : "Save"}</button>
+                        <button type="submit" disabled={!title || !content || loading} className="save-button">{loading ? "Saving" : "Save"}</button>
                         <button type="button" className="cancel-button" onClick={() => navigate("/dashboard")}>Cancel</button>
                     </div>
                 </form>
