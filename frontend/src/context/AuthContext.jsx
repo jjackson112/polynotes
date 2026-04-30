@@ -5,7 +5,9 @@ export const AuthContext = createContext()
 
 // provider component
 export function AuthProvider({ children }) {
-    const [token, setToken] = useState(null)
+    const [token, setToken] = useState(() => {
+        return localStorage.getItem("token")
+    })
 
     // login function
     const login = (newToken) => {
