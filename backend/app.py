@@ -14,6 +14,9 @@ def create_app():
 
     app = Flask(__name__)
 
+    # stop 308 redirecting - OPTIONS preflight issues
+    app.url_map.strict_slashes = False
+
     CORS(app, resources={r"/api/*": {"origins": "*"}})
 
     # Database configuration
