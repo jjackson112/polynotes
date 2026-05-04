@@ -18,6 +18,10 @@ def token_required(f):
     def decorated(*args, **kwargs): # args - extra positional arguments, kwargs - extra named arguments
         token = None
 
+        # Allow Preflight requests
+        if request.method == "OPTIONS":
+            return '', 200
+
         # Authorization header check tells system it's a JWT
         if 'Authorization' in request.headers:
             auth_header = request.headers['Authorization']
