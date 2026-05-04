@@ -13,21 +13,21 @@ from validation.note_validation import validate_update_note
 
 notes_bp = Blueprint("notes", __name__, url_prefix='/api/notes')
 
-@notes_bp.route("/notes", methods=["POST"])
+@notes_bp.route("", methods=["POST"])
 @token_required
 def create_note(current_user):
     data = request.get_json()
 
     if not data:
         return jsonify({"error": "Invalid JSON"}), 400
-    
-    note = note_service.create_note(current_user.id, data)
 
     error = validate_create_note(data)
 
     if error:
         return jsonify({"error": error}), 400
     
+    note = note_service.create_note(current_user.id, data)
+
     return jsonify(note.to_dict()), 201
 
 # single-resource endpoint - simplifies frontend logic + prevents unnecessary large queries
@@ -38,7 +38,7 @@ def get_single_note(note_id, current_user):
 
     return jsonify(note.to_dict()), 200
 
-@notes_bp.route("/", methods=["GET"])
+@notes_bp.route("", methods=["GET"])
 @token_required
 def get_notes_list(current_user):
     language = request.args.get("language")
