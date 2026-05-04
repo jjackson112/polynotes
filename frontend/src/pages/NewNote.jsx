@@ -16,8 +16,8 @@ function NewNote() {
     const [error, setError] = useState("")
     const [success, setSuccess] = useState("")
 
-    const categories = ["All", "English", "Hawaiian", "Italian", "Mandarin", "Spanish"]
-    const [category, setCategory] = useState("All")
+    const languages = ["All", "English", "Hawaiian", "Italian", "Mandarin", "Spanish"]
+    const [languageCategory, setLanguageCategory] = useState("All")
 
     const [tag, setTag] = useState("")
 
@@ -28,7 +28,7 @@ function NewNote() {
         setSuccess("")
 
         try {
-            const res = await api.post("/notes", { title, content, category, tag });
+            const res = await api.post("/notes", { title, content, language: languageCategory, tag });
             setSuccess("Note saved successfully.")
             console.log("Saved note", res)
             navigate("/dashboard", {state: {message : "Note created"}})
@@ -36,7 +36,7 @@ function NewNote() {
             // setTimeout(() => navigate("/dashboard"), 600);
 
             console.log("TOKEN:", localStorage.getItem("token"));
-            console.log("REQUEST PAYLOAD:", { title, content, category, tag });
+            console.log("REQUEST PAYLOAD:", { title, content, language: languageCategory, tag });
             console.log("RESPONSE:", res);
 
         } catch (err) {
@@ -64,12 +64,12 @@ function NewNote() {
 
                     <div className="form-metadata">
                         <div className="category-dropdown">  
-                            <label className="category-label">Category</label>
+                            <label className="category-label">Language</label>
 
                             <select 
                                 className="category-select" 
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
+                                value={languageCategory}
+                                onChange={(e) => setLanguageCategory(e.target.value)}
                             >
                                 <option value="All">All</option>
                                 <option value="English">English</option>

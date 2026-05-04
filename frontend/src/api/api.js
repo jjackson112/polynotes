@@ -33,7 +33,10 @@ export const api = {
       body: JSON.stringify(body)
     });
 
-    if (!res.ok) throw new Error(`POST failed: ${res.status}`);
+    if (!res.ok) {
+      const errorText = await res.text()
+      throw new Error(`POST failed: ${res.status} - ${errorText}`)
+    }
 
     return res.json();
   }
