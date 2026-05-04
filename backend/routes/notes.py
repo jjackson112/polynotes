@@ -13,7 +13,7 @@ from validation.note_validation import validate_update_note
 
 notes_bp = Blueprint("notes", __name__, url_prefix='/api/notes')
 
-@notes_bp.route("/", methods=["POST"])
+@notes_bp.route("/notes", methods=["POST"])
 @token_required
 def create_note(current_user):
     data = request.get_json()
