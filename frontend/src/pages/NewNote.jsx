@@ -29,9 +29,15 @@ function NewNote() {
 
         try {
             const res = await api.post("/notes", { title, content, language: languageCategory, tag });
-            setSuccess("Note saved successfully.")
             console.log("Saved note", res)
-            navigate("/dashboard", {state: {message : "Note created"}})
+
+            setTitle("")
+            setContent("")
+            setLanguageCategory("")
+            setTag("")
+            setSuccess("Note saved successfully.")
+
+            // navigate("/dashboard", {state: {message : "Note created"}})
             // navigate after a short delay - 600 is a custom status code
             // setTimeout(() => navigate("/dashboard"), 600);
 
