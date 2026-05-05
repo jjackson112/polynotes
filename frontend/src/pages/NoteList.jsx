@@ -23,6 +23,15 @@ useEffect(() => {
     fetchNotes()
 }, []) // initialize state and load saved data
 
+if (loading)
+    return <p>Loading notes...</p>
+
+if (error)
+    return <p>{error}</p>
+
+if (notes.length === 0) 
+    return <p>No notes yet.</p>
+
 return (
     <div>
         {notes.map((note) => (
