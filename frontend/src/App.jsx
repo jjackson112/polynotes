@@ -10,7 +10,7 @@ import NewNote from "./pages/NewNote";
 
 function App() {
   const [notes, setNotes] = useState([])
-  
+
   useEffect(() => {
     fetch("http://localhost:5000/api/health")
       .then(res => res.json())
@@ -25,11 +25,11 @@ function App() {
         <Route path="/dashboard" 
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <Dashboard notes={notes}/>
             </ProtectedRoute>
           }
         />
-        <Route path="/notes/new" element={<NewNote />} />
+        <Route path="/notes/new" element={<NewNote onNoteCreated={setNotes}/>} />
       </Routes>
     </div>
   )
