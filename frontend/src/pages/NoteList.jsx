@@ -1,5 +1,24 @@
 import { useState } from "react";
+import { api } from "../api/api";
 
 const [notes, setNotes] = useState([])
 const [loading, setLoading] = useState(true)
 const [error, setError] = useState(null)
+
+useEffect(() => {
+    const fetchNotes = async () => {
+        try {
+            setLoading(true)
+
+            const res = await api.get("/notes")
+
+            setNotes(res.data)
+        } catch (err) {
+            setError("Failed to load notes.")
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    fetchNotes()
+}, []) // initialize state and load saved data
