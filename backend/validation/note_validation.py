@@ -1,7 +1,7 @@
 # helper method for activity + catch bad data before it hits the db
 # split validation for POST + PATCH
 
-ALLOWED_LANGUAGES = ["spanish", "mandarin", "italian"]
+ALLOWED_LANGUAGES = [ "english", "hawaiian", "spanish", "mandarin", "italian"]
 
 def validate_language(value):
     if not value or not str(value).strip():
