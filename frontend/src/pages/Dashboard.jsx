@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { api } from "../api/api";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
