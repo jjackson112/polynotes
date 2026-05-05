@@ -16,7 +16,17 @@ export const api = {
       }
     })
 
-    if (!res.ok) throw new Error(`GET failed: ${res.status}`)
+    const handleResponse = async(res) => {
+      if (res.status === 401) {
+        localStorage.removeItem("token")
+        window.dispatchEvent(new Event("auth:expired"))
+      }
+    }
+
+    if (!res.ok) {
+      const errorText = await res.text()
+      throw new Error(`GET failed: ${res.status} - ${errorText}`)
+    }
 
     return res.json();
   },
