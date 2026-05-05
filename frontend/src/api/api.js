@@ -5,6 +5,20 @@
 
 const BASE_URL = "http://localhost:5000/api";
 
+const handleResponse = async (res) => {
+  if (res.status === 401) {
+    localStorage.removeItem("token")
+    window.dispatchEvent(new Event("auth:expired"))
+  }
+
+  if (!res.ok) {
+    const errorText = await res.text()
+    throw new Error(`${res.status} - ${errorText}`)
+  }
+
+  return res.json()
+}
+
 export const api = {
   get: async (endpoint) => {
     const token = localStorage.getItem("token");
@@ -16,19 +30,7 @@ export const api = {
       }
     })
 
-    const handleResponse = async(res) => {
-      if (res.status === 401) {
-        localStorage.removeItem("token")
-        window.dispatchEvent(new Event("auth:expired"))
-      }
-    }
-
-    if (!res.ok) {
-      const errorText = await res.text()
-      throw new Error(`GET failed: ${res.status} - ${errorText}`)
-    }
-
-    return res.json();
+    return handleResponse(res);
   },
 
   post: async (endpoint, body) => {
@@ -43,11 +45,6 @@ export const api = {
       body: JSON.stringify(body)
     });
 
-    if (!res.ok) {
-      const errorText = await res.text()
-      throw new Error(`POST failed: ${res.status} - ${errorText}`)
-    }
-
-    return res.json();
+    return handleResponse(res);
   }
 }
