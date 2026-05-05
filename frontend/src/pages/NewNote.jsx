@@ -36,7 +36,7 @@ function NewNote() {
             setContent("")
             setLanguageCategory("All")
             setTag("")
-            navigate("/dashboard", {state: {message : "Note created"}})
+            navigate("/dashboard", {state: { refresh: true }}) // fake refresh but actually refetches data for dashboard
             
             // navigate after a short delay - 600 is a custom status code
             // setTimeout(() => setSuccess("Note saved successfully."), 2000);
