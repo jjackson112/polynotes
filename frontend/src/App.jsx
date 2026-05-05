@@ -9,6 +9,8 @@ import NewNote from "./pages/NewNote";
 {/* Test backend connection */}
 
 function App() {
+  const [notes, setNotes] = useState([])
+  
   useEffect(() => {
     fetch("http://localhost:5000/api/health")
       .then(res => res.json())
