@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { api } from "../api/api";
 
 const [notes, setNotes] = useState([])
@@ -22,3 +22,14 @@ useEffect(() => {
 
     fetchNotes()
 }, []) // initialize state and load saved data
+
+return (
+    <div>
+        {notes.map((note) => (
+            <div key={note.id}>
+                <h3>{note.title}</h3>
+                <p>{note.content}</p>
+            </div>
+        ))}
+    </div>
+)
