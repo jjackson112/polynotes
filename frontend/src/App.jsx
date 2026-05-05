@@ -18,6 +18,13 @@ function App() {
 
   const [authMessage, setAuthMessage] = useState("")
 
+  useEffect(() => {
+    const handleExpiredToken = () => {
+      setAuthMessage("Session expired. Please log in again.")
+    }
+    
+  })
+
   return (
     <div>
       <Routes>
