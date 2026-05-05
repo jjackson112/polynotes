@@ -4,8 +4,8 @@ import { Search, NotebookPen, Menu, X } from "lucide-react";
 
 function Header({ toggleSidebar }) {
 
-    const { logout } = useAuth();
-    const navigate = useNavigate();
+    const { logout } = useAuth()
+    const navigate = useNavigate()
     
     const handleLogout = () => {
         logout()

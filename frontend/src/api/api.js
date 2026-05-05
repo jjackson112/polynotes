@@ -5,6 +5,7 @@
 
 const BASE_URL = "http://localhost:5000/api";
 
+// global 401 handling + unified error handling + JSON parsing
 const handleResponse = async (res) => {
   if (res.status === 401) {
     localStorage.removeItem("token")

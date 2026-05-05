@@ -1,6 +1,6 @@
 import './App.css'
 import { Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Login from './pages/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from "./pages/Dashboard";
@@ -15,6 +15,8 @@ function App() {
       .then(data => console.log("Backend:", data))
       .catch(err => console.error(err))
   }, [])
+
+  const [authMessage, setAuthMessage] = useState("")
 
   return (
     <div>
