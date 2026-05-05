@@ -36,10 +36,10 @@ function NewNote() {
             setContent("")
             setLanguageCategory("All")
             setTag("")
-            setTimeout(() => setSuccess("Note saved successfully."), 2000);
-
-            // navigate("/dashboard", {state: {message : "Note created"}})
+            navigate("/dashboard", {state: {message : "Note created"}})
+            
             // navigate after a short delay - 600 is a custom status code
+            // setTimeout(() => setSuccess("Note saved successfully."), 2000);
 
             // console.log("TOKEN:", localStorage.getItem("token"));
             console.log("REQUEST PAYLOAD:", { title, content, language: languageCategory, tag });
