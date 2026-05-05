@@ -5,6 +5,7 @@ import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { Heart } from "react-feather";
+import { useLocation } from "react-router-dom";
 
 // /dashboard  → ProtectedRoute  → Dashboard renders
 // protected logic will live here - GET requests to authenticate data
@@ -17,7 +18,8 @@ function Dashboard() {
 
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+    const location = useLocation()
 
     useEffect(() => {
         const fetchData = async() => {
@@ -35,7 +37,7 @@ function Dashboard() {
             }
         }
         fetchData()
-    }, [])
+    }, [location.state?.refresh])
 
     return (
         <div className="app-layout">
