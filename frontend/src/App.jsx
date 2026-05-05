@@ -22,7 +22,7 @@ function App() {
     const handleExpiredToken = () => {
       setAuthMessage("Session expired. Please log in again.")
     }
-    
+    window.addEventListener("auth:expired", handleExpiredToken)
   })
 
   return (
