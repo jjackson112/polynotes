@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from "./pages/Dashboard";
 import NewNote from "./pages/NewNote";
+import NoteList from "./pages/NoteList";
 
 {/* Test backend connection */}
 
@@ -38,6 +39,7 @@ function App() {
           element={
             <ProtectedRoute>
               <Dashboard authMessage={authMessage} />
+              <NoteList />
             </ProtectedRoute>
           }
         />
