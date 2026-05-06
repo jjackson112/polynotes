@@ -44,7 +44,7 @@ function Dashboard() {
             <Sidebar open={sidebarOpen} setOpen={setSidebarOpen} />
 
             <div className="main-wrapper">
-                <Header toggleSidebar={() => setSidebarOpen(v => !v)} />
+                <Header toggleSidebar={() => setSidebarOpen(v => !v)} authMessage={authMessage} />
 
                 <main className="dashboard-main">
                     <section className="welcome-card">

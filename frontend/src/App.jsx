@@ -37,7 +37,7 @@ function App() {
         <Route path="/dashboard" 
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <Dashboard authMessage={authMessage} />
             </ProtectedRoute>
           }
         />
@@ -46,7 +46,5 @@ function App() {
     </div>
   )
 }
-
-//*const { title, content, language, tags } = newNote
 
 export default App
