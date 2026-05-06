@@ -14,6 +14,8 @@ function Header({ toggleSidebar }) {
 
     return (
         <header className="header-container">
+            {authMessage && <p>{authMessage}</p>}
+            
             <button className="hamburger" onClick={toggleSidebar}>
                 <Menu size={22} />
             </button>
