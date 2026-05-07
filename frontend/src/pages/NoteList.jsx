@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
+import Header from "../components/Header";
 
 function NoteList() {
     const [notes, setNotes] = useState([])
@@ -39,14 +40,17 @@ function NoteList() {
         return <p>No notes yet.</p>
 
     return (
-        <div>
-            {notes.map((note) => (
-                <div key={note.id}>
-                    <h3>{note.title}</h3>
-                    <p>{note.content}</p>
+        <>
+            <Header />
+            <div className="view-notes-list">
+                    {notes.map((note) => (
+                        <div key={note.id}>
+                            <h3>{note.title}</h3>
+                            <p>{note.content}</p>
+                        </div>
+                    ))}
                 </div>
-            ))}
-        </div>
+        </>
     )
 }
 
