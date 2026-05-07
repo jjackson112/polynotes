@@ -39,11 +39,11 @@ function App() {
           element={
             <ProtectedRoute>
               <Dashboard authMessage={authMessage} />
-              <NoteList />
             </ProtectedRoute>
           }
         />
         <Route path="/notes/new" element={<NewNote />} />
+        <Route path="/notes" element={<NoteList />} />
       </Routes>
     </div>
   )
