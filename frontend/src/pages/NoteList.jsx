@@ -66,8 +66,8 @@ function NoteList() {
                         <div key={note.id}>
                             <h3>{note.title}</h3>
                             <p>{note.content}</p>
-                            <button onClick={() => handleEdit=(note.id)}>Edit</button>
-                            <button onClick={() => handleDelete(note.id)}>Delete</button>
+                            <button onClick={() => handleEdit=(note.id)} className="edit-note-list">Edit</button>
+                            <button onClick={() => handleDelete(note.id)} className="delete-note">Delete</button>
                         </div>
                     ))}
                 </div>
