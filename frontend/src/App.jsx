@@ -29,7 +29,7 @@ function App() {
     return () => {
       window.removeEventListener("auth:expired", handleExpiredToken)
     }
-  })
+  }, [])
 
   return (
     <div>

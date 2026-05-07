@@ -2,7 +2,7 @@ import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { Search, NotebookPen, Menu, X } from "lucide-react";
 
-function Header({ toggleSidebar }) {
+function Header({ toggleSidebar, authMessage }) {
 
     const { logout } = useAuth()
     const navigate = useNavigate()
