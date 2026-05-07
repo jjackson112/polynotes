@@ -7,10 +7,6 @@ function NoteList() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
-    const sortedNotes = [...notes].sort(
-        (a, b) => new Date(b.created_at) - new Date(a.created_at)
-    )
-
     useEffect(() => {
         const fetchNotes = async () => {
             try {
@@ -29,6 +25,27 @@ function NoteList() {
 
         fetchNotes()
     }, []) // initialize state and load saved data
+    
+    const sortedNotes = [...notes].sort(
+        (a, b) => new Date(b.created_at) - new Date(a.created_at)
+    )
+    
+    const handleEdit = async (id) => {
+        useEffect(() => {
+            api.get(`/notes/${id}`)
+        }, [])
+        api.patch(`/notes/${id}`, {
+            title, content, language, tag
+        })
+
+    const handleDelete = async (id) => {
+        try {
+            await api.delete(`/notes/${id}`)
+            setNotes(prev => prev.filter(n => n.id !== id))
+        } catch (err) {
+            console.error("Failed to delete note", err)
+        }
+    }
 
     if (loading)
         return <p>Loading notes...</p>
@@ -38,14 +55,6 @@ function NoteList() {
 
     if (notes.length === 0) 
         return <p>No notes yet.</p>
-
-    const handleDelete = async (id) =>{
-        try {
-            await api.delete(`/notes/${id}`)
-            setNotes(prev => prev.filter(n => n.id !== id))
-        } catch (err) {
-            console.error("Failed to delete note", err)
-        }
     }
 
     return (
@@ -56,7 +65,7 @@ function NoteList() {
                         <div key={note.id}>
                             <h3>{note.title}</h3>
                             <p>{note.content}</p>
-                            <button onClick={() => handleUpdate}>Edit</button>
+                            <button onClick={() => handleEdit=(note.id)}>Edit</button>
                             <button onClick={() => handleDelete(note.id)}>Delete</button>
                         </div>
                     ))}
