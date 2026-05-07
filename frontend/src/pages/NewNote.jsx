@@ -17,7 +17,7 @@ function NewNote() {
     const [error, setError] = useState("")
     const [success, setSuccess] = useState("")
 
-    const languages = ["All", "English", "Hawaiian", "Italian", "Mandarin", "Spanish"]
+    // const languages = ["All", "English", "Hawaiian", "Italian", "Mandarin", "Spanish"]
     const [languageCategory, setLanguageCategory] = useState("All")
 
     const [tag, setTag] = useState("")
@@ -32,14 +32,15 @@ function NewNote() {
             const res = await api.post("/notes", { title, content, language: languageCategory, tag });
             console.log("Saved note", res)
 
+            setTimeout(() => setSuccess("Note saved successfully."), 2000);
+            navigate("/notes") // fake refresh but actually refetches data for dashboard
+
             setTitle("")
             setContent("")
             setLanguageCategory("All")
             setTag("")
-            navigate("/notes", {state: { refresh: true }}) // fake refresh but actually refetches data for dashboard
             
             // navigate after a short delay - 600 is a custom status code
-            // setTimeout(() => setSuccess("Note saved successfully."), 2000);
 
             // console.log("TOKEN:", localStorage.getItem("token"));
             console.log("REQUEST PAYLOAD:", { title, content, language: languageCategory, tag });
