@@ -43,7 +43,13 @@ function App() {
           }
         />
         <Route path="/notes/new" element={<NewNote />} />
-        <Route path="/notes" element={<NoteList />} />
+        <Route path="/notes" 
+          element={
+            <ProtectedRoute>
+              <NoteList />
+            </ProtectedRoute>
+          }
+        /> 
       </Routes>
     </div>
   )
