@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 
 function NoteList() {
     const [notes, setNotes] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchNotes = async () => {
@@ -30,13 +33,11 @@ function NoteList() {
         (a, b) => new Date(b.created_at) - new Date(a.created_at)
     )
     
-    const handleEdit = async (id) => {
-        useEffect(() => {
-            api.get(`/notes/${id}`)
-        }, [])
-        api.patch(`/notes/${id}`, {
-            title, content, language, tag
-        })
+    // after clicking edit button from list, navigate to Edit Note page
+    // Edit Note page will handle the logic
+    const handleEdit = (id) => {
+        navigate(`/notes/${id}/edit`) 
+    }
 
     const handleDelete = async (id) => {
         try {
@@ -72,6 +73,5 @@ function NoteList() {
                 </div>
         </>
     )
-}
 
 export default NoteList;
