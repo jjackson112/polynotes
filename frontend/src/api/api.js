@@ -50,14 +50,14 @@ export const api = {
     return handleResponse(res);
   },
 
-  patch: async(endpoint, body) => {
+  patch: async (endpoint, body) => {
     const token = localStorage.getItem("token");
 
     const res = await fetch(`${BASE_URL}${endpoint}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        ...(token && {Authorization: `Bearer ${token}`})
+        ...(token && { Authorization: `Bearer ${token}` })
       },
       body: JSON.stringify(body)
     })
@@ -65,5 +65,17 @@ export const api = {
     return handleResponse(res)
   },
 
-  delete: async
+  delete: async (endpoint) => {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(`${BASE_URL}${endpoint}`, {
+      method: "DELETE",
+      headers: ={
+        "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` })
+      },
+    })
+
+    return handleResponse(res)
+  }
 }
