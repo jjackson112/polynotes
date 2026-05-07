@@ -3,8 +3,7 @@ import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 
-
-// UI input → state → submit → API
+// NewNote → API POST → DB saves → NoteList GET → UI renders// UI input → state → submit → API
 // data has to be tracked - it's not just static UI
 
 function NewNote() {
@@ -105,7 +104,7 @@ function NewNote() {
                         value={content}
                         placeholder="Write new note"
                         onChange={(e) => setContent(e.target.value)}
-                        minLength={10}
+                        minLength={8}
                     />
                     <div className="new-note-buttons">
                         <button type="button" className="fav-button">Add to Favorites</button>

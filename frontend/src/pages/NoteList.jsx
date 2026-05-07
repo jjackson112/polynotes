@@ -6,6 +6,10 @@ function NoteList() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
+    const sortedNotes = [...notes].sort(
+        (a, b) => new Date(b.created_at) - new Date(a.created_at)
+    )
+
     useEffect(() => {
         const fetchNotes = async () => {
             try {
