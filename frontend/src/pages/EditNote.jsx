@@ -21,6 +21,23 @@ function EditNote() {
 
     const [tag, setTag] = useState("")
 
+    useEffect(() => {
+        const fetchNote = async () => {
+            try {
+                const res = await api.get(`/notes/${id}`) 
+
+                setTitle(res.title)
+                setContent(res.content)
+                setLanguageCategory(res.language)
+                setTag(res.tag)
+                
+            } catch (err) {
+                console.error(err)
+            }
+        }
+        fetchNote()
+    }, [id])
+
     const handleUpdate = async () => {
         const res = await api.patch(`/notes/${id}`, {
             title,
