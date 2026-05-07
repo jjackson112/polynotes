@@ -70,7 +70,7 @@ export const api = {
 
     const res = await fetch(`${BASE_URL}${endpoint}`, {
       method: "DELETE",
-      headers: ={
+      headers: {
         "Content-Type": "application/json",
         ...(token && { Authorization: `Bearer ${token}` })
       },

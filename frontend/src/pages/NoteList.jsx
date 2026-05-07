@@ -39,6 +39,15 @@ function NoteList() {
     if (notes.length === 0) 
         return <p>No notes yet.</p>
 
+    const handleDelete = async (id) =>{
+        try {
+            await api.delete(`/notes/${id}`)
+            setNotes(prev => prev.filter(n => n.id !== id))
+        } catch (err) {
+            console.error("Failed to delete note", err)
+        }
+    }
+
     return (
         <>
             <Header />
@@ -47,6 +56,7 @@ function NoteList() {
                         <div key={note.id}>
                             <h3>{note.title}</h3>
                             <p>{note.content}</p>
+                            <button onClick={() => handleDelete(note.id)}>Delete</button>
                         </div>
                     ))}
                 </div>
