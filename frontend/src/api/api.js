@@ -10,6 +10,7 @@ const handleResponse = async (res) => {
   if (res.status === 401) {
     localStorage.removeItem("token")
     window.dispatchEvent(new Event("auth:expired"))
+    throw new Error("401 - Unauthorized")
   }
 
   if (!res.ok) {
