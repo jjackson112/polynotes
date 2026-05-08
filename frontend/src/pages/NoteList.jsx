@@ -19,7 +19,7 @@ function NoteList() {
                 const res = await api.get("/notes")
 
                 // backend response is not defined by just data
-                setNotes(res.items || res.data)
+                setNotes(res.items || res.data || [])
             } catch (err) {
                 setError("Failed to load notes.")
             } finally {
@@ -56,19 +56,21 @@ function NoteList() {
         return <p>{error}</p>
 
     if (notes.length === 0) 
-        return <p>No notes yet.</p>
+        return <p> No notes yet.</p>
     }
 
     return (
         <>
             <Header />
             <div className="view-notes-list">
-                <NoteCard
-                    key={note.id}
-                    note={note}
-                    onEdit={handleEdit}
-                    onDelete={handleDelete}
-                />
+                {sortedNotes.map(note => (
+                    <NoteCard
+                        key={note.id}
+                        note={note}
+                        onEdit={handleEdit}
+                        onDelete={handleDelete}
+                    />
+                ))}
             </div>
         </>
     )
