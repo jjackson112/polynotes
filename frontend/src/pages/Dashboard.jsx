@@ -5,6 +5,7 @@ import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import NoteCard from "../components/NoteCard";
 
 // /dashboard  → ProtectedRoute  → Dashboard renders
 // protected logic will live here - GET requests to authenticate data
@@ -63,24 +64,9 @@ function Dashboard({ authMessage }) {
                             <h2>Recent Notes</h2>
                             <button onClick={() => navigate("/notes/new")} className="new-note-btn">New Note</button>
                             <div className="recent-notes">
-                                {notes.slice(0,3).map(note => (
-                                    <div key={note.id} className="note-card">
-                                        <div className="note-card-header">
-                                            <h3 className="note-card-title">{note.title}</h3>
-                                            <Heart 
-                                                className="favorite-icon"
-                                                fill={note.favorite ? "#654632" : "none"}
-                                                stroke={note.favorite ? "#654632": "#2b211b"}
-                                            />
-                                        </div>
-
-                                        <p className="note-card-content">
-                                            {note.content.length > 80 
-                                                ? note.content.slice(0, 80) + "..."
-                                                : note.content}
-                                        </p>
-                                    </div>
-                                ))}
+                                notes.slice(0,3).map(note => (
+                                    <NoteCard key={note.id} note={note} />
+                                ))
                             </div>
                         </div>
                     </section>
