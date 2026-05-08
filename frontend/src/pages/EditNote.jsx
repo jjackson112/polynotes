@@ -93,14 +93,14 @@ function EditNote() {
     return (
         <>
             <Header />
-            <main className="new-note-page">
-                <form className="new-note-form" onSubmit={handleSave}>
-                    {error && <p className="new-note-error">{error}</p>}
-                    {success && <p className="new-note-success">{success}</p>}
+
+            <main className="edit-note-page">
+                <form className="new-note-form" onSubmit={handleUpdate}>
+
                     <input 
-                    className="new-note-title"
-                    value={title} // controlled input
-                    placeholder="Note Title"
+                    className="edit-note-title"
+                    value={title} 
+                    placeholder="Edit Title"
                     onChange={(e) => setTitle(e.target.value)}
                     required minLength={3}
                     />
@@ -137,17 +137,16 @@ function EditNote() {
                     </div>
 
                     <textarea
-                        className="new-note-content"
+                        className="edit-note-content"
                         value={content}
-                        placeholder="Write new note"
+                        placeholder="Edit note"
                         onChange={(e) => setContent(e.target.value)}
                         minLength={8}
                     />
                     <div className="new-note-buttons">
                         <button type="button" className="fav-button">Add to Favorites</button>
-                        <button type="button" className="edit-button">Edit</button>
-                        <button type="submit" disabled={!title || !content || loading} className="save-button">{loading ? "Saving" : "Save"}</button>
-                        <button type="button" className="cancel-button" onClick={() => navigate("/dashboard")}>Cancel</button>
+                        <button type="submit" disabled={loading} className="save-button">{loading ? "Saving" : "Update"}</button>
+                        <button type="button" className="cancel-button" onClick={() => navigate("/notes")}>Cancel</button>
                     </div>
                 </form>
             </main>
