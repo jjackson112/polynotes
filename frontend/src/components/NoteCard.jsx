@@ -17,6 +17,16 @@ function NoteCard() {
                     ? note.content.slice(0, 80) + "..."
                     : note.content}
             </p>
+
+            {/* Added Edit + Delete Buttons */}
+            <div className="note-card-actions">
+                {onEdit && (
+                    <button onClick={() => onEdit(note.id)}>Edit</button>
+                )}
+                {onDelete && (
+                    <button onClick={() => onDelete(note.id)}>Delete</button>
+                )}
+            </div>
         </div>
     )
 }
