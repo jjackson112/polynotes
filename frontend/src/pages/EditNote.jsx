@@ -19,6 +19,7 @@ function EditNote() {
 
     const [tag, setTag] = useState("")
 
+    // load existing note
     useEffect(() => {
         const fetchNote = async () => {
             try {
@@ -27,7 +28,7 @@ function EditNote() {
                 setTitle(res.title)
                 setContent(res.content)
                 setLanguageCategory(res.language)
-                setTag(res.tag)
+                setTag(res.tag || "")
                 
             } catch (err) {
                 console.error(err)
@@ -36,15 +37,25 @@ function EditNote() {
         fetchNote()
     }, [id])
 
+    // save update
     const handleUpdate = async () => {
-        const res = await api.patch(`/notes/${id}`, {
-            title,
-            content,
-            language,
-            tag
-        })
+        e.preventDefault()
+        setLoading(true)
 
-        navigate("/notes")
+        try {
+            const res = await api.patch(`/notes/${id}`, {
+                title,
+                content,
+                language,
+                tag
+            })
+
+            navigate("/notes")
+        } catch (err) {
+            console.error("Failed to update note", err)
+        } finally {
+            setLoading(false)
+        }
     }
 
     const handleSave = async (e) => {
