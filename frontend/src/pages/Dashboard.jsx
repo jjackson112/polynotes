@@ -64,9 +64,9 @@ function Dashboard({ authMessage }) {
                             <h2>Recent Notes</h2>
                             <button onClick={() => navigate("/notes/new")} className="new-note-btn">New Note</button>
                             <div className="recent-notes">
-                                notes.slice(0,3).map(note => (
+                                {notes.slice(0,3).map(note => (
                                     <NoteCard key={note.id} note={note} />
-                                ))
+                                ))}
                             </div>
                         </div>
                     </section>

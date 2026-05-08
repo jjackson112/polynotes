@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import NoteCard from "../components/NoteCard";
 
 function NoteList() {
     const [notes, setNotes] = useState([])
@@ -62,15 +63,13 @@ function NoteList() {
         <>
             <Header />
             <div className="view-notes-list">
-                    {notes.map((note) => (
-                        <div key={note.id}>
-                            <h3>{note.title}</h3>
-                            <p>{note.content}</p>
-                            <button onClick={() => handleEdit=(note.id)} className="edit-note-list">Edit</button>
-                            <button onClick={() => handleDelete(note.id)} className="delete-note">Delete</button>
-                        </div>
-                    ))}
-                </div>
+                <NoteCard
+                    key={note.id}
+                    note={note}
+                    onEdit={handleEdit}
+                    onDelete={handleDelete}
+                />
+            </div>
         </>
     )
 

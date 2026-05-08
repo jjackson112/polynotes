@@ -259,6 +259,12 @@ button:hover {
   color: var(--muted);
 }
 
+.note-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
 /* New Note Page Styles */
 
 .new-note-page {
