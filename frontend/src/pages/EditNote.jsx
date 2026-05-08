@@ -76,9 +76,6 @@ function EditNote() {
             setLanguageCategory("All")
             setTag("")
             
-            // navigate after a short delay - 600 is a custom status code
-
-            // console.log("TOKEN:", localStorage.getItem("token"));
             console.log("REQUEST PAYLOAD:", { title, content, language: languageCategory, tag });
             console.log("RESPONSE:", res);
 
@@ -95,7 +92,7 @@ function EditNote() {
             <Header />
 
             <main className="edit-note-page">
-                <form className="new-note-form" onSubmit={handleUpdate}>
+                <form className="edit-note-form" onSubmit={handleUpdate}>
 
                     <input 
                     className="edit-note-title"

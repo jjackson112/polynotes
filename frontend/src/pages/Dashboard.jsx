@@ -4,7 +4,6 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-import { Heart } from "react-feather";
 import { useLocation } from "react-router-dom";
 
 // /dashboard  → ProtectedRoute  → Dashboard renders
