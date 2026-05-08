@@ -3,8 +3,7 @@ import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 
-// NewNote → API POST → DB saves → NoteList GET → UI renders// UI input → state → submit → API
-// data has to be tracked - it's not just static UI
+// NewNote is create only, EditNote is update only
 
 function EditNote() {
     const navigate = useNavigate()
@@ -16,7 +15,6 @@ function EditNote() {
     const [error, setError] = useState("")
     const [success, setSuccess] = useState("")
 
-    // const languages = ["All", "English", "Hawaiian", "Italian", "Mandarin", "Spanish"]
     const [languageCategory, setLanguageCategory] = useState("All")
 
     const [tag, setTag] = useState("")
