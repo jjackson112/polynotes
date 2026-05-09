@@ -1,6 +1,6 @@
 import { Heart } from "react-feather";
 
-function NoteCard({ note, onEdit, onDelete }) {
+function NoteCard({ note, onView, onEdit, onDelete }) {
     return (
         <div className="note-card">
             <div className="note-card-header">

@@ -57,7 +57,6 @@ function NoteList() {
 
     if (notes.length === 0) 
         return <p> No notes yet.</p>
-    }
 
     return (
         <>
@@ -67,6 +66,7 @@ function NoteList() {
                     <NoteCard
                         key={note.id}
                         note={note}
+                        onView={() => navigate(`/notes/${note.id}`)}
                         onEdit={handleEdit}
                         onDelete={handleDelete}
                     />
@@ -74,5 +74,6 @@ function NoteList() {
             </div>
         </>
     )
+}
 
 export default NoteList;
