@@ -7,6 +7,16 @@ import { Params } from "react-router-dom";
 function ViewNote() {
     const { id } = useParams() // use id to fetch the note
 
+    const [note, setNote] = useState(null)
+
+    useEffect(() => {
+        const fetchNote = async () => {
+            const res = await api.get(`/notes/${id}`)
+            setNote(res)
+        }
+
+        fetchNote()
+    }, [id])
 
     return (
 
