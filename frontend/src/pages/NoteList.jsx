@@ -33,7 +33,11 @@ function NoteList() {
     const sortedNotes = [...notes].sort(
         (a, b) => new Date(b.created_at) - new Date(a.created_at)
     )
-    
+
+    const handleView = (id) => {
+        navigate(`/notes/${id}`)
+    }
+
     // after clicking edit button from list, navigate to Edit Note page
     // Edit Note page will handle the logic
     const handleEdit = (id) => {

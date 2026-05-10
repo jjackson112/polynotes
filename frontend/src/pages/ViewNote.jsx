@@ -1,6 +1,7 @@
 // clean way to structure a growing app - not everything needs to be on the list page
 // route parameters - params - placeholders in the URL
 // each note has its own id, page, URL - SoC
+// NoteList - lists all data and params tell the backend which note 
 
 import { Params } from "react-router-dom";
 
@@ -30,3 +31,5 @@ function ViewNote() {
         </main>
     )
 }
+
+export default ViewNote;
