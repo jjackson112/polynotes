@@ -226,13 +226,23 @@ button:hover {
   background: var(--surface);
 }
 
+.view-notes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  align-items: start;
+}
+
 .note-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 0.5rem;
-  max-width: 250px;
+  width: 100%;
+  min-height: 150px;
+
   background: var(--card);
   border-radius: 12px;
   padding: 1rem;
@@ -243,12 +253,14 @@ button:hover {
 
 .note-card:hover {
   transform:translateY(-2px);
+  cursor: pointer;
 }
 
 .note-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .favorite-icon {
