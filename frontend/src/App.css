@@ -229,7 +229,10 @@ button:hover {
 .note-card {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
+  max-width: 250px;
   background: var(--card);
   border-radius: 12px;
   padding: 1rem;
