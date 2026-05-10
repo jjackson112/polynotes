@@ -260,7 +260,9 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 1.1rem;
   width: 100%;
+  margin: 0;
 }
 
 .favorite-icon {
@@ -272,12 +274,19 @@ button:hover {
 .note-card-content {
   line-height: 1.4;
   color: var(--muted);
+  font-size: 0.9rem;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .note-card-actions {
   display: flex;
   gap: 0.5rem;
-  margin-top: auto;
+  margin-top: 1rem;
+  border-radius: 8px;
 }
 
 /* New Note Page Styles */
