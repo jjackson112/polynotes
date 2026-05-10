@@ -3,7 +3,9 @@
 // each note has its own id, page, URL - SoC
 // NoteList - lists all data and params tell the backend which note 
 
-import { Params } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { api } from "../api/api";
+import { useParams } from "react-router-dom";
 
 function ViewNote() {
     const { id } = useParams() // use id to fetch the note
@@ -13,7 +15,7 @@ function ViewNote() {
     useEffect(() => {
         const fetchNote = async () => {
             const res = await api.get(`/notes/${id}`)
-            setNote(res)
+            setNote(res.data)
         }
 
         fetchNote()

@@ -3,7 +3,7 @@ import { Heart } from "react-feather";
 function NoteCard({ note, onView, onEdit, onDelete }) {
     return (
         <div className="note-card">
-            <div className="note-card-header">
+            <div className="note-card-header" onClick={() => onView(note.id)}>
                 <h3 className="note-card-title">{note.title}</h3>
                 <Heart 
                     className="favorite-icon"

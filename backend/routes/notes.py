@@ -33,7 +33,7 @@ def create_note(current_user):
 # single-resource endpoint - simplifies frontend logic + prevents unnecessary large queries
 @notes_bp.route("/<int:note_id>", methods=["GET"])
 @token_required
-def get_single_note(note_id, current_user):
+def get_single_note(current_user, note_id):
     note = Note.query.filter_by(id=note_id, user_id=current_user.id).first_or_404()
 
     return jsonify(note.to_dict()), 200
@@ -69,7 +69,7 @@ def get_notes_list(current_user):
 
 @notes_bp.route("/<int:note_id>", methods=["PATCH"])
 @token_required
-def update_note(note_id, current_user):
+def update_note(current_user, note_id):
     # Fetch the note but verify owner - filter by user id
     note = Note.query.filter_by(id=note_id, user_id=current_user.id).first_or_404()
 
@@ -87,7 +87,7 @@ def update_note(note_id, current_user):
 
 @notes_bp.route("/<int:note_id>", methods=["DELETE"])
 @token_required
-def delete_note(note_id, current_user):
+def delete_note(current_user, note_id):
 
     # if the note exists but belongs to another person, a 404 error appears
     note = Note.query.filter_by(id=note_id, user_id=current_user.id).first_or_404()
