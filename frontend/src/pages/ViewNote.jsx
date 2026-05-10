@@ -15,8 +15,13 @@ function ViewNote() {
     useEffect(() => {
         const fetchNote = async () => {
             try {
+                console.log("Fetching note", id)
+
                 const res = await api.get(`/notes/${id}`)
+
+                console.log("Response", res)
                 setNote(res)
+                
             } catch (err) {
                 console.log("Failed to load note", err)
             }

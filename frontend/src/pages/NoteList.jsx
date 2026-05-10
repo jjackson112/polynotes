@@ -70,7 +70,7 @@ function NoteList() {
                     <NoteCard
                         key={note.id}
                         note={note}
-                        onView={() => navigate(`/notes/${note.id}`)}
+                        onView={handleView}
                         onEdit={handleEdit}
                         onDelete={handleDelete}
                     />

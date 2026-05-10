@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import NoteCard from "../components/NoteCard";
+import ViewNote from "./ViewNote";
 
 // /dashboard  → ProtectedRoute  → Dashboard renders
 // protected logic will live here - GET requests to authenticate data
@@ -65,7 +66,7 @@ function Dashboard({ authMessage }) {
                             <button onClick={() => navigate("/notes/new")} className="new-note-btn">New Note</button>
                             <div className="recent-notes">
                                 {notes.slice(0,3).map(note => (
-                                    <NoteCard key={note.id} note={note} />
+                                    <NoteCard key={note.id} note={note} onClick={() => (handleView) } />
                                 ))}
                             </div>
                         </div>
