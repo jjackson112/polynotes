@@ -18,7 +18,15 @@ function ViewNote() {
         fetchNote()
     }, [id])
 
-    return (
+    if (!note) 
+        return <p>Loading...</p>
 
+    return (
+        <main>
+            <h1>{note.title}</h1>
+            <p>{note.content}</p>
+            <p>{note.language}</p>
+            <p>{note.tag}</p>
+        </main>
     )
 }

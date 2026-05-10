@@ -6,6 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from "./pages/Dashboard";
 import NewNote from "./pages/NewNote";
 import NoteList from "./pages/NoteList";
+import ViewNote from "./pages/ViewNote";
 
 {/* Test backend connection */}
 
@@ -50,6 +51,7 @@ function App() {
             </ProtectedRoute>
           }
         /> 
+        <Route path="/notes/:id" element={<ViewNote />} />
       </Routes>
     </div>
   )
