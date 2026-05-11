@@ -2,6 +2,15 @@ import { useState } from "react";
 
 function DeleteConfirmationModal({ note, onDelete, onClose }) {
 
+    // so the user cannot continue to click delete when request is ongoing
+    const [loading, setLoading] = useState(false)
+
+    const handleLoading = async () => {
+        setLoading(true)
+        await onDelete(note.id)
+        setLoading(false)
+    }
+
     return (
         <div className="confirm-modal-overlay">
             <div className="confirm-modal-content">
@@ -12,7 +21,10 @@ function DeleteConfirmationModal({ note, onDelete, onClose }) {
                     onDelete(note.id)
                 }}>Yes</button>
                 <button className="delete-modal-btn"
-                    onClick={onClose}>No</button>
+                    onClick={handleLoading}
+                    disabled={loading}
+                    >No
+                </button>
             </div>
         </div>
     )

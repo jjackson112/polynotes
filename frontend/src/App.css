@@ -372,6 +372,9 @@ h2 {
 
 /* Delete Confirmation Modal Styles */
 .confirm-modal-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
