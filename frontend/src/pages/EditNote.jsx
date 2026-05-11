@@ -37,7 +37,7 @@ function EditNote() {
     }, [id])
 
     // save update
-    const handleUpdate = async () => {
+    const handleUpdate = async (e) => {
         e.preventDefault()
         setLoading(true)
 
@@ -48,6 +48,8 @@ function EditNote() {
                 language: languageCategory === "All" ? "English" : languageCategory,
                 tag
             })
+            console.log("RAW DATA", data)
+            console.log("VALIDATION ERROR", error)
 
             navigate("/notes")
         } catch (err) {
