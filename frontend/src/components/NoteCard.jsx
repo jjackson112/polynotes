@@ -21,7 +21,11 @@ function NoteCard({ note, onView, onEdit, onDelete }) {
             {/* Added Edit + Delete Buttons */}
             <div className="note-card-actions">
                 {onEdit && (
-                    <button onClick={() => onEdit(note.id)}>Edit</button>
+                    <button 
+                        onClick={(e) => {
+                            e.stopPropagation() // stops the parent handler from firing too - no more seeing the ViewNote when user clicks edit button on NoteList
+                            onEdit(note.id)
+                        }}>Edit</button>
                 )}
                 {onDelete && (
                     <button onClick={() => onDelete(note.id)}>Delete</button>
