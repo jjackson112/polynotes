@@ -78,7 +78,7 @@ function EditNote() {
 
                             <select 
                                 className="category-select" 
-                                value={languageCategory}
+                                value={languageCategory || "english"}
                                 onChange={(e) => setLanguageCategory(e.target.value)}
                             >
                                 <option value="All">All</option>
