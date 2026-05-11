@@ -11,6 +11,9 @@ function NoteList() {
 
     const navigate = useNavigate()
 
+    // selectedNote instead of a boolean - null means the modal is closed + note object opens the modal for that note
+    const [selectedNote, setSelectedNote] = useState(null)
+
     useEffect(() => {
         const fetchNotes = async () => {
             try {
@@ -49,9 +52,16 @@ function NoteList() {
         try {
             await api.delete(`/notes/${id}`)
             setNotes(prev => prev.filter(n => n.id !== id))
+
+            setSelectedNote(null) // cleaner architecture
         } catch (err) {
             console.error("Failed to delete note", err)
         }
+    }
+
+    // Note Card no longer calls API - note is passed as a prop
+    const handleRequestDelete = (note) => {
+        setSelectedNote(note)
     }
 
     if (loading)
@@ -80,6 +90,13 @@ function NoteList() {
                         onDelete={handleDelete}
                     />
                 ))}
+                {selectedNote && (
+                  <DeleteConfirmationModal
+                     note={selectedNote}
+                     onDelete={handleDelete}
+                     onClose={() => setSelectedNote(null)}
+                    />
+                )}
             </div>
         </>
     )

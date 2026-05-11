@@ -1,9 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 function DeleteConfirmationModal({ note, onDelete }) {
-    const [confirmDelete, setConfirmDelete] = useState(false)
-    const navigate = useNavigate()
 
     return (
         <div className="confirm-modal-overlay">
@@ -13,7 +10,7 @@ function DeleteConfirmationModal({ note, onDelete }) {
                     e.stopPropagation()
                     onDelete(note.id)
                 }}>Yes</button>
-                <button onClick={() => navigate= "/notes"}>No</button>
+                <button onClick={onClose}>No</button>
             </div>
         </div>
     )

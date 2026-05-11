@@ -1,6 +1,6 @@
 import { Heart } from "react-feather";
 
-function NoteCard({ note, onView, onEdit, onDelete }) {
+function NoteCard({ note, onView, onEdit, onRequestDelete }) {
     return (
         <div className="note-card" onClick={() => onView(note.id)}>
             <div className="note-card-header">
@@ -31,7 +31,7 @@ function NoteCard({ note, onView, onEdit, onDelete }) {
                     <button 
                         onClick={(e) => {
                             e.stopPropagation()
-                            onDelete(note.id)
+                            onRequestDelete(note)
                         }}>Delete</button>
                 )}
             </div>
