@@ -235,7 +235,7 @@ h2 {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.5rem;
   padding: 2rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .note-card {
@@ -245,7 +245,7 @@ h2 {
   align-items: flex-start;
   gap: 0.5rem;
   width: 100%;
-  min-height: 150px;
+  height: 100%;
 
   background: var(--card);
   border-radius: 12px;
@@ -281,7 +281,7 @@ h2 {
   font-size: 0.9rem;
 
   display: -webkit-box;
-  --webkit-line-clamp: 3;
+  --webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
