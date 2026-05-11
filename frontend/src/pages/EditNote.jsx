@@ -12,14 +12,10 @@ function EditNote() {
 
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
+    const [languageCategory, setLanguageCategory] = useState("All")
+    const [tag, setTag] = useState("")
 
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState("")
-    const [success, setSuccess] = useState("")
-
-    const [languageCategory, setLanguageCategory] = useState("All")
-
-    const [tag, setTag] = useState("")
 
     // load existing note
     useEffect(() => {
@@ -48,42 +44,13 @@ function EditNote() {
             const res = await api.patch(`/notes/${id}`, {
                 title,
                 content,
-                language,
+                language: languageCategory === "All" ? "English" : languageCategory,
                 tag
             })
 
             navigate("/notes")
         } catch (err) {
             console.error("Failed to update note", err)
-        } finally {
-            setLoading(false)
-        }
-    }
-
-    const handleSave = async (e) => {
-        e.preventDefault()
-        setLoading(true)
-        setError("")
-        setSuccess("")
-
-        try {
-            const res = await api.post("/notes", { title, content, language: languageCategory === "All" ? "English" : languageCategory, tag });
-            console.log("Saved note", res)
-
-            setTimeout(() => setSuccess("Note saved successfully."), 2000);
-            navigate("/notes") // fake refresh but actually refetches data for dashboard
-
-            setTitle("")
-            setContent("")
-            setLanguageCategory("All")
-            setTag("")
-            
-            console.log("REQUEST PAYLOAD:", { title, content, language: languageCategory, tag });
-            console.log("RESPONSE:", res);
-
-        } catch (err) {
-            console.error("Failed to save note", err)
-            setError("Note not saved. Try again.")
         } finally {
             setLoading(false)
         }
