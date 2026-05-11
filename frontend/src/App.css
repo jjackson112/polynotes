@@ -113,6 +113,10 @@ button:hover {
   margin-left: 0;
 }
 
+h2 {
+  margin: 20px 0px;
+}
+
 /* Sidebar Styles */
 
 .sidebar-wrapper {

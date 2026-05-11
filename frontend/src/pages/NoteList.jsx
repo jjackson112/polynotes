@@ -65,6 +65,10 @@ function NoteList() {
     return (
         <>
             <Header />
+            <div className="note-list-header">
+                <h2 className="all-notes-title">All Notes</h2>
+                <button onClick={() => navigate("/notes/new")} className="new-note-btn">New Note</button>
+            </div>
             <div className="view-notes-list">
                 {sortedNotes.map(note => (
                     <NoteCard
