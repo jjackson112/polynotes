@@ -51,8 +51,8 @@ function App() {
             </ProtectedRoute>
           }
         /> 
-        <Route path="/notes/:id" element={<ViewNote />} />
         <Route path="/notes/:id/edit" element={<EditNote />} />
+        <Route path="/notes/:id" element={<ViewNote />} />
       </Routes>
     </div>
   )
