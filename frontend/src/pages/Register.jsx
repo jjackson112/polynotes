@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAuth } from "../hooks/useAuth";
 import { api } from "../api/api";
+import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
@@ -71,4 +71,4 @@ function Register() {
     )
 }
 
-export default Register
+export default Register;

@@ -8,6 +8,7 @@ import NewNote from "./pages/NewNote";
 import NoteList from "./pages/NoteList";
 import ViewNote from "./pages/ViewNote";
 import EditNote from "./pages/EditNote";
+import Register from "./pages/Register";
 
 {/* Test backend connection */}
 
@@ -37,6 +38,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/dashboard" 
           element={
             <ProtectedRoute>
