@@ -20,7 +20,7 @@ function Sidebar({ open, setOpen }) {
                 <Link to="/dashboard" onClick={() => setOpen(false)}>Dashboard</Link>
                 <Link to="/notes" onClick={() => setOpen(false)}>Notes</Link>
                 <Link to="/favorites" onClick={() => setOpen(false)}>Favorites</Link>
-                <Link to="/categories" onClick={() => setOpen(false)}>Categories</Link>
+                <Link to="/languages" onClick={() => setOpen(false)}>Languages</Link>
                 <Link to="/tags" onClick={() => setOpen(false)}>Tags</Link>
             </nav>
         </aside>
