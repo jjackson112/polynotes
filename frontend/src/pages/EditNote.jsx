@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParamsS } from "react-router-dom";
 import Header from "../components/Header";
 import { useParams } from "react-router-dom";
 
@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 
 function EditNote() {
     const navigate = useNavigate()
-    const { id } = useParams
+    const { id } = useParams()
 
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
@@ -23,7 +23,7 @@ function EditNote() {
             try {
                 const res = await api.get(`/notes/${id}`) 
                 // verify fetch is running
-                console.log("EditNote mounted, id:", id)
+                console.log("Edit note id:", id)
 
                 setTitle(res.title)
                 setContent(res.content)
