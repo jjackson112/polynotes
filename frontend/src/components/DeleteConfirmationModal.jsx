@@ -7,9 +7,15 @@ function DeleteConfirmationModal({ note, onDelete, onClose }) {
 
     const handleLoading = async () => {
         setLoading(true)
-        await onDelete(note.id)
-        setLoading(false)
+        try {
+            await onDelete(note.id)
+            onClose() // optional, clean UX
+        } finally {
+            setLoading(false)
+        }
     }
+
+    // yes - run delete + no - close modal
 
     return (
         <div className="confirm-modal-overlay">
@@ -19,7 +25,9 @@ function DeleteConfirmationModal({ note, onDelete, onClose }) {
                     onClick={(e) => {
                     e.stopPropagation()
                     onDelete(note.id)
-                }}>Yes</button>
+                    }}>
+                    {loading ? "Deleting" : "Yes"}
+                </button>
                 <button className="delete-modal-btn"
                     onClick={handleLoading}
                     disabled={loading}
