@@ -16,7 +16,7 @@ function NewNote() {
     const [error, setError] = useState("")
     const [success, setSuccess] = useState("")
 
-    // const languages = ["All", "English", "Hawaiian", "Italian", "Mandarin", "Spanish"]
+    // const languages = ["All", "English", "Hawaiian", "Italian", "Mandarin", "Spanish"] note_validation
     const [languageCategory, setLanguageCategory] = useState("All")
 
     const [tag, setTag] = useState("")

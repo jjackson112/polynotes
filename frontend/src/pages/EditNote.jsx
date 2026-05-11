@@ -11,7 +11,7 @@ function EditNote() {
 
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
-    const [languageCategory, setLanguageCategory] = useState("All")
+    const [languageCategory, setLanguageCategory] = useState("")
     const [tag, setTag] = useState("")
 
     const [loading, setLoading] = useState(false)
@@ -27,7 +27,7 @@ function EditNote() {
                 setTitle(res.title)
                 setContent(res.content)
                 setLanguageCategory(res.language)
-                setTag(res.tag || "")
+                setTag(res.tag || []) // to change the UI if there are multiple tags
                 
             } catch (err) {
                 console.error(err)
