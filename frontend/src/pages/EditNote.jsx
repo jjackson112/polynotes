@@ -22,6 +22,8 @@ function EditNote() {
         const fetchNote = async () => {
             try {
                 const res = await api.get(`/notes/${id}`) 
+                // verify fetch is running
+                console.log("EditNote mounted, id:", id)
 
                 setTitle(res.title)
                 setContent(res.content)
