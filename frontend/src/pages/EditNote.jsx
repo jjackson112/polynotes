@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
-import { useNavigate, useParamsS } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
-import { useParams } from "react-router-dom";
 
 // NewNote is create only, EditNote is update only
 
