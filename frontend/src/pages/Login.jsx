@@ -2,6 +2,7 @@ import { useState } from "react";
 import { api } from "../api/api";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import Register from "./Register";
 
 {/* useEffect → checks localStorage → restores login */}
 
@@ -67,6 +68,7 @@ function Login() {
                     onChange={(e) => setForm({...form, password: e.target.value})}
                 />
                 <button type="submit" className="login-button">Login</button>
+                <button type="submit" className="register-button">Register</button>
             </form>
         </div>
     )

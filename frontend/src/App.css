@@ -197,7 +197,7 @@ h2 {
   font-size: 16px;
 }
 
-.login-button {
+.login-button, .register-button {
   padding: 0.9rem;
 }
 
