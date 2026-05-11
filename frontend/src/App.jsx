@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import NewNote from "./pages/NewNote";
 import NoteList from "./pages/NoteList";
 import ViewNote from "./pages/ViewNote";
+import EditNote from "./pages/EditNote";
 
 {/* Test backend connection */}
 
@@ -43,7 +44,13 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/notes/new" element={<NewNote />} />
+        <Route path="/notes/new" 
+          element={
+            <ProtectedRoute>
+              <NewNote />
+            </ProtectedRoute>
+          } 
+        />
         <Route path="/notes" 
           element={
             <ProtectedRoute>
@@ -51,8 +58,18 @@ function App() {
             </ProtectedRoute>
           }
         /> 
-        <Route path="/notes/:id/edit" element={<EditNote />} />
-        <Route path="/notes/:id" element={<ViewNote />} />
+        <Route path="/notes/:id/edit" 
+          element={
+            <ProtectedRoute>
+              <EditNote />
+            </ProtectedRoute>
+          } />
+        <Route path="/notes/:id" 
+          element={
+            <ProtectedRoute>
+              <ViewNote />
+            </ProtectedRoute>
+          } />
       </Routes>
     </div>
   )
