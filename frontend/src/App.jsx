@@ -52,6 +52,7 @@ function App() {
           }
         /> 
         <Route path="/notes/:id" element={<ViewNote />} />
+        <Route path="/notes/:id/edit" element={<EditNote />} />
       </Routes>
     </div>
   )

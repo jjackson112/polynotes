@@ -151,4 +151,4 @@ function EditNote() {
     )   
 }
 
-export default NewNote;
+export default EditNote;
