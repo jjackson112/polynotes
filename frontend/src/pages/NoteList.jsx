@@ -44,6 +44,7 @@ function NoteList() {
         navigate(`/notes/${id}/edit`) 
     }
 
+    // remove note locally + stays on the same page (UI update + refresh)
     const handleDelete = async (id) => {
         try {
             await api.delete(`/notes/${id}`)

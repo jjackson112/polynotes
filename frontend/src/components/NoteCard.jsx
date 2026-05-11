@@ -28,7 +28,11 @@ function NoteCard({ note, onView, onEdit, onDelete }) {
                         }}>Edit</button>
                 )}
                 {onDelete && (
-                    <button onClick={() => onDelete(note.id)}>Delete</button>
+                    <button 
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            onDelete(note.id)
+                        }}>Delete</button>
                 )}
             </div>
         </div>
