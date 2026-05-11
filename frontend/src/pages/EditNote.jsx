@@ -48,8 +48,8 @@ function EditNote() {
                 language: languageCategory === "All" ? "English" : languageCategory,
                 tag
             })
-            console.log("RAW DATA", data)
-            console.log("VALIDATION ERROR", error)
+            console.log("RAW DATA", res)
+            console.log("VALIDATION ERROR", err)
 
             navigate("/notes")
         } catch (err) {
@@ -114,7 +114,7 @@ function EditNote() {
                     />
                     <div className="new-note-buttons">
                         <button type="button" className="fav-button">Add to Favorites</button>
-                        <button type="submit" disabled={loading} className="save-button">{loading ? "Saving" : "Update"}</button>
+                        <button type="submit" disabled={loading} className="save-button">{loading ? "Saving" : "Save"}</button>
                         <button type="button" className="cancel-button" onClick={() => navigate("/notes")}>Cancel</button>
                     </div>
                 </form>
