@@ -392,6 +392,13 @@ h2 {
   border-radius: 10px;
 }
 
+.confirm-btns {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 12px;
+  margin-top: 16px;
+}
+
 @media (min-width: 769px) {
   .sidebar-wrapper {
     position: static;
