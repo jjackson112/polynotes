@@ -46,10 +46,8 @@ function EditNote() {
                 title,
                 content,
                 language: languageCategory === "All" ? "English" : languageCategory,
-                tag
+                tags: tag ? [tag] : []
             })
-            console.log("RAW DATA", res)
-            console.log("VALIDATION ERROR", err)
 
             navigate("/notes")
         } catch (err) {

@@ -60,7 +60,7 @@ def validate_update_note(data):
         
         data["language"] = normalized
         
-    if "tag" in data:
+    if "tags" in data:
         if not isinstance(data["tags"], list):
             return "Tags must be a list"
         
