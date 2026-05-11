@@ -27,7 +27,7 @@ function NoteCard({ note, onView, onEdit, onRequestDelete }) {
                             onEdit(note.id)
                         }}>Edit</button>
                 )}
-                {onDelete && (
+                {onRequestDelete && (
                     <button 
                         onClick={(e) => {
                             e.stopPropagation()

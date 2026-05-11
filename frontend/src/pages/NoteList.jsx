@@ -3,6 +3,7 @@ import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import NoteCard from "../components/NoteCard";
+import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 
 function NoteList() {
     const [notes, setNotes] = useState([])
@@ -80,6 +81,13 @@ function NoteList() {
                 <h2 className="all-notes-title">All Notes</h2>
                 <button onClick={() => navigate("/notes/new")} className="new-note-btn">New Note</button>
             </div>
+            {selectedNote && (
+                <DeleteConfirmationModal
+                    note={selectedNote}
+                    onDelete={handleDelete}
+                    onClose={() => setSelectedNote(null)}
+                />
+            )}
             <div className="view-notes-list">
                 {sortedNotes.map(note => (
                     <NoteCard
@@ -87,16 +95,9 @@ function NoteList() {
                         note={note}
                         onView={handleView}
                         onEdit={handleEdit}
-                        onDelete={handleDelete}
+                        onRequestDelete={handleRequestDelete}
                     />
                 ))}
-                {selectedNote && (
-                  <DeleteConfirmationModal
-                     note={selectedNote}
-                     onDelete={handleDelete}
-                     onClose={() => setSelectedNote(null)}
-                    />
-                )}
             </div>
         </>
     )
