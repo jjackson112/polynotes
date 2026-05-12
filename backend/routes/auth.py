@@ -8,16 +8,22 @@ from extensions import db
 from flask import Blueprint, request, jsonify, current_app
 import datetime
 from models.user import User
+from sqlalchemy import or_
 
 auth_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
     data = request.get_json() or {}
-    username = data.get('username', '').strip()
+    identifier = data.get('identifier', '').strip()
     password = data.get('password', '').strip()
 
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter(
+        or_(
+            User.username == identifier,
+            User.email == identifier
+        ).first()
+
     if not user or not user.check_password(password):
         return jsonify({'error': "Invalid username or password"}), 401
 
