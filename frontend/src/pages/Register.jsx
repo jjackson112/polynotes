@@ -4,13 +4,13 @@ import { useAuth } from "../hooks/useAuth";
 import { useNavigate, Link } from "react-router-dom";
 
 function Register() {
-    const initalForm = {
+    const initialForm = {
         username: "",
         email: "",
         password: ""
     }
 
-    const [registerForm, setRegisterForm] = useState(initalForm)
+    const [registerForm, setRegisterForm] = useState(initialForm)
 
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
@@ -33,7 +33,7 @@ function Register() {
             login(data.token)
 
             // clear form 
-            setRegisterForm (initalForm)
+            setRegisterForm (initialForm)
 
             navigate("/dashboard")
 
@@ -54,6 +54,7 @@ function Register() {
                     required
                     name="username"
                     value={registerForm.username}
+                    type="text"
                     placeholder="username"
                     onChange={(e) => setRegisterForm({...registerForm, username: e.target.value})}
                 />

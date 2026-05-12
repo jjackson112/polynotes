@@ -47,6 +47,13 @@ function Login() {
         }
     } 
 
+    const handleChange = (e) => {
+        setRegisterForm({
+            ...registerForm,
+            [e.target.name]: e.target.value
+        })
+    }
+
     return (
         <div className="container">
             {error && <p>{error}</p>}
@@ -57,15 +64,16 @@ function Login() {
                 <input
                     className="login-input"
                     value={form.username} // controlled input by React not the browser
-                    placeholder="username"
-                    onChange={(e) => setForm({...form, username: e.target.value})}
+                    placeholder="username or email"
+                    onChange={handleChange}
                 />
+
                 <input
                     className="login-input"
                     value={form.password} // controlled input always matches what's in the input + re-renders properly
                     type="password"
                     placeholder="password"
-                    onChange={(e) => setForm({...form, password: e.target.value})}
+                    onChange={handleChange}
                 />
                 <button type="submit" className="login-button">Login</button>
                 <button type="submit" className="register-button">Register</button>
