@@ -1,6 +1,8 @@
 import { Heart } from "react-feather";
+import { useEffect, useState } from "react";
 
 function NoteCard({ note, onView, onEdit, onRequestDelete }) {
+
     return (
         <div className="note-card" onClick={() => onView(note.id)}>
             <div className="note-card-header">

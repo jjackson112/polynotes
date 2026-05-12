@@ -74,6 +74,29 @@ function NoteList() {
     if (notes.length === 0) 
         return <p> No notes yet.</p>
 
+
+    const [favorites, setFavorites] = useState([])
+    
+        useEffect(() => {
+            const fetchFavorites = async () => {
+                const res = await api.get("/notes/favorites")
+                setFavorites(res)
+            }
+    
+            fetchFavorites()
+        }, [])
+    
+        // how to favorite notes
+        const maxFaves = 20
+    
+        // function will accept a note.id to find the specific note from the notes array
+        const addToFavorites = (note.id) => {
+            console.log(`In favorite notes with id ${note.id}`)
+        }
+    
+        // Heart button
+        const isFavorited = favorites.includes(note.id)
+
     return (
         <>
             <Header />
