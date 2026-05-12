@@ -39,7 +39,7 @@ function NoteList() {
 
     useEffect(() => {
         const fetchFavorites = async () => {
-            const res = await api.get(`/notes/${id}/favorites`)
+            const res = await api.get(`/notes/favorites`)
             setFavorites(res.data)
         }
         fetchFavorites()

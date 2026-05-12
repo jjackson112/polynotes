@@ -101,7 +101,7 @@ def delete_note(current_user, note_id):
 @notes_bp.route("/<int:note_id>/favorites", methods=["POST"]) 
 @token_required
 def toggle_favorite(current_user, note_id):
-    note = Note.query_filter_by(
+    note = Note.query.filter_by(
         id=note_id,
         user_id=current_user.id
     ).first_or_404()
