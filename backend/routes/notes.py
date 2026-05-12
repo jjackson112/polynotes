@@ -116,3 +116,11 @@ def toggle_favorite(current_user, note_id):
     db.session.commit()
 
     return jsonify({"favorited": True})
+
+@notes_bp.route("/favorites", methods=["GET"])
+@token_required
+def get_favorites(current_user):
+    favorites = Favorite.query.filter_by(user_id=current_user.id).all()
+    note_ids = [f.note_id for f in favorites]
+
+    return jsonify(note_ids)
