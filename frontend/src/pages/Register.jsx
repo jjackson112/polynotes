@@ -53,12 +53,14 @@ function Register() {
             <form onSubmit={handleSubmit} className="register-form">
                 <input
                     className="register-input"
+                    name="username"
                     value={registerForm.username}
                     placeholder="username"
                     onChange={(e) => setRegisterForm({...registerForm, username: e.target.value})}
                 />
                 <input
                     className="register-input"
+                    name="email"
                     value={registerForm.email}
                     type="email"
                     placeholder="email"
@@ -66,6 +68,7 @@ function Register() {
                 />
                 <input
                     className="register-input"
+                    name="password"
                     value={registerForm.password}
                     type="password"
                     placeholder="password"
