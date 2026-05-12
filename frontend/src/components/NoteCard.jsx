@@ -3,6 +3,7 @@ import { api } from "../api/api";
 
 function NoteCard({ note, onView, onEdit, onRequestDelete, favorites, setFavorites }) {
     // function will accept a note.id to find the specific note from the notes array
+    // user-specific state
     const isFavorited = favorites.includes(note.id)
 
     // click favorite on note card
