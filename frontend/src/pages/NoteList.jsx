@@ -80,7 +80,7 @@ function NoteList() {
         useEffect(() => {
             const fetchFavorites = async () => {
                 const res = await api.get("/notes/favorites")
-                setFavorites(res)
+                setFavorites(res.data)
             }
     
             fetchFavorites()
@@ -119,6 +119,8 @@ function NoteList() {
                         onView={handleView}
                         onEdit={handleEdit}
                         onRequestDelete={handleRequestDelete}
+                        favorites={favorites}
+                        setFavorites={setFavorites}
                     />
                 ))}
             </div>
