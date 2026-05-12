@@ -101,6 +101,11 @@ def delete_note(current_user, note_id):
 @notes_bp.route("/<int:note_id>/favorite", methods=["POST"]) 
 @token_required
 def toggle_favorite(current_user, note_id):
+    note = Note.query_filter_by(
+        id=note_id,
+        user_id=current_user.id
+    ).first_or_404()
+
     favorite = Favorite.query.filter_by(
         user_id=current_user.id,
         note_id=note_id
@@ -109,13 +114,13 @@ def toggle_favorite(current_user, note_id):
     if favorite:
         db.session.delete(favorite)
         db.session.commit()
-        return jsonify({"favorited": False})
+        return jsonify({"favorited": False}), 200
     
     new_fav = Favorite(user_id=current_user.id, note_id=note_id)
     db.session.add(new_fav)
     db.session.commit()
 
-    return jsonify({"favorited": True})
+    return jsonify({"favorited": True}), 200
 
 @notes_bp.route("/favorites", methods=["GET"])
 @token_required
