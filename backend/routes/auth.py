@@ -64,7 +64,13 @@ def register():
         return jsonify({'error': "Username, email, and password are required"}), 400
 
     # old line created a new local object instead of querying the database
-    existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
+    existing_user = User.query.filter(
+        or_(
+            User.username == username,
+            User.email == email
+        )
+    ).first()
+    
     if existing_user:
         return jsonify({'error': "Username or email already exists."}), 400
     
