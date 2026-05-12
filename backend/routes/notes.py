@@ -6,6 +6,7 @@ from flask import Blueprint, request, jsonify
 from extensions import db
 from models.notes import Note
 from models.tags import Tag
+from models.favorites import Favorite
 from services.token import token_required
 import services.note_service as note_service
 from validation.note_validation import validate_create_note
@@ -96,3 +97,11 @@ def delete_note(current_user, note_id):
     db.session.commit()
 
     return jsonify({"message":"Note deleted"}), 200 # or return "", 204 - request succeeded but no content returned
+
+@notes_bp.route("/<int:note_id>/favorite", methods=["POST"]) 
+@token_required
+def toggle_favorite(current_user, note_id):
+    favorite = Favorite.query.filter_by(
+        user_id=current_user.id,
+        note_id=note_id
+    ).first()
