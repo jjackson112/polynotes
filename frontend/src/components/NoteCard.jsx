@@ -9,7 +9,7 @@ function NoteCard({ note, onView, onEdit, onRequestDelete, favorites, setFavorit
     // click favorite on note card
     const clickFavorite = async (e) => {
         e.stopPropagation()
-        const res = await api.post(`/notes/${note.id}/favorite`)
+        const res = await api.post(`/notes/${note.id}/favorites`)
 
         setFavorites(prev =>
             res.data.favorited

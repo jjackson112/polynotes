@@ -98,7 +98,7 @@ def delete_note(current_user, note_id):
 
     return jsonify({"message":"Note deleted"}), 200 # or return "", 204 - request succeeded but no content returned
 
-@notes_bp.route("/<int:note_id>/favorite", methods=["POST"]) 
+@notes_bp.route("/<int:note_id>/favorites", methods=["POST"]) 
 @token_required
 def toggle_favorite(current_user, note_id):
     note = Note.query_filter_by(
