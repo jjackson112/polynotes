@@ -7,7 +7,6 @@ class Note(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     title = db.Column(db.String(50), nullable=False)
     content = db.Column(db.String(1000), nullable=False)
-    language = db.Column(db.String(50), nullable=False)
     favorite = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -23,7 +22,6 @@ class Note(db.Model):
             "title": self.title,
             "content": self.content,
             "language": self.language,
-            "favorite": self.favorite,
             "tags": [t.name for t in self.tags],
             "created_at": self.created_at,
             "updated_at": self.updated_at
