@@ -16,7 +16,7 @@ auth_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
 def login():
     data = request.get_json() or {}
     identifier = data.get('identifier', '').strip().lower()
-    password = data.get('password', '').strip().lower()
+    password = data.get('password', '').strip()
 
     user = User.query.filter(
         or_(
@@ -57,7 +57,7 @@ def login():
 def register():
     data = request.get_json() or {}
     username = data.get('username', '').strip().lower()
-    password = data.get('password', '').strip().lower()
+    password = data.get('password', '').strip()
     email = data.get('email', '').strip()
 
     if not username.strip() or not password.strip() or not email.strip():
