@@ -4,11 +4,13 @@ import { useAuth } from "../hooks/useAuth";
 import { useNavigate, Link } from "react-router-dom";
 
 function Register() {
-    const [registerForm, setRegisterForm] = useState({
+    const initalForm = {
         username: "",
         email: "",
         password: ""
-    })
+    }
+
+    const [registerForm, setRegisterForm] = useState(initalForm)
 
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
@@ -31,11 +33,7 @@ function Register() {
             login(data.token)
 
             // clear form 
-            setRegisterForm ({
-                username: "",
-                email: "",
-                password: ""
-            })
+            setRegisterForm (initalForm)
 
             navigate("/dashboard")
 
