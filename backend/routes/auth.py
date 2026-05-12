@@ -105,7 +105,7 @@ def refresh():
             'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
         }, secret, algorithm='HS256')
 
-        if isinstance(refresh_token, bytes):
+        if isinstance(new_access_token, bytes):
             refresh_token = refresh_token.decode('utf-8')
 
         return jsonify({"token": new_access_token}), 200
