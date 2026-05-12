@@ -24,8 +24,8 @@ function NoteCard({ note, onView, onEdit, onRequestDelete, favorites, setFavorit
                 <Heart 
                     className="favorite-icon"
                     onClick={clickFavorite}
-                    fill={note.favorite ? "#654632" : "none"}
-                    stroke={note.favorite ? "#654632": "#2b211b"}
+                    fill={isFavorited ? "#654632" : "none"}
+                    stroke={isFavorited ? "#654632": "#2b211b"}
                 />
             </div>
             
