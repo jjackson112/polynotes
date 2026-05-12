@@ -105,3 +105,10 @@ def toggle_favorite(current_user, note_id):
         user_id=current_user.id,
         note_id=note_id
     ).first()
+
+    if favorite:
+        db.session.delete(favorite)
+        db.session.commit()
+        return jsonify({"favorited": False})
+    
+    
