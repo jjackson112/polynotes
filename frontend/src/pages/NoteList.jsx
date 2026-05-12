@@ -7,14 +7,17 @@ import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 
 function NoteList() {
     const [notes, setNotes] = useState([])
+    const [favorites, setFavorites] = useState([])
+
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-
-    const navigate = useNavigate()
 
     // selectedNote instead of a boolean - null means the modal is closed + note object opens the modal for that note
     const [selectedNote, setSelectedNote] = useState(null)
 
+    const navigate = useNavigate()
+
+    // effects - fetch notes + favorites
     useEffect(() => {
         const fetchNotes = async () => {
             try {
@@ -33,11 +36,16 @@ function NoteList() {
 
         fetchNotes()
     }, []) // initialize state and load saved data
-    
-    const sortedNotes = [...notes].sort(
-        (a, b) => new Date(b.created_at) - new Date(a.created_at)
-    )
 
+    useEffect(() => {
+        const fetchFavorites = async () => {
+            const res = await api.get("/notes/favorites")
+            setFavorites(res.data)
+        }
+        fetchFavorites()
+    }, [])
+
+    // handlers
     const handleView = (id) => {
         navigate(`/notes/${id}`)
     }
@@ -64,22 +72,13 @@ function NoteList() {
     const handleRequestDelete = (note) => {
         setSelectedNote(note)
     }
-
-    // favorites
-    const [favorites, setFavorites] = useState([])
     
-    useEffect(() => {
-        const fetchFavorites = async () => {
-            const res = await api.get("/notes/favorites")
-            setFavorites(res.data)
-        }
+    // derived data
+    const sortedNotes = [...notes].sort(
+        (a, b) => new Date(b.created_at) - new Date(a.created_at)
+    )
 
-        fetchFavorites()
-    }, [])
-
-     // how to favorite notes
-    const maxFaves = 20
-
+    // render guards
     if (loading)
         return <p>Loading notes...</p>
 
