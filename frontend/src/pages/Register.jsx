@@ -37,7 +37,7 @@ function Register() {
                 password: ""
             })
 
-            navigate("/login")
+            navigate("/dashboard")
 
         } catch (err) {
             setError(err.response?.data?.message || "Registration failed:")
@@ -47,27 +47,35 @@ function Register() {
 }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <div className="container">
             {error && <p>{error}</p>} 
-            <input
-                value={registerForm.username}
-                placeholder="username"
-                onChange={(e) => setRegisterForm({...registerForm, username: e.target.value})}
-            />
-            <input
-                value={registerForm.email}
-                type="email"
-                placeholder="email"
-                onChange={(e) => setRegisterForm({...registerForm, email: e.target.value})}
-            />
-            <input
-                value={registerForm.password}
-                type="password"
-                placeholder="password"
-                onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
-            />
-            <button type="submit" disabled={loading}>{loading ? "Registering" : "Register"}</button>
-        </form>
+
+            <form onSubmit={handleSubmit} className="register-form">
+                <input
+                    className="register-input"
+                    value={registerForm.username}
+                    placeholder="username"
+                    onChange={(e) => setRegisterForm({...registerForm, username: e.target.value})}
+                />
+                <input
+                    className="register-input"
+                    value={registerForm.email}
+                    type="email"
+                    placeholder="email"
+                    onChange={(e) => setRegisterForm({...registerForm, email: e.target.value})}
+                />
+                <input
+                    className="register-input"
+                    value={registerForm.password}
+                    type="password"
+                    placeholder="password"
+                    onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
+                />
+                <button type="submit" className="register-button" disabled={loading}>{loading ? "Registering" : "Register"}</button>
+                <h4 className="already-registered-message">Already registered? Log in here.</h4>
+            </form>
+
+        </div>
     )
 }
 
