@@ -15,14 +15,15 @@ auth_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
 @auth_bp.route("/login", methods=["POST"])
 def login():
     data = request.get_json() or {}
-    identifier = data.get('identifier', '').strip()
-    password = data.get('password', '').strip()
+    identifier = data.get('identifier', '').strip().lower()
+    password = data.get('password', '').strip().lower()
 
     user = User.query.filter(
         or_(
             User.username == identifier,
             User.email == identifier
-        ).first()
+        )
+    ).first()
 
     if not user or not user.check_password(password):
         return jsonify({'error': "Invalid username or password"}), 401
@@ -55,8 +56,8 @@ def login():
 @auth_bp.route("/register", methods=["POST"])
 def register():
     data = request.get_json() or {}
-    username = data.get('username', '').strip()
-    password = data.get('password', '').strip()
+    username = data.get('username', '').strip().lower()
+    password = data.get('password', '').strip().lower()
     email = data.get('email', '').strip()
 
     if not username.strip() or not password.strip() or not email.strip():
