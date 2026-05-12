@@ -58,7 +58,7 @@ def register():
     data = request.get_json() or {}
     username = data.get('username', '').strip().lower()
     password = data.get('password', '').strip()
-    email = data.get('email', '').strip()
+    email = data.get('email', '').strip().lower()
 
     if not username.strip() or not password.strip() or not email.strip():
         return jsonify({'error': "Username, email, and password are required"}), 400
@@ -128,7 +128,7 @@ def refresh():
         }, secret, algorithm='HS256')
 
         if isinstance(new_access_token, bytes):
-            refresh_token = refresh_token.decode('utf-8')
+            new_refresh_token = new_refresh_token.decode('utf-8')
 
         return jsonify({"token": new_access_token}), 200
             
