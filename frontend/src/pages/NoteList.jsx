@@ -26,7 +26,7 @@ function NoteList() {
                 const res = await api.get("/notes")
 
                 // backend response is not defined by just data
-                setNotes(res.data || [])
+                setNotes(res.data.items || [])
             } catch (err) {
                 setError("Failed to load notes.")
             } finally {
