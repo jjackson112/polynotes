@@ -65,6 +65,21 @@ function NoteList() {
         setSelectedNote(note)
     }
 
+    // favorites
+    const [favorites, setFavorites] = useState([])
+    
+    useEffect(() => {
+        const fetchFavorites = async () => {
+            const res = await api.get("/notes/favorites")
+            setFavorites(res.data)
+        }
+
+        fetchFavorites()
+    }, [])
+
+     // how to favorite notes
+    const maxFaves = 20
+
     if (loading)
         return <p>Loading notes...</p>
 
@@ -73,42 +88,6 @@ function NoteList() {
 
     if (notes.length === 0) 
         return <p> No notes yet.</p>
-
-
-    const [favorites, setFavorites] = useState([])
-    
-        useEffect(() => {
-            const fetchFavorites = async () => {
-                const res = await api.get("/notes/favorites")
-                setFavorites(res.data)
-            }
-    
-            fetchFavorites()
-        }, [])
-    
-        // how to favorite notes
-        const maxFaves = 20
-    
-        // function will accept a note.id to find the specific note from the notes array
-        const addToFavorites = (note.id) => {
-            console.log(`In favorite notes with id ${note.id}`)
-        }
-    
-        // Heart button
-        const isFavorited = favorites.includes(note.id)
-
-        // click favorite on note card
-        const clickFavorite = async () => {
-            e.stopPropagation()
-
-            const res = await api.post(`/notes/${note.id}/favorite`)
-
-            setFavorites(prev =>
-                res.data.favorited
-                ? [...prev, note.id]
-                : prev.filter(id => id !== note.id)
-            )
-        }
 
     return (
         <>

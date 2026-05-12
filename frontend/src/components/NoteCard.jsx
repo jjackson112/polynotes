@@ -1,6 +1,23 @@
 import { Heart } from "react-feather";
 
 function NoteCard({ note, onView, onEdit, onRequestDelete }) {
+    // function will accept a note.id to find the specific note from the notes array
+    const addToFavorites = (note.id) => {
+        console.log(`In favorite notes with id ${note.id}`)
+    }
+
+    // Heart button
+    const isFavorited = favorites.includes(note.id)
+    // click favorite on note card
+    const clickFavorite = async () => {
+        e.stopPropagation()
+        const res = await api.post(`/notes/${note.id}/favorite`)
+        setFavorites(prev =>
+            res.data.favorited
+            ? [...prev, note.id]
+            : prev.filter(id => id !== note.id)
+        )
+    }
 
     return (
         <div className="note-card" onClick={() => onView(note.id)}>
@@ -8,6 +25,7 @@ function NoteCard({ note, onView, onEdit, onRequestDelete }) {
                 <h3 className="note-card-title">{note.title}</h3>
                 <Heart 
                     className="favorite-icon"
+                    onClick={clickFavorite}
                     fill={note.favorite ? "#654632" : "none"}
                     stroke={note.favorite ? "#654632": "#2b211b"}
                 />
