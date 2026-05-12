@@ -62,7 +62,6 @@ function Login() {
                 <p>Login to continue</p>
                 
                 <input
-                    required
                     className="login-input"
                     type="text"
                     name="identifier"
@@ -72,7 +71,6 @@ function Login() {
                 />
 
                 <input
-                    required
                     className="login-input"
                     type="password"
                     name="identifier"

@@ -70,7 +70,7 @@ def register():
             User.email == email
         )
     ).first()
-    
+
     if existing_user:
         return jsonify({'error': "Username or email already exists."}), 400
     
