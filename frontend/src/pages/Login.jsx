@@ -65,7 +65,8 @@ function Login() {
                     required
                     className="login-input"
                     type="text"
-                    value={form.username} // controlled input by React not the browser
+                    name="identifier"
+                    value={form.identifier} // controlled input by React not the browser
                     placeholder="username or email"
                     onChange={handleChange}
                 />
@@ -73,8 +74,9 @@ function Login() {
                 <input
                     required
                     className="login-input"
-                    value={form.password} // controlled input always matches what's in the input + re-renders properly
                     type="password"
+                    name="identifier"
+                    value={form.identifier} // controlled input always matches what's in the input + re-renders properly
                     placeholder="password"
                     onChange={handleChange}
                 />
