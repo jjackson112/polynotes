@@ -97,6 +97,19 @@ function NoteList() {
         // Heart button
         const isFavorited = favorites.includes(note.id)
 
+        // click favorite on note card
+        const clickFavorite = async () => {
+            e.stopPropagation()
+
+            const res = await api.post(`/notes/${note.id}/favorite`)
+
+            setFavorites(prev =>
+                res.data.favorited
+                ? [...prev, note.id]
+                : prev.filter(id => id !== note.id)
+            )
+        }
+
     return (
         <>
             <Header />
