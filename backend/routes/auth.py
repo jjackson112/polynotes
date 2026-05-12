@@ -35,9 +35,9 @@ def login():
     # Generate JWT token - payload (data)
     # access only token
     token = jwt.encode({
-            'user_id': user.id,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
-        }, secret, algorithm='HS256') # HS256 to decode and catch expired/invalid tokens
+        'user_id': user.id,
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
+    }, secret, algorithm='HS256') # HS256 to decode and catch expired/invalid tokens
     
     refresh_token = jwt.encode({
         'user_id': user.id,
@@ -66,7 +66,7 @@ def register():
     # old line created a new local object instead of querying the database
     existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
     if existing_user:
-        return jsonify({'error': "Username has already been taken."}), 400
+        return jsonify({'error': "Username or email already exists."}), 400
     
     new_user = User(username=username, email=email)
     new_user.set_password(password)
