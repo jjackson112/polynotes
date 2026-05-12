@@ -111,4 +111,8 @@ def toggle_favorite(current_user, note_id):
         db.session.commit()
         return jsonify({"favorited": False})
     
-    
+    new_fav = Favorite(user_id=current_user.id, note_id=note_id)
+    db.session.add(new_fav)
+    db.session.commit()
+
+    return jsonify({"favorited": True})
