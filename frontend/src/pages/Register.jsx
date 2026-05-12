@@ -40,7 +40,7 @@ function Register() {
             navigate("/dashboard")
 
         } catch (err) {
-            setError(err.response?.data?.message || "Registration failed:")
+            setError(err.response?.data?.message || "Registration failed")
         } finally {
             setLoading(false)
         }
@@ -53,6 +53,7 @@ function Register() {
             <form onSubmit={handleSubmit} className="register-form">
                 <input
                     className="register-input"
+                    required
                     name="username"
                     value={registerForm.username}
                     placeholder="username"
@@ -60,6 +61,7 @@ function Register() {
                 />
                 <input
                     className="register-input"
+                    required
                     name="email"
                     value={registerForm.email}
                     type="email"
@@ -68,6 +70,7 @@ function Register() {
                 />
                 <input
                     className="register-input"
+                    required
                     name="password"
                     value={registerForm.password}
                     type="password"
