@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Register from "./Register";
 
 {/* useEffect → checks localStorage → restores login */}
+{/* Login → receive tokens → authenticated → dashboard */}
 
 {/* Create state for login form */}
 function Login() {

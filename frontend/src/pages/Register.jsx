@@ -3,6 +3,7 @@ import { api } from "../api/api";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate, Link } from "react-router-dom";
 
+// Register → receive tokens → authenticated → dashboard
 function Register() {
     const initialForm = {
         username: "",

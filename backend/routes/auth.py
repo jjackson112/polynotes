@@ -80,7 +80,23 @@ def register():
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({'message': "User registered successfully."}), 201
+    secret = current_app.config["SECRET_KEY"]
+
+    token = jwt.encode({
+        "user_id": new_user.id,
+        "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=2)
+    }, secret, algorithm="HS256")
+
+    refresh_token = jwt.encode({
+        "user_id": new_user.id,
+        "exp": datetime.datetime.utcnow() + datetime.timedelta(days=5)
+    }, secret, algorithm="HS256")
+
+    return jsonify({
+        'token': token,
+        'refresh_token' : refresh_token,
+        'user': new_user.to_dict() # Helpful to send user info back on login
+    }), 201
 
 # refresh endpoint validates the user, but gives them a new access token without logging in again
 # used sparingly compared to the access token
