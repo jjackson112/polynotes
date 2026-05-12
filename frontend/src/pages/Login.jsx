@@ -62,13 +62,16 @@ function Login() {
                 <p>Login to continue</p>
                 
                 <input
+                    required
                     className="login-input"
+                    type="text"
                     value={form.username} // controlled input by React not the browser
                     placeholder="username or email"
                     onChange={handleChange}
                 />
 
                 <input
+                    required
                     className="login-input"
                     value={form.password} // controlled input always matches what's in the input + re-renders properly
                     type="password"
