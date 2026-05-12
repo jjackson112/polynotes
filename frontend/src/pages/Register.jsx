@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { api } from "../api/api";
 import { useAuth } from "../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Register() {
     const [registerForm, setRegisterForm] = useState({
@@ -78,7 +78,7 @@ function Register() {
                     onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
                 />
                 <button type="submit" className="register-button" disabled={loading}>{loading ? "Registering" : "Register"}</button>
-                <h4 className="already-registered-message">Already registered? Log in here.</h4>
+                <Link to="/" className="already-registered-message">Already registered? Log in here.</Link>
             </form>
 
         </div>
