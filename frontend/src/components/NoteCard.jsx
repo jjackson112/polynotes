@@ -1,17 +1,15 @@
 import { Heart } from "react-feather";
+import { api } from "../api/api";
 
-function NoteCard({ note, onView, onEdit, onRequestDelete }) {
+function NoteCard({ note, onView, onEdit, onRequestDelete, favorites, setFavorites }) {
     // function will accept a note.id to find the specific note from the notes array
-    const addToFavorites = (note.id) => {
-        console.log(`In favorite notes with id ${note.id}`)
-    }
-
-    // Heart button
     const isFavorited = favorites.includes(note.id)
+
     // click favorite on note card
-    const clickFavorite = async () => {
+    const clickFavorite = async (e) => {
         e.stopPropagation()
         const res = await api.post(`/notes/${note.id}/favorite`)
+
         setFavorites(prev =>
             res.data.favorited
             ? [...prev, note.id]
