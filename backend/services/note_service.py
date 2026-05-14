@@ -6,30 +6,24 @@ from extensions import db
 from models.notes import Note
 from models.tags import Tag
 
-def attach_tags(note, tag_names):
-    # attach tags to a note, creating them if needed
-    note.tags.clear()
-
-    for name in tag_names:
-        tag = Tag.query.filter_by(name=name).first()
-
-        if not tag:
-            tag = Tag(name=name)
-            db.session.add(tag)
-
-        note.tags.append(tag)
-
 # create notes - managed relationships + enforcing that tags must exist
 def create_note(user_id, data):
 
+    title = data.get("title")
+    content = data.get("content")
+    language = data.get("language")
+
+    if not title or not content or not language:
+        raise ValueError("Missing required fields")
+
     note = Note(
-        title=data.get("title"),
-        content=data.get("content"),
-        language=data.get("language"),
+        title=title,
+        content=content,
+        language=language,
         user_id=user_id,
     )
     
-    tag_names = data.get("tags", [])
+    tag_names = data.get("tags") or []
     attach_tags(note, tag_names)
     
     db.session.add(note)
@@ -59,3 +53,16 @@ def update_note(note, data):
 
     return note
 # delete notes - fine in routes
+
+def attach_tags(note, tag_names):
+    # attach tags to a note, creating them if needed
+    note.tags.clear()
+
+    for name in tag_names:
+        tag = Tag.query.filter_by(name=name).first()
+
+        if not tag:
+            tag = Tag(name=name)
+            db.session.add(tag)
+
+        note.tags.append(tag)
