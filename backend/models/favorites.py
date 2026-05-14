@@ -9,5 +9,5 @@ class Favorite(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     __table_args__ = (
-        db.UniqueConstraint("user_id", "note_id")
+        db.UniqueConstraint("user_id", "note_id"),
     )

@@ -40,7 +40,7 @@ function NoteList() {
     useEffect(() => {
         const fetchFavorites = async () => {
             try {
-            const res = await api.get(`/notes/favorites`)
+            const res = await api.get("/notes/favorites")
             setFavorites(res.data || [])
             } catch (err) {
                 console.error("Failed to load favorites", err)
