@@ -1,6 +1,7 @@
 from extensions import db
 from datetime import datetime
 
+# favorites table is modeled how Reddit saves posts or Instagram bookmarks
 class Favorite(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
