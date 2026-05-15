@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
 {/* useEffect → checks localStorage → restores login */}
+{/* Login → receive tokens → authenticated → dashboard */}
 
 {/* Create state for login form */}
 function Login() {

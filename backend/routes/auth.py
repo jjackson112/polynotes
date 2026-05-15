@@ -8,16 +8,23 @@ from extensions import db
 from flask import Blueprint, request, jsonify, current_app
 import datetime
 from models.user import User
+import sqlalchemy import or_
 
 auth_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
     data = request.get_json() or {}
-    username = data.get('username', '').strip()
+    identifier = data.get('identifier', '').strip().lower
     password = data.get('password', '').strip()
 
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter(
+        or_(
+            User.username == identifier,
+            User.email == identifier
+        )
+    ).first()
+
     if not user or not user.check_password(password):
         return jsonify({'error': "Invalid username or password"}), 401
 
@@ -49,7 +56,7 @@ def login():
 @auth_bp.route("/register", methods=["POST"])
 def register():
     data = request.get_json() or {}
-    username = data.get('username', '').strip()
+    username = data.get('username', '').strip().lower()
     password = data.get('password', '').strip()
     email = data.get('email', '').strip()
 
@@ -57,9 +64,15 @@ def register():
         return jsonify({'error': "Username, email, and password are required"}), 400
 
     # old line created a new local object instead of querying the database
-    existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
+    existing_user = User.query.filter(
+        or_(
+            User.username == username, 
+            User.email == email
+            )
+        ).first()
+    
     if existing_user:
-        return jsonify({'error': "Username has already been taken."}), 400
+        return jsonify({'error': "Username or email has already been taken."}), 400
     
     new_user = User(username=username, email=email)
     new_user.set_password(password)
@@ -67,7 +80,23 @@ def register():
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({'message': "User registered successfully."}), 201
+    secret = current_app.config["SECRET_KEY"]
+
+    token = jwt.encode({
+        "user_id": new_user.id,
+        "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=2)
+    }, secret, algorithm="HS256")
+
+    refresh_token = jwt.encode({
+        "user_id": new_user.id,
+        "exp": datetime.datetime.utcnow() + datetime.timedelta(days=5)
+    }, secret, algorithm="HS256")
+
+    return jsonify({
+        'token': token,
+        'refresh_token' : refresh_token,
+        'user': new_user.to_dict() # Helpful to send user info back on login
+    }), 201
 
 # refresh endpoint validates the user, but gives them a new access token without logging in again
 # used sparingly compared to the access token
@@ -98,8 +127,8 @@ def refresh():
             'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
         }, secret, algorithm='HS256')
 
-        if isinstance(refresh_token, bytes):
-            refresh_token = refresh_token.decode('utf-8')
+        if isinstance(new_access_token, bytes):
+            new_access_token = new_access_token.decode('utf-8')
 
         return jsonify({"token": new_access_token}), 200
             
