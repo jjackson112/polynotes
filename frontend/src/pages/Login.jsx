@@ -10,7 +10,7 @@ import Register from "./Register";
 {/* Create state for login form */}
 function Login() {
     const [form, setForm] = useState({
-        username: "",
+        identifier: "",
         password: ""
     })
 
@@ -38,7 +38,7 @@ function Login() {
             // optional - login(data.token) triggers login() like navigate("/dashboard")
 
             // clear form after logging in 
-            setForm({ username: "", password: ""})
+            setForm({ identifier: "", password: ""})
 
             navigate("/dashboard")
 
@@ -49,9 +49,9 @@ function Login() {
     } 
 
     const handleChange = (e) => {
-        setRegisterForm({
-            ...registerForm,
-            [e.target.value]: e.target.value
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value // stop nonsense keys
         })
     }
 
@@ -73,13 +73,13 @@ function Login() {
                 <input
                     className="login-input"
                     type="password"
-                    name="identifier"
+                    name="password"
                     value={form.password} // controlled input always matches what's in the input + re-renders properly
                     placeholder="password"
                     onChange={handleChange}
                 />
                 <button type="submit" className="login-button">Login</button>
-                <button type="submit" className="register-button">Register</button>
+                <button type="button" className="register-button" onClick={() => navigate("/register")}>Register</button>
             </form>
         </div>
     )

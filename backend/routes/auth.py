@@ -8,14 +8,14 @@ from extensions import db
 from flask import Blueprint, request, jsonify, current_app
 import datetime
 from models.user import User
-import sqlalchemy import or_
+from sqlalchemy import or_
 
 auth_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
     data = request.get_json() or {}
-    identifier = data.get('identifier', '').strip().lower
+    identifier = data.get('identifier', '').strip().lower()
     password = data.get('password', '').strip()
 
     user = User.query.filter(
@@ -35,9 +35,9 @@ def login():
     # Generate JWT token - payload (data)
     # access only token
     token = jwt.encode({
-            'user_id': user.id,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
-        }, secret, algorithm='HS256') # HS256 to decode and catch expired/invalid tokens
+        'user_id': user.id,
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
+    }, secret, algorithm='HS256') # HS256 to decode and catch expired/invalid tokens
     
     refresh_token = jwt.encode({
         'user_id': user.id,
@@ -58,7 +58,7 @@ def register():
     data = request.get_json() or {}
     username = data.get('username', '').strip().lower()
     password = data.get('password', '').strip()
-    email = data.get('email', '').strip()
+    email = data.get('email', '').strip().lower()
 
     if not username.strip() or not password.strip() or not email.strip():
         return jsonify({'error': "Username, email, and password are required"}), 400
@@ -66,13 +66,13 @@ def register():
     # old line created a new local object instead of querying the database
     existing_user = User.query.filter(
         or_(
-            User.username == username, 
+            User.username == username,
             User.email == email
-            )
-        ).first()
-    
+        )
+    ).first()
+
     if existing_user:
-        return jsonify({'error': "Username or email has already been taken."}), 400
+        return jsonify({'error': "Username or email already exists."}), 400
     
     new_user = User(username=username, email=email)
     new_user.set_password(password)
@@ -128,7 +128,7 @@ def refresh():
         }, secret, algorithm='HS256')
 
         if isinstance(new_access_token, bytes):
-            new_access_token = new_access_token.decode('utf-8')
+            new_refresh_token = new_refresh_token.decode('utf-8')
 
         return jsonify({"token": new_access_token}), 200
             

@@ -172,8 +172,8 @@ h2 {
   margin-right: 10px;
 }
 
-/* Login Form Styles */
-.login-form {
+/* Login/Register Form Styles */
+.login-form, .register-form {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -184,7 +184,7 @@ h2 {
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
-.login-input {
+.login-input, .register-input {
   height: 50px;
   width: 100%;
   box-sizing: border-box;
@@ -197,7 +197,7 @@ h2 {
   font-size: 16px;
 }
 
-.login-button {
+.login-button, .register-button {
   padding: 0.9rem;
 }
 
