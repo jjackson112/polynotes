@@ -106,8 +106,8 @@ function EditNote() {
                                 className="tag-input"
                                 type="text"
                                 placeholder="grammar, verb, vocab"
-                                value={tag}
-                                onChange={(e) => setTag(e.target.value)}
+                                value={tagInput}
+                                onChange={(e) => setTagInput(e.target.value)}
                             />
                         </div>
                     </div>
