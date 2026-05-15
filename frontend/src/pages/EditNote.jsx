@@ -12,7 +12,9 @@ function EditNote() {
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
     const [languageCategory, setLanguageCategory] = useState("")
+    
     const [tags, setTags] = useState([])
+    const [tagInput, setTagInput] = useState("")
 
     const [loading, setLoading] = useState(false)
 
@@ -36,6 +38,13 @@ function EditNote() {
         fetchNote()
     }, [id])
 
+    // add tag input logic
+    const addTag = () => {
+        if (!tagInput.trim()) return
+
+        setTagInput("")
+    }
+
     // save update
     const handleUpdate = async (e) => {
         e.preventDefault()
@@ -46,7 +55,7 @@ function EditNote() {
                 title,
                 content,
                 language: languageCategory === "All" ? "english" : languageCategory,
-                tags: tag ? [tag] : []
+                tags: tags
             })
 
             navigate("/notes")
