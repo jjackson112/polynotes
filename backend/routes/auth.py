@@ -25,6 +25,14 @@ def login():
         )
     ).first()
 
+    print("identifier", identifier)
+    print("password", password)
+
+    if user:
+        print("stored username", user.username)
+        print("stored email", user.email)
+        print("stored password", user.check_password(password))
+
     if not user or not user.check_password(password):
         return jsonify({'error': "Invalid username or password"}), 401
 
