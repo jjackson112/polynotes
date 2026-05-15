@@ -2,6 +2,7 @@ import './App.css'
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Login from './pages/Login';
+import Register from './pages/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from "./pages/Dashboard";
 import NewNote from "./pages/NewNote";
@@ -37,6 +38,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />}/>
         <Route path="/dashboard" 
           element={
             <ProtectedRoute>

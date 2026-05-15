@@ -15,7 +15,7 @@ auth_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
 @auth_bp.route("/login", methods=["POST"])
 def login():
     data = request.get_json() or {}
-    identifier = data.get('identifier', '').strip().lower()
+    identifier = data.get('identifier', '').strip()
     password = data.get('password', '').strip()
 
     user = User.query.filter(
