@@ -29,6 +29,8 @@ def create_note(user_id, data):
     db.session.add(note)
     db.session.commit()
 
+    print("CREATE NOTE PAYLOAD", data)
+
     return note
     
 # list notes - fine in routes
