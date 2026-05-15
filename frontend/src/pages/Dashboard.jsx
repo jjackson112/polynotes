@@ -6,12 +6,11 @@ import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import NoteCard from "../components/NoteCard";
-import ViewNote from "./ViewNote";
 
 // /dashboard  → ProtectedRoute  → Dashboard renders
 // protected logic will live here - GET requests to authenticate data
 
-function Dashboard({ authMessage, handleView }) {
+function Dashboard({ authMessage }) {
     const [notes, setNotes] = useState([])
     const [total, setTotal] = useState(0)
     const favoriteCount = notes.filter(note => note.favorite).length
@@ -40,6 +39,10 @@ function Dashboard({ authMessage, handleView }) {
         fetchData()
     }, [location.state?.refresh])
 
+    const handleView = (id) => {
+        navigate(`/notes/${id}`)
+    }
+
     return (
         <div className="app-layout">
             <Sidebar open={sidebarOpen} setOpen={setSidebarOpen} />
@@ -66,7 +69,10 @@ function Dashboard({ authMessage, handleView }) {
                             <button onClick={() => navigate("/notes/new")} className="new-note-btn">New Note</button>
                             <div className="recent-notes">
                                 {notes.slice(0,3).map(note => (
-                                    <NoteCard key={note.id} note={note} onClick={() => (handleView) } />
+                                    <NoteCard 
+                                        key={note.id} 
+                                        note={note} 
+                                        onView={handleView} />
                                 ))}
                             </div>
                         </div>

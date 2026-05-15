@@ -11,10 +11,8 @@ function EditNote() {
 
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
-    const [languageCategory, setLanguageCategory] = useState("")
-    
-    const [tags, setTags] = useState([])
-    const [tagInput, setTagInput] = useState("")
+    const [languageCategory, setLanguageCategory] = useState("All")
+    const [tag, setTag] = useState("")
 
     const [loading, setLoading] = useState(false)
 
@@ -29,7 +27,7 @@ function EditNote() {
                 setTitle(res.title)
                 setContent(res.content)
                 setLanguageCategory(res.language)
-                setTag(res.tag || []) // to change the UI if there are multiple tags
+                setTags(res.tag || "")
                 
             } catch (err) {
                 console.error(err)
@@ -37,14 +35,6 @@ function EditNote() {
         }
         fetchNote()
     }, [id])
-
-    // add tag input logic
-    const addTag = () => {
-        if (!tagInput.trim()) return
-
-        setTags(prev => [...prev, tagInput.trim().toLowerCase()])
-        setTagInput("")
-    }
 
     // save update
     const handleUpdate = async (e) => {
@@ -55,8 +45,8 @@ function EditNote() {
             const res = await api.patch(`/notes/${id}`, {
                 title,
                 content,
-                language: languageCategory === "All" ? "english" : languageCategory,
-                tags: tags
+                language: languageCategory === "All" ? "English" : languageCategory,
+                tags: tag ? [tag] : []
             })
 
             navigate("/notes")
@@ -92,11 +82,11 @@ function EditNote() {
                                 onChange={(e) => setLanguageCategory(e.target.value)}
                             >
                                 <option value="All">All</option>
-                                <option value="english">English</option>
-                                <option value="hawaiian">Hawaiian</option>
-                                <option value="italian">Italian</option>
-                                <option value="mandarin">Mandarin</option>
-                                <option value="spanish">Spanish</option>
+                                <option value="English">English</option>
+                                <option value="Hawaiian">Hawaiian</option>
+                                <option value="Italian">Italian</option>
+                                <option value="Mandarin">Mandarin</option>
+                                <option value="Spanish">Spanish</option>
                             </select>
                         </div>
 
@@ -107,8 +97,8 @@ function EditNote() {
                                 className="tag-input"
                                 type="text"
                                 placeholder="grammar, verb, vocab"
-                                value={tagInput}
-                                onChange={(e) => setTagInput(e.target.value)}
+                                value={tag}
+                                onChange={(e) => setTag(e.target.value)}
                             />
                         </div>
                     </div>
@@ -120,7 +110,7 @@ function EditNote() {
                         onChange={(e) => setContent(e.target.value)}
                         minLength={8}
                     />
-                    <div className="edit-note-buttons">
+                    <div className="new-note-buttons">
                         <button type="button" className="fav-button">Add to Favorites</button>
                         <button type="submit" disabled={loading} className="save-button">{loading ? "Saving" : "Save"}</button>
                         <button type="button" className="cancel-button" onClick={() => navigate("/notes")}>Cancel</button>

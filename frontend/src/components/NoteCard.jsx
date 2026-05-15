@@ -1,7 +1,7 @@
 import { Heart } from "react-feather";
 import { api } from "../api/api";
 
-function NoteCard({ note, onView, onEdit, onRequestDelete, favorites, setFavorites }) {
+function NoteCard({ note, onEdit, onView, onRequestDelete, favorites, setFavorites }) {
     // function will accept a note.id to find the specific note from the notes array
     // user-specific state if the favorites array always exists - this crashes on Dashboard so make this resilient
     const isFavorited = favorites?.includes(note.id) || false
@@ -19,7 +19,7 @@ function NoteCard({ note, onView, onEdit, onRequestDelete, favorites, setFavorit
     }
 
     return (
-        <div className="note-card" onClick={() => onView(note.id)}>
+        <div className="note-card"  onClick={() => onView(note.id)}>
             <div className="note-card-header">
                 <h3 className="note-card-title">{note.title}</h3>
                 <Heart 

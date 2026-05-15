@@ -64,6 +64,12 @@ button:hover {
   cursor: pointer;
 }
 
+/* accessibility */
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
 /* Header Styles */
 
 .header-container {
@@ -332,8 +338,9 @@ h2 {
 .form-metadata {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
+  gap: 1rem;
 }
 
 .category-dropdown, .tag-field {
@@ -409,10 +416,6 @@ h2 {
     left: auto;
     transform: none;
     width: 240px;
-  }
-
-  .app-layout {
-    display: flex;
   }
 
   .main-wrapper {

@@ -65,13 +65,15 @@ function App() {
             <ProtectedRoute>
               <EditNote />
             </ProtectedRoute>
-          } />
+          } 
+        />
         <Route path="/notes/:id" 
           element={
             <ProtectedRoute>
               <ViewNote />
             </ProtectedRoute>
-          } />
+          } 
+        />
       </Routes>
     </div>
   )
