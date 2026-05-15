@@ -39,7 +39,7 @@ def validate_update_note(data):
     if not data:
         return "Invalid JSON"
     
-    allowed_fields = ["title", "content", "language", "tag"]
+    allowed_fields = ["title", "content", "language", "tags"]
 
     for key in data:
         if key not in allowed_fields:

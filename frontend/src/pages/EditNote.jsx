@@ -27,7 +27,7 @@ function EditNote() {
                 setTitle(res.title)
                 setContent(res.content)
                 setLanguageCategory(res.language)
-                setTag(res.tag || []) // to change the UI if there are multiple tags
+                setTag(res.tag || "") // to change the UI if there are multiple tags
                 
             } catch (err) {
                 console.error(err)
@@ -45,7 +45,7 @@ function EditNote() {
             const res = await api.patch(`/notes/${id}`, {
                 title,
                 content,
-                language: languageCategory === "All" ? "English" : languageCategory,
+                language: languageCategory === "All" ? "english" : languageCategory,
                 tags: tag ? [tag] : []
             })
 
@@ -78,7 +78,7 @@ function EditNote() {
 
                             <select 
                                 className="category-select" 
-                                value={languageCategory || "english"}
+                                value={languageCategory}
                                 onChange={(e) => setLanguageCategory(e.target.value)}
                             >
                                 <option value="All">All</option>
