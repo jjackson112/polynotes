@@ -42,6 +42,7 @@ function EditNote() {
     const addTag = () => {
         if (!tagInput.trim()) return
 
+        setTags(prev => [...prev, tagInput.trim().toLowerCase()])
         setTagInput("")
     }
 
