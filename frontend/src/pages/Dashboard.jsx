@@ -11,7 +11,7 @@ import ViewNote from "./ViewNote";
 // /dashboard  → ProtectedRoute  → Dashboard renders
 // protected logic will live here - GET requests to authenticate data
 
-function Dashboard({ authMessage }) {
+function Dashboard({ authMessage, handleView }) {
     const [notes, setNotes] = useState([])
     const [total, setTotal] = useState(0)
     const favoriteCount = notes.filter(note => note.favorite).length

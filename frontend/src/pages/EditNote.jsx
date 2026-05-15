@@ -110,7 +110,7 @@ function EditNote() {
                         onChange={(e) => setContent(e.target.value)}
                         minLength={8}
                     />
-                    <div className="new-note-buttons">
+                    <div className="edit-note-buttons">
                         <button type="button" className="fav-button">Add to Favorites</button>
                         <button type="submit" disabled={loading} className="save-button">{loading ? "Saving" : "Save"}</button>
                         <button type="button" className="cancel-button" onClick={() => navigate("/notes")}>Cancel</button>
