@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { api } from "../api/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 // Register → receive tokens → authenticated → dashboard
 
 function Register() {
-    const [registerForm, setRegisterForm] = useState({
+    const initialForm = {
         username: "",
         email: "",
         password: ""
-    })
+    }
+
+    const [registerForm, setRegisterForm] = useState(initialForm)
 
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
@@ -33,13 +35,9 @@ function Register() {
             login(data.token)
 
             // clear form 
-            setRegisterForm ({
-                username: "",
-                email: "",
-                password: ""
-            })
+            setRegisterForm (initialForm)
 
-            navigate("/login")
+            navigate("/dashboard")
 
         } catch (err) {
             setError(err.response?.data?.message || "Registration failed:")
@@ -51,24 +49,36 @@ function Register() {
     return (
         <form onSubmit={handleSubmit}>
             {error && <p>{error}</p>} 
+
             <input
+                className="register-input"
+                required
+                name="username"
                 value={registerForm.username}
+                type="text"
                 placeholder="username"
                 onChange={(e) => setRegisterForm({...registerForm, username: e.target.value})}
             />
             <input
+                className="register-input"
+                required
+                name="email"
                 value={registerForm.email}
                 type="email"
                 placeholder="email"
                 onChange={(e) => setRegisterForm({...registerForm, email: e.target.value})}
             />
             <input
+                className="register-input"
+                required
+                name="password"
                 value={registerForm.password}
                 type="password"
                 placeholder="password"
                 onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
             />
             <button type="submit" disabled={loading}>{loading ? "Registering" : "Register"}</button>
+            <Link to="/" className="already-registered-message">Already registered? Log in here.</Link>
         </form>
     )
 }
