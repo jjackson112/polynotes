@@ -6,6 +6,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../api/api";
 import { useParams } from "react-router-dom";
+import Header from "../components/Header";
 
 function ViewNote() {
     const { id } = useParams() // use id to fetch the note
@@ -34,12 +35,18 @@ function ViewNote() {
         return <p>Loading...</p>
 
     return (
-        <main>
-            <h1>{note.title}</h1>
-            <p>{note.content}</p>
-            <p>{note.language}</p>
-            <p>{note.tag}</p>
-        </main>
+        <>
+            <Header />
+
+            <main className="view-note-container">
+                <h1 className="view-note-title">{note.title}</h1>
+                <p className="view-note-content">{note.content}</p>
+                <div className="view-note-meta">
+                    <p className="note-chip">Language: {note.language}</p>
+                    <p className="note-chip">Tag(s): {note.tag}</p>
+                </div>
+            </main>
+        </>
     )
 }
 
