@@ -39,7 +39,7 @@ def validate_update_note(data):
     if not data:
         return "Invalid JSON"
     
-    allowed_fields = ["title", "content", "language", "tag"]
+    allowed_fields = ["title", "content", "language", "tags"]
 
     for key in data:
         if key not in allowed_fields:
@@ -60,8 +60,8 @@ def validate_update_note(data):
         
         data["language"] = normalized
         
-    if "tag" in data:
-        if not isinstance(data["tags"], str):
-            return "Tags must be a string"
+    if "tags" in data:
+        if not isinstance(data["tags"], list):
+            return "Tags must be a list"
         
     return None
