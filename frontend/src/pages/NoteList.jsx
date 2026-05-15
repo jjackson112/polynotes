@@ -26,7 +26,7 @@ function NoteList() {
                 const res = await api.get("/notes")
 
                 // backend response is not defined by just data
-                setNotes(res.data.items || [])
+                setNotes(res.items || [])
             } catch (err) {
                 setError("Failed to load notes.")
             } finally {
@@ -41,7 +41,7 @@ function NoteList() {
         const fetchFavorites = async () => {
             try {
             const res = await api.get("/notes/favorites")
-            setFavorites(res.data || [])
+            setFavorites(res || [])
             } catch (err) {
                 console.error("Failed to load favorites", err)
             }
