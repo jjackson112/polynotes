@@ -17,13 +17,13 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, favorites, setFavorit
 
         // update state for ids of favorite notes + filter + create a new list
         // If favorited → add ID + If unfavorited → remove ID
-        setFavorites(prev => {
-            if (newFavorite) {
-                return [...(prev || []), note.id]
-            } else {
-                return (prev || []).filter(id => id !== note.id)
-            }
-        })
+        setFavorites(prev => 
+            prev.map(n =>
+                n.id === note.id
+                ? { ...n, favorited: res.data.favorited }
+                : n
+            )
+        )
     }
 
     return (

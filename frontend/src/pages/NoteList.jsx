@@ -41,7 +41,7 @@ function NoteList() {
         const fetchFavorites = async () => {
             try {
             const res = await api.get("/notes/favorites")
-            setFavorites(res || [])
+            setFavorites(res || []) // this is only set once - not synced with backend
             } catch (err) {
                 console.error("Failed to load favorites", err)
             }
