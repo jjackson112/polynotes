@@ -2,8 +2,10 @@ import { Heart } from "react-feather";
 import { api } from "../api/api";
 
 function NoteCard({ note, onEdit, onView, onRequestDelete, favorites, setFavorites }) {
-    // function will accept a note.id to find the specific note from the notes array
+    // user-specific state if the favorites array always exists - this crashes on Dashboard so make this resilient
+    const isFavorited = favorites?.includes(note.id) || false
 
+    // function will accept a note.id to find the specific note from the notes array    
     // click favorite on note card
     const clickFavorite = async (e) => {
         e.stopPropagation()
@@ -12,16 +14,14 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, favorites, setFavorit
         const res = await api.post(`/notes/${note.id}/favorites`)
         console.log(res)
 
-        // update state
+        // update state for ids of favorite notes + filter + create a new list
+        // If favorited → add ID + If unfavorited → remove ID
         setFavorites(prev =>
             res.data.favorited
             ? [...prev, note.id]
             : prev.filter(id => id !== note.id)
         )
     }
-
-    // user-specific state if the favorites array always exists - this crashes on Dashboard so make this resilient
-    const isFavorited = favorites?.includes(note.id) || false
 
     return (
         <div className="note-card"  onClick={() => onView(note.id)}>
