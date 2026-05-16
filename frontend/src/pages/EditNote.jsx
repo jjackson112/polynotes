@@ -82,11 +82,11 @@ function EditNote() {
                                 onChange={(e) => setLanguageCategory(e.target.value)}
                             >
                                 <option value="All">All</option>
-                                <option value="English">English</option>
-                                <option value="Hawaiian">Hawaiian</option>
-                                <option value="Italian">Italian</option>
-                                <option value="Mandarin">Mandarin</option>
-                                <option value="Spanish">Spanish</option>
+                                <option value="english">English</option>
+                                <option value="hawaiian">Hawaiian</option>
+                                <option value="italian">Italian</option>
+                                <option value="mandarin">Mandarin</option>
+                                <option value="spanish">Spanish</option>
                             </select>
                         </div>
 
