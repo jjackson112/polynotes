@@ -7,7 +7,7 @@ import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 
 function NoteList() {
     const [notes, setNotes] = useState([])
-    const [favorites, setFavorites] = useState([])
+    const [favorites, setFavorites] = useState([]) // always has to be an array
 
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
