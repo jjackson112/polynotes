@@ -3,8 +3,6 @@ import { api } from "../api/api";
 
 function NoteCard({ note, onEdit, onView, onRequestDelete, favorites, setFavorites }) {
     // function will accept a note.id to find the specific note from the notes array
-    // user-specific state if the favorites array always exists - this crashes on Dashboard so make this resilient
-    const isFavorited = favorites?.includes(note.id) || false
 
     // click favorite on note card
     const clickFavorite = async (e) => {
@@ -13,7 +11,17 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, favorites, setFavorit
 
         const res = await api.post(`/notes/${note.id}/favorites`)
         console.log(res)
+
+        // update state
+        setFavorites(prev =>
+            res.data.favorited
+            ? [...prev, note.id]
+            : prev.filter(id => id !== note.id)
+        )
     }
+
+    // user-specific state if the favorites array always exists - this crashes on Dashboard so make this resilient
+    const isFavorited = favorites?.includes(note.id) || false
 
     return (
         <div className="note-card"  onClick={() => onView(note.id)}>
