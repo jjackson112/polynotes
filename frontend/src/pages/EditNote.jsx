@@ -13,8 +13,8 @@ function EditNote() {
     const [content, setContent] = useState("")
     const [languageCategory, setLanguageCategory] = useState("All")
     
-    const [tags, setTags] = useState([])
-    const [tagInput, setTagInput] = useState("")
+    const [tags, setTags] = useState([]) // parsed tags array
+    const [tagInput, setTagInput] = useState("") // raw input string
 
     const [loading, setLoading] = useState(false)
 
@@ -30,6 +30,7 @@ function EditNote() {
                 setContent(res.content)
                 setLanguageCategory(res.language)
                 setTags(res.tags || [])
+                setTagInput(res.tags || []).join(",")
                 
             } catch (err) {
                 console.error(err)
