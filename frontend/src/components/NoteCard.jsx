@@ -12,15 +12,15 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, favorites, setFavorit
         console.log("Hearted", note.id)
 
         const res = await api.post(`/notes/${note.id}/favorites`)
-        const newFavorite = res.data.favorited
+        const newFavorite = res.favorited
         console.log(res)
 
         // update state for ids of favorite notes + filter + create a new list
-        // If favorited → add ID + If unfavorited → remove ID
+        // the backend says whether or not the note is favorited, not having a separate list of favorite ids
         setFavorites(prev => 
             prev.map(n =>
                 n.id === note.id
-                ? { ...n, favorited: res.data.favorited }
+                ? { ...n, favorited: newFavorite }
                 : n
             )
         )
