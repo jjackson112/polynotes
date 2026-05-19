@@ -43,7 +43,7 @@ function ViewNote() {
                 <p className="view-note-content">{note.content}</p>
                 <div className="view-note-meta">
                     <p className="note-chip">Language: {note.language}</p>
-                    <p className="note-chip">Tag(s): {note.tag}</p>
+                    <p className="note-chip">Tag(s): {note.tags}</p>
                 </div>
             </main>
         </>
