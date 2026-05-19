@@ -30,7 +30,7 @@ function EditNote() {
                 setContent(res.content)
                 setLanguageCategory(res.language)
                 setTags(res.tags || [])
-                setTagInput(res.tags || []).join(",")
+                setTagInput((res.tags || []).join(","))
                 
             } catch (err) {
                 console.error(err)
@@ -54,7 +54,7 @@ function EditNote() {
                 title,
                 content,
                 language: languageCategory === "All" ? "english" : languageCategory,
-                tags: tags
+                tags: parsedTags
             })
 
             navigate("/notes")
