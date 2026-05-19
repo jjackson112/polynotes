@@ -44,6 +44,11 @@ function EditNote() {
         e.preventDefault()
         setLoading(true)
 
+        const parsedTags = tagInput
+            .split(",")
+            .map(tag => tag.trim().toLowerCase())
+            .filter(Boolean)
+
         try {
             const res = await api.patch(`/notes/${id}`, {
                 title,
@@ -100,15 +105,8 @@ function EditNote() {
                                 className="tag-input"
                                 type="text"
                                 placeholder="grammar, verb, vocab"
-                                value={tags.join(",")} // comma separated input
-                                onChange={(e) => 
-                                    setTags(
-                                        e.target.value
-                                        .split(",")
-                                        .map(tag => tag.trim().toLowerCase())
-                                        .filter(Boolean)
-                                    )
-                                }
+                                value={tagInput} 
+                                onChange={(e) =>setTagInput(e.target.value)}
                             />
                         </div>
                     </div>
