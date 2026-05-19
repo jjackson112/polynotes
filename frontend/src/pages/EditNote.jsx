@@ -97,8 +97,15 @@ function EditNote() {
                                 className="tag-input"
                                 type="text"
                                 placeholder="grammar, verb, vocab"
-                                value={tag}
-                                onChange={(e) => setTag(e.target.value)}
+                                value={tags.join(",")} // comma separated input
+                                onChange={(e) => 
+                                    setTags(
+                                        e.target.value
+                                        .split(",")
+                                        .map(tag => tag.trim().toLowerCase())
+                                        .filter(Boolean)
+                                    )
+                                }
                             />
                         </div>
                     </div>
