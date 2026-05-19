@@ -12,7 +12,7 @@ function EditNote() {
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
     const [languageCategory, setLanguageCategory] = useState("All")
-    const [tag, setTag] = useState("")
+    const [tags, setTags] = useState([])
 
     const [loading, setLoading] = useState(false)
 
@@ -27,7 +27,7 @@ function EditNote() {
                 setTitle(res.title)
                 setContent(res.content)
                 setLanguageCategory(res.language)
-                setTags(res.tag || "")
+                setTags(res.tag || [])
                 
             } catch (err) {
                 console.error(err)
