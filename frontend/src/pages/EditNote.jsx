@@ -27,7 +27,7 @@ function EditNote() {
                 setTitle(res.title)
                 setContent(res.content)
                 setLanguageCategory(res.language)
-                setTags(res.tag || [])
+                setTags(res.tags || [])
                 
             } catch (err) {
                 console.error(err)
@@ -45,8 +45,8 @@ function EditNote() {
             const res = await api.patch(`/notes/${id}`, {
                 title,
                 content,
-                language: languageCategory === "All" ? "English" : languageCategory,
-                tags: tag ? [tag] : []
+                language: languageCategory === "All" ? "english" : languageCategory,
+                tags: tags
             })
 
             navigate("/notes")
