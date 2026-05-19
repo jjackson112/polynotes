@@ -12,7 +12,9 @@ function EditNote() {
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
     const [languageCategory, setLanguageCategory] = useState("All")
+    
     const [tags, setTags] = useState([])
+    const [tagInput, setTagInput] = useState("")
 
     const [loading, setLoading] = useState(false)
 
