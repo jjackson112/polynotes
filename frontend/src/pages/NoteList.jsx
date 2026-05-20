@@ -47,8 +47,8 @@ function NoteList() {
             }
         }
         fetchFavorites()
-        console.log(favorites)
-    }, [])
+        console.log("Updated favorites", favorites)
+    }, [favorites]) // tell React to run this effect
 
 
     // handlers

@@ -20,8 +20,6 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, favorites, setFavorit
             ? [...prev, note.id]
             : prev.filter(id => id !== note.id)
         )
-
-        console.log(favorites)
     }
 
     return (
