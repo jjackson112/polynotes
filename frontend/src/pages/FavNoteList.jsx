@@ -1,6 +1,9 @@
 import { api } from "../api/api";
 import Header from "../components/Header";
 import NoteCard from "../components/NoteCard";
+import NoteList from "../pages/NoteList";
+
+// GET favorite ids list + filter?
 
 function FavNoteList() {
 
