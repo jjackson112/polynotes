@@ -2,7 +2,6 @@
 // Link changes the route instantly with no page reload like a real app
 // NavLink is better for sidebar - highlights active page automatically
 
-
 // User clicks "Notes" → <Link to="/notes"> → URL changes to /notes → React Router sees matching route → renders <NoteList />
 
 import { Link } from "react-router-dom";
