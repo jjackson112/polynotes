@@ -47,7 +47,9 @@ function NoteList() {
             }
         }
         fetchFavorites()
+        console.log(favorites)
     }, [])
+
 
     // handlers
     const handleView = (id) => {
