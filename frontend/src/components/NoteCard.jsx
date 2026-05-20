@@ -16,11 +16,9 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, favorites, setFavorit
         console.log(res)
 
         setFavorites(prev =>
-            prev.map(n =>
-                newFavorite
-                ? [...prev, note.id]
-                : prev.filter(id => id !== note.id)
-            )
+            newFavorite
+            ? [...prev, note.id]
+            : prev.filter(id => id !== note.id)
         )
 
         console.log(favorites)
