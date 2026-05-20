@@ -21,6 +21,8 @@ function Dashboard({ authMessage }) {
     const navigate = useNavigate()
     const location = useLocation()
 
+    const [dashboardFavorities, setDashboardFavorites] = useState([])
+
     useEffect(() => {
         const fetchData = async() => {
             try {
@@ -73,13 +75,6 @@ function Dashboard({ authMessage }) {
                                         key={note.id} 
                                         note={note} 
                                         onView={handleView} 
-                                        toggleHeart={(id) => {
-                                            setNotes(prev =>
-                                                prev.map(n =>
-                                                    n.id === id ? { ...n, favorite: !n.favorite } : n
-                                                )
-                                            )
-                                        }}
                                     />
                                 ))}
                             </div>
