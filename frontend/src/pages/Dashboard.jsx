@@ -10,7 +10,7 @@ import NoteCard from "../components/NoteCard";
 // /dashboard  → ProtectedRoute  → Dashboard renders
 // protected logic will live here - GET requests to authenticate data
 
-function Dashboard({ authMessage, favorites, setFavorites }) {
+function Dashboard({ authMessage }) {
     const [notes, setNotes] = useState([])
     const [total, setTotal] = useState(0)
     const favoriteCount = notes.filter(note => note.favorite).length
@@ -73,8 +73,13 @@ function Dashboard({ authMessage, favorites, setFavorites }) {
                                         key={note.id} 
                                         note={note} 
                                         onView={handleView} 
-                                        favorites={favorites}
-                                        setFavorites={setFavorites}
+                                        toggleHeart={(id) => {
+                                            setNotes(prev =>
+                                                prev.map(n =>
+                                                    n.id === id ? { ...n, favorite: !n.favorite } : n
+                                                )
+                                            )
+                                        }}
                                     />
                                 ))}
                             </div>
