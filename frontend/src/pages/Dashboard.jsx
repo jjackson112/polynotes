@@ -21,8 +21,6 @@ function Dashboard({ authMessage }) {
     const navigate = useNavigate()
     const location = useLocation()
 
-    const [dashboardFavorities, setDashboardFavorites] = useState([])
-
     useEffect(() => {
         const fetchData = async() => {
             try {
