@@ -14,6 +14,16 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, favorites, setFavorit
         const res = await api.post(`/notes/${note.id}/favorites`)
         const newFavorite = res.favorited
         console.log(res)
+
+        setFavorites(prev =>
+            prev.map(n =>
+                newFavorite
+                ? [...prev, note.id]
+                : prev.filter(id => id !== note.id)
+            )
+        )
+
+        console.log(favorites)
     }
 
     return (
