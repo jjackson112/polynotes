@@ -14,10 +14,10 @@ function FavNoteList() {
     useEffect(() => {
         const fetchFavoriteNotes = async () => {
             try {
-                const res = await api.get("/notes/favorites")
-                setFavorites(res) 
+                const res = await api.get("/notes")
+                setFavNotes(res) 
             } catch {
-                console.error("Failed to load favorites", err)
+                console.error("Failed to load notes", err)
             }
         }
         fetchFavoriteNotes()
