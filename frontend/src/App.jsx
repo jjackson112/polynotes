@@ -36,7 +36,7 @@ function App() {
   }, [])
 
   return (
-    <FavoriteProvider>
+    <FavoritesProvider>
       <div>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -78,7 +78,7 @@ function App() {
           />
         </Routes>
       </div>
-    </FavoriteProvider>
+    </FavoritesProvider>
   )
 }
 

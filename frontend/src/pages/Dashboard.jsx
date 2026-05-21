@@ -14,7 +14,6 @@ import { useFavorites } from "../context/FavoritesContext";
 function Dashboard({ authMessage }) {
     const [notes, setNotes] = useState([])
     const [total, setTotal] = useState(0)
-    const favoriteCount = favorites.length
     const [pages, setPages] = useState(1)
 
     const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -23,6 +22,7 @@ function Dashboard({ authMessage }) {
     const location = useLocation()
 
     const { favorites, toggleFavorite } = useFavorites()
+    const favoriteCount = favorites.length
 
     useEffect(() => {
         const fetchData = async() => {
@@ -74,7 +74,10 @@ function Dashboard({ authMessage }) {
                                 {notes.slice(0,3).map(note => (
                                     <NoteCard 
                                         key={note.id} 
-                                        note={note} 
+                                        note={{
+                                            ...note,
+                                            favorite: favorites.includes(note.id)
+                                        }}
                                         toggleFavorite={toggleFavorite}
                                         onView={handleView} 
                                     />
