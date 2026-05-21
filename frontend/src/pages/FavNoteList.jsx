@@ -1,37 +1,33 @@
 import { api } from "../api/api";
 import Header from "../components/Header";
 import NoteCard from "../components/NoteCard";
-import NoteList from "../pages/NoteList";
 
 // GET favorite ids list + filter?
 
 function FavNoteList() {
 
+    const favoriteNotes = note.filter(note => favoriteNotes.includes(note.id))
     
     return (
             <>
                 <Header />
+
                 <div className="note-list-header">
-                    <h2 className="all-notes-title">All Notes</h2>
-                    <button onClick={() => navigate("/notes/new")} className="new-note-btn">New Note</button>
+                    <h2 className="all-notes-title">Favorite Notes</h2>
                 </div>
-                {selectedNote && (
-                    <DeleteConfirmationModal
-                        note={selectedNote}
-                        onDelete={handleDelete}
-                        onClose={() => setSelectedNote(null)}
-                    />
-                )}
-                <div className="view-notes-list">
-                    {sortedNotes.map(note => (
+
+                <div className="fav-notes-list">
+                    {favoriteNotes.map(note => (
                         <NoteCard
                             key={note.id}
-                            note={note}
+                            note={{
+                                ...note,
+                                favorite: true
+                            }}
                             onView={handleView}
                             onEdit={handleEdit}
+                            toggleFavorite={toggleFavorite}
                             onRequestDelete={handleRequestDelete}
-                            favorites={favorites}
-                            setFavorites={setFavorites}
                         />
                     ))}
                 </div>
