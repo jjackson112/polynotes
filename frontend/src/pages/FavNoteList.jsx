@@ -3,6 +3,7 @@ import { api } from "../api/api";
 import Header from "../components/Header";
 import NoteCard from "../components/NoteCard";
 import { useFavorites } from "../context/FavoritesContext";
+import { useNavigate } from "react-router-dom";
 
 // GET notes, GET favorite ids list + filter?
 // FavoriteContext provides ids, not fetching of favorite notes
@@ -10,6 +11,8 @@ import { useFavorites } from "../context/FavoritesContext";
 function FavNoteList() {
     const [favNotes, setFavNotes] = useState([])
     const {favorites, toggleFavorite } = useFavorites()
+
+    const navigate = useNavigate()
     
     useEffect(() => {
         const fetchNotes = async () => {
@@ -24,6 +27,10 @@ function FavNoteList() {
     }, [])
 
     const favoriteNotes = notes.filter(note => favorites.includes(note.id))
+
+    const handleView = () => {
+        navigate(`/notes/favorites/${id}`)
+    }
 
     return (
             <>
