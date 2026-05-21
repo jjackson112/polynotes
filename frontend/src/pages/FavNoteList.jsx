@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import { api } from "../api/api";
 import Header from "../components/Header";
 import NoteCard from "../components/NoteCard";
 import { useFavorites } from "../context/FavoritesContext";
 
 // GET favorite ids list + filter?
+// FavoriteContext provides ids, not fetching of favorite notes
 
 function FavNoteList() {
     const [favNotes, setFavNotes] = useState([])
@@ -11,6 +13,18 @@ function FavNoteList() {
 
     const favoriteNotes = note.filter(note => favoriteNotes.includes(note.id))
     
+    useEffect(() => {
+        const fetchFavoriteNotes = async () => {
+            try {
+                const res = await api.get("/notes/favorites")
+                setFavorites(res) 
+            } catch {
+                console.error("Failed to load favorites", err)
+            }
+        }
+        fetchFavoriteNotes()
+    }, [])
+
     return (
             <>
                 <Header />
