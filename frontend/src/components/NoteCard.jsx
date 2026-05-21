@@ -1,27 +1,7 @@
 import { Heart } from "react-feather";
 import { api } from "../api/api";
 
-function NoteCard({ note, onEdit, onView, onRequestDelete, favorites, setFavorites }) {
-    // user-specific state if the favorites array always exists - this crashes on Dashboard so make this resilient
-    const isFavorited = favorites?.includes(note.id) || false
-
-    // function will accept a note.id to find the specific note from the notes array    
-    // click favorite on note card
-    const clickFavorite = async (e) => {
-        e.stopPropagation()
-        console.log("Hearted", note.id)
-
-        const res = await api.post(`/notes/${note.id}/favorites`)
-        const newFavorite = res.favorited
-        console.log(res)
-
-        // what is the new state after toggle? - stays
-        setFavorites(prev =>
-            newFavorite
-            ? [...prev, note.id]
-            : prev.filter(id => id !== note.id)
-        )
-    }
+function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite }) {
 
     return (
         <div className="note-card"  onClick={() => onView(note.id)}>
@@ -29,9 +9,12 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, favorites, setFavorit
                 <h3 className="note-card-title">{note.title}</h3>
                 <Heart 
                     className="favorite-icon"
-                    onClick={clickFavorite}
-                    fill={isFavorited ? "#654632" : "none"}
-                    stroke={isFavorited ? "#654632": "#2b211b"}
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        toggleFavorite(note.id)
+                    }}
+                    fill={note.favorite ? "#654632" : "none"}
+                    stroke={note.favorite ? "#654632": "#2b211b"}
                 />
             </div>
             
