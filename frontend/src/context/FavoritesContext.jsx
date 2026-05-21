@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState, createContext, useContext } from "react";
 import { api } from "../api/api";
 
 // create context
@@ -30,17 +30,17 @@ export function FavoriteProvider({ children }) {
                 ? prev.filter(f => f !== id)
                 : [...prev, id]
         })
-    }
 
-    // backend persistence
-    try {
-        await api.patch(`/notes/${id}/favorite`)
-    } catch (err) {
-        console.error("Failed to sync favorite notes", err)
+        // backend persistence
+        try {
+            await api.patch(`/notes/${id}/favorite`)
+        } catch (err) {
+            console.error("Failed to sync favorite notes", err)
+        }
     }
 
     return (
-        <FavoritesContext.Provider value={{ favorites, toggleFAvorite }}>
+        <FavoritesContext.Provider value={{ favorites, toggleFavorite }}>
             { children }
         </FavoritesContext.Provider>
     )
