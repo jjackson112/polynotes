@@ -48,8 +48,8 @@ function App() {
             <ProtectedRoute>
               <Dashboard 
                 authMessage={authMessage}
-                open={sidebarOpen} 
-                setOpen={setSidebarOpen} 
+                sidebarOpen={sidebarOpen} 
+                setSidebarOpen={setSidebarOpen} 
               />
             </ProtectedRoute>
           }
@@ -58,8 +58,8 @@ function App() {
           element={
             <ProtectedRoute>
               <NewNote 
-                open={sidebarOpen} 
-                setOpen={setSidebarOpen} 
+                sidebarOpen={sidebarOpen} 
+                setSidebarOpen={setSidebarOpen} 
               />
             </ProtectedRoute>
           } 
@@ -68,8 +68,8 @@ function App() {
           element={
             <ProtectedRoute>
               <NoteList 
-                open={sidebarOpen} 
-                setOpen={setSidebarOpen} 
+                sidebarOpen={sidebarOpen} 
+                setSidebarOpen={setSidebarOpen} 
               />
             </ProtectedRoute>
           }
@@ -78,8 +78,8 @@ function App() {
           element={
             <ProtectedRoute>
               <EditNote 
-                open={sidebarOpen} 
-                setOpen={setSidebarOpen} 
+                sidebarOpen={sidebarOpen} 
+                setSidebarOpen={setSidebarOpen} 
               />
             </ProtectedRoute>
           } 
@@ -88,8 +88,8 @@ function App() {
           element={
             <ProtectedRoute>
               <ViewNote 
-                open={sidebarOpen} 
-                setOpen={setSidebarOpen} 
+                sidebarOpen={sidebarOpen} 
+                setSidebarOpen={setSidebarOpen} 
               />
             </ProtectedRoute>
           } 
@@ -98,8 +98,8 @@ function App() {
           element={
             <ProtectedRoute>
               <FavNoteList 
-                open={sidebarOpen} 
-                setOpen={setSidebarOpen} 
+                sidebarOpen={sidebarOpen} 
+                setSidebarOpen={setSidebarOpen} 
               />
             </ProtectedRoute>
           }

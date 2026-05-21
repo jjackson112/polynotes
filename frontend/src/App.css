@@ -132,12 +132,13 @@ h2 {
   display: flex;
   flex-direction: column;
   border-right: 1px solid rgba(255,255,255,0.08);
-  transition: left 0.3s ease;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
   cursor: pointer;
 }
 
 .sidebar-wrapper.open {
-  left: 0;
+  transform: translateX(0);
 }
 
 .sidebar-logo h2 {
