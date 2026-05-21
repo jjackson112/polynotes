@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import NoteCard from "../components/NoteCard";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
+import { useFavorites } from "../context/FavoritesContext";
 
 function NoteList() {
     const [notes, setNotes] = useState([])
-    const [favorites, setFavorites] = useState([]) // always has to be an array
 
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
@@ -16,6 +16,8 @@ function NoteList() {
     const [selectedNote, setSelectedNote] = useState(null)
 
     const navigate = useNavigate()
+
+    const { favorites, toggleFavorite } = useFavorites()
 
     // effects - fetch notes + favorites
     useEffect(() => {
@@ -100,10 +102,9 @@ function NoteList() {
                         key={note.id}
                         note={note}
                         onView={handleView}
+                        toggleFavorite={toggleFavorite}
                         onEdit={handleEdit}
                         onRequestDelete={handleRequestDelete}
-                        favorites={favorites}
-                        setFavorites={setFavorites}
                     />
                 ))}
             </div>
