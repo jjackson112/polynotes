@@ -100,7 +100,10 @@ function NoteList() {
                 {sortedNotes.map(note => (
                     <NoteCard
                         key={note.id}
-                        note={note}
+                        note={{
+                            ...note,
+                            favorite: favorites.includes(note.id)
+                        }}
                         onView={handleView}
                         toggleFavorite={toggleFavorite}
                         onEdit={handleEdit}
