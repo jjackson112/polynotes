@@ -16,8 +16,6 @@ function Dashboard({ authMessage }) {
     const [total, setTotal] = useState(0)
     const [pages, setPages] = useState(1)
 
-    const [sidebarOpen, setSidebarOpen] = useState(false)
-
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -48,8 +46,6 @@ function Dashboard({ authMessage }) {
 
     return (
         <div className="app-layout">
-            <Sidebar open={sidebarOpen} setOpen={setSidebarOpen} />
-
             <div className="main-wrapper">
                 <Header toggleSidebar={() => setSidebarOpen(v => !v)} authMessage={authMessage} />
 

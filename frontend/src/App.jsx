@@ -36,6 +36,8 @@ function App() {
     }
   }, [])
 
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
   return (
     <FavoriteProvider>
       <Routes>
@@ -44,42 +46,61 @@ function App() {
         <Route path="/dashboard" 
           element={
             <ProtectedRoute>
-              <Dashboard authMessage={authMessage} />
+              <Dashboard 
+                authMessage={authMessage}
+                open={sidebarOpen} 
+                setOpen={setSidebarOpen} 
+              />
             </ProtectedRoute>
           }
         />
         <Route path="/notes/new" 
           element={
             <ProtectedRoute>
-              <NewNote />
+              <NewNote 
+                open={sidebarOpen} 
+                setOpen={setSidebarOpen} 
+              />
             </ProtectedRoute>
           } 
         />
         <Route path="/notes" 
           element={
             <ProtectedRoute>
-              <NoteList />
+              <NoteList 
+                open={sidebarOpen} 
+                setOpen={setSidebarOpen} 
+              />
             </ProtectedRoute>
           }
         /> 
         <Route path="/notes/:id/edit" 
           element={
             <ProtectedRoute>
-              <EditNote />
+              <EditNote 
+                open={sidebarOpen} 
+                setOpen={setSidebarOpen} 
+              />
             </ProtectedRoute>
           } 
         />
         <Route path="/notes/:id" 
           element={
             <ProtectedRoute>
-              <ViewNote />
+              <ViewNote 
+                open={sidebarOpen} 
+                setOpen={setSidebarOpen} 
+              />
             </ProtectedRoute>
           } 
         />
         <Route path="/favorites"
           element={
             <ProtectedRoute>
-              <FavNoteList />
+              <FavNoteList 
+                open={sidebarOpen} 
+                setOpen={setSidebarOpen} 
+              />
             </ProtectedRoute>
           }
         />
