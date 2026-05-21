@@ -10,6 +10,7 @@ import NoteList from "./pages/NoteList";
 import ViewNote from "./pages/ViewNote";
 import EditNote from "./pages/EditNote";
 import { FavoriteProvider } from './context/FavoritesContext';
+import FavNoteList from './pages/FavNoteList';
 
 {/* Test backend connection */}
 
