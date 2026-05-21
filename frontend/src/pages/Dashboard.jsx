@@ -14,7 +14,7 @@ import { useFavorites } from "../context/FavoritesContext";
 function Dashboard({ authMessage }) {
     const [notes, setNotes] = useState([])
     const [total, setTotal] = useState(0)
-    const favoriteCount = notes.filter(note => note.favorite).length
+    const favoriteCount = favorites.length
     const [pages, setPages] = useState(1)
 
     const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -75,6 +75,7 @@ function Dashboard({ authMessage }) {
                                     <NoteCard 
                                         key={note.id} 
                                         note={note} 
+                                        toggleFavorite={toggleFavorite}
                                         onView={handleView} 
                                     />
                                 ))}
