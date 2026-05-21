@@ -11,7 +11,7 @@ import { useFavorites } from "../context/FavoritesContext";
 // /dashboard  → ProtectedRoute  → Dashboard renders
 // protected logic will live here - GET requests to authenticate data
 
-function Dashboard({ authMessage }) {
+function Dashboard({ authMessage, sidebarOpen, setSidebarOpen }) {
     const [notes, setNotes] = useState([])
     const [total, setTotal] = useState(0)
     const [pages, setPages] = useState(1)
@@ -46,6 +46,8 @@ function Dashboard({ authMessage }) {
 
     return (
         <div className="app-layout">
+            <Sidebar open={sidebarOpen} setOpen={setSidebarOpen} />
+
             <div className="main-wrapper">
                 <Header toggleSidebar={() => setSidebarOpen(v => !v)} authMessage={authMessage} />
 
