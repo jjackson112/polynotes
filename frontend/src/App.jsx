@@ -76,6 +76,13 @@ function App() {
               </ProtectedRoute>
             } 
           />
+          <Route path="/favorites"
+            element={
+              <ProtectedRoute>
+                <FavNoteList />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </div>
     </FavoriteProvider>

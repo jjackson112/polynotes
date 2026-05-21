@@ -4,14 +4,12 @@ import Header from "../components/Header";
 import NoteCard from "../components/NoteCard";
 import { useFavorites } from "../context/FavoritesContext";
 
-// GET favorite ids list + filter?
+// GET notes, GET favorite ids list + filter?
 // FavoriteContext provides ids, not fetching of favorite notes
 
 function FavNoteList() {
     const [favNotes, setFavNotes] = useState([])
     const {favorites, toggleFavorite } = useFavorites()
-
-    const favoriteNotes = note.filter(note => favoriteNotes.includes(note.id))
     
     useEffect(() => {
         const fetchFavoriteNotes = async () => {
@@ -24,6 +22,8 @@ function FavNoteList() {
         }
         fetchFavoriteNotes()
     }, [])
+
+    const favoriteNotes = note.filter(note => favoriteNotes.includes(note.id))
 
     return (
             <>
