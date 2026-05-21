@@ -38,6 +38,12 @@ export function FavoriteProvider({ children }) {
     } catch (err) {
         console.error("Failed to sync favorite notes", err)
     }
+
+    return (
+        <FavoritesContext.Provider value={{ favorites, toggleFAvorite }}>
+            { children }
+        </FavoritesContext.Provider>
+    )
 }
 
-export const 
+export const useFavorites = () => useContext(FavoritesContext)

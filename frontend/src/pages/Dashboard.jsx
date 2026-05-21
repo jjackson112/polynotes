@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import NoteCard from "../components/NoteCard";
+import { useFavorites } from "../context/FavoritesContext";
 
 // /dashboard  → ProtectedRoute  → Dashboard renders
 // protected logic will live here - GET requests to authenticate data
@@ -20,6 +21,8 @@ function Dashboard({ authMessage }) {
 
     const navigate = useNavigate()
     const location = useLocation()
+
+    const { favorites, toggleFavorite } = useFavorites()
 
     useEffect(() => {
         const fetchData = async() => {
