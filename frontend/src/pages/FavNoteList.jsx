@@ -23,7 +23,7 @@ function FavNoteList() {
         fetchNotes()
     }, [])
 
-    const favoriteNotes = note.filter(note => favoriteNotes.includes(note.id))
+    const favoriteNotes = notes.filter(note => favorites.includes(note.id))
 
     return (
             <>
