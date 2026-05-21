@@ -18,8 +18,8 @@ function FavNoteList() {
         const fetchNotes = async () => {
             try {
                 const res = await api.get("/notes")
-                setNotes(res) 
-            } catch {
+                setFavNotes(res) 
+            } catch (err) {
                 console.error("Failed to load notes", err)
             }
         }
@@ -28,8 +28,8 @@ function FavNoteList() {
 
     const favoriteNotes = notes.filter(note => favorites.includes(note.id))
 
-    const handleView = () => {
-        navigate(`/notes/favorites/${id}`)
+    const handleView = (id) => {
+        navigate(`/notes/${id}`)
     }
 
     return (
