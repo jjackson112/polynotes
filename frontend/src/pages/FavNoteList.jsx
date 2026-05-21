@@ -12,15 +12,15 @@ function FavNoteList() {
     const {favorites, toggleFavorite } = useFavorites()
     
     useEffect(() => {
-        const fetchFavoriteNotes = async () => {
+        const fetchNotes = async () => {
             try {
                 const res = await api.get("/notes")
-                setFavNotes(res) 
+                setNotes(res) 
             } catch {
                 console.error("Failed to load notes", err)
             }
         }
-        fetchFavoriteNotes()
+        fetchNotes()
     }, [])
 
     const favoriteNotes = note.filter(note => favoriteNotes.includes(note.id))
@@ -34,18 +34,21 @@ function FavNoteList() {
                 </div>
 
                 <div className="fav-notes-list">
-                    {favoriteNotes.map(note => (
-                        <NoteCard
-                            key={note.id}
-                            note={{
-                                ...note,
-                                favorite: true
-                            }}
-                            onView={handleView}
-                            onEdit={handleEdit}
-                            toggleFavorite={toggleFavorite}
-                            onRequestDelete={handleRequestDelete}
-                        />
+                    {favoriteNotes.length === 0 ? (
+                        <p>No favorite notes yet.</p>
+                    ) : (
+                        favoriteNotes.map(note => (
+                            <NoteCard
+                                key={note.id}
+                                note={{
+                                    ...note,
+                                    favorite: true
+                                }}
+                                onView={handleView}
+                                toggleFavorite={toggleFavorite}
+                                onRequestDelete={handleRequestDelete}
+                            />
+                            )
                     ))}
                 </div>
             </>
