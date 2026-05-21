@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 // FavoriteContext provides ids, not fetching of favorite notes
 
 function FavNoteList() {
-    const [favNotes, setFavNotes] = useState([])
+    const [notes, setNotes] = useState([])
     const {favorites, toggleFavorite } = useFavorites()
 
     const navigate = useNavigate()
@@ -18,7 +18,7 @@ function FavNoteList() {
         const fetchNotes = async () => {
             try {
                 const res = await api.get("/notes")
-                setFavNotes(res) 
+                setNotes(res.items || []) 
             } catch (err) {
                 console.error("Failed to load notes", err)
             }
@@ -36,8 +36,8 @@ function FavNoteList() {
             <>
                 <Header />
 
-                <div className="note-list-header">
-                    <h2 className="all-notes-title">Favorite Notes</h2>
+                <div className="fav-list-header">
+                    <h2 className="fav-notes-title">Favorite Notes</h2>
                 </div>
 
                 <div className="fav-notes-list">
@@ -53,10 +53,9 @@ function FavNoteList() {
                                 }}
                                 onView={handleView}
                                 toggleFavorite={toggleFavorite}
-                                onRequestDelete={handleRequestDelete}
                             />
-                            )
-                    ))}
+                            ))
+                    )}
                 </div>
             </>
         )
