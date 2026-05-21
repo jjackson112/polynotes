@@ -2,14 +2,12 @@ import { useState } from "react";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import { useFavorites } from "../context/FavoritesContext";
 
 // NewNote → API POST → DB saves → NoteList GET → UI renders// UI input → state → submit → API
 // data has to be tracked - it's not just static UI
 
 function NewNote() {
     const navigate = useNavigate()
-    const { toggleFavorite } = useFavorites()
 
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
@@ -109,7 +107,6 @@ function NewNote() {
                         minLength={8}
                     />
                     <div className="new-note-buttons">
-                        <button type="button" className="fav-button" onClick={toggleFavorite}>Add to Favorites</button>
                         <button type="submit" disabled={!title || !content || loading} className="save-button">{loading ? "Saving" : "Save"}</button>
                         <button type="button" className="cancel-button" onClick={() => navigate("/dashboard")}>Cancel</button>
                     </div>
