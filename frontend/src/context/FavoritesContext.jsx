@@ -20,6 +20,17 @@ export function FavoriteProvider({ children }) {
         fetchFavorites()
         console.log("Updated favorites", favorites)
     }, [])
+
+    // toggle function used everywhere - so Dashboard can re-render + doesn't crowd favorites
+    const toggleFavorite = async (id) => {
+        setFavorites(prev => {
+            const exists = prev.includes(id)
+
+            return exists
+                ? prev.filter(f => f !== id)
+                : [...prev, id]
+        })
+    }
 }
 
 export const 

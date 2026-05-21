@@ -15,6 +15,7 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, favorites, setFavorit
         const newFavorite = res.favorited
         console.log(res)
 
+        // what is the new state after toggle? - stays
         setFavorites(prev =>
             newFavorite
             ? [...prev, note.id]
