@@ -18,7 +18,6 @@ export function FavoriteProvider({ children }) {
             }
         }
         fetchFavorites()
-        console.log("Updated favorites", favorites)
     }, [])
 
     // toggle function used everywhere - so Dashboard can re-render + doesn't crowd favorites
@@ -33,7 +32,7 @@ export function FavoriteProvider({ children }) {
 
         // backend persistence
         try {
-            await api.post(`/favorites/${id}`)
+            await api.post(`/notes/favorites/${id}`)
         } catch (err) {
             console.error("Failed to sync favorite notes", err)
         }

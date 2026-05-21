@@ -20,7 +20,7 @@ def create_app():
     # stop 308 redirecting - OPTIONS preflight issues
     app.url_map.strict_slashes = False
 
-    CORS(app, resources={r"/api/*": {"origins": "*"}})
+    CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "*"}})
 
     # Database configuration
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "fallback_dev_secret")
