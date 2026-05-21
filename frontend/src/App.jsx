@@ -38,54 +38,52 @@ function App() {
 
   return (
     <FavoriteProvider>
-      <div>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />}/>
-          <Route path="/dashboard" 
-            element={
-              <ProtectedRoute>
-                <Dashboard authMessage={authMessage} />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/notes/new" 
-            element={
-              <ProtectedRoute>
-                <NewNote />
-              </ProtectedRoute>
-            } 
-          />
-          <Route path="/notes" 
-            element={
-              <ProtectedRoute>
-                <NoteList />
-              </ProtectedRoute>
-            }
-          /> 
-          <Route path="/notes/:id/edit" 
-            element={
-              <ProtectedRoute>
-                <EditNote />
-              </ProtectedRoute>
-            } 
-          />
-          <Route path="/notes/:id" 
-            element={
-              <ProtectedRoute>
-                <ViewNote />
-              </ProtectedRoute>
-            } 
-          />
-          <Route path="/favorites"
-            element={
-              <ProtectedRoute>
-                <FavNoteList />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />}/>
+        <Route path="/dashboard" 
+          element={
+            <ProtectedRoute>
+              <Dashboard authMessage={authMessage} />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/notes/new" 
+          element={
+            <ProtectedRoute>
+              <NewNote />
+            </ProtectedRoute>
+          } 
+        />
+        <Route path="/notes" 
+          element={
+            <ProtectedRoute>
+              <NoteList />
+            </ProtectedRoute>
+          }
+        /> 
+        <Route path="/notes/:id/edit" 
+          element={
+            <ProtectedRoute>
+              <EditNote />
+            </ProtectedRoute>
+          } 
+        />
+        <Route path="/notes/:id" 
+          element={
+            <ProtectedRoute>
+              <ViewNote />
+            </ProtectedRoute>
+          } 
+        />
+        <Route path="/favorites"
+          element={
+            <ProtectedRoute>
+              <FavNoteList />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
     </FavoriteProvider>
   )
 }
