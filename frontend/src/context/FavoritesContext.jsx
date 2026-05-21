@@ -31,6 +31,13 @@ export function FavoriteProvider({ children }) {
                 : [...prev, id]
         })
     }
+
+    // backend persistence
+    try {
+        await api.patch(`/notes/${id}/favorite`)
+    } catch (err) {
+        console.error("Failed to sync favorite notes", err)
+    }
 }
 
 export const 
