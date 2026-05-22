@@ -64,16 +64,17 @@ def get_notes_list(current_user):
 
     # Flask has built-in paginate() to replace all() 
     # return pagination object - the container - that has the data - the items attribute
-    notes = query.paginate(page=page, per_page=per_page, error_out=False) 
+    pagination = query.paginate(page=page, per_page=per_page, error_out=False) 
 
     return jsonify({
-        "page": notes.page,
-        "per_page": notes.per_page,
-        "total": notes.total,
-        "pages": notes.pages,
-        "items": [note.to_dict() for note in notes.items],
-        "has_next": notes.has_next,
-        "has_prev": notes.has_prev
+        "page": pagination.page,
+        "per_page": pagination.per_page,
+        "per_page": pagination.per_page,
+        "total": pagination.total,
+        "pages": pagination.pages,
+        "items": [note.to_dict() for note in pagination.items],
+        "has_next": pagination.has_next,
+        "has_prev": pagination.has_prev
     }), 200
 
 @notes_bp.route("/<int:note_id>", methods=["PATCH"])
