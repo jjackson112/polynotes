@@ -71,7 +71,9 @@ def get_notes_list(current_user):
         "per_page": notes.per_page,
         "total": notes.total,
         "pages": notes.pages,
-        "items": [note.to_dict() for note in notes.items]
+        "items": [note.to_dict() for note in notes.items],
+        "has_next": notes.has_next,
+        "has_prev": notes.has_prev
     }), 200
 
 @notes_bp.route("/<int:note_id>", methods=["PATCH"])
