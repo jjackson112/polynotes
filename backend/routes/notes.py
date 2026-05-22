@@ -54,7 +54,13 @@ def get_notes_list(current_user):
         query = query.join(Note.tags).filter(Tag.name == tag)
     
     page = request.args.get("page", 1, type=int)
-    per_page = request.args.get("limit", 20, type=int)
+    per_page = min(
+        request.args.get("per_page", 20, type=int), # limit is slightly inconsistent
+        100
+    )
+    
+    # add ordering to pagination order
+    query = query.order_by(Note.created_at.desc())
 
     # Flask has built-in paginate() to replace all() 
     # return pagination object - the container - that has the data - the items attribute
