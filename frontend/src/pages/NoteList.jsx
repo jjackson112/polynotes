@@ -121,8 +121,8 @@ function NoteList() {
                 ))}
             </div>
             <div className="pagination">
-                <button className="prev-button">Previous</button>
-                <button className="next-button">Next</button>
+                <button className="prev-button" onClick={() => setPage(prev => prev - 1)}>Previous</button>
+                <button className="next-button" onClick={() => setPage(prev => prev + 1)}>Next</button>
             </div>
         </>
     )
