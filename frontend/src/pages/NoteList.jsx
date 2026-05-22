@@ -9,9 +9,13 @@ import { useFavorites } from "../context/FavoritesContext";
 function NoteList() {
     const [notes, setNotes] = useState([])
     const [page, setPage] = useState(1)
+    const [pages, setPages] = useState(0)
 
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+
+    const [hasNext, setHasNext] = useState(false)
+    const [hasPrev, setHasPrev] = useState(false)
 
     // selectedNote instead of a boolean - null means the modal is closed + note object opens the modal for that note
     const [selectedNote, setSelectedNote] = useState(null)
@@ -111,6 +115,10 @@ function NoteList() {
                         onRequestDelete={handleRequestDelete}
                     />
                 ))}
+            </div>
+            <div className="pagination">
+                <button className="prev-button">Previous</button>
+                <button className="next-button">Next</button>
             </div>
         </>
     )
