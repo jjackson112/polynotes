@@ -30,7 +30,7 @@ function NoteList() {
             try {
                 setLoading(true)
 
-                const res = await api.get("/notes?page=${page}&limit=20")
+                const res = await api.get(`/notes?page=${page}&limit=20`)
 
                 // backend response is not defined by just data
                 setNotes(res.items || res.data || [])
@@ -121,8 +121,8 @@ function NoteList() {
                 ))}
             </div>
             <div className="pagination">
-                <button className="prev-button" onClick={() => setPage(prev => prev - 1)}>Previous</button>
-                <button className="next-button" onClick={() => setPage(prev => prev + 1)}>Next</button>
+                <button className="prev-button" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
+                <button className="next-button" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</button>
             </div>
         </>
     )
