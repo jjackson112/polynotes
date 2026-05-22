@@ -58,7 +58,7 @@ def get_notes_list(current_user):
         request.args.get("per_page", 20, type=int), # limit is slightly inconsistent
         100
     )
-    
+
     # add ordering to pagination order
     query = query.order_by(Note.created_at.desc())
 
