@@ -30,7 +30,7 @@ function NoteList() {
             try {
                 setLoading(true)
 
-                const res = await api.get("/notes")
+                const res = await api.get("/notes?page=${page}&limit=20")
 
                 // backend response is not defined by just data
                 setNotes(res.items || res.data || [])
