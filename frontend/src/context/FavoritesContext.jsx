@@ -36,6 +36,13 @@ export function FavoriteProvider({ children }) {
         } catch (err) {
             console.error("Failed to sync favorite notes", err)
         }
+
+            // rollback if backend fails + UI updates instantly
+            setFavorites(prev =>
+                exists
+                    ? [...prev, id]
+                    : prev.filter(f => f !== id)
+            )
     }
 
     return (
