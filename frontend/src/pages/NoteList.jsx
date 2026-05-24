@@ -29,6 +29,7 @@ function NoteList() {
         const fetchNotes = async () => {
             try {
                 setLoading(true)
+                setError(null)
 
                 const res = await api.get(`/notes?page=${page}&limit=20`)
                 const data = res.data
