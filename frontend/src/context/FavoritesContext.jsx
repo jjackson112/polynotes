@@ -1,11 +1,11 @@
-import { useEffect, useState, createContext, useContext } from "react";
+import { useEffect, createContext, useContext, useReducer } from "react";
 import { api } from "../api/api";
 
 // create context
 const FavoritesContext = createContext()
 
 export function FavoriteProvider({ children }) {
-    const [favorites, setFavorites] = useState([]) 
+    const [favorites, dispatch] = useReducer(favoritesReducer, [])
     
     // initial load once
     useEffect(() => {
