@@ -13,6 +13,7 @@ function favoritesReducer(state, action) {
             return action.payload
         
         case "TOGGLE": {
+            const id = action.payload
             const exists = state.includes(id)
 
             return exists
