@@ -4,8 +4,25 @@ import { api } from "../api/api";
 // create context
 const FavoritesContext = createContext()
 
+// useReducer is a function allowing you to determine how state changes in response to an action
+const [favorites, dispatch] = useReducer(favoritesReducer, [])
+
+function favoritesReducer(state, action) {
+    switch (action.type) {
+        case "INIT":
+            return action.payload
+        
+        case "TOGGLE": {}
+
+        case "ROLLBACK":
+            return action.payload
+        
+        default:
+            return state
+    }
+}
+
 export function FavoriteProvider({ children }) {
-    const [favorites, dispatch] = useReducer(favoritesReducer, [])
     
     // initial load once
     useEffect(() => {
