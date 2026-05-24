@@ -1,5 +1,5 @@
 import './App.css'
-import Layout from "./components/Layout";
+import AuthLayout from "./components/AuthLayout";
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FavoriteProvider } from './context/FavoritesContext';
