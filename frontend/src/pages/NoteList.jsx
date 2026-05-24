@@ -79,7 +79,7 @@ function NoteList() {
     }
 
     // render guards
-    if (loading)
+    if (loading && notes.length === 0)
         return <p>Loading notes...</p>
 
     if (error)
