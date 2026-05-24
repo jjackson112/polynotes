@@ -57,6 +57,10 @@ function FavNoteList() {
                             ))
                     )}
                 </div>
+                <div className="pagination">
+                    <button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
+                    <button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</button>
+                </div>
             </>
         )
 }

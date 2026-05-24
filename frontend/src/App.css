@@ -379,11 +379,32 @@ h2 {
 }
 
 .pagination {
-  color: var(--surface);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   margin: 20px 0px;
+}
+
+.pagination .prev-btn, .next-btn {
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 2px var(--shadow);
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: var(--card);
+  border-color: var(--accent-soft);
+}
+
+.pagination button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.pagination .active {
+  background-color: var(--accent);
+  color: var(--text);
 }
 
 /* View Single Note */
