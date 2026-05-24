@@ -12,7 +12,7 @@ export function FavoriteProvider({ children }) {
         const fetchFavorites = async () => {
             try {
                 const res = await api.get("/notes/favorites")
-                setFavorites(res) // this is only set once with || [] - not synced with backend
+                setFavorites(res.data || []) // this is only set once with || [] - not synced with backend
             } catch (err) {
                 console.error("Failed to load favorites", err)
             }
