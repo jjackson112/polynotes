@@ -4,7 +4,7 @@ import { api } from "../api/api";
 // create context
 const FavoritesContext = createContext()
 
-// define reducer
+// define reducer - mini state function
 function favoritesReducer(state, action) {
     switch (action.type) {
         case "INIT":
@@ -61,13 +61,13 @@ export function FavoriteProvider({ children }) {
             await api.post(`/notes/favorites/${id}`)
         } catch (err) {
             console.error("Failed to sync favorite notes", err)
-        }
 
             // rollback if backend fails + UI updates instantly
             dispatch({
                 type: "ROLLBACK",
                 payload: previousState
             })
+        }
     }
 
     return (
