@@ -1,6 +1,8 @@
 import './App.css'
+import { Layout } from "./components/Layout";
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { FavoriteProvider } from './context/FavoritesContext';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -9,7 +11,6 @@ import NewNote from "./pages/NewNote";
 import NoteList from "./pages/NoteList";
 import ViewNote from "./pages/ViewNote";
 import EditNote from "./pages/EditNote";
-import { FavoriteProvider } from './context/FavoritesContext';
 import FavNoteList from './pages/FavNoteList';
 
 function App() {
@@ -46,9 +47,7 @@ function App() {
           <Route path="/dashboard" 
             element={
               <ProtectedRoute>
-                <Dashboard 
-                  authMessage={authMessage}
-                />
+                <Dashboard />
               </ProtectedRoute>
             }
           />
