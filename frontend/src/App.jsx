@@ -57,12 +57,12 @@ function App() {
           </ProtectedRoute>
         }>          
 
-          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}/>
-          <Route path="/notes/new" element={<ProtectedRoute><NewNote /></ProtectedRoute>}/>
-          <Route path="/notes" element={<ProtectedRoute><NoteList /></ProtectedRoute>}/> 
-          <Route path="/notes/:id" element={<ProtectedRoute><ViewNote /></ProtectedRoute>}/>
-          <Route path="/notes/:id/edit" element={<ProtectedRoute><EditNote /></ProtectedRoute>}/>
-          <Route path="/favorites" element={<ProtectedRoute><FavNoteList /></ProtectedRoute>}/>
+          <Route path="/dashboard" element={<Dashboard />}/>
+          <Route path="/notes/new" element={<NewNote />}/>
+          <Route path="/notes" element={<NoteList />}/> 
+          <Route path="/notes/:id" element={<ViewNote />}/>
+          <Route path="/notes/:id/edit" element={<EditNote />}/>
+          <Route path="/favorites" element={<FavNoteList />}/>
         </Route>
 
       </Routes>
