@@ -77,11 +77,6 @@ function NoteList() {
     const handleRequestDelete = (note) => {
         setSelectedNote(note)
     }
-    
-    // derived data
-    const sortedNotes = [...notes].sort(
-        (a, b) => new Date(b.created_at) - new Date(a.created_at)
-    )
 
     // render guards
     if (loading)
@@ -108,19 +103,17 @@ function NoteList() {
                 <p> No notes yet.</p>
             ) : (
             <div className="view-notes-list">
-                {sortedNotes.map(note => (
-                    <NoteCard
-                        key={note.id}
-                        note={{
-                            ...note,
-                            favorite: favorites.includes(note.id)
-                        }}
-                        onView={handleView}
-                        toggleFavorite={toggleFavorite}
-                        onEdit={handleEdit}
-                        onRequestDelete={handleRequestDelete}
-                    />
-                ))}
+                <NoteCard
+                    key={note.id}
+                    note={{
+                        ...note,
+                        favorite: favorites.includes(note.id)
+                    }}
+                    onView={handleView}
+                    toggleFavorite={toggleFavorite}
+                    onEdit={handleEdit}
+                    onRequestDelete={handleRequestDelete}
+                />
             </div>
             )}
             <div className="pagination">
