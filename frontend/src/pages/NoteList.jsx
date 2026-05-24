@@ -35,10 +35,10 @@ function NoteList() {
                 const data = res.data
 
                 // backend response is not defined by just data
-                setNotes(data.items)
-                setPages(data.pages)
-                setHasNext(data.has_next)
-                setHasPrev(data.has_prev)
+                setNotes(data.items || [])
+                setPages(data.pages || 0)
+                setHasNext(Boolean(data.has_next))
+                setHasPrev(Boolean(data.has_prev))
 
             } catch (err) {
                 setError("Failed to load notes.")
