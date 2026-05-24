@@ -69,7 +69,6 @@ def get_notes_list(current_user):
     return jsonify({
         "page": pagination.page,
         "per_page": pagination.per_page,
-        "per_page": pagination.per_page,
         "total": pagination.total,
         "pages": pagination.pages,
         "items": [note.to_dict() for note in pagination.items],
@@ -105,7 +104,7 @@ def delete_note(current_user, note_id):
     db.session.delete(note)
     db.session.commit()
 
-    return jsonify({"message":"Note deleted"}), 200 # or return "", 204 - request succeeded but no content returned
+    return jsonify({"message":"Note deleted"}), 204 # or return "", 204 - request succeeded but no content returned
 
 @notes_bp.route("/favorites", methods=["GET"])
 @token_required
