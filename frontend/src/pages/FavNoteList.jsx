@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { api } from "../api/api";
-import Header from "../components/Header";
 import NoteCard from "../components/NoteCard";
 import { useFavorites } from "../context/FavoritesContext";
 import { useNavigate } from "react-router-dom";
@@ -53,10 +52,6 @@ function FavNoteList() {
                     />
                     ))
             )}
-        </div>
-        <div className="pagination">
-            <button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
-            <button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</button>
         </div>
         </>
     )

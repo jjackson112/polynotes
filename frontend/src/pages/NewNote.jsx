@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
 
 // NewNote → API POST → DB saves → NoteList GET → UI renders// UI input → state → submit → API
 // data has to be tracked - it's not just static UI
@@ -28,17 +27,16 @@ function NewNote() {
         setSuccess("")
 
         try {
-            const res = await api.post("/notes", { title, content, language: languageCategory === "All" ? "English" : languageCategory, tag });
+            const res = await api.post("/notes", { title, content, language: languageCategory === "All" ? "english" : languageCategory, tag });
             // console.log("Saved note", res)
-
-            setTimeout(() => setSuccess("Note saved successfully."), 2000);
-            navigate("/notes") // fake refresh but actually refetches data for dashboard
 
             setTitle("")
             setContent("")
             setLanguageCategory("All")
             setTag("")
-            
+
+            setSuccess("Note saved successfully.")
+            navigate("/notes") // fake refresh but actually refetches data for dashboard
             // navigate after a short delay - 600 is a custom status code
 
             // console.log("TOKEN:", localStorage.getItem("token"));

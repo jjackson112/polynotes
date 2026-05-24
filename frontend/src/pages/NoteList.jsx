@@ -35,7 +35,7 @@ function NoteList() {
                 const data = res.data
 
                 // backend response is not defined by just data
-                setNotes(data.items || [])
+                setNotes(data.items)
                 setPages(data.pages)
                 setHasNext(data.has_next)
                 setHasPrev(data.has_prev)

@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { api } from "../api/api";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -51,7 +49,6 @@ function Dashboard({ authMessage, sidebarOpen, setSidebarOpen }) {
                     <section className="welcome-card">
                         <h2>Welcome</h2>
                         <p>Ready to take notes?</p>
-                        <p>You have {total} notes</p>
                     </section>
 
                     <section className="stats-grid">
