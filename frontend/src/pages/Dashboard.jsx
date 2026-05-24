@@ -46,11 +46,7 @@ function Dashboard({ authMessage, sidebarOpen, setSidebarOpen }) {
 
     return (
         <div className="app-layout">
-            <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-
             <div className="main-wrapper">
-                <Header toggleSidebar={() => setSidebarOpen(false)} authMessage={authMessage} />
-
                 <main className="dashboard-main">
                     <section className="welcome-card">
                         <h2>Welcome</h2>
