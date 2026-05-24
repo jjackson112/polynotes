@@ -12,7 +12,13 @@ function favoritesReducer(state, action) {
         case "INIT":
             return action.payload
         
-        case "TOGGLE": {}
+        case "TOGGLE": {
+            const exists = state.includes(id)
+
+            return exists
+                ? state.filter(f => f !== id)
+                : [...state, id]
+        }
 
         case "ROLLBACK":
             return action.payload
