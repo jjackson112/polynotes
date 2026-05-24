@@ -29,7 +29,7 @@ function NewNote() {
 
         try {
             const res = await api.post("/notes", { title, content, language: languageCategory === "All" ? "English" : languageCategory, tag });
-            console.log("Saved note", res)
+            // console.log("Saved note", res)
 
             setTimeout(() => setSuccess("Note saved successfully."), 2000);
             navigate("/notes") // fake refresh but actually refetches data for dashboard
