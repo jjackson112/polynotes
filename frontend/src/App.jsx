@@ -15,6 +15,8 @@ import FavNoteList from './pages/FavNoteList';
 {/* Test backend connection */}
 
 function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
   useEffect(() => {
     fetch("http://localhost:5000/api/health")
       .then(res => res.json())
@@ -36,75 +38,59 @@ function App() {
     }
   }, [])
 
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-
   return (
     <FavoriteProvider>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />}/>
-        <Route path="/dashboard" 
-          element={
-            <ProtectedRoute>
-              <Dashboard 
-                authMessage={authMessage}
-                sidebarOpen={sidebarOpen} 
-                setSidebarOpen={setSidebarOpen} 
-              />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/notes/new" 
-          element={
-            <ProtectedRoute>
-              <NewNote 
-                sidebarOpen={sidebarOpen} 
-                setSidebarOpen={setSidebarOpen} 
-              />
-            </ProtectedRoute>
-          } 
-        />
-        <Route path="/notes" 
-          element={
-            <ProtectedRoute>
-              <NoteList 
-                sidebarOpen={sidebarOpen} 
-                setSidebarOpen={setSidebarOpen} 
-              />
-            </ProtectedRoute>
-          }
-        /> 
-        <Route path="/notes/:id/edit" 
-          element={
-            <ProtectedRoute>
-              <EditNote 
-                sidebarOpen={sidebarOpen} 
-                setSidebarOpen={setSidebarOpen} 
-              />
-            </ProtectedRoute>
-          } 
-        />
-        <Route path="/notes/:id" 
-          element={
-            <ProtectedRoute>
-              <ViewNote 
-                sidebarOpen={sidebarOpen} 
-                setSidebarOpen={setSidebarOpen} 
-              />
-            </ProtectedRoute>
-          } 
-        />
-        <Route path="/favorites"
-          element={
-            <ProtectedRoute>
-              <FavNoteList 
-                sidebarOpen={sidebarOpen} 
-                setSidebarOpen={setSidebarOpen} 
-              />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+      <Layout sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />}/>
+
+          <Route path="/dashboard" 
+            element={
+              <ProtectedRoute>
+                <Dashboard 
+                  authMessage={authMessage}
+                />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/notes/new" 
+            element={
+              <ProtectedRoute>
+                <NewNote />
+              </ProtectedRoute>
+            } 
+          />
+          <Route path="/notes" 
+            element={
+              <ProtectedRoute>
+                <NoteList />
+              </ProtectedRoute>
+            }
+          /> 
+          <Route path="/notes/:id/edit" 
+            element={
+              <ProtectedRoute>
+                <EditNote />
+              </ProtectedRoute>
+            } 
+          />
+          <Route path="/notes/:id" 
+            element={
+              <ProtectedRoute>
+                <ViewNote />
+              </ProtectedRoute>
+            } 
+          />
+          <Route path="/favorites"
+            element={
+              <ProtectedRoute>
+                <FavNoteList />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </Layout>
     </FavoriteProvider>
   )
 }
