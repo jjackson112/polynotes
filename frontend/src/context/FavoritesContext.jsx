@@ -4,9 +4,7 @@ import { api } from "../api/api";
 // create context
 const FavoritesContext = createContext()
 
-// useReducer is a function allowing you to determine how state changes in response to an action
-const [favorites, dispatch] = useReducer(favoritesReducer, [])
-
+// define reducer
 function favoritesReducer(state, action) {
     switch (action.type) {
         case "INIT":
@@ -29,30 +27,34 @@ function favoritesReducer(state, action) {
     }
 }
 
+// useReducer is a function allowing you to determine how state changes in response to an action
+// const [state, dispatch] = useReducer(reducer, initialArg, init?)
 export function FavoriteProvider({ children }) {
-    
+    const [favorites, dispatch] = useReducer(favoritesReducer, [])
+
     // initial load once
     useEffect(() => {
         const fetchFavorites = async () => {
             try {
                 const res = await api.get("/notes/favorites")
-                setFavorites(res.data || []) // this is only set once with || [] - not synced with backend
+
+                dispatch({
+                    type:"INIT",
+                    payload: res.data || []
+                })
             } catch (err) {
                 console.error("Failed to load favorites", err)
             }
         }
         fetchFavorites()
-    }, [])
+    }, [])    
 
-    // toggle function used everywhere - so Dashboard can re-render + doesn't crowd favorites
+    // toggle with optimistic update + rollback
     const toggleFavorite = async (id) => {
-        setFavorites(prev => {
-            const exists = prev.includes(id)
+        const previousState = favorites
 
-            return exists
-                ? prev.filter(f => f !== id)
-                : [...prev, id]
-        })
+        // optimistic update
+        dispatch({ type: "TOGGLE", payload: id })
 
         // backend persistence
         try {
@@ -62,11 +64,10 @@ export function FavoriteProvider({ children }) {
         }
 
             // rollback if backend fails + UI updates instantly
-            setFavorites(prev =>
-                exists
-                    ? [...prev, id]
-                    : prev.filter(f => f !== id)
-            )
+            dispatch({
+                type: "ROLLBACK",
+                payload: previousState
+            })
     }
 
     return (
