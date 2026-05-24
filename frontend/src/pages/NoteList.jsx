@@ -103,17 +103,19 @@ function NoteList() {
                 <p> No notes yet.</p>
             ) : (
             <div className="view-notes-list">
-                <NoteCard
-                    key={note.id}
-                    note={{
-                        ...note,
-                        favorite: favorites.includes(note.id)
-                    }}
-                    onView={handleView}
-                    toggleFavorite={toggleFavorite}
-                    onEdit={handleEdit}
-                    onRequestDelete={handleRequestDelete}
-                />
+                {notes.map(note => (
+                    <NoteCard
+                        key={note.id}
+                        note={{
+                            ...note,
+                            favorite: favorites.includes(note.id)
+                        }}
+                        onView={handleView}
+                        toggleFavorite={toggleFavorite}
+                        onEdit={handleEdit}
+                        onRequestDelete={handleRequestDelete}
+                    />
+                ))}
             </div>
             )}
             <div className="pagination">
