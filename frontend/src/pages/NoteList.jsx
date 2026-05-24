@@ -31,12 +31,13 @@ function NoteList() {
                 setLoading(true)
 
                 const res = await api.get(`/notes?page=${page}&limit=20`)
+                const data = res.data
 
                 // backend response is not defined by just data
-                setNotes(res.items || res.data || [])
-                setPages(res.pages)
-                setHasNext(res.has_next)
-                setHasPrev(res.has_prev)
+                setNotes(data.items || [])
+                setPages(data.pages)
+                setHasNext(data.has_next)
+                setHasPrev(data.has_prev)
 
             } catch (err) {
                 setError("Failed to load notes.")
@@ -121,8 +122,8 @@ function NoteList() {
                 ))}
             </div>
             <div className="pagination">
-                <button className="prev-button" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
-                <button className="next-button" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</button>
+                <button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
+                <button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</button>
             </div>
         </>
     )
