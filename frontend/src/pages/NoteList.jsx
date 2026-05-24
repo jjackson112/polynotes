@@ -89,9 +89,6 @@ function NoteList() {
     if (error)
         return <p>{error}</p>
 
-    if (notes.length === 0) 
-        return <p> No notes yet.</p>
-
     return (
         <>
             <Header />
@@ -106,6 +103,9 @@ function NoteList() {
                     onClose={() => setSelectedNote(null)}
                 />
             )}
+            {notes.length === 0 ? (
+                <p> No notes yet.</p>
+            ) : (
             <div className="view-notes-list">
                 {sortedNotes.map(note => (
                     <NoteCard
@@ -121,6 +121,7 @@ function NoteList() {
                     />
                 ))}
             </div>
+            )}
             <div className="pagination">
                 <button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
                 <button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</button>
