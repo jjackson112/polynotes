@@ -38,6 +38,7 @@ export function FavoriteProvider({ children }) {
             try {
                 const res = await api.get("/notes/favorites")
 
+                // dispatch sends a description of what happens
                 dispatch({
                     type:"INIT",
                     payload: res.data || []
