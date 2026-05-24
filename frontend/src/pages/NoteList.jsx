@@ -8,7 +8,6 @@ import { useFavorites } from "../context/FavoritesContext";
 
 function NoteList() {
     const [notes, setNotes] = useState([])
-    const [page, setPage] = useState(1)
     const [pages, setPages] = useState(0)
 
     const [loading, setLoading] = useState(true)
@@ -41,14 +40,14 @@ function NoteList() {
                 setHasPrev(data.has_prev)
 
             } catch (err) {
-                setError("Failed to load notes.")
+                setError("Failed to load notes.", err)
             } finally {
                 setLoading(false)
             }
         }
 
         fetchNotes()
-    }, [page]) // initialize state and load saved data
+    }, [pages]) // initialize state and load saved data
 
     // handlers
     const handleView = (id) => {
