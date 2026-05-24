@@ -67,8 +67,6 @@ function EditNote() {
 
     return (
         <>
-            <Header />
-
             <main className="edit-note-page">
                 <form className="edit-note-form" onSubmit={handleUpdate}>
 

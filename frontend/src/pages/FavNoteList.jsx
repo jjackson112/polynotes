@@ -33,36 +33,33 @@ function FavNoteList() {
     }
 
     return (
-            <>
-                <Header />
-
-                <div className="fav-list-header">
-                    <h2 className="fav-notes-title">Favorite Notes</h2>
-                </div>
-
-                <div className="fav-notes-list">
-                    {favoriteNotes.length === 0 ? (
-                        <p>No favorite notes yet.</p>
-                    ) : (
-                        favoriteNotes.map(note => (
-                            <NoteCard
-                                key={note.id}
-                                note={{
-                                    ...note,
-                                    favorite: true
-                                }}
-                                onView={handleView}
-                                toggleFavorite={toggleFavorite}
-                            />
-                            ))
-                    )}
-                </div>
-                <div className="pagination">
-                    <button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
-                    <button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</button>
-                </div>
-            </>
-        )
+        <>
+        <div className="fav-list-header">
+            <h2 className="fav-notes-title">Favorite Notes</h2>
+        </div>
+        <div className="fav-notes-list">
+            {favoriteNotes.length === 0 ? (
+                <p>No favorite notes yet.</p>
+            ) : (
+                favoriteNotes.map(note => (
+                    <NoteCard
+                        key={note.id}
+                        note={{
+                            ...note,
+                            favorite: true
+                        }}
+                        onView={handleView}
+                        toggleFavorite={toggleFavorite}
+                    />
+                    ))
+            )}
+        </div>
+        <div className="pagination">
+            <button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
+            <button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</button>
+        </div>
+        </>
+    )
 }
 
 export default FavNoteList;

@@ -82,7 +82,7 @@ function NoteList() {
     if (loading && notes.length === 0)
         return <p>Loading notes...</p>
 
-    if (error)
+    if (error) 
         return <p>{error}</p>
 
     return (

@@ -36,8 +36,6 @@ function ViewNote() {
 
     return (
         <>
-            <Header />
-
             <main className="view-note-container">
                 <h1 className="view-note-title">{note.title}</h1>
                 <p className="view-note-content">{note.content}</p>
