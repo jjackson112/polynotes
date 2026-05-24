@@ -10,6 +10,8 @@ function NoteList() {
     const [notes, setNotes] = useState([])
     const [pages, setPages] = useState(0)
 
+    const [page, setPage] = useState(1)
+
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -40,14 +42,14 @@ function NoteList() {
                 setHasPrev(data.has_prev)
 
             } catch (err) {
-                setError("Failed to load notes.", err)
+                setError("Failed to load notes.")
             } finally {
                 setLoading(false)
             }
         }
 
         fetchNotes()
-    }, [pages]) // initialize state and load saved data
+    }, [page]) // initialize state and load saved data
 
     // handlers
     const handleView = (id) => {
@@ -118,8 +120,8 @@ function NoteList() {
             </div>
             )}
             <div className="pagination">
-                <button className="prev-btn" onClick={() => setPages(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
-                <button className="next-btn" onClick={() => setPages(prev => prev + 1)} disabled={!hasNext}>Next</button>
+                <button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
+                <button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</button>
             </div>
         </>
     )

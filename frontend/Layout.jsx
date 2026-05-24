@@ -1,17 +1,26 @@
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
-function Layout({ children, sidebarOpen, setSidebarOpen }) {
+function Layout({ children, sidebarOpen, setSidebarOpen, authMessage }) {
   return (
-    <div className="app-shell">
-      <Header setSidebarOpen={setSidebarOpen} />
-      <Sidebar open={sidebarOpen} />
+    <div className="app-layout">
+            <Sidebar 
+                open={sidebarOpen}
+                setOpen={setSidebarOpen}
+            />
 
-      <main>
-        {children}
-      </main>
+        <div className="main-area">
+            <Header 
+            toggleSidebar={() => setSidebarOpen(prev => !prev)} 
+            authMessage={authMessage}
+            />
+        </div>
+
+        <main>
+            {children}
+        </main>
     </div>
-  );
+  )
 }
 
 export default Layout;

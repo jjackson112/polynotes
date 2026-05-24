@@ -12,19 +12,17 @@ import EditNote from "./pages/EditNote";
 import { FavoriteProvider } from './context/FavoritesContext';
 import FavNoteList from './pages/FavNoteList';
 
-{/* Test backend connection */}
-
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [authMessage, setAuthMessage] = useState("")
 
+  {/* Test backend connection */}
   useEffect(() => {
     fetch("http://localhost:5000/api/health")
       .then(res => res.json())
       .then(data => console.log("Backend:", data))
       .catch(err => console.error(err))
   }, [])
-
-  const [authMessage, setAuthMessage] = useState("")
 
   useEffect(() => {
     const handleExpiredToken = () => {
