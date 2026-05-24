@@ -1,5 +1,5 @@
 import './App.css'
-import AuthLayout from "./components/AuthLayout";
+import AppLayout from "./components/AppLayout";
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FavoriteProvider } from './context/FavoritesContext';
@@ -39,7 +39,7 @@ function App() {
 
   return (
     <FavoriteProvider>
-      <Layout sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+      <AppLayout sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />}/>
@@ -87,7 +87,7 @@ function App() {
             }
           />
         </Routes>
-      </Layout>
+      </AppLayout>
     </FavoriteProvider>
   )
 }

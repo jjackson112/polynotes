@@ -2,7 +2,7 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 
 {/* What authenticated users should see - header + sidebar */}
-function AuthLayout({ children, sidebarOpen, setSidebarOpen, authMessage }) {
+function AppLayout({ children, sidebarOpen, setSidebarOpen, authMessage }) {
   return (
     <div className="app-layout">
             <Sidebar 
@@ -24,4 +24,4 @@ function AuthLayout({ children, sidebarOpen, setSidebarOpen, authMessage }) {
   )
 }
 
-export default AuthLayout;
+export default AppLayout;
