@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
 import NoteCard from "../components/NoteCard";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 import { useFavorites } from "../context/FavoritesContext";
