@@ -31,6 +31,8 @@ function Login() {
                 throw new Error(data.error || "No token required from server")
             }
             
+            console.log("data.username:", data.username)
+            console.log("data.user?.username:", data.user?.username)
             // centralized auth replacing stored token + updating login state - successful login
             login(data.token, data.username || data.user?.username)
 
