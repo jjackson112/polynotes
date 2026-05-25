@@ -7,21 +7,22 @@ function AppLayout({ sidebarOpen, setSidebarOpen, authMessage }) {
   return (
     <>
         <div className="app-layout">
-                <Sidebar 
-                    open={sidebarOpen}
-                    setOpen={setSidebarOpen}
-                />
+            {/* Column 1 */}
+            <Sidebar 
+                open={sidebarOpen}
+                setOpen={setSidebarOpen}
+            />
 
             <div className="main-area">
                 <Header 
                 toggleSidebar={() => setSidebarOpen(prev => !prev)} 
                 authMessage={authMessage}
                 />
-            </div>
 
-            <main className="page-content">
-                <Outlet />   {/* 🔥 this is what renders NoteList */}
-            </main>
+                <main className="page-content">
+                    <Outlet />   {/* 🔥 this is what renders NoteList */}
+                </main>
+            </div>
         </div>
     </>
   )
