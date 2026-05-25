@@ -19,7 +19,7 @@ function AppLayout({ sidebarOpen, setSidebarOpen, authMessage }) {
                 />
             </div>
 
-            <main>
+            <main className="page-content">
                 <Outlet />   {/* 🔥 this is what renders NoteList */}
             </main>
         </div>

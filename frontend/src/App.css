@@ -26,17 +26,6 @@ body {
   color: var(--text);
 }
 
-.dashboard-layout {
-  display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
-  gap: 20px;
-  padding: 20px 40px;
-
-  max-width: 1400px;
-  width: 100%;
-  margin: 0 auto;
-}
-
 .card, .header-container, .sidebar-wrapper {
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
@@ -76,6 +65,8 @@ input:focus, select:focus, textarea:focus {
   align-items: center;
   gap: 1rem;
   padding: 1rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .header-title {
@@ -130,8 +121,6 @@ h2 {
   display: flex;
   flex-direction: column;
   border-right: 1px solid rgba(255,255,255,0.08);
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
   cursor: pointer;
 }
 
@@ -217,6 +206,17 @@ h2 {
 }
 
 /* Dashboard Styles */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 20px;
+  padding: 20px 40px;
+
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 .dashboard-main {
   max-width: 1100px;
   padding: 1rem;
@@ -246,6 +246,10 @@ h2 {
 }
 
 .view-notes-list, .recent-notes, .fav-notes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -537,15 +541,16 @@ h2 {
 
   .sidebar-wrapper {
     position: fixed;
-    left: -260px;
+    left: 0;
     top: 0;
     height: 100vh;
-    transition: left 0.3s ease;
     z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
   }
 
   .sidebar-wrapper.open {
-    left: 0;
+    transform: translate(0);
   }
 
   .search-box {
