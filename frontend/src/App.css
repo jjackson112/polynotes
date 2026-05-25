@@ -78,9 +78,12 @@ input:focus, select:focus, textarea:focus {
 
 .header-container {
   width: 100%;
-  padding: 1rem 2rem;
   max-width: 1100px;
+  padding: 1rem 2rem;
   margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .header-title {
@@ -89,9 +92,6 @@ input:focus, select:focus, textarea:focus {
 }
 
 .brand-icon {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   flex-shrink: 0;
 }
 
@@ -119,7 +119,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 .logout-btn {
-  margin-left: 0;
+  flex-shrink: 0;
 }
 
 h2 {
@@ -557,15 +557,11 @@ h2 {
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
   .sidebar-wrapper {
     position: static;
     left: auto;
     transform: none !important;
-  }
-
-  .main-wrapper {
-    flex: 1;
   }
 
   .hamburger, .close-btn {
