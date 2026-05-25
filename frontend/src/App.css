@@ -26,21 +26,15 @@ body {
   color: var(--text);
 }
 
-.container {
-  max-width: 450px;
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-}
-
-.app-layout {
+.dashboard-layout {
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: 3px;
-  padding: 5px;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 20px;
+  padding: 20px 40px;
+
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .card, .header-container, .sidebar-wrapper {
@@ -127,7 +121,8 @@ h2 {
 
 .sidebar-wrapper {
   width: 200px;
-  min-height: 100vh;
+  height: auto;
+  min-height: 100%;
   background: var(--accent);
   display: flex;
   flex-direction: column;
@@ -180,6 +175,16 @@ h2 {
 }
 
 /* Login/Register Form Styles */
+.login-container {
+  max-width: 450px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
 .login-form, .register-form {
   width: 100%;
   display: flex;
@@ -499,6 +504,12 @@ h2 {
   padding: 8px 14px;
 }
 
+@media (max-width: 1200px) {
+  .dashboard-layout {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
 @media (min-width: 769px) {
   .sidebar-wrapper {
     position: static;
@@ -517,7 +528,7 @@ h2 {
 }
 
 @media (max-width: 768px) {
-  .app-layout {
+  .dashboard-layout {
     grid-template-columns: 1fr;
   }
 

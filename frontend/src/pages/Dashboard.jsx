@@ -43,7 +43,7 @@ function Dashboard({ authMessage, sidebarOpen, setSidebarOpen }) {
     }
 
     return (
-        <div className="app-layout">
+        <div className="dashboard-layout">
             <div className="main-wrapper">
                 <main className="dashboard-main">
                     <section className="welcome-card">
