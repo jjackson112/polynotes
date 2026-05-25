@@ -70,6 +70,7 @@ function NoteList() {
             setSelectedNote(null) // cleaner architecture
         } catch (err) {
             console.error("Failed to delete note", err)
+            setError("Cannot load note list.")
         }
     }
 
@@ -82,11 +83,12 @@ function NoteList() {
     if (loading && notes.length === 0)
         return <p>Loading notes...</p>
 
-    if (error) 
+    if (error && notes.length === 0) 
         return <p>{error}</p>
 
     return (
         <>
+            {error && <p>{error}</p>}
             <div className="notes-page">
                 <div className="note-list-header">
                     <h2 className="all-notes-title">All Notes</h2>
