@@ -514,8 +514,7 @@ h2 {
   .sidebar-wrapper {
     position: static;
     left: auto;
-    transform: none;
-    width: 240px;
+    transform: none !important;
   }
 
   .main-wrapper {
