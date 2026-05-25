@@ -57,6 +57,7 @@ def login():
     
     return jsonify({
         'token': token,
+        'username': user.username,
         'refresh_token' : refresh_token,
         'user': user.to_dict() # Helpful to send user info back on login
     }), 200
