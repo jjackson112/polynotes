@@ -55,6 +55,12 @@ input:focus, select:focus, textarea:focus {
 
 .sidebar-wrapper {
   width: 240px;
+  height: 100vh;
+  background: var(--accent);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
 }
 
 /* Header Styles */
@@ -113,16 +119,6 @@ h2 {
 }
 
 /* Sidebar Styles */
-
-.sidebar-wrapper {
-  height: auto;
-  min-height: 100%;
-  background: var(--accent);
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid rgba(255,255,255,0.08);
-  cursor: pointer;
-}
 
 .sidebar-wrapper.open {
   transform: translateX(0); 
@@ -218,9 +214,7 @@ h2 {
 }
 
 .dashboard-main {
-  max-width: 1100px;
   padding: 1rem;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -550,7 +544,7 @@ h2 {
   }
 
   .sidebar-wrapper.open {
-    transform: translate(0);
+    transform: translateX(0);
   }
 
   .search-box {
