@@ -14,14 +14,18 @@ export function AuthProvider({ children }) {
     // login function
     const login = (newToken, username) => {
         localStorage.setItem("token", newToken)
-        localStorage.setItem("username", username)
+        
+        if (username) {
+            localStorage.setItem("username", username)
+        }
+
         setToken(newToken)
     }
     
     // logout function
     const logout = () => {
-        localStorage.removeItem("token")
         localStorage.removeItem("username")
+        localStorage.removeItem("token")
         setToken(null)
     } 
 
