@@ -110,7 +110,7 @@ function NoteList() {
                             key={note.id}
                             note={{
                                 ...note,
-                                favorite: favorites.includes(note.id)
+                                favorite: Array.isArray(favorites) && favorites.includes(note.id)
                             }}
                             onView={handleView}
                             toggleFavorite={toggleFavorite}
