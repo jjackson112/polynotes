@@ -206,7 +206,7 @@ h2 {
 }
 
 /* Dashboard Styles */
-.dashboard-layout {
+.app-layout {
   display: grid;
   grid-template-columns: 240px minmax(0, 1fr);
   gap: 20px;
@@ -509,7 +509,7 @@ h2 {
 }
 
 @media (max-width: 1200px) {
-  .dashboard-layout {
+  .app-layout {
     grid-template-columns: 200px 1fr;
   }
 }
@@ -531,7 +531,7 @@ h2 {
 }
 
 @media (max-width: 768px) {
-  .dashboard-layout {
+  .app-layout {
     grid-template-columns: 1fr;
   }
 
