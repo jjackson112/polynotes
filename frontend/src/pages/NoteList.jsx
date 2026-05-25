@@ -87,39 +87,41 @@ function NoteList() {
 
     return (
         <>
-            <div className="note-list-header">
-                <h2 className="all-notes-title">All Notes</h2>
-                <button onClick={() => navigate("/notes/new")} className="new-note-btn">New Note</button>
-            </div>
-            {selectedNote && (
-                <DeleteConfirmationModal
-                    note={selectedNote}
-                    onDelete={handleDelete}
-                    onClose={() => setSelectedNote(null)}
-                />
-            )}
-            {notes.length === 0 ? (
-                <p> No notes yet.</p>
-            ) : (
-            <div className="view-notes-list">
-                {notes.map(note => (
-                    <NoteCard
-                        key={note.id}
-                        note={{
-                            ...note,
-                            favorite: favorites.includes(note.id)
-                        }}
-                        onView={handleView}
-                        toggleFavorite={toggleFavorite}
-                        onEdit={handleEdit}
-                        onRequestDelete={handleRequestDelete}
+            <div className="notes-page">
+                <div className="note-list-header">
+                    <h2 className="all-notes-title">All Notes</h2>
+                    <button onClick={() => navigate("/notes/new")} className="new-note-btn">New Note</button>
+                </div>
+                {selectedNote && (
+                    <DeleteConfirmationModal
+                        note={selectedNote}
+                        onDelete={handleDelete}
+                        onClose={() => setSelectedNote(null)}
                     />
-                ))}
-            </div>
-            )}
-            <div className="pagination">
-                <button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
-                <button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</button>
+                )}
+                {notes.length === 0 ? (
+                    <p> No notes yet.</p>
+                ) : (
+                <div className="view-notes-list">
+                    {notes.map(note => (
+                        <NoteCard
+                            key={note.id}
+                            note={{
+                                ...note,
+                                favorite: favorites.includes(note.id)
+                            }}
+                            onView={handleView}
+                            toggleFavorite={toggleFavorite}
+                            onEdit={handleEdit}
+                            onRequestDelete={handleRequestDelete}
+                        />
+                    ))}
+                </div>
+                )}
+                <div className="pagination">
+                    <button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
+                    <button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</button>
+                </div>
             </div>
         </>
     )
