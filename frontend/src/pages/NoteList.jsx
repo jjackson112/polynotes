@@ -70,6 +70,8 @@ function NoteList() {
             setSelectedNote(null) // cleaner architecture
         } catch (err) {
             console.error("Failed to delete note", err)
+            console.error("Backend response:", err.response?.data)
+            console.error("Status:", err.response?.status)
             setError("Cannot load note list.")
         }
     }
