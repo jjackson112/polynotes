@@ -20,6 +20,8 @@ function Dashboard({ authMessage, sidebarOpen, setSidebarOpen }) {
     const { favorites, toggleFavorite } = useFavorites()
     const favoriteCount = favorites.length
 
+    const username = localStorage.getItem("username")
+
     useEffect(() => {
         const fetchData = async() => {
             try {
