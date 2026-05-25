@@ -108,6 +108,7 @@ input:focus, select:focus, textarea:focus {
   padding: 10px 14px;
   border-radius: 12px;
   width: 100%;
+  max-width: 420px;
 }
 
 .search-box input {
@@ -614,10 +615,6 @@ h2 {
 
   .brand-icon {
     justify-content: center;
-  }
-
-  .search-box {
-    max-width: 420px;
   }
 
   .close-btn {
