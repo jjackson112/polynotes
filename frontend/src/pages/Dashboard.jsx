@@ -49,7 +49,7 @@ function Dashboard({ authMessage, sidebarOpen, setSidebarOpen }) {
             <div className="main-wrapper">
                 <main className="dashboard-main">
                     <section className="welcome-card">
-                        <h2>Welcome { username ? `, ${username}` : ""} 👋</h2>
+                        <h2>Welcome { username ? `, ${username}` : ""}👋</h2>
                         <p>Ready to take notes?</p>
                     </section>
 
