@@ -36,12 +36,12 @@ export function FavoriteProvider({ children }) {
     useEffect(() => {
         const fetchFavorites = async () => {
             try {
-                const res = await api.get("/notes/favorites")
-                console.log("Favorites response:", res.data)
+                const data = await api.get("/notes/favorites")
+                console.log("Favorites response:", data)
 
-                const favoriteIds = Array.isArray(res.data)
-                    ? res.data  
-                    : res.data.favorites || res.data.items || []
+                const favoriteIds = Array.isArray(data)
+                    ? data  
+                    : data.favorites || data.items || []
                 
                 // dispatch sends a description of what happens
                 dispatch({
