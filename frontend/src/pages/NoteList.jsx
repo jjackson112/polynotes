@@ -130,7 +130,12 @@ function NoteList() {
                     <Filter />
                     <form className="language-filter">
                         <label htmlFor="language">Filter Languages:</label>
-                        <select className="language-category">
+                        <select 
+                            value={languageFilter}
+                            className="language-category"
+                            onChange={(e) => setLanguageFilter(e.target.value)}
+                        >
+                            <option value="All">All</option>
                             {language.map(language => (
                                 <option key={language} value={language}>{language}</option>
                             ))}
