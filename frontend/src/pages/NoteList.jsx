@@ -25,6 +25,10 @@ function NoteList() {
 
     const { favorites, toggleFavorite } = useFavorites()
 
+    // own state for search + filter
+    const [search, setSearch] = useState("")
+    const [languageFilter, setLanguageFilter] = useState("")
+
     // effects - fetch notes + favorites
     useEffect(() => {
         const fetchNotes = async () => {
