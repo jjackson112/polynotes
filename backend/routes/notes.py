@@ -11,6 +11,7 @@ from services.token import token_required
 import services.note_service as note_service
 from validation.note_validation import validate_create_note
 from validation.note_validation import validate_update_note
+from validation.note_validation import ALLOWED_LANGUAGES
 
 notes_bp = Blueprint("notes", __name__, url_prefix='/api/notes')
 
@@ -138,3 +139,6 @@ def toggle_favorite(current_user, note_id):
 
     return jsonify({"favorited": True}), 200
 
+@notes_bp.route("/languages", methods=["GET"])
+def get_language():
+    return jsonify(ALLOWED_LANGUAGES), 200
