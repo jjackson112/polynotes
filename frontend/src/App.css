@@ -338,6 +338,44 @@ h2 {
   border-radius: 8px;
 }
 
+/* Note List Styles */
+
+.language-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  margin: 20px 0;
+  padding: 12px 16px;
+
+  background-color: var(--card);
+  border-radius: 10px;
+}
+
+.language-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.language-filter label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.language-category {
+  padding: 8px 12px;
+
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+  font-size: 0.95rem;
+  cursor: pointer;
+
+  background-color: white;
+}
+
 /* New Note + Edit Note Page Styles */
 
 .new-note-page, .edit-note-page {
