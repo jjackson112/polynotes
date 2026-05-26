@@ -60,7 +60,7 @@ function NoteList() {
         const fetchLanguages = async () => {
             try {
                 const res = await api.get(`/notes/languages`)
-                setLanguages(res.data)
+                setLanguages(data)
             } catch (err) {
                 console.log(err)
             }
