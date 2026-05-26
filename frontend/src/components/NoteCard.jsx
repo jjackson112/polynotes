@@ -1,5 +1,4 @@
 import { Heart } from "react-feather";
-import { api } from "../api/api";
 
 function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite }) {
 
