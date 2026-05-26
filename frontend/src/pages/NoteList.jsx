@@ -130,6 +130,9 @@ function NoteList() {
                 )}
                 <div className="pagination">
                     <button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
+                    {[...Array(pages)].map((_, index) => {
+                        const pageNumber = index +1 
+                    })}
                     <button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</button>
                 </div>
             </div>
