@@ -7,7 +7,6 @@ import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 import { Filter } from "react-feather";
 
 function NoteList() {
-    console.log("NoteList mounted")
     const [notes, setNotes] = useState([])
     const [pages, setPages] = useState(0)
 
@@ -61,6 +60,7 @@ function NoteList() {
             try {
                 const res = await api.get(`/notes/languages`)
                 setLanguages(data)
+                console.log("Languages", data)
             } catch (err) {
                 console.log(err)
             }
