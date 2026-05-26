@@ -40,11 +40,13 @@ export function FavoriteProvider({ children }) {
                 console.log("Favorites response:", res.data)
 
                 const favoriteIds = Array.isArray(res.data)
+                    ? res.data  
+                    : res.data.favorites || res.data.items || []
                 
                 // dispatch sends a description of what happens
                 dispatch({
                     type:"INIT",
-                    payload: res.data || []
+                    payload: favoriteIds
                 })
             } catch (err) {
                 console.error("Failed to load favorites", err)
