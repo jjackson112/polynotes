@@ -1,7 +1,7 @@
-// state remains in NoteList + FilterNote owns the UI filter only
+// state remains in NoteList + FilterNote owns the render UI filter only
 import { Filter } from "react-feather";
 
-function FilterNote() {
+function FilterNote({ languages, languageFilter, setLanguageFilter}) {
     return (
         <div className="language-form">
             <Filter />
