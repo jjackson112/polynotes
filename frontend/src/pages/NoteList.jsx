@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useFavorites } from "../context/FavoritesContext";
 import NoteCard from "../components/NoteCard";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
-import { Filter } from "react-feather";
+import FilterNote from "../components/FilterNote";
 
 function NoteList() {
     const [notes, setNotes] = useState([])
@@ -61,8 +61,9 @@ function NoteList() {
                 const res = await api.get(`/notes/languages`)
                 setLanguages(data)
                 console.log("Languages", data)
+
             } catch (err) {
-                console.log(err)
+                console.log("Language error", err)
             }
         }
 
@@ -129,23 +130,6 @@ function NoteList() {
                         onClose={() => setSelectedNote(null)}
                     />
                 )}
-
-                <div className="language-form">
-                    <Filter />
-                    <form className="language-filter">
-                        <label htmlFor="language">Filter Languages:</label>
-                        <select 
-                            value={languageFilter}
-                            className="language-category"
-                            onChange={(e) => setLanguageFilter(e.target.value)}
-                        >
-                            <option value="All">All</option>
-                            {languages.map(language => (
-                                <option key={language} value={language}>{language}</option>
-                            ))}
-                        </select>
-                    </form>   
-                </div>
 
                 {notes.length === 0 ? (
                     <p> No notes yet.</p>
