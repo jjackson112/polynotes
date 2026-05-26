@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useFavorites } from "../context/FavoritesContext";
 import NoteCard from "../components/NoteCard";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
+import { Filter } from "react-feather";
 
 function NoteList() {
     console.log("NoteList mounted")
@@ -116,6 +117,7 @@ function NoteList() {
                     <h2 className="all-notes-title">All Notes</h2>
                     <button onClick={() => navigate("/notes/new")} className="new-note-btn">New Note</button>
                 </div>
+
                 {selectedNote && (
                     <DeleteConfirmationModal
                         note={selectedNote}
@@ -123,6 +125,19 @@ function NoteList() {
                         onClose={() => setSelectedNote(null)}
                     />
                 )}
+
+                <div className="language-form">
+                    <Filter />
+                    <form className="language-filter">
+                        <label htmlFor="language">Filter Languages:</label>
+                        <select className="language-category">
+                            {language.map(language => (
+                                <option key={language} value={language}>{language}</option>
+                            ))}
+                        </select>
+                    </form>   
+                </div>
+
                 {notes.length === 0 ? (
                     <p> No notes yet.</p>
                 ) : (
@@ -142,6 +157,7 @@ function NoteList() {
                     ))}
                 </div>
                 )}
+
                 <div className="pagination">
                     <button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
                     
