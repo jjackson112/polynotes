@@ -4,7 +4,7 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite }) {
     const content = note.content || ""
 
     return (
-        <div className="note-card"  onClick={() => onView(note.id)}>
+        <article className="note-card"  onClick={() => onView(note.id)}>
             <div className="note-card-header">
                 <h3 className="note-card-title">{note.title}</h3>
                 <Heart 
@@ -41,7 +41,7 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite }) {
                         }}>Delete</button>
                 )}
             </div>
-        </div>
+        </article>
     )
 }
 

@@ -32,6 +32,11 @@ function NoteList() {
 
     // effects - fetch notes + favorites
     useEffect(() => {
+        const filter_endpoint =
+            languageFilter === "All"
+            ? `/notes?page=${page}&per_page=20`
+            : `/notes?page=${page}&per_page=20&language=${languageFilter}`
+
         const fetchNotes = async () => {
             try {
                 setLoading(true)
