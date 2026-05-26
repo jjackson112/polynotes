@@ -57,13 +57,13 @@ function NoteList() {
     }, [page]) // initialize state and load saved data
 
     useEffect(() => {
-        try {
-            const fetchLanguages = async () => {
+        const fetchLanguages = async () => {
+            try {
                 const res = await api.get(`/notes/languages`)
                 setLanguages(res.data)
+            } catch (err) {
+                console.log(err)
             }
-        } catch (err) {
-            console.log(err)
         }
 
         fetchLanguages()
