@@ -32,6 +32,11 @@ def create_note(current_user):
 
     return jsonify(note.to_dict()), 201
 
+# Flask reads from top to bottom - GET language before note has an id
+@notes_bp.route("/languages", methods=["GET"])
+def get_language():
+    return jsonify(ALLOWED_LANGUAGES), 200
+
 # single-resource endpoint - simplifies frontend logic + prevents unnecessary large queries
 @notes_bp.route("/<int:note_id>", methods=["GET"])
 @token_required
@@ -138,7 +143,3 @@ def toggle_favorite(current_user, note_id):
     db.session.commit()
 
     return jsonify({"favorited": True}), 200
-
-@notes_bp.route("/languages", methods=["GET"])
-def get_language():
-    return jsonify(ALLOWED_LANGUAGES), 200
