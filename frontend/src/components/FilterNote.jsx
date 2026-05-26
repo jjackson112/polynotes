@@ -2,7 +2,7 @@
 import { Filter } from "react-feather";
 
 function FilterNote({ languages, languageFilter, setLanguageFilter}) {
-    console.log("filter languages", languages)
+
     return (
         <div className="language-form">
             <Filter />
@@ -16,7 +16,7 @@ function FilterNote({ languages, languageFilter, setLanguageFilter}) {
                 >
                     <option value="All">All</option>
                     {languages.map(language => (
-                        <option key={language} value={language}>{language}</option>
+                        <option key={language} value={language}>{language.toUpperCase()}</option>
                     ))}
                 </select>
             </form>   
