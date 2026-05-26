@@ -431,7 +431,7 @@ h2 {
 }
 
 .pagination button:hover:not(:disabled) {
-  background-color: var(--card);
+  background-color: var(--accent);
   border-color: var(--accent-soft);
 }
 
