@@ -135,7 +135,12 @@ function NoteList() {
                         const pageNumber = index +1 
 
                         return (
-                            <button>{pageNumber}</button>
+                            <button 
+                                key={pageNumber} 
+                                onClick={() => setPage(pageNumber)}
+                            >
+                                {pageNumber}
+                            </button>
                         )
                     })}
 
