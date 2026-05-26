@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
+import { useFavorites } from "../context/FavoritesContext";
 import NoteCard from "../components/NoteCard";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
-import { useFavorites } from "../context/FavoritesContext";
 
 function NoteList() {
+    console.log("NoteList mounted")
     const [notes, setNotes] = useState([])
     const [pages, setPages] = useState(0)
 
@@ -80,6 +81,12 @@ function NoteList() {
     const handleRequestDelete = (note) => {
         setSelectedNote(note)
     }
+
+    console.log("RENDER notes:", notes)
+    console.log("RENDER notes length:", notes.length)
+    console.log("RENDER favorites:", favorites)
+    console.log("RENDER error:", error)
+    console.log("RENDER loading:", loading)
 
     // render guards
     if (loading && notes.length === 0)

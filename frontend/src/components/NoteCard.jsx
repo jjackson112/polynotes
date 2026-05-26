@@ -1,6 +1,7 @@
 import { Heart } from "react-feather";
 
 function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite }) {
+    const content = note.content || ""
 
     return (
         <div className="note-card"  onClick={() => onView(note.id)}>
@@ -18,9 +19,9 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite }) {
             </div>
             
             <p className="note-card-content">
-                {note.content.length > 80 
-                    ? note.content.slice(0, 80) + "..."
-                    : note.content}
+                {content.length > 80 
+                    ? content.slice(0, 80) + "..."
+                    : content}
             </p>
 
             {/* Added Edit + Delete Buttons */}
