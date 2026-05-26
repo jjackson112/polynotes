@@ -27,7 +27,8 @@ function NoteList() {
 
     // own state for search + filter
     const [search, setSearch] = useState("")
-    const [languageFilter, setLanguageFilter] = useState("")
+    const [language, setLanguage] = useState([])
+    const [languageFilter, setLanguageFilter] = useState("All")
 
     // effects - fetch notes + favorites
     useEffect(() => {
@@ -53,6 +54,15 @@ function NoteList() {
 
         fetchNotes()
     }, [page]) // initialize state and load saved data
+
+    useEffect(() => {
+        const fetchLanguages = async () => {
+            const res = await api.get(`/notes/languages`)
+            setLanguages(res.data)
+        }
+
+        fetchLanguages()
+    }, [])
 
     // handlers
     const handleView = (id) => {
