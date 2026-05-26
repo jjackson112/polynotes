@@ -28,7 +28,7 @@ function NoteList() {
 
     // own state for search + filter
     const [search, setSearch] = useState("")
-    const [language, setLanguage] = useState([])
+    const [languages, setLanguages] = useState([]) // fetch from backend
     const [languageFilter, setLanguageFilter] = useState("All")
 
     // effects - fetch notes + favorites
@@ -57,9 +57,13 @@ function NoteList() {
     }, [page]) // initialize state and load saved data
 
     useEffect(() => {
-        const fetchLanguages = async () => {
-            const res = await api.get(`/notes/languages`)
-            setLanguages(res.data)
+        try {
+            const fetchLanguages = async () => {
+                const res = await api.get(`/notes/languages`)
+                setLanguages(res.data)
+            }
+        } catch (err) {
+            console.log(err)
         }
 
         fetchLanguages()
@@ -136,7 +140,7 @@ function NoteList() {
                             onChange={(e) => setLanguageFilter(e.target.value)}
                         >
                             <option value="All">All</option>
-                            {language.map(language => (
+                            {languages.map(language => (
                                 <option key={language} value={language}>{language}</option>
                             ))}
                         </select>
