@@ -131,6 +131,12 @@ function NoteList() {
                     />
                 )}
 
+                <FilterNote 
+                    languages={languages}
+                    languageFilter={languageFilter}
+                    setLanguageFilter={setLanguageFilter}
+                />
+
                 {notes.length === 0 ? (
                     <p> No notes yet.</p>
                 ) : (
