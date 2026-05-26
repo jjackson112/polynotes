@@ -81,11 +81,11 @@ function NoteList() {
         setSelectedNote(note)
     }
 
-    console.log("RENDER notes:", notes)
-    console.log("RENDER notes length:", notes.length)
-    console.log("RENDER favorites:", favorites)
-    console.log("RENDER error:", error)
-    console.log("RENDER loading:", loading)
+    // console.log("RENDER notes:", notes)
+    // console.log("RENDER notes length:", notes.length)
+    // console.log("RENDER favorites:", favorites)
+    // console.log("RENDER error:", error)
+    // console.log("RENDER loading:", loading)
 
     // render guards
     if (loading && notes.length === 0)
@@ -130,9 +130,15 @@ function NoteList() {
                 )}
                 <div className="pagination">
                     <button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
+                    
                     {[...Array(pages)].map((_, index) => {
                         const pageNumber = index +1 
+
+                        return (
+                            {pageNumber}
+                        )
                     })}
+
                     <button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</button>
                 </div>
             </div>
