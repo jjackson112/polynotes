@@ -2,6 +2,7 @@
 import { Filter } from "react-feather";
 
 function FilterNote({ languages, languageFilter, setLanguageFilter}) {
+    console.log("filter languages", languages)
     return (
         <div className="language-form">
             <Filter />
