@@ -58,7 +58,7 @@ function NoteList() {
     useEffect(() => {
         const fetchLanguages = async () => {
             try {
-                const res = await api.get("/notes/languages")
+                const data = await api.get("/notes/languages")
                 setLanguages(data)
                 console.log("Languages", data)
 
