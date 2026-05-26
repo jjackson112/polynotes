@@ -16,7 +16,7 @@ function FilterNote({ languages, languageFilter, setLanguageFilter}) {
                 >
                     <option value="All">All</option>
                     {languages.map(language => (
-                        <option key={language} value={language}>{language.charAt(0).toUpperCase()}</option>
+                        <option key={language} value={language}>{language.charAt(0).toUpperCase() + language.slice(1)}</option>
                     ))}
                 </select>
             </form>   
