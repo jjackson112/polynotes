@@ -135,7 +135,7 @@ function NoteList() {
                         const pageNumber = index +1 
 
                         return (
-                            {pageNumber}
+                            <button>{pageNumber}</button>
                         )
                     })}
 
