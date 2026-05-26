@@ -37,7 +37,10 @@ export function FavoriteProvider({ children }) {
         const fetchFavorites = async () => {
             try {
                 const res = await api.get("/notes/favorites")
+                console.log("Favorites response:", res.data)
 
+                const favoriteIds = Array.isArray(res.data)
+                
                 // dispatch sends a description of what happens
                 dispatch({
                     type:"INIT",
