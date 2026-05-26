@@ -59,7 +59,7 @@ function NoteList() {
         }
 
         fetchNotes()
-    }, [page]) // initialize state and load saved data
+    }, [page, languageFilter]) // initialize state and load saved data
 
     useEffect(() => {
         const fetchLanguages = async () => {
