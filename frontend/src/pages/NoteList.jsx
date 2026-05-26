@@ -43,6 +43,7 @@ function NoteList() {
                 setError(null)
 
                 const data = await api.get(`/notes?page=${page}&per_page=20`)
+                const filter_data = await api.get(filter_endpoint)
 
                 // backend response is not defined by just data
                 setNotes(data.items || [])
