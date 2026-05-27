@@ -56,6 +56,10 @@ function NoteList() {
                     params.append("search", search.trim())
                 }
 
+                if (searchFromURL.trim()) {
+                    params.append("search", searchFromURL.trim())
+                }
+
                 const filter_endpoint = `/notes?${params.toString()}`
 
                 const data = await api.get(filter_endpoint)
