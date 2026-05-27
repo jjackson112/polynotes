@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import { useFavorites } from "../context/FavoritesContext";
+import { useSearchParams } from "react-router-dom";
 import NoteCard from "../components/NoteCard";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 import FilterNote from "../components/FilterNote";
@@ -29,6 +30,10 @@ function NoteList() {
     const [search, setSearch] = useState("")
     const [languages, setLanguages] = useState([]) // fetch from backend
     const [languageFilter, setLanguageFilter] = useState("All")
+
+    // read URL query from Header - search results page 
+    const [searchParams] = useSearchParams()
+    const searchFromURL = searchParams.get("search") || ""
 
     // effects - fetch notes + favorites
     useEffect(() => {
