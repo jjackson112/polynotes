@@ -52,10 +52,12 @@ function NoteList() {
                     params.append("language", languageFilter)
                 }
 
+                // first search system - Header search
                 if (search.trim()) {
                     params.append("search", search.trim())
                 }
 
+                // second search systems - FilterNote search state
                 if (searchFromURL.trim()) {
                     params.append("search", searchFromURL.trim())
                 }
