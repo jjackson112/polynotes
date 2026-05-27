@@ -6,6 +6,10 @@ function Header({ toggleSidebar, authMessage, search }) {
 
     const { logout } = useAuth()
     const navigate = useNavigate()
+
+    const handleSearchSubmit = () => {
+        e.preventDefault()
+    }
     
     const handleLogout = () => {
         logout()
@@ -33,7 +37,13 @@ function Header({ toggleSidebar, authMessage, search }) {
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="Search" 
                     />
-                    <button type="submit" className="search-icon"><Search size={22} color="#2b211b" /></button>
+                    <button 
+                        type="submit" 
+                        className="search-icon"
+                        onSubmit={handleSearchSubmit}
+                    >
+                        <Search size={22} color="#2b211b" />
+                    </button>
                 </div>
             </form>
 
