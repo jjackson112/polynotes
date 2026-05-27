@@ -28,8 +28,6 @@ function NoteList() {
 
     const { favorites, toggleFavorite } = useFavorites()
 
-    // own state for search + filter
-    const [search, setSearch] = useState("")
     const [languages, setLanguages] = useState([]) // fetch from backend
     const [languageFilter, setLanguageFilter] = useState("All")
 

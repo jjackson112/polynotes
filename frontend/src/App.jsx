@@ -17,6 +17,7 @@ import FavNoteList from './pages/FavNoteList';
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [authMessage, setAuthMessage] = useState("")
+  const [search, setSearch] = useState("")
 
   {/* Test backend connection */}
   useEffect(() => {
@@ -53,6 +54,9 @@ function App() {
             <AppLayout 
               sidebarOpen={sidebarOpen} 
               setSidebarOpen={setSidebarOpen} 
+              authMessage={authMessage}
+              search={search}
+              setSearch={setSearch}
             />
           </ProtectedRoute>
         }>          
