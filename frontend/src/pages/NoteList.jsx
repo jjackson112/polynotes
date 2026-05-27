@@ -32,15 +32,15 @@ function NoteList() {
 
     // effects - fetch notes + favorites
     useEffect(() => {
-        const filter_endpoint =
-            languageFilter === "All"
-            ? `/notes?page=${page}&per_page=20`
-            : `/notes?page=${page}&per_page=20&language=${languageFilter}`
-
         const fetchNotes = async () => {
             try {
                 setLoading(true)
                 setError(null)
+
+                const params = new URLSearchParams({
+                    page,
+                    per_page=20
+                })
 
                 const data = await api.get(filter_endpoint)
 
