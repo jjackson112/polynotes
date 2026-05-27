@@ -13,6 +13,10 @@ const handleResponse = async (res) => {
     throw new Error("401 - Unauthorized")
   }
 
+  if (res.status === 204) {
+    return null
+  }
+
   if (!res.ok) {
     const errorText = await res.text()
     throw new Error(`${res.status} - ${errorText}`)
