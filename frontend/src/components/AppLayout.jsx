@@ -3,7 +3,7 @@ import Sidebar from "./Sidebar";
 import { Outlet } from "react-router-dom";
 
 {/* What authenticated users should see - header + sidebar */}
-function AppLayout({ sidebarOpen, setSidebarOpen, authMessage }) {
+function AppLayout({ sidebarOpen, setSidebarOpen, authMessage, search, setSearch }) {
   return (
     <>
         <div className="app-layout">
@@ -17,6 +17,8 @@ function AppLayout({ sidebarOpen, setSidebarOpen, authMessage }) {
                 <Header 
                 toggleSidebar={() => setSidebarOpen(prev => !prev)} 
                 authMessage={authMessage}
+                search={search}
+                setSearch={setSearch}
                 />
 
                 <main className="page-content">
