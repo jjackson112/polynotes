@@ -156,8 +156,6 @@ function NoteList() {
                     languages={languages}
                     languageFilter={languageFilter}
                     setLanguageFilter={setLanguageFilter}
-                    search={search}
-                    setSearch={setSearch}
                 />
 
                 {notes.length === 0 ? (

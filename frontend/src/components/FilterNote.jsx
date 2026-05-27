@@ -3,7 +3,7 @@
 
 import { Filter } from "react-feather";
 
-function FilterNote({ languages, languageFilter }) {
+function FilterNote({ languages, languageFilter, setLanguageFilter }) {
 
     return (
         <div className="language-form">
