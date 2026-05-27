@@ -50,7 +50,7 @@ def get_single_note(current_user, note_id):
 def get_notes_list(current_user):
     language = request.args.get("language")
     tag = request.args.get("tag")
-    search = request.args.get("search")
+    search = request.args.get("search", "").strip()
     
     query = Note.query.filter_by(user_id=current_user.id)
     
