@@ -25,15 +25,17 @@ function Header({ toggleSidebar, authMessage, search }) {
                 <h1 className="header-title">Polynotes</h1>
             </div>
 
-            <div className="search-box">
-                <input 
-                    type="text" 
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Search" 
-                />
-                <Search className="search-icon" size={22} color="#2b211b" />
-            </div>
+            <form className="search-form">
+                <div className="search-box">
+                    <input 
+                        type="text" 
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        placeholder="Search" 
+                    />
+                    <button type="submit" className="search-icon"><Search size={22} color="#2b211b" /></button>
+                </div>
+            </form>
 
             <button onClick={handleLogout} className="logout-btn">Logout</button>
         </header>
