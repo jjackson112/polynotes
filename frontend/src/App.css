@@ -82,6 +82,7 @@ input:focus, select:focus, textarea:focus {
   padding: 1rem 2rem;
   margin: 0 auto 20px;
   display: flex;
+  justify-content: space-around;
   align-items: center;
   gap: 1rem;
 }
@@ -101,17 +102,18 @@ input:focus, select:focus, textarea:focus {
 .search-box {
   display: flex;
   flex: 1;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 8px;
   background: var(--card);
   padding: 10px 14px;
   border-radius: 12px;
   width: 100%;
-  max-width: 420px;
+  max-width: 500px;
 }
 
 .search-box input {
+  flex: 1;
   border: none;
   outline: none;
   background: transparent;
@@ -119,6 +121,14 @@ input:focus, select:focus, textarea:focus {
 
 #search-icon {
   cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-top: 0;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logout-btn {
