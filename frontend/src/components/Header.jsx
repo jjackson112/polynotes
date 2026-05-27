@@ -9,6 +9,10 @@ function Header({ toggleSidebar, authMessage, search, setSearch }) {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault()
+
+        if (!search.trim()) return
+
+        navigate(`/notes?search=${encodeURIComponent(search.trim())}`)
     }
     
     const handleLogout = () => {
