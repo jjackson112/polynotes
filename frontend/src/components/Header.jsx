@@ -7,7 +7,7 @@ function Header({ toggleSidebar, authMessage, search }) {
     const { logout } = useAuth()
     const navigate = useNavigate()
 
-    const handleSearchSubmit = () => {
+    const handleSearchSubmit = (e) => {
         e.preventDefault()
     }
     
@@ -29,7 +29,7 @@ function Header({ toggleSidebar, authMessage, search }) {
                 <h1 className="header-title">Polynotes</h1>
             </div>
 
-            <form className="search-form">
+            <form className="search-form" onSubmit={handleSearchSubmit}>
                 <div className="search-box">
                     <input 
                         type="text" 
@@ -39,8 +39,7 @@ function Header({ toggleSidebar, authMessage, search }) {
                     />
                     <button 
                         type="submit" 
-                        className="search-icon"
-                        onSubmit={handleSearchSubmit}
+                        id="search-icon"
                     >
                         <Search size={22} color="#2b211b" />
                     </button>

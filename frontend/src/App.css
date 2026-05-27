@@ -117,7 +117,7 @@ input:focus, select:focus, textarea:focus {
   background: transparent;
 }
 
-.search-icon:hover {
+#search-icon {
   cursor: pointer;
 }
 
