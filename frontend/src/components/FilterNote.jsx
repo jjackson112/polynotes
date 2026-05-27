@@ -1,7 +1,7 @@
 // state remains in NoteList + FilterNote owns the render UI filter only
 import { Filter } from "react-feather";
 
-function FilterNote({ languages, languageFilter, setLanguageFilte, search }) {
+function FilterNote({ languages, languageFilter }) {
 
     return (
         <div className="language-form">
@@ -19,13 +19,8 @@ function FilterNote({ languages, languageFilter, setLanguageFilte, search }) {
                         <option key={language} value={language}>{language.charAt(0).toUpperCase() + language.slice(1)}</option>
                     ))}
                 </select>
-                <input
-                    type="text"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Search"
-                />
             </form>   
+            
         </div>
     )
 }
