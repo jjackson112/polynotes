@@ -62,7 +62,10 @@ def get_notes_list(current_user):
 
     if search:
         query = query.filter(
-            
+            db.or_(
+                Note.title.ilike(f"%{search}%"),
+                Note.content.ilike(f"%{search}%")
+            )
         )
     
     page = request.args.get("page", 1, type=int)
