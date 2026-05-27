@@ -39,7 +39,7 @@ function NoteList() {
 
                 const params = new URLSearchParams({
                     page,
-                    per_page=20
+                    per_page: 20
                 })
 
                 const data = await api.get(filter_endpoint)
