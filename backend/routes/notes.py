@@ -50,6 +50,7 @@ def get_single_note(current_user, note_id):
 def get_notes_list(current_user):
     language = request.args.get("language")
     tag = request.args.get("tag")
+    search = request.args.get("search")
     
     query = Note.query.filter_by(user_id=current_user.id)
     
@@ -58,11 +59,16 @@ def get_notes_list(current_user):
 
     if tag:
         query = query.join(Note.tags).filter(Tag.name == tag)
+
+    if search:
+        query = query.filter(
+            
+        )
     
     page = request.args.get("page", 1, type=int)
     per_page = min(
         request.args.get("per_page", 20, type=int), # limit is slightly inconsistent
-        100
+        1000
     )
 
     # add ordering to pagination order
