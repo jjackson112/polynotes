@@ -37,10 +37,21 @@ function NoteList() {
                 setLoading(true)
                 setError(null)
 
+                // query parameters
                 const params = new URLSearchParams({
                     page,
                     per_page: 20
                 })
+
+                if (languageFilter !== "All") {
+                    params.append("language", languageFilter)
+                }
+
+                if (search.trim()) {
+                    params.append("search", search.trim())
+                }
+
+                const filter_endpoint = `/notes?${params.toString()}`
 
                 const data = await api.get(filter_endpoint)
 
