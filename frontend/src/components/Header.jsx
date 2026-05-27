@@ -2,7 +2,7 @@ import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { Search, NotebookPen, Menu, X } from "lucide-react";
 
-function Header({ toggleSidebar, authMessage }) {
+function Header({ toggleSidebar, authMessage, search }) {
 
     const { logout } = useAuth()
     const navigate = useNavigate()
@@ -26,7 +26,12 @@ function Header({ toggleSidebar, authMessage }) {
             </div>
 
             <div className="search-box">
-                <input type="text" placeholder="Search" />
+                <input 
+                    type="text" 
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Search" 
+                />
                 <Search className="search-icon" size={22} color="#2b211b" />
             </div>
 
