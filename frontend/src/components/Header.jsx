@@ -2,6 +2,8 @@ import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { Search, NotebookPen, Menu, X } from "lucide-react";
 
+// use Header for global search entry - URL
+
 function Header({ toggleSidebar, authMessage, search, setSearch }) {
 
     const { logout } = useAuth()

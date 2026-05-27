@@ -1,4 +1,6 @@
 // state remains in NoteList + FilterNote owns the render UI filter only
+// use for language + tag filtering only for search
+
 import { Filter } from "react-feather";
 
 function FilterNote({ languages, languageFilter }) {
@@ -20,7 +22,7 @@ function FilterNote({ languages, languageFilter }) {
                     ))}
                 </select>
             </form>   
-            
+
         </div>
     )
 }

@@ -7,6 +7,8 @@ import NoteCard from "../components/NoteCard";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 import FilterNote from "../components/FilterNote";
 
+// search results page from Header
+
 function NoteList() {
     const [notes, setNotes] = useState([])
     const [pages, setPages] = useState(0)
