@@ -67,6 +67,8 @@ function App() {
           <Route path="/notes/:id" element={<ViewNote />}/>
           <Route path="/notes/:id/edit" element={<EditNote />}/>
           <Route path="/favorites" element={<FavNoteList />}/>
+          <Route path="/languages" element={}/>
+          <Route path="/tags" element={}/>
         </Route>
 
       </Routes>
