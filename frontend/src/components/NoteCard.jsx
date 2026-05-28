@@ -1,6 +1,7 @@
 import { Heart } from "react-feather";
+import HighlightSearchText from "../../utils/highlightSearchText";
 
-function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite }) {
+function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searchTerm }) {
     const content = note.content || ""
 
     return (
