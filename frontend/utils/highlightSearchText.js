@@ -3,8 +3,11 @@ export function HighlightSearchText(text, searchTerm) {
 
     // build a search pattern dynamically - regex
     // returns all matches despite capitalization (g-global, i-case insensitive)
-    const regex = new RegExp(`(${SearchTerm})`, "gi")
-    
+    const regex = new RegExp(`(${searchTerm})`, "gi")
+
+    // split the text to get the capturing group (${searchTerm})
+    // matched text is reserved - treat it differently
+    const parts = text.split(regex)
 }
 
 export default HighlightSearchText;
