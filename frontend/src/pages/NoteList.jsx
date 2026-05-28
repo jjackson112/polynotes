@@ -33,7 +33,8 @@ function NoteList() {
 
     // read URL query from Header - search results page 
     const [searchParams] = useSearchParams()
-    const searchFromURL = searchParams.get("search") || ""
+    // value that controlls the search results
+    const searchFromURL = searchParams.get("search") || "" 
 
     // effects - fetch notes + favorites
     useEffect(() => {
@@ -169,6 +170,7 @@ function NoteList() {
                                 ...note,
                                 favorite: Array.isArray(favorites) && favorites.includes(note.id)
                             }}
+                            searchTerm={searchFromURL}
                             onView={handleView}
                             toggleFavorite={toggleFavorite}
                             onEdit={handleEdit}
