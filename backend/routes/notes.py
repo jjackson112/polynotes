@@ -81,6 +81,8 @@ def get_notes_list(current_user):
     # return pagination object - the container - that has the data - the items attribute
     pagination = query.paginate(page=page, per_page=per_page, error_out=False) 
 
+    print("SEARCH", search)
+    
     return jsonify({
         "page": pagination.page,
         "per_page": pagination.per_page,
