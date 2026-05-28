@@ -355,9 +355,9 @@ mark {
 
 /* Note List Styles */
 
-.language-form {
+.filter-section {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   gap: 10px;
 
@@ -368,18 +368,18 @@ mark {
   border-radius: 10px;
 }
 
-.language-filter {
+.filter-form {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.language-filter label {
+.filter-form label {
   font-weight: 600;
   font-size: 0.95rem;
 }
 
-.language-category {
+.language-category, .tag-filter {
   padding: 8px 12px;
 
   border: 1px solid #ccc;
