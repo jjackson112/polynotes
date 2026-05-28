@@ -368,13 +368,13 @@ mark {
   border-radius: 10px;
 }
 
-.filter-form {
+.filter-div {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.filter-form label {
+.filter-div label {
   font-weight: 600;
   font-size: 0.95rem;
 }

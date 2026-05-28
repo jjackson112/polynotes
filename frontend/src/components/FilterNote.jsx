@@ -3,12 +3,12 @@
 
 import { Filter, Hash } from "react-feather";
 
-function FilterNote({ languages, languageFilter, setLanguageFilter, search, tagFilter }) {
+function FilterNote({ languages, languageFilter, setLanguageFilter, tagFilter, setTagFilter }) {
 
     return (
         <div className="filter-section">
 
-            <form className="filter-form">
+            <div className="filter-div">
                 <Filter />
                 <label htmlFor="language">Filter Languages:</label>
                 <select 
@@ -31,7 +31,7 @@ function FilterNote({ languages, languageFilter, setLanguageFilter, search, tagF
                     onChange={(e) => setTagFilter(e.target.value)}
                     placeholder="tag search"
                 />
-            </form>   
+            </div>   
 
         </div>
     )
