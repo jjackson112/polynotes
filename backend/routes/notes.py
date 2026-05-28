@@ -62,10 +62,11 @@ def get_notes_list(current_user):
         query = query.join(Note.tags).filter(Tag.name == tag)
 
     if search:
+        search_pattern = f"%{search}%"
         query = query.filter(
-            db.or_(
-                Note.title.ilike(f"%{search}%"),
-                Note.content.ilike(f"%{search}%")
+            or_(
+                Note.title.like(search_pattern),
+                Note.content.like(search_pattern)
             )
         )
     
