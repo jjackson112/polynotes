@@ -1,5 +1,5 @@
 import { Heart } from "react-feather";
-import HighlightSearchText from "../../utils/highlightSearchText";
+import { HighlightSearchText } from "../../utils/highlightSearchText";
 
 function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searchTerm }) {
     const content = note.content || ""
@@ -7,7 +7,7 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searc
     return (
         <article className="note-card"  onClick={() => onView(note.id)}>
             <div className="note-card-header">
-                <h3 className="note-card-title">{note.title}</h3>
+                <h3 className="note-card-title">{HighlightSearchText(note.title, searchTerm)}</h3>
                 <Heart 
                     className="favorite-icon"
                     onClick={(e) => {
@@ -20,9 +20,9 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searc
             </div>
             
             <p className="note-card-content">
-                {content.length > 80 
+                {HighlightSearchText(content.length > 80 
                     ? content.slice(0, 80) + "..."
-                    : content}
+                    : content, searchTerm)}
             </p>
 
             {/* Added Edit + Delete Buttons */}
