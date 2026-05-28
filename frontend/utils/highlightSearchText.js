@@ -10,7 +10,7 @@ export function HighlightSearchText(text, searchTerm) {
     const parts = text.split(regex)
 
     return parts.map((part, index) =>
-        
+        part.toLowerCase() === searchTerm.toLowercase() // check for the match
     )
 }
 
