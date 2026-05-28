@@ -136,7 +136,7 @@ function NoteList() {
     // console.log("RENDER loading:", loading)
 
     // render guards
-    if (loading && notes.length === 0)
+    if (loading && notes.length === 0 && !tagFilter)
         return <p>Loading notes...</p>
 
     if (error && notes.length === 0) 
