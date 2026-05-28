@@ -11,6 +11,8 @@ export function HighlightSearchText(text, searchTerm) {
 
     return parts.map((part, index) =>
         part.toLowerCase() === searchTerm.toLowercase() // check for the match
+            ? <mark key={index}>{part}</mark>
+            : part
     )
 }
 
