@@ -8,6 +8,10 @@ export function HighlightSearchText(text, searchTerm) {
     // split the text to get the capturing group (${searchTerm})
     // matched text is reserved - treat it differently
     const parts = text.split(regex)
+
+    return parts.map((part, index) =>
+        
+    )
 }
 
 export default HighlightSearchText;
