@@ -59,7 +59,7 @@ function NoteList() {
                     params.append("search", searchFromURL.trim())
                 }
 
-                if (tagFilter) {
+                if (tagFilter.trim()) {
                     params.append("tag", tagFilter.trim())
                 }
 
@@ -81,7 +81,7 @@ function NoteList() {
         }
 
         fetchNotes()
-    }, [page, languageFilter, searchFromURL]) // initialize state and load saved data
+    }, [page, languageFilter, searchFromURL, tagFilter]) // initialize state and load saved data
 
     useEffect(() => {
         const fetchLanguages = async () => {
