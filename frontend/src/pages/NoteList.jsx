@@ -36,6 +36,8 @@ function NoteList() {
     // value that controlls the search results
     const searchFromURL = searchParams.get("search") || "" 
 
+    const [tagFilter, setTagFilter] = useState("")
+
     // effects - fetch notes + favorites
     useEffect(() => {
         const fetchNotes = async () => {
@@ -55,6 +57,10 @@ function NoteList() {
 
                 if (searchFromURL.trim()) {
                     params.append("search", searchFromURL.trim())
+                }
+
+                if (tagFilter) {
+                    params.append("tag", tagFilter.trim())
                 }
 
                 const filter_endpoint = `/notes?${params.toString()}`

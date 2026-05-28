@@ -23,7 +23,7 @@ function FilterNote({ languages, languageFilter, setLanguageFilter, search }) {
                 </select>
 
                 <Hash />
-                <label>Tag:</label>
+                <label>Tag(s):</label>
                 <input
                     type="text"
                     className="tag-filter"
