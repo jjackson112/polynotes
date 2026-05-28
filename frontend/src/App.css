@@ -348,6 +348,11 @@ h2 {
   border-radius: 8px;
 }
 
+mark {
+  background-color: var(--border);
+  padding: 3px;
+}
+
 /* Note List Styles */
 
 .language-form {
