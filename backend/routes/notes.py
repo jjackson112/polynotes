@@ -12,6 +12,7 @@ import services.note_service as note_service
 from validation.note_validation import validate_create_note
 from validation.note_validation import validate_update_note
 from validation.note_validation import ALLOWED_LANGUAGES
+from sqlalchemy import or_
 
 notes_bp = Blueprint("notes", __name__, url_prefix='/api/notes')
 
@@ -82,7 +83,7 @@ def get_notes_list(current_user):
     pagination = query.paginate(page=page, per_page=per_page, error_out=False) 
 
     print("SEARCH", search)
-    
+
     return jsonify({
         "page": pagination.page,
         "per_page": pagination.per_page,
