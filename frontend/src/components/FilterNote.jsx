@@ -28,7 +28,7 @@ function FilterNote({ languages, languageFilter, setLanguageFilter, search, tagF
                     type="text"
                     className="tag-filter"
                     value={tagFilter}
-                    onChange={(e) => setSearch(e.target.value)}
+                    onChange={(e) => setTagFilter(e.target.value)}
                     placeholder="tag search"
                 />
             </form>   

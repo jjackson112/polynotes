@@ -163,6 +163,8 @@ function NoteList() {
                     languages={languages}
                     languageFilter={languageFilter}
                     setLanguageFilter={setLanguageFilter}
+                    tagFilter={tagFilter}
+                    setTagFilter={setTagFilter}
                 />
 
                 {notes.length === 0 ? (
