@@ -21,7 +21,8 @@ function App() {
   const [authMessage, setAuthMessage] = useState("")
   const [search, setSearch] = useState("")
 
-  {/* Test backend connection */}
+  // Test backend connection 
+  
   useEffect(() => {
     fetch("http://localhost:5000/api/health")
       .then(res => res.json())

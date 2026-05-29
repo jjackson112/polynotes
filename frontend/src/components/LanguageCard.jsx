@@ -4,7 +4,7 @@ function LanguageCard({ language, count }) {
     const languageIcons = {
         english: `🍔`,
         hawaiian: `🌺`,
-        italian: `🌮`,
+        italian: `🍝`,
         mandarin: `🐼`,
         spanish: `🌮`
     }
@@ -13,7 +13,7 @@ function LanguageCard({ language, count }) {
         <article className="language-category-card">
 
             <div className="language-icon">
-                <Globe size={42} />
+                {languageIcons || <Globe size={42} />}
             </div>
 
             <h3 className="language-card-title">{language}</h3>
