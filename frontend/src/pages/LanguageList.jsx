@@ -5,9 +5,9 @@ function LanguageList() {
 
     return (
         <div className="language-list">
-            {languages.map((language) => {
-                <LanguageCard key={language} language={language} />
-            })}
+            {languages.map((language) => (
+                <LanguageCard key={language} language={language} count={0} />
+            ))}
         </div>
     )
 }

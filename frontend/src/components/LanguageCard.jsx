@@ -13,7 +13,7 @@ function LanguageCard({ language, count }) {
         <article className="language-category-card">
 
             <div className="language-icon">
-                {languageIcons || <Globe size={42} />}
+                {languageIcons[language.toLowerCase()] || <Globe size={42} />}
             </div>
 
             <h3 className="language-card-title">{language}</h3>
