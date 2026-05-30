@@ -255,7 +255,10 @@ h2 {
 }
 
 .new-note-btn {
+  width: 125px!important;
+  height: 50px;
   margin-bottom: 20px;
+  font-size: 1rem;
 }
 
 .card,

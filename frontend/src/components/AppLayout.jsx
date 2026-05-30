@@ -1,5 +1,6 @@
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+import Footer from "./Footer";
 import { Outlet } from "react-router-dom";
 
 {/* What authenticated users should see - header + sidebar */}
@@ -25,6 +26,8 @@ function AppLayout({ sidebarOpen, setSidebarOpen, authMessage, search, setSearch
                     <Outlet />   {/* 🔥 this is what renders NoteList */}
                 </main>
             </div>
+
+            <Footer />
         </div>
     </>
   )
