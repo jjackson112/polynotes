@@ -13,11 +13,13 @@ function FilterNote({ languages, languageFilter, setLanguageFilter, tagFilter, s
                 <select 
                     value={languageFilter}
                     className="language-category"
-                    onChange={(e) => setLanguageFilter(e.target.value)}
+                    onChange={handleLanguageChange}
                 >
                     <option value="All">All</option>
                     {languages.map(language => (
-                        <option key={language} value={language}>{language.charAt(0).toUpperCase() + language.slice(1)}</option>
+                        <option key={language} value={language}>
+                            {language.charAt(0).toUpperCase() + language.slice(1)}
+                        </option>
                     ))}
                 </select>
             </div>
