@@ -35,6 +35,7 @@ def create_note(current_user):
 
 # Flask reads from top to bottom - GET language before note has an id
 @notes_bp.route("/languages", methods=["GET"])
+@token_required
 def get_language():
     return jsonify(ALLOWED_LANGUAGES), 200
 
@@ -94,6 +95,16 @@ def get_notes_list(current_user):
         "has_next": pagination.has_next,
         "has_prev": pagination.has_prev
     }), 200
+
+# URL driven filtering - cleaner for LanguageList to render logic
+@notes_bp.route("/language-counts", method=["GET"]) 
+@token_required
+def count_language_notes(current_user):
+    counts = (
+        db.session.query(Note.language, db.func.count(Note.id))
+    )
+
+    return jsonify ({}), 200
 
 @notes_bp.route("/<int:note_id>", methods=["PATCH"])
 @token_required
