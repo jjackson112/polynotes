@@ -50,8 +50,9 @@ function NoteList() {
             params.set("language", value)
         }
 
-        // reset pagination - UX
+        // reset pagination whenever a filter changes - UX 
         params.set("page", 1)
+        setSearchParams(params)
     }
 
     // effects - fetch notes + favorites
