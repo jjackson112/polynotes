@@ -99,7 +99,7 @@ def get_notes_list(current_user):
 # URL driven filtering - cleaner for LanguageList to render logic
 @notes_bp.route("/language-counts", method=["GET"]) 
 @token_required
-def count_language_notes(current_user):
+def count_language_notes():
     counts = (
         db.session.query(Note.language, db.func.count(Note.id))
         filter(Note.user_id === current_user.id)
@@ -107,7 +107,7 @@ def count_language_notes(current_user):
         .all() 
     )
 
-    return jsonify ({language: count}), 200
+    return jsonify ({language: count for language, count in counts}), 200
 
 @notes_bp.route("/<int:note_id>", methods=["PATCH"])
 @token_required

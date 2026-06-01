@@ -1,5 +1,6 @@
 import { Globe } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function LanguageCard({ language }) {
     const languageIcons = {
@@ -9,6 +10,14 @@ function LanguageCard({ language }) {
         mandarin: `🐼`,
         spanish: `🌮`
     }
+
+    const [count, setCount] = useState([])
+
+    useEffect(() => {
+        api.get("/language-counts")
+        .then(data => setCount(data))
+        .catch(err => console.error(err))
+    }, [])
 
     return (
         <Link to={`/notes?language=${language.toLowerCase()}`} className="language-category-link">
