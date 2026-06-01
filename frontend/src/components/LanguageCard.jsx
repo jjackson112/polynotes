@@ -1,7 +1,7 @@
 import { Globe } from "lucide-react";
 import { Link } from "react-router-dom";
 
-function LanguageCard({ language }) {
+function LanguageCard({ language, count }) {
     const languageIcons = {
         english: `🍔`,
         hawaiian: `🌺`,
@@ -20,6 +20,7 @@ function LanguageCard({ language }) {
 
                 <h3 className="language-card-title">{language}</h3>
 
+                <p className="language-card-content">{count} notes</p>
             </article>
         </Link>
     )

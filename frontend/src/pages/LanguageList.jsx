@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { api } from "../api";
 import LanguageCard from "../components/LanguageCard";
 
 function LanguageList() {
@@ -7,7 +8,7 @@ function LanguageList() {
     const [count, setCount] = useState({}) // tuples, not array {}
 
     useEffect(() => {
-        api.get("/language-counts")
+        api.get("/notes/language-counts")
         .then(data => setCount(data))
         .catch(err => console.error(err))
     }, [])
