@@ -44,8 +44,14 @@ function NoteList() {
         const value = e.target.value
         const params = new URLSearchParams(searchParams) // copy current params
 
-        if (value === "All")
+        if (value === "All") {
             params.delete("language")
+        } else {
+            params.set("language", value)
+        }
+
+        // reset pagination - UX
+        params.set("page", 1)
     }
 
     // effects - fetch notes + favorites
