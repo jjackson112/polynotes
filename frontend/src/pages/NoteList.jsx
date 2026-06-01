@@ -32,7 +32,7 @@ function NoteList() {
     const [languages, setLanguages] = useState([]) 
 
     // read URL query from Header - search results page 
-    const [searchParams] = useSearchParams()
+    const [searchParams, setSearchParams] = useSearchParams()
     // value that controlls the search results
     const searchFromURL = searchParams.get("search") || "" 
 
@@ -179,7 +179,7 @@ function NoteList() {
                 <FilterNote 
                     languages={languages}
                     languageFilter={languageFilter}
-                    setLanguageFilter={setLanguageFilter}
+                    handleLanguageChange={handleLanguageChange}
                     tagFilter={tagFilter}
                     setTagFilter={setTagFilter}
                 />
