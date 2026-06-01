@@ -611,6 +611,10 @@ mark {
   cursor: pointer;
 }
 
+/* Footer Styles */
+footer h4 {
+  padding-top: 20px;
+}
 
 @media (max-width: 1200px) {
   .app-layout {

@@ -1,4 +1,5 @@
 import { Globe } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function LanguageCard({ language, count }) {
     const languageIcons = {
@@ -10,17 +11,19 @@ function LanguageCard({ language, count }) {
     }
 
     return (
-        <article className="language-category-card">
+        <Link to={`/notes?language=${language.toLowerCase()}`} className="language-category-link">
+            <article className="language-category-card">
 
-            <div className="language-icon">
-                {languageIcons[language.toLowerCase()] || <Globe size={42} />}
-            </div>
+                <div className="language-icon">
+                    {languageIcons[language.toLowerCase()] || <Globe size={42} />}
+                </div>
 
-            <h3 className="language-card-title">{language}</h3>
+                <h3 className="language-card-title">{language}</h3>
 
-            <p className="language-card-content">{count} notes</p>
+                <p className="language-card-content">{count} notes</p>
 
-        </article>
+            </article>
+        </Link>
     )
 }
 
