@@ -42,6 +42,10 @@ function NoteList() {
     // event handler when user chooses a language
     const handleLanguageChange = (e) => {
         const value = e.target.value
+        const params = new URLSearchParams(searchParams) // copy current params
+
+        if (value === "All")
+            params.delete("language")
     }
 
     // effects - fetch notes + favorites
