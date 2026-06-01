@@ -28,15 +28,16 @@ function NoteList() {
 
     const { favorites, toggleFavorite } = useFavorites()
 
-    const [languages, setLanguages] = useState([]) // fetch from backend
-    const [languageFilter, setLanguageFilter] = useState("All")
+    // fetch from backend
+    const [languages, setLanguages] = useState([]) 
 
     // read URL query from Header - search results page 
     const [searchParams] = useSearchParams()
     // value that controlls the search results
     const searchFromURL = searchParams.get("search") || "" 
 
-    const [tagFilter, setTagFilter] = useState("")
+    const [languageFilter, setLanguageFilter] = useSearchParams.get("language") || "All"
+    const [tagFilter, setTagFilter] = useSearchParams.get("tag") || ""
 
     // effects - fetch notes + favorites
     useEffect(() => {

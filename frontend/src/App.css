@@ -371,15 +371,10 @@ mark {
   border-radius: 10px;
 }
 
-.filter-div {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.filter-div label {
+.filter-section label {
   font-weight: 600;
   font-size: 0.95rem;
+  margin: 0px 5px;
 }
 
 .language-category, .tag-filter {
@@ -391,7 +386,7 @@ mark {
   font-size: 0.95rem;
   cursor: pointer;
 
-  background-color: white;
+  background-color: var(--surface);
 }
 
 /* New Note + Edit Note Page Styles */
@@ -722,5 +717,9 @@ footer h4 {
 
   .logout-btn {
     align-self: center;
+  }
+
+  .filter-section {
+    flex-direction: column;
   }
 }

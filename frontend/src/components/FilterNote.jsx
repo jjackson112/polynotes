@@ -7,8 +7,7 @@ function FilterNote({ languages, languageFilter, setLanguageFilter, tagFilter, s
 
     return (
         <div className="filter-section">
-
-            <div className="filter-div">
+            <div className="filter-language-div">
                 <Filter />
                 <label htmlFor="language">Filter Languages:</label>
                 <select 
@@ -21,7 +20,9 @@ function FilterNote({ languages, languageFilter, setLanguageFilter, tagFilter, s
                         <option key={language} value={language}>{language.charAt(0).toUpperCase() + language.slice(1)}</option>
                     ))}
                 </select>
-
+            </div>
+            
+            <div className="filter-tag-div">
                 <Hash />
                 <label>Tag(s):</label>
                 <input
@@ -31,9 +32,9 @@ function FilterNote({ languages, languageFilter, setLanguageFilter, tagFilter, s
                     onChange={(e) => setTagFilter(e.target.value)}
                     placeholder="tag search"
                 />
-            </div>   
+            </div>
+        </div>   
 
-        </div>
     )
 }
 
