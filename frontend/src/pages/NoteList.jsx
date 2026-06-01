@@ -39,6 +39,11 @@ function NoteList() {
     const [languageFilter, setLanguageFilter] = useSearchParams.get("language") || "All"
     const [tagFilter, setTagFilter] = useSearchParams.get("tag") || ""
 
+    // event handler when user chooses a language
+    const handleLanguageChange = (e) => {
+        const value = e.target.value
+    }
+
     // effects - fetch notes + favorites
     useEffect(() => {
         const fetchNotes = async () => {
