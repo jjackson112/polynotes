@@ -36,8 +36,8 @@ function NoteList() {
     // value that controlls the search results
     const searchFromURL = searchParams.get("search") || "" 
 
-    const [languageFilter, setLanguageFilter] = useSearchParams.get("language") || "All"
-    const [tagFilter, setTagFilter] = useSearchParams.get("tag") || ""
+    const [languageFilter, setLanguageFilter] = searchParams.get("language") || "All"
+    const [tagFilter, setTagFilter] = searchParams.get("tag") || ""
 
     const pageFromURL = Number(searchParams.get("page")) || 1
 
@@ -53,7 +53,7 @@ function NoteList() {
         }
 
         // reset pagination whenever a filter changes - UX 
-        params.set("page", 1)
+        params.set("page", pageNumber)
         setSearchParams(params)
     }
 

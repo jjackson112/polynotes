@@ -1,7 +1,16 @@
+import { useState, useEffect } from "react";
 import LanguageCard from "../components/LanguageCard";
 
 function LanguageList() {
     const languages = ["English", "Hawaiian", "Italian", "Mandarin", "Spanish"]
+    
+    const [count, setCount] = useState({}) // tuples, not array {}
+
+    useEffect(() => {
+        api.get("/language-counts")
+        .then(data => setCount(data))
+        .catch(err => console.error(err))
+    }, [])
 
     return (
         <div className="language-page">
@@ -11,7 +20,11 @@ function LanguageList() {
 
             <div className="language-list">
                 {languages.map((language) => (
-                    <LanguageCard key={language} language={language} count={0} />
+                    <LanguageCard 
+                        key={language} 
+                        language={language} 
+                        count={count[language.toLowerCase()] ||0}
+                    />
                 ))}
             </div>
         </div>
