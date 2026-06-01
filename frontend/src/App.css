@@ -184,7 +184,7 @@ h2 {
 }
 
 /* Login/Register Form Styles */
-.login-container {
+.login-container, .register-container {
   max-width: 450px;
   margin: 0 auto;
   min-height: 100vh;

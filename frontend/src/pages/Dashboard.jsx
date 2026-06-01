@@ -79,8 +79,6 @@ function Dashboard({ authMessage, sidebarOpen, setSidebarOpen }) {
                         </div>
                     </section>
                 </main>
-
-                <Footer />
             </div>
         </div>
     )

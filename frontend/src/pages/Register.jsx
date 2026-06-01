@@ -47,7 +47,7 @@ function Register() {
 }
 
     return (
-        <div className="container">
+        <div className="register-container">
             {error && <p>{error}</p>} 
         
             <form onSubmit={handleSubmit} className="register-form">
