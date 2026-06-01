@@ -102,9 +102,12 @@ def get_notes_list(current_user):
 def count_language_notes(current_user):
     counts = (
         db.session.query(Note.language, db.func.count(Note.id))
+        filter(Note.user_id === current_user.id)
+        .group_by(Note.language)
+        .all() 
     )
 
-    return jsonify ({}), 200
+    return jsonify ({language: count}), 200
 
 @notes_bp.route("/<int:note_id>", methods=["PATCH"])
 @token_required
