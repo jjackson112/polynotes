@@ -39,6 +39,8 @@ function NoteList() {
     const [languageFilter, setLanguageFilter] = useSearchParams.get("language") || "All"
     const [tagFilter, setTagFilter] = useSearchParams.get("tag") || ""
 
+    const pageFromURL = Number(searchParams.get("page")) || 1
+
     // event handler when user chooses a language
     const handleLanguageChange = (e) => {
         const value = e.target.value
@@ -64,7 +66,7 @@ function NoteList() {
 
                 // query parameters
                 const params = new URLSearchParams({
-                    page,
+                    page: pageFromURL,
                     per_page: 20
                 })
 
@@ -98,7 +100,7 @@ function NoteList() {
         }
 
         fetchNotes()
-    }, [page, languageFilter, searchFromURL, tagFilter]) // initialize state and load saved data
+    }, [pageFromURL, languageFilter, searchFromURL, tagFilter]) // initialize state and load saved data
 
     useEffect(() => {
         const fetchLanguages = async () => {
