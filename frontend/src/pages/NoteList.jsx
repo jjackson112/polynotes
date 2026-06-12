@@ -54,7 +54,7 @@ function NoteList() {
         }
 
         // reset pagination whenever a filter changes - UX 
-        params.set("page", pageNumber)
+        params.set("page", 1)
         setSearchParams(params)
     }
 
@@ -191,7 +191,6 @@ function NoteList() {
                     languageFilter={languageFilter}
                     handleLanguageChange={handleLanguageChange}
                     tagFilter={tagFilter}
-                    setTagFilter={setTagFilter}
                 />
 
                 {notes.length === 0 ? (
