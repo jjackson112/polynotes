@@ -216,7 +216,7 @@ function NoteList() {
                 )}
 
                 <div className="pagination">
-                    <button className="prev-btn" onClick={() => setPage(prev => prev - 1)} disabled={!hasPrev}>Previous</button>
+                    <button className="prev-btn" onClick={() => updatePage(pageFromURL - 1)} disabled={!hasPrev}>Previous</button>
                     
                     {[...Array(pages)].map((_, index) => {
                         const pageNumber = index +1 
@@ -224,14 +224,14 @@ function NoteList() {
                         return (
                             <button 
                                 key={pageNumber} 
-                                onClick={() => setPage(pageNumber)}
+                                onClick={() => updatePage(pageNumber)}
                             >
                                 {pageNumber}
                             </button>
                         )
                     })}
 
-                    <button className="next-btn" onClick={() => setPage(prev => prev + 1)} disabled={!hasNext}>Next</button>
+                    <button className="next-btn" onClick={() => updatePage(pageFromURL + 1)} disabled={!hasNext}>Next</button>
                 </div>
             </div>
         </>
