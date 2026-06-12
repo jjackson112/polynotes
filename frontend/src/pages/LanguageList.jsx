@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { api } from "../api";
+import { api } from "../api/api";
 import LanguageCard from "../components/LanguageCard";
 
 function LanguageList() {

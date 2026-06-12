@@ -33,11 +33,12 @@ function NoteList() {
 
     // read URL query from Header - search results page 
     const [searchParams, setSearchParams] = useSearchParams()
+    
     // value that controlls the search results
     const searchFromURL = searchParams.get("search") || "" 
 
-    const [languageFilter, setLanguageFilter] = searchParams.get("language") || "All"
-    const [tagFilter, setTagFilter] = searchParams.get("tag") || ""
+    const languageFilter = searchParams.get("language") || "All"
+    const tagFilter = searchParams.get("tag") || ""
 
     const pageFromURL = Number(searchParams.get("page")) || 1
 
