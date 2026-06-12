@@ -612,6 +612,11 @@ mark {
   cursor: pointer;
 }
 
+.language-category-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Footer Styles */
 footer h4 {
   padding-top: 20px;
