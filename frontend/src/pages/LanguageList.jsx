@@ -24,7 +24,7 @@ function LanguageList() {
                     <LanguageCard 
                         key={language} 
                         language={language} 
-                        count={count[language.toLowerCase()] ||0}
+                        count={count[language.toLowerCase()] || 0}
                     />
                 ))}
             </div>

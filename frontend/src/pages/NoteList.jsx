@@ -58,6 +58,13 @@ function NoteList() {
         setSearchParams(params)
     }
 
+    // handle pagination - pagefromURL is driven by URL
+    const updatePage = (newPage) => {
+        const params = new URLSearchParams(searchParams)
+        params.set("page", newPage)
+        setSearchParams(params)
+    }
+
     // effects - fetch notes + favorites
     useEffect(() => {
         const fetchNotes = async () => {
