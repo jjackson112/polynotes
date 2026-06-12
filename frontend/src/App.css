@@ -289,7 +289,7 @@ h2 {
   padding: 2rem;
 }
 
-.view-notes-list, .recent-notes, .fav-notes-list, .language-list {
+.view-notes-list, .recent-notes, .fav-notes-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.5rem;
@@ -596,6 +596,18 @@ mark {
 
 /* Language Page Styles */
 
+.language-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.language-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+  gap: 1.5rem;
+  justify-content: center;
+}
+
 .language-category-card {
   background-color: var(--card);
   min-height: 180px;
@@ -603,7 +615,6 @@ mark {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 300px;
   border-radius: 14px;
 }
 
