@@ -13,8 +13,6 @@ function NoteList() {
     const [notes, setNotes] = useState([])
     const [pages, setPages] = useState(0)
 
-    const [page, setPage] = useState(1)
-
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
