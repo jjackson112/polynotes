@@ -377,6 +377,12 @@ mark {
   margin: 0px 5px;
 }
 
+.filter-language-div, .filter-tag-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .language-category, .tag-filter {
   padding: 8px 12px;
 
