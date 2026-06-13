@@ -3,7 +3,7 @@ import { api } from "../api/api";
 import TagBubble from "../components/TagBubble";
 
 function TagList() {
-    const [tags, setTags] = useState({}) // tuples, not array {}
+    const [tags, setTags] = useState({}) // objects, not an array {}
 
     useEffect(() => {
         api.get("/notes/tag-counts")
