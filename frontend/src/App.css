@@ -434,7 +434,7 @@ mark {
 .form-metadata {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
   gap: 1rem;
 }
@@ -789,5 +789,13 @@ footer h4 {
 
   .filter-section {
     flex-direction: column;
+  }
+
+  .form-metadata {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
   }
 }
