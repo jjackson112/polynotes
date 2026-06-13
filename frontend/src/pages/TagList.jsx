@@ -9,15 +9,22 @@ function TagList() {
     const [error, setError] = useState("")
 
     useEffect(() => {
-        setLoading(true)
-        setError(null)
+        const fetchTags = async () => {
+            try {
+                setLoading(true)
+                setError("")
 
-        api.get("/notes/tag-counts")
-        .then(data => setTags(data))
-        .catch(err => console.error(err))
+                const data = await api.get("/notes/tag-counts")
+                setTags(data)
+            } catch {
+                console.error(err)
+                setError("Failed to get tags")
+            } finally {
+                setLoading(false)
+            }
+        }
         
-        setError("Failed to get tags")
-        setLoading(false)
+        fetchTags()
     }, [])
 
     // Object.entries(tags) converts tags into key-value pairs { grammar: 4, poetry: 2 } into [["grammar", 4], ["poetry", 2]] so .map() can occur
