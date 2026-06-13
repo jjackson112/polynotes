@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import { Link } from "react-router-dom";
+import { Hash } from "react-feather";
 
 
 // envision a tag cloud - how does frontend know how big the tag cloud gets for each tag?
@@ -14,5 +15,8 @@ const tagSize = (count) => {
 }
 
 return (
-    <Link to={`/notes?tag=${tag}`} className="tag-cloud" />
+    <Link to={`/notes?tag=${tag}`} className={`tag-bubble ${getTagSize(count)}`}>
+        <span><Hash/></span>
+        <p>{count}</p>
+    </Link>
 )
