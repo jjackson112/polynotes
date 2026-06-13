@@ -29,6 +29,15 @@ function LanguageList() {
         fetchLanguages()
     }, [])
 
+    // render guards for loading + errors
+    if (loading) { 
+        return <p>Loading languages...</p>
+    }
+
+    if (error) { 
+        return <p>{error}</p>
+    }
+
     return (
         <div className="language-page">
             <div className="language-title">
@@ -40,7 +49,7 @@ function LanguageList() {
                     <LanguageCard 
                         key={language} 
                         language={language} 
-                        count={count[language.toLowerCase()] || 0}
+                        count={counts[language.toLowerCase()] || 0}
                     />
                 ))}
             </div>

@@ -27,6 +27,15 @@ function TagList() {
         fetchTags()
     }, [])
 
+    // render guards for loading + errors
+    if (loading) { 
+        return <p>Loading tags...</p>
+    }
+
+    if (error) { 
+        return <p>{error}</p>
+    }
+
     // Object.entries(tags) converts tags into key-value pairs { grammar: 4, poetry: 2 } into [["grammar", 4], ["poetry", 2]] so .map() can occur
 
     return (
