@@ -18,7 +18,7 @@ function TagBubble({ tag, count = 0 }) {
             className={`tag-bubble ${tagSize(count)}`}
         >
             <span><Hash size="14" />{tag}</span>
-            <p>{count}</p>
+            <p>{count} {count === 1 ? "note" : "notes"}</p>
         </Link>
     )
 }
