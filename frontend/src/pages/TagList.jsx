@@ -23,7 +23,7 @@ function TagList() {
                 setLoading(false)
             }
         }
-        
+
         fetchTags()
     }, [])
 
@@ -36,13 +36,17 @@ function TagList() {
             </div>
 
             <div className="tag-cloud">
-                {Object.entries(tags).map(([tag, count]) => (
-                    <TagBubble
-                        key={tag}
-                        tag={tag}
-                        count={count}
-                    />
-                ))}
+                {Object.entries(tags).length === 0 ? (
+                    <p>No tags yet.</p>
+                ) : (
+                    Object.entries(tags).map(([tag, count]) => (
+                        <TagBubble
+                            key={tag}
+                            tag={tag}
+                            count={count}
+                        />
+                    ))
+                )} 
             </div>
         </div>
     )
