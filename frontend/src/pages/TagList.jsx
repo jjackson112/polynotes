@@ -20,13 +20,13 @@ function TagList() {
             </div>
 
             <div className="tag-cloud">
-                {Object.entries(tags).map(([tag, count]) => {
+                {Object.entries(tags).map(([tag, count]) => (
                     <TagBubble
                         key={tag}
                         tag={tag}
                         count={count}
                     />
-                })}
+                ))}
             </div>
         </div>
     )
