@@ -14,7 +14,7 @@ function TagBubble({ tag, count = 0 }) {
 
     return (
         <Link 
-            to={`/notes?tag=${tag}&page=1`} 
+            to={`/notes?tag=${encodeURIComponent(tag)}&page=1`} 
             className={`tag-bubble ${tagSize(count)}`}
         >
             <span><Hash size="14" />{tag}</span>
