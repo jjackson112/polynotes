@@ -14,7 +14,7 @@ import ViewNote from "./pages/ViewNote";
 import EditNote from "./pages/EditNote";
 import FavNoteList from './pages/FavNoteList';
 import LanguageList from "./pages/LanguageList";
-// import TagList from "./pages/TagList";
+import TagList from "./pages/TagList";
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -71,6 +71,7 @@ function App() {
           <Route path="/notes/:id/edit" element={<EditNote />}/>
           <Route path="/favorites" element={<FavNoteList />}/>
           <Route path="/languages" element={<LanguageList />}/>
+          <Route path="/tags" element={<TagList />}/>
         </Route>
 
       </Routes>
