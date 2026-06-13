@@ -36,8 +36,41 @@ def create_note(current_user):
 # Flask reads from top to bottom - GET language before note has an id
 @notes_bp.route("/languages", methods=["GET"])
 @token_required
-def get_language():
+def get_language(current_user):
     return jsonify(ALLOWED_LANGUAGES), 200
+
+# URL driven filtering - cleaner for LanguageList to render logic
+@notes_bp.route("/language-counts", methods=["GET"]) 
+@token_required
+def count_language_notes(current_user):
+    counts = (
+        db.session.query(Note.language, db.func.count(Note.id))
+        .filter(Note.user_id == current_user.id)
+        .group_by(Note.language)
+        .all() 
+    )
+
+    return jsonify({language: count for language, count in counts}), 200
+
+# GET tags
+@notes_bp.route("/tags", methods=["GET"])
+@token_required
+def get_tag(current_user):
+    return jsonify({"message": "Tag page successful"}), 200
+
+# count tags for tag clouds
+@notes_bp.route("/tag-counts", methods=["GET"])
+@token_required
+def count_tags(current_user):
+    counts = (
+        db.session.query(Tag.name, db.func.count(Note.id))
+        .join(Note.tags) # connect tag to note 
+        .filter(Note.user_id == current_user.id)
+        .group_by(Tag.name)
+        .all()
+    )
+
+    return jsonify({tag: count for tag, count in counts}), 200
 
 # single-resource endpoint - simplifies frontend logic + prevents unnecessary large queries
 @notes_bp.route("/<int:note_id>", methods=["GET"])
@@ -95,19 +128,6 @@ def get_notes_list(current_user):
         "has_next": pagination.has_next,
         "has_prev": pagination.has_prev
     }), 200
-
-# URL driven filtering - cleaner for LanguageList to render logic
-@notes_bp.route("/language-counts", method=["GET"]) 
-@token_required
-def count_language_notes():
-    counts = (
-        db.session.query(Note.language, db.func.count(Note.id))
-        filter(Note.user_id === current_user.id)
-        .group_by(Note.language)
-        .all() 
-    )
-
-    return jsonify ({language: count for language, count in counts}), 200
 
 @notes_bp.route("/<int:note_id>", methods=["PATCH"])
 @token_required
