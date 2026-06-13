@@ -5,10 +5,19 @@ import TagBubble from "../components/TagBubble";
 function TagList() {
     const [tags, setTags] = useState({}) // objects, not an array {}
 
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState("")
+
     useEffect(() => {
+        setLoading(true)
+        setError(null)
+
         api.get("/notes/tag-counts")
         .then(data => setTags(data))
         .catch(err => console.error(err))
+        
+        setError("Failed to get tags")
+        setLoading(false)
     }, [])
 
     // Object.entries(tags) converts tags into key-value pairs { grammar: 4, poetry: 2 } into [["grammar", 4], ["poetry", 2]] so .map() can occur
