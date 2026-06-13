@@ -5,12 +5,28 @@ import LanguageCard from "../components/LanguageCard";
 function LanguageList() {
     const languages = ["English", "Hawaiian", "Italian", "Mandarin", "Spanish"]
     
-    const [count, setCount] = useState({}) // tuples, not array {}
+    const [counts, setCounts] = useState({}) // tuples, not array {}
+
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState("")
 
     useEffect(() => {
-        api.get("/notes/language-counts")
-        .then(data => setCount(data))
-        .catch(err => console.error(err))
+        const fetchLanguages = async () => {
+            try {
+                setLoading(true)
+                setError("")
+
+                const data = await api.get("/notes/language-counts")
+                setCounts(data)
+            } catch (err) {
+                console.log(err)
+                setError("Failed to fetch languages.")
+            } finally {
+                setLoading(false)
+            }
+        }
+        
+        fetchLanguages()
     }, [])
 
     return (
