@@ -3,7 +3,9 @@ import { HighlightSearchText } from "../../utils/highlightSearchText";
 
 function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searchTerm }) {
     const created_timestamp = new Date(note.created_at).toLocaleDateString()
-    const updated_timestamp = new Date(note.updated_at).toLocaleDateString()
+    const updated_timestamp = note.updated_at 
+        ? new Date(note.updated_at).toLocaleDateString() 
+        : "Never"
     const content = note.content || ""
 
     return (
