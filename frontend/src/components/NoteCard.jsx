@@ -2,6 +2,8 @@ import { Heart } from "react-feather";
 import { HighlightSearchText } from "../../utils/highlightSearchText";
 
 function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searchTerm }) {
+    const created_timestamp = new Date(note.created_at).toLocaleDateString()
+    const updated_timestamp = new Date(note.updated_at).toLocaleDateString()
     const content = note.content || ""
 
     return (
@@ -23,6 +25,11 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searc
                 {HighlightSearchText(content.length > 80 
                     ? content.slice(0, 80) + "..."
                     : content, searchTerm)}
+            </p>
+
+            <p className="note-card-timestamp">
+                <span>Created: {created_timestamp}</span><br />
+                <span>Updated: {updated_timestamp}</span>
             </p>
 
             {/* Added Edit + Delete Buttons */}

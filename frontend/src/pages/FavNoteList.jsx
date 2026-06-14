@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { api } from "../api/api";
-import NoteCard from "../components/NoteCard";
 import { useFavorites } from "../context/FavoritesContext";
 import { useNavigate } from "react-router-dom";
+import NoteCard from "../components/NoteCard";
 
 // GET notes, GET favorite ids list + filter?
 // FavoriteContext provides ids, not fetching of favorite notes
