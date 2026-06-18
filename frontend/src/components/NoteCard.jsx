@@ -37,7 +37,7 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searc
                 )}
             </p>
 
-            <p className="language-banner">{note.language}</p>
+            <p className="language-banner">{note.language.charAt(0).toUpperCase() + language.slice(1)}</p>
             <p className="tag-banner">#{note.tags}</p>
 
             {/* Added Edit + Delete Buttons */}
