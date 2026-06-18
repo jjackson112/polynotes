@@ -3,7 +3,7 @@
 
 import { Filter, Hash } from "react-feather";
 
-function FilterNote({ languages, languageFilter, tagFilter, handleLanguageChange }) {
+function FilterNote({ languages, languageFilter, tagFilter, handleLanguageChange, handleTagChange }) {
 
     return (
         <div className="filter-section">
@@ -31,7 +31,7 @@ function FilterNote({ languages, languageFilter, tagFilter, handleLanguageChange
                     type="text"
                     className="tag-filter"
                     value={tagFilter}
-                    onChange={(e) => tagFilter(e.target.value)}
+                    onChange={handleTagChange}
                     placeholder="tag search"
                 />
             </div>

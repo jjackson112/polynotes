@@ -204,6 +204,7 @@ function NoteList() {
                     languageFilter={languageFilter}
                     handleLanguageChange={handleLanguageChange}
                     tagFilter={tagFilter}
+                    handleTagChange={handleTagChange}
                 />
 
                 {notes.length === 0 ? (
