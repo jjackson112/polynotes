@@ -21,7 +21,7 @@ function NewNote() {
     const [tag, setTags] = useState("")
     const tagList = tag
         .split(",")
-        .map(tag => tag.trim().LowerCase())
+        .map(tag => tag.trim().toLowerCase())
         .filter(Boolean) // remove empty strings - same as (tag=> tag !== "") or (tag => tag.length > 0)
 
     const handleSave = async (e) => {
@@ -44,7 +44,7 @@ function NewNote() {
             // navigate after a short delay - 600 is a custom status code
 
             // console.log("TOKEN:", localStorage.getItem("token"));
-            console.log("REQUEST PAYLOAD:", { title, content, language: languageCategory, tag });
+            console.log("REQUEST PAYLOAD:", { title, content, language: languageCategory, tags: tagList });
             console.log("RESPONSE:", res);
 
         } catch (err) {
