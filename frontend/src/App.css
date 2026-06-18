@@ -351,6 +351,11 @@ h2 {
   border-radius: 8px;
 }
 
+.note-card-timestamp {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
 mark {
   background-color: var(--border);
   padding: 3px;
