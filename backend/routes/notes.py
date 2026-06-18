@@ -111,7 +111,7 @@ def get_notes_list(current_user):
     )
 
     # add ordering to pagination order
-    query = query.order_by(Note.created_at.desc())
+    query = query.order_by(Note.updated_at.desc())
 
     # Flask has built-in paginate() to replace all() 
     # return pagination object - the container - that has the data - the items attribute

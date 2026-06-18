@@ -3,7 +3,7 @@
 
 import { Filter, Hash } from "react-feather";
 
-function FilterNote({ languages, languageFilter, tagFilter, handleLanguageChange }) {
+function FilterNote({ languages, languageFilter, tagFilter, handleLanguageChange, setTagFilter }) {
 
     return (
         <div className="filter-section">

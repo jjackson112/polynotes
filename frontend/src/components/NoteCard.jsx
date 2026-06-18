@@ -30,8 +30,14 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searc
             </p>
 
             <p className="note-card-timestamp">
-                <span>Created: {created_timestamp}</span><br />
-                <span>Updated: {updated_timestamp}</span>
+                <span>Created: {created_timestamp}</span>
+
+                {note.updated_at && (
+                    <>
+                        <br />
+                        <span>Updated: {updated_timestamp}</span>
+                    </>
+                )}
             </p>
 
             {/* Added Edit + Delete Buttons */}
