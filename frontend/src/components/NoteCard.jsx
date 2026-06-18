@@ -7,6 +7,8 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searc
         : "Never"
     const content = note.content || ""
 
+    const showLanguage = note.language.charAt(0).toUpperCase() + note.language.slice(1)
+
     return (
         <article className="note-card"  onClick={() => onView(note.id)}>
             <div className="note-card-header">
@@ -37,8 +39,8 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searc
                 )}
             </p>
 
-            <p className="language-banner">{note.language.charAt(0).toUpperCase() + language.slice(1)}</p>
-            <p className="tag-banner">#{note.tags}</p>
+            <p className="language-banner">{showLanguage}</p>
+            <p className="tag-banner">{note.tags?.map(tag => `#${tag}`).join(" ")}</p>
 
             {/* Added Edit + Delete Buttons */}
             <div className="note-card-actions">
