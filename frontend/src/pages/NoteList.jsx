@@ -59,16 +59,16 @@ function NoteList() {
     // event handler when user types into tag input
     const handleTagChange = (e) => {
         const tagValue = e.target.value
-        const tagParams = new URLSearchParams(prev)
+        const tagParams = new URLSearchParams(searchParams)
 
         if (tagValue.trim()) {
-            tagParams.set("tag", value)
+            tagParams.set("tag", tagValue)
         } else {
             tagParams.delete("tag")
         }
 
-        params.set("page", 1)
-        return tagParams
+        tagParams.set("page", 1)
+        setSearchParams(tagParams) // update the URL
     }
 
     // handle pagination - pagefromURL is driven by URL

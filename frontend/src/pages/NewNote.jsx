@@ -18,7 +18,10 @@ function NewNote() {
     // const languages = ["All", "English", "Hawaiian", "Italian", "Mandarin", "Spanish"] note_validation
     const [languageCategory, setLanguageCategory] = useState("All")
 
-    const [tag, setTag] = useState("")
+    const [tag, setTags] = useState("")
+    const tagList = tag
+        .split(",")
+        .map(tag => tag.trim().lowerCase())
 
     const handleSave = async (e) => {
         e.preventDefault()
@@ -27,13 +30,13 @@ function NewNote() {
         setSuccess("")
 
         try {
-            const res = await api.post("/notes", { title, content, language: languageCategory === "All" ? "english" : languageCategory, tag });
+            const res = await api.post("/notes", { title, content, language: languageCategory === "All" ? "english" : languageCategory, tags });
             // console.log("Saved note", res)
 
             setTitle("")
             setContent("")
             setLanguageCategory("All")
-            setTag("")
+            setTags("")
 
             setSuccess("Note saved successfully.")
             navigate("/notes") // fake refresh but actually refetches data for dashboard
@@ -91,7 +94,7 @@ function NewNote() {
                                 type="text"
                                 placeholder="grammar, verb, vocab"
                                 value={tag}
-                                onChange={(e) => setTag(e.target.value)}
+                                onChange={(e) => setTags(e.target.value)}
                             />
                         </div>
                     </div>
