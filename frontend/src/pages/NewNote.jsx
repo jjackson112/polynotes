@@ -22,6 +22,7 @@ function NewNote() {
     const tagList = tag
         .split(",")
         .map(tag => tag.trim().lowerCase())
+        .filter(Boolean) // remove empty strings - same as (tag=> tag !== "") or (tag => tag.length > 0)
 
     const handleSave = async (e) => {
         e.preventDefault()
