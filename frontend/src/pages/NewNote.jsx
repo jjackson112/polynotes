@@ -21,7 +21,7 @@ function NewNote() {
     const [tag, setTags] = useState("")
     const tagList = tag
         .split(",")
-        .map(tag => tag.trim().lowerCase())
+        .map(tag => tag.trim().LowerCase())
         .filter(Boolean) // remove empty strings - same as (tag=> tag !== "") or (tag => tag.length > 0)
 
     const handleSave = async (e) => {
@@ -31,7 +31,7 @@ function NewNote() {
         setSuccess("")
 
         try {
-            const res = await api.post("/notes", { title, content, language: languageCategory === "All" ? "english" : languageCategory, tags });
+            const res = await api.post("/notes", { title, content, language: languageCategory === "All" ? "english" : languageCategory, tags: tagList });
             // console.log("Saved note", res)
 
             setTitle("")
