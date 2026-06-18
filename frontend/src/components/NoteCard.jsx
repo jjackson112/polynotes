@@ -33,7 +33,6 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searc
             <p className="note-card-timestamp">
                 {note.updated_at && (
                     <>
-                        <br />
                         <span>Updated: {updated_timestamp}</span>
                     </>
                 )}

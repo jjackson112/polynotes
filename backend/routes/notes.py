@@ -159,6 +159,7 @@ def delete_note(current_user, note_id):
 
     return "", 204 # or return "", 204 - request succeeded but no content returned
 
+# id lookup only - doesn't handle pagination
 @notes_bp.route("/favorites", methods=["GET"])
 @token_required
 def get_favorites(current_user):
@@ -166,6 +167,17 @@ def get_favorites(current_user):
     note_ids = [f.note_id for f in favorites]
 
     return jsonify(note_ids)
+
+# cleaner to add a separate route
+@notes_bp.route("/favorites/notes", methods=["GET"])
+@token_required
+def get_favorite_notes(current_user):
+    page = request.args.get("page", 1, type=int)
+    per_page = request.args.get("per_page", 12, type=int)
+
+    pagination = (
+        Note.query
+    )
 
 @notes_bp.route("/favorites/<int:note_id>", methods=["POST"]) 
 @token_required
