@@ -2,9 +2,8 @@ import { Heart } from "react-feather";
 import { HighlightSearchText } from "../../utils/highlightSearchText";
 
 function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searchTerm }) {
-    const created_timestamp = new Date(note.created_at).toLocaleDateString()
     const updated_timestamp = note.updated_at 
-        ? new Date(note.updated_at).toLocaleDateString() 
+        ? new Date(note.updated_at).toLocaleDateString() // created timestamp
         : "Never"
     const content = note.content || ""
 
@@ -30,8 +29,6 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searc
             </p>
 
             <p className="note-card-timestamp">
-                <span>Created: {created_timestamp}</span>
-
                 {note.updated_at && (
                     <>
                         <br />
@@ -39,6 +36,9 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searc
                     </>
                 )}
             </p>
+
+            <p className="language-banner">{note.language}</p>
+            <p className="tag-banner">#{note.tags}</p>
 
             {/* Added Edit + Delete Buttons */}
             <div className="note-card-actions">
