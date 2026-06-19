@@ -59,7 +59,7 @@ function Login() {
 
     return (
         <>
-            <div className="branding">
+            <div className="branding-div">
                 <h1 className="branding-title">Polynotes</h1>
                 <h2 className="branding-tagline">Organize your language-learning notes.</h2>
             </div>
