@@ -4,7 +4,7 @@ import AuthLayout from "./components/AuthLayout";
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FavoriteProvider } from './context/FavoritesContext';
-import { useAuth } from "./context/AuthContext";
+import { useAuth } from "./hooks/useAuth";
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProtectedRoute from './components/ProtectedRoute';

@@ -19,16 +19,13 @@ function FavNoteList() {
 
     // read URL query from Header - search results page 
     const [searchParams, setSearchParams] = useSearchParams()
-    
-    // value that controlls the search results
-    const searchFromURL = searchParams.get("search") || "" 
 
     const pageFromURL = Number(searchParams.get("page")) || 1
     
     useEffect(() => {
         const fetchFavoriteNotes = async () => {
             try {
-                const res = await api.get(`/notes/favorites/notes?page=${pageFromURL}&per_page=12`)
+                const res = await api.get(`/notes/favorites/notes?page=${pageFromURL}&per_page=20`)
                 setNotes(res.items || []) 
                 setPages(res.pages || 0)
                 setHasNext(Boolean(res.has_next))
