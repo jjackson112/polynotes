@@ -9,15 +9,13 @@ import NoteCard from "../components/NoteCard";
 
 function FavNoteList() {
     const [notes, setNotes] = useState([])
-    const {favorites, toggleFavorite } = useFavorites()
+    const { toggleFavorite } = useFavorites()
 
     const navigate = useNavigate()
 
     const [pages, setPages] = useState(0)
     const [hasPrev, setHasPrev] = useState(false)
     const [hasNext, setHasNext] = useState(false) 
-
-    const favoriteNotes = notes.filter(note => favorites.includes(note.id))
 
     // read URL query from Header - search results page 
     const [searchParams, setSearchParams] = useSearchParams()
@@ -28,16 +26,19 @@ function FavNoteList() {
     const pageFromURL = Number(searchParams.get("page")) || 1
     
     useEffect(() => {
-        const fetchNotes = async () => {
+        const fetchFavoriteNotes = async () => {
             try {
-                const res = await api.get("/notes")
+                const res = await api.get(`/notes/favorites/notes?page=${pageFromURL}&per_page=12`)
                 setNotes(res.items || []) 
+                setPages(res.pages || 0)
+                setHasNext(Boolean(res.has_next))
+                setHasPrev(Boolean(res.has_prev))
             } catch (err) {
                 console.error("Failed to load notes", err)
             }
         }
-        fetchNotes()
-    }, [])
+        fetchFavoriteNotes()
+    }, [pageFromURL])
 
     // handle pagination - pagefromURL is driven by URL
     const updatePage = (newPage) => {
@@ -55,11 +56,12 @@ function FavNoteList() {
         <div className="fav-list-header">
             <h2 className="fav-notes-title">Favorite Notes</h2>
         </div>
+        
         <div className="fav-notes-list">
-            {favoriteNotes.length === 0 ? (
+            {notes.length === 0 ? (
                 <p>No favorite notes yet.</p>
             ) : (
-                favoriteNotes.map(note => (
+                notes.map(note => (
                     <NoteCard
                         key={note.id}
                         note={{

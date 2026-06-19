@@ -72,6 +72,65 @@ def count_tags(current_user):
 
     return jsonify({tag: count for tag, count in counts}), 200
 
+# id lookup only - doesn't handle pagination
+@notes_bp.route("/favorites", methods=["GET"])
+@token_required
+def get_favorites(current_user):
+    favorites = Favorite.query.filter_by(user_id=current_user.id).all()
+    note_ids = [f.note_id for f in favorites]
+
+    return jsonify(note_ids)
+
+# cleaner to add a separate route
+@notes_bp.route("/favorites/notes", methods=["GET"])
+@token_required
+def get_favorite_notes(current_user):
+    page = request.args.get("page", 1, type=int)
+    per_page = request.args.get("per_page", 12, type=int)
+
+    pagination = (
+        Note.query
+        .join(Favorite, Favorite.note_id == Note.id)
+        .filter(Favorite.user_id == current_user.id)
+        .filter(Note.user_id == current_user.id)
+        .order_by(Note.updated_at.desc())
+        .paginate(page=page, per_page=per_page, error_out=False) 
+    )
+
+    return jsonify({
+        "page": pagination.page,
+        "per_page": pagination.per_page,
+        "total": pagination.total,
+        "pages": pagination.pages,
+        "items": [note.to_dict() for note in pagination.items],
+        "has_next": pagination.has_next,
+        "has_prev": pagination.has_prev
+    }), 200
+
+@notes_bp.route("/favorites/<int:note_id>", methods=["POST"]) 
+@token_required
+def toggle_favorite(current_user, note_id):
+    note = Note.query.filter_by(
+        id=note_id,
+        user_id=current_user.id
+    ).first_or_404()
+
+    favorite = Favorite.query.filter_by(
+        user_id=current_user.id,
+        note_id=note_id
+    ).first()
+
+    if favorite:
+        db.session.delete(favorite)
+        db.session.commit()
+        return jsonify({"favorited": False}), 200
+    
+    new_fav = Favorite(user_id=current_user.id, note_id=note_id)
+    db.session.add(new_fav)
+    db.session.commit()
+
+    return jsonify({"favorited": True}), 200
+
 # single-resource endpoint - simplifies frontend logic + prevents unnecessary large queries
 @notes_bp.route("/<int:note_id>", methods=["GET"])
 @token_required
@@ -158,61 +217,3 @@ def delete_note(current_user, note_id):
     db.session.commit()
 
     return "", 204 # or return "", 204 - request succeeded but no content returned
-
-# id lookup only - doesn't handle pagination
-@notes_bp.route("/favorites", methods=["GET"])
-@token_required
-def get_favorites(current_user):
-    favorites = Favorite.query.filter_by(user_id=current_user.id).all()
-    note_ids = [f.note_id for f in favorites]
-
-    return jsonify(note_ids)
-
-# cleaner to add a separate route
-@notes_bp.route("/favorites/notes", methods=["GET"])
-@token_required
-def get_favorite_notes(current_user):
-    page = request.args.get("page", 1, type=int)
-    per_page = request.args.get("per_page", 12, type=int)
-
-    pagination = (
-        Note.query
-        .join(Favorite, Favorite.note_id == Note.id)
-        .filter(Favorite.user_id == current_user.id)
-        .order_by(Note.updated_at.desc())
-        .paginate(page=page, per_page=per_page, error_out=False) 
-    )
-
-    return jsonify({
-        "page": pagination.page,
-        "per_page": pagination.per_page,
-        "total": pagination.total,
-        "pages": pagination.pages,
-        "items": [note.to_dict() for note in pagination.items],
-        "has_next": pagination.has_next,
-        "has_prev": pagination.has_prev
-    }), 200
-
-@notes_bp.route("/favorites/<int:note_id>", methods=["POST"]) 
-@token_required
-def toggle_favorite(current_user, note_id):
-    note = Note.query.filter_by(
-        id=note_id,
-        user_id=current_user.id
-    ).first_or_404()
-
-    favorite = Favorite.query.filter_by(
-        user_id=current_user.id,
-        note_id=note_id
-    ).first()
-
-    if favorite:
-        db.session.delete(favorite)
-        db.session.commit()
-        return jsonify({"favorited": False}), 200
-    
-    new_fav = Favorite(user_id=current_user.id, note_id=note_id)
-    db.session.add(new_fav)
-    db.session.commit()
-
-    return jsonify({"favorited": True}), 200
