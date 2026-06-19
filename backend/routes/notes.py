@@ -177,6 +177,8 @@ def get_favorite_notes(current_user):
 
     pagination = (
         Note.query
+        .join(Favorite, Favorite.note_id == Note.id)
+        .filter(Favorite.user_id == current_user.id)
         .order_by(Note.updated_at.desc())
         .paginate(page=page, per_page=per_page, error_out=False) 
     )
