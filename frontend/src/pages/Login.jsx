@@ -58,32 +58,39 @@ function Login() {
     }
 
     return (
-        <div className="login-container">
-            {error && <p>{error}</p>}
+        <>
+            <div className="branding">
+                <h1 className="branding-title">Polynotes</h1>
+                <h2 className="branding-tagline">Organize your language-learning notes.</h2>
+            </div>
 
-            <form onSubmit={handleSubmit} className="login-form">
-                <p>Login to continue</p>
-                
-                <input
-                    className="login-input"
-                    type="text"
-                    name="identifier"
-                    value={form.identifier} // controlled input by React not the browser
-                    placeholder="username or email"
-                    onChange={handleChange}
-                />
-                <input
-                    className="login-input"
-                    type="password"
-                    name="password"
-                    value={form.password} // controlled input always matches what's in the input + re-renders properly
-                    placeholder="password"
-                    onChange={handleChange}
-                />
-                <button type="submit" className="login-button">Login</button>
-                <button type="button" className="register-button" onClick={() => navigate("/register")}>Register</button>
-            </form>
-        </div>
+            <div className="login-container">
+                {error && <p>{error}</p>}
+
+                <form onSubmit={handleSubmit} className="login-form">
+                    <p>Login to continue</p>
+
+                    <input
+                        className="login-input"
+                        type="text"
+                        name="identifier"
+                        value={form.identifier} // controlled input by React not the browser
+                        placeholder="username or email"
+                        onChange={handleChange}
+                    />
+                    <input
+                        className="login-input"
+                        type="password"
+                        name="password"
+                        value={form.password} // controlled input always matches what's in the input + re-renders properly
+                        placeholder="password"
+                        onChange={handleChange}
+                    />
+                    <button type="submit" className="login-button">Login</button>
+                    <button type="button" className="register-button" onClick={() => navigate("/register")}>Register</button>
+                </form>
+            </div>
+        </>
     )
 }
 

@@ -74,6 +74,20 @@ input:focus, select:focus, textarea:focus {
   cursor: pointer;
 }
 
+.branding-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+.branding-tagline {
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
 /* Header Styles */
 
 .header-container {

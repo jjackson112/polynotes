@@ -47,42 +47,49 @@ function Register() {
 }
 
     return (
-        <div className="register-container">
-            {error && <p>{error}</p>} 
+        <>
+            <div className="branding">
+                <h1 className="branding-title">Polynotes</h1>
+                <h2 className="branding-tagline">Organize your language-learning notes.</h2>
+            </div>
+
+            <div className="register-container">
+                {error && <p>{error}</p>} 
         
-            <form onSubmit={handleSubmit} className="register-form">
-            
-                <input
-                    className="register-input"
-                    required
-                    name="username"
-                    value={registerForm.username}
-                    type="text"
-                    placeholder="username"
-                    onChange={(e) => setRegisterForm({...registerForm, username: e.target.value})}
-                />
-                <input
-                    className="register-input"
-                    required
-                    name="email"
-                    value={registerForm.email}
-                    type="email"
-                    placeholder="email"
-                    onChange={(e) => setRegisterForm({...registerForm, email: e.target.value})}
-                />
-                <input
-                    className="register-input"
-                    required
-                    name="password"
-                    value={registerForm.password}
-                    type="password"
-                    placeholder="password"
-                    onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
-                />
-                <button type="submit" className="register-button" disabled={loading}>{loading ? "Registering" : "Register"}</button>
-                <Link to="/" className="already-registered-message">Already registered? Log in here.</Link>
-            </form>
-        </div>
+                <form onSubmit={handleSubmit} className="register-form">
+
+                    <input
+                        className="register-input"
+                        required
+                        name="username"
+                        value={registerForm.username}
+                        type="text"
+                        placeholder="username"
+                        onChange={(e) => setRegisterForm({...registerForm, username: e.target.value})}
+                    />
+                    <input
+                        className="register-input"
+                        required
+                        name="email"
+                        value={registerForm.email}
+                        type="email"
+                        placeholder="email"
+                        onChange={(e) => setRegisterForm({...registerForm, email: e.target.value})}
+                    />
+                    <input
+                        className="register-input"
+                        required
+                        name="password"
+                        value={registerForm.password}
+                        type="password"
+                        placeholder="password"
+                        onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
+                    />
+                    <button type="submit" className="register-button" disabled={loading}>{loading ? "Registering" : "Register"}</button>
+                    <Link to="/" className="already-registered-message">Already registered? Log in here.</Link>
+                </form>
+            </div>
+        </>
     )
 }
 
