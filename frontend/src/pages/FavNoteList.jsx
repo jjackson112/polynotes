@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../api/api";
 import { useFavorites } from "../context/FavoritesContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import NoteCard from "../components/NoteCard";
 
 // GET notes, GET favorite ids list + filter?
@@ -12,6 +12,20 @@ function FavNoteList() {
     const {favorites, toggleFavorite } = useFavorites()
 
     const navigate = useNavigate()
+
+    const [pages, setPages] = useState(0)
+    const [hasPrev, setHasPrev] = useState(false)
+    const [hasNext, setHasNext] = useState(false) 
+
+    const favoriteNotes = notes.filter(note => favorites.includes(note.id))
+
+    // read URL query from Header - search results page 
+    const [searchParams, setSearchParams] = useSearchParams()
+    
+    // value that controlls the search results
+    const searchFromURL = searchParams.get("search") || "" 
+
+    const pageFromURL = Number(searchParams.get("page")) || 1
     
     useEffect(() => {
         const fetchNotes = async () => {
@@ -25,7 +39,12 @@ function FavNoteList() {
         fetchNotes()
     }, [])
 
-    const favoriteNotes = notes.filter(note => favorites.includes(note.id))
+    // handle pagination - pagefromURL is driven by URL
+    const updatePage = (newPage) => {
+        const params = new URLSearchParams(searchParams)
+        params.set("page", newPage)
+        setSearchParams(params)
+    }
 
     const handleView = (id) => {
         navigate(`/notes/${id}`)
@@ -53,6 +72,23 @@ function FavNoteList() {
                     ))
             )}
         </div>
+
+            <div className="pagination">
+                <button className="prev-btn" onClick={() => updatePage(pageFromURL - 1)} disabled={!hasPrev}>Previous</button>
+
+                    {[...Array(pages)].map((_, index) => {
+                        const pageNumber = index +1 
+                        return (
+                            <button 
+                                key={pageNumber} 
+                                onClick={() => updatePage(pageNumber)}
+                            >
+                                {pageNumber}
+                            </button>
+                        )
+                    })}
+                <button className="next-btn" onClick={() => updatePage(pageFromURL + 1)} disabled={!hasNext}>Next</button>
+            </div>
         </>
     )
 }
