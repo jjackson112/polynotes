@@ -177,7 +177,19 @@ def get_favorite_notes(current_user):
 
     pagination = (
         Note.query
+        .order_by(Note.updated_at.desc())
+        .paginate(page=page, per_page=per_page, error_out=False) 
     )
+
+    return jsonify({
+        "page": pagination.page,
+        "per_page": pagination.per_page,
+        "total": pagination.total,
+        "pages": pagination.pages,
+        "items": [note.to_dict() for note in pagination.items],
+        "has_next": pagination.has_next,
+        "has_prev": pagination.has_prev
+    }), 200
 
 @notes_bp.route("/favorites/<int:note_id>", methods=["POST"]) 
 @token_required
