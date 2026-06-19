@@ -86,7 +86,7 @@ def get_favorites(current_user):
 @token_required
 def get_favorite_notes(current_user):
     page = request.args.get("page", 1, type=int)
-    per_page = request.args.get("per_page", 12, type=int)
+    per_page = request.args.get("per_page", 20, type=int)
 
     pagination = (
         Note.query
