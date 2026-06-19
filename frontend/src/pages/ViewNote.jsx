@@ -5,13 +5,18 @@
 
 import { useEffect, useState } from "react";
 import { api } from "../api/api";
-import { useParams } from "react-router-dom";
-import Header from "../components/Header";
+import { useNavigate, useParams } from "react-router-dom";
+import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
+import { Edit2, Trash2 } from "react-feather";
 
 function ViewNote() {
     const { id } = useParams() // use id to fetch the note
 
     const [note, setNote] = useState(null)
+
+    const navigate = useNavigate()
+
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
 
     useEffect(() => {
         const fetchNote = async () => {
@@ -36,12 +41,18 @@ function ViewNote() {
 
     return (
         <>
-            <main className="view-note-container">
-                <h1 className="view-note-title">{note.title}</h1>
-                <p className="view-note-content">{note.content}</p>
-                <div className="view-note-meta">
-                    <p className="note-chip">Language: {note.language}</p>
-                    <p className="note-chip">Tag(s): {(note.tags.join(", "))}</p>
+            <main>
+                <div className="view-note-container">
+                    <div className="view-note-actions">
+                        <button onClick={() => navigate(`/notes/${note.id}/edit`)}><Edit2 size={16} />Edit</button>
+                        <button onClick={() => setShowDeleteModal(true)}><Trash2 size={16} />Delete</button>
+                    </div>
+                    <h1 className="view-note-title">{note.title}</h1>
+                    <p className="view-note-content">{note.content}</p>
+                    <div className="view-note-meta">
+                        <p className="note-chip">Language: {note.language}</p>
+                        <p className="note-chip">Tag(s): {(note.tags.join(", "))}</p>
+                    </div>
                 </div>
             </main>
         </>

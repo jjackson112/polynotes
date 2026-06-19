@@ -1,5 +1,6 @@
 import { Heart } from "react-feather";
 import { HighlightSearchText } from "../../utils/highlightSearchText";
+import { Edit2, Trash2 } from "react-feather";
 
 function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searchTerm }) {
     const updated_timestamp = note.updated_at 
@@ -48,14 +49,14 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searc
                         onClick={(e) => {
                             e.stopPropagation() // stops the parent handler from firing too - no more seeing the ViewNote when user clicks edit button on NoteList
                             onEdit(note.id)
-                        }}>Edit</button>
+                        }}><Edit2 size={16} />Edit</button>
                 )}
                 {onRequestDelete && (
                     <button 
                         onClick={(e) => {
                             e.stopPropagation()
                             onRequestDelete(note)
-                        }}>Delete</button>
+                        }}><Trash2 size={16} />Delete</button>
                 )}
             </div>
         </article>

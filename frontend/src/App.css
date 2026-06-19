@@ -360,9 +360,17 @@ h2 {
 
 .note-card-actions {
   display: flex;
-  gap: 0.5rem;
+  justify-content: flex-end;
+  gap: 0.75rem;
   margin-top: 1rem;
+}
+
+.note-card-actions button {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
   border-radius: 8px;
+  padding: 0.5rem 0.85rem;
 }
 
 .note-card-timestamp {
