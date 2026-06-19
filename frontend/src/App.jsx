@@ -4,6 +4,7 @@ import AuthLayout from "./components/AuthLayout";
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FavoriteProvider } from './context/FavoritesContext';
+import { useAuth } from "./context/AuthContext";
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -20,6 +21,8 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [authMessage, setAuthMessage] = useState("")
   const [search, setSearch] = useState("")
+
+  const { userLoggedIn } = useAuth()
 
   // Test backend connection 
 
@@ -41,6 +44,12 @@ function App() {
       window.removeEventListener("auth:expired", handleExpiredToken)
     }
   }, [])
+
+  useEffect(() => {
+    if(userLoggedIn) {
+      setAuthMessage("")
+    }
+  }, [userLoggedIn])
 
   return (
     <FavoriteProvider>
