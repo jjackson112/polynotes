@@ -54,6 +54,14 @@ function ViewNote() {
     return (
         <>
             <main>
+                {showDeleteModal && (
+                    <DeleteConfirmationModal
+                        note={note}
+                        onDelete={handleDelete}
+                        onClose={() => setShowDeleteModal(false)}
+                    />
+                )}
+                
                 <div className="view-note-container">
                     <div className="view-note-actions">
                         <button onClick={() => navigate(`/notes/${note.id}/edit`)}><Edit2 size={16} />Edit</button>
