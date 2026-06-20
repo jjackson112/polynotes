@@ -3,7 +3,7 @@
 // inject token from context - make API depend on token
 // exporting a static object > move API into a factory function
 
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 // global 401 handling + unified error handling + JSON parsing
 const handleResponse = async (res) => {
