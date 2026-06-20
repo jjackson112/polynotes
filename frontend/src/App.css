@@ -616,14 +616,11 @@ mark {
 
 .note-chip {
   padding: 6px 14px;
-
   background: var(--accent-soft);
   border-radius: 999px;
-
   font-size: 0.85rem;
   font-weight: 600;
-
-  color: var(--text);
+  color: var(--accent);
 }
 
 /* Delete Confirmation Modal Styles */
@@ -639,7 +636,6 @@ mark {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
 }
-
 
 .confirm-modal-content {
   background-color: white;
@@ -664,6 +660,10 @@ mark {
 .language-page {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.language-title {
+  margin-bottom: 30px;
 }
 
 .language-list {
@@ -694,6 +694,10 @@ mark {
 }
 
 /* Tag Page Styles */
+
+.tag-title {
+  margin-bottom: 30px;
+}
 
 .tag-cloud {
   display: flex;
@@ -741,7 +745,13 @@ mark {
 
 /* Footer Styles */
 footer h4 {
+  display: flex;
+  justify-content: center;
   padding-top: 20px;
+}
+
+.fav-list-header {
+  margin-bottom: 30px;
 }
 
 @media (max-width: 1200px) {
