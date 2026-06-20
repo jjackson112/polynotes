@@ -73,8 +73,8 @@ function Login() {
                 <h2 className="branding-tagline">Organize your language-learning notes.</h2>
             </div>
 
+            {error && (<p className="login-error">{error}</p>)}
             <div className="login-container">
-                {error && <p>{error}</p>}
 
                 <form onSubmit={handleSubmit} className="login-form">
                     <p>Login to continue</p>

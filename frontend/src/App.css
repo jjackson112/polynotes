@@ -236,6 +236,15 @@ h2 {
   padding: 0.9rem;
 }
 
+.login-error {
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--accent-soft);
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
 /* Dashboard Styles */
 .app-layout {
   display: grid;
