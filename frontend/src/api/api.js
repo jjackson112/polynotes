@@ -10,15 +10,16 @@ const handleResponse = async (res) => {
   if (res.status === 401) {
     localStorage.removeItem("token")
     window.dispatchEvent(new Event("auth:expired"))
-    throw new Error("401 - Unauthorized")
+    throw new Error("Invalid username/email or password")
   }
 
   if (res.status === 204) {
     return null
   }
 
+  const errorText = await res.text()
+
   if (!res.ok) {
-    const errorText = await res.text()
     throw new Error(`${res.status} - ${errorText}`)
   }
 
