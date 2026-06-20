@@ -16,6 +16,7 @@ function Register() {
 
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
+    const [success, setSuccess] = useState("")
 
     const { login } = useAuth()
     const navigate = useNavigate()
@@ -25,6 +26,7 @@ function Register() {
 
         setLoading(true)
         setError("")
+        setSuccess("")
 
         try {
             const response = await api.post("/auth/register", registerForm)
@@ -37,10 +39,11 @@ function Register() {
             // clear form 
             setRegisterForm (initialForm)
 
+            setSuccess("Successfully registered.")
             navigate("/dashboard")
 
         } catch (err) {
-            setError(err.response?.data?.message || "Registration failed:")
+            setError(err.response?.data?.message || "Registration failed")
         } finally {
             setLoading(false)
         }
@@ -53,8 +56,8 @@ function Register() {
                 <h2 className="branding-tagline">Organize your language-learning notes.</h2>
             </div>
 
+            {error && (<p className="register-error">{error}</p>)} 
             <div className="register-container">
-                {error && <p>{error}</p>} 
         
                 <form onSubmit={handleSubmit} className="register-form">
 

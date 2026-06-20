@@ -236,7 +236,7 @@ h2 {
   padding: 0.9rem;
 }
 
-.login-error {
+.login-error, .register-error {
   color: var(--text);
   background: var(--surface);
   border: 1px solid var(--accent-soft);
