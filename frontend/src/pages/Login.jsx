@@ -15,12 +15,15 @@ function Login() {
     })
 
     const [error, setError] = useState("")
+    const [success, setSuccess] = useState("")
 
     const { login } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setError("")
+        setSuccess("")
         // console.log("Logging in")
 
         try {
@@ -42,11 +45,17 @@ function Login() {
             // clear form after logging in 
             setForm({ identifier: "", password: ""})
 
+            setSuccess("Successful login.")
             navigate("/dashboard")
 
         } catch (err) {
             console.log("Login error", err)
-            setError(err.message || "Login failed")
+
+            if (err.message.includes("401")) {
+                setError("Invalid username/email or password")
+            } else {
+                setError(err.message || "Login failed")
+            }
         }
     } 
 
