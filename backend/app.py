@@ -24,7 +24,7 @@ def create_app():
 
     # Database configuration
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "fallback_dev_secret")
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///polynotes.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL", "sqlite:///polynotes.db")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     # Init DB - connect 
