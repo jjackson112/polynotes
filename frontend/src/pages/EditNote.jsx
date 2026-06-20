@@ -84,6 +84,8 @@ function EditNote() {
         <>
             <main className="edit-note-page">
                 <form className="edit-note-form" onSubmit={handleUpdate}>
+                    {error && <p className="edit-note-error">{error}</p>}
+                    {success && <p className="edit-note-success">{success}</p>}
 
                     <input 
                     className="edit-note-title"
