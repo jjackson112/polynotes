@@ -29,8 +29,7 @@ function Register() {
         setSuccess("")
 
         try {
-            const response = await api.post("/auth/register", registerForm)
-            const data = response.data
+            const data = await api.post("/auth/register", registerForm)
             console.log("Successful register")
 
             // auto-login after registering - smooth UX

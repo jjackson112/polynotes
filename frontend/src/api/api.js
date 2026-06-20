@@ -21,10 +21,10 @@ const handleResponse = async (res) => {
   const data = errorText ? JSON.parse(text) : null
 
   if (!res.ok) {
-    throw new Error(`${res.status} - ${errorText}`)
+    throw new Error(data?.error || data?.message || `${res.status} - Request failed`)
   }
 
-  return res.json()
+  return data
 }
 
 export const api = {
