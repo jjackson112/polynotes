@@ -34,6 +34,14 @@ export function FavoriteProvider({ children }) {
 
     // initial load once
     useEffect(() => {
+        const token = localStorage.getItem("token")
+
+        // check token before fetch
+        if(!token) {
+            dispatch({ type: "INIT", payload: [] })
+            return
+        }
+
         const fetchFavorites = async () => {
             try {
                 const data = await api.get("/notes/favorites")
