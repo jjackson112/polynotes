@@ -15,7 +15,8 @@ def create_app():
     app = Flask(__name__)
 
     # force Flask to show real error
-    app.config["DEBUG"] = True
+    # set to False when deploying for prod
+    app.config["DEBUG"] = False
 
     # stop 308 redirecting - OPTIONS preflight issues
     app.url_map.strict_slashes = False
