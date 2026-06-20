@@ -18,6 +18,8 @@ function ViewNote() {
 
     const [showDeleteModal, setShowDeleteModal] = useState(false)
 
+    const capitalize = note.language.charAt(0).toUpperCase() + note.language.slice(1)
+
     useEffect(() => {
         const fetchNote = async () => {
             try {
@@ -71,7 +73,7 @@ function ViewNote() {
                     <h1 className="view-note-title">{note.title}</h1>
                     <p className="view-note-content">{note.content}</p>
                     <div className="view-note-meta">
-                        <p className="note-chip">Language: {note.language}</p>
+                        <p className="note-chip">Language: {capitalize}</p>
                         <p className="note-chip">Tag(s): {(note.tags.join(", "))}</p>
                     </div>
                 </div>

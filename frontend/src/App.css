@@ -617,7 +617,7 @@ mark {
 .note-chip {
   padding: 6px 14px;
 
-  background: var(--accent);
+  background: var(--accent-soft);
   border-radius: 999px;
 
   font-size: 0.85rem;
