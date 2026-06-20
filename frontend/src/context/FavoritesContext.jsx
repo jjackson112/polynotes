@@ -1,6 +1,6 @@
 import { useEffect, createContext, useContext, useReducer } from "react";
 import { api } from "../api/api";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 // create context
 const FavoritesContext = createContext()
@@ -36,10 +36,8 @@ export function FavoriteProvider({ children }) {
 
     // initial load once
     useEffect(() => {
-        const token = localStorage.getItem("token")
-
         // check token before fetch
-        if(!token) {
+        if(!userLoggedIn) {
             dispatch({ type: "INIT", payload: [] })
             return
         }

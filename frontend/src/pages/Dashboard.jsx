@@ -8,7 +8,7 @@ import { useFavorites } from "../context/FavoritesContext";
 // /dashboard  → ProtectedRoute  → Dashboard renders
 // protected logic will live here - GET requests to authenticate data
 
-function Dashboard({ authMessage, sidebarOpen, setSidebarOpen }) {
+function Dashboard() {
     const [notes, setNotes] = useState([])
     const [total, setTotal] = useState(0)
     const [pages, setPages] = useState(1)
@@ -22,6 +22,9 @@ function Dashboard({ authMessage, sidebarOpen, setSidebarOpen }) {
     const username = localStorage.getItem("username")
 
     useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (!token) return
+
         const fetchData = async() => {
             try {
                 const res = await api.get("/notes") 

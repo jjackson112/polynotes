@@ -42,7 +42,7 @@ function Register() {
             navigate("/dashboard")
 
         } catch (err) {
-            setError(err.response?.data?.message || "Registration failed")
+            setError(err.message || "Registration failed - Username/email has already been taken")
 
         } finally {
             setLoading(false)
