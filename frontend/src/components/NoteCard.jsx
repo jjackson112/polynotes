@@ -39,8 +39,10 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searc
                 )}
             </p>
 
-            <p className="language-banner">{showLanguage}</p>
-            <p className="tag-banner">{note.tags?.map(tag => `#${tag}`).join(" ")}</p>
+            <div className="note-card-meta">
+                <p className="language-banner">{showLanguage}</p>
+                <p className="tag-banner">{note.tags?.map(tag => `#${tag}`).join(" ")}</p>
+            </div>
 
             {/* Added Edit + Delete Buttons */}
             <div className="note-card-actions">
@@ -49,14 +51,14 @@ function NoteCard({ note, onEdit, onView, onRequestDelete, toggleFavorite, searc
                         onClick={(e) => {
                             e.stopPropagation() // stops the parent handler from firing too - no more seeing the ViewNote when user clicks edit button on NoteList
                             onEdit(note.id)
-                        }}><Edit2 size={16} />Edit</button>
+                        }}><Edit2 size={16} /></button>
                 )}
                 {onRequestDelete && (
                     <button 
                         onClick={(e) => {
                             e.stopPropagation()
                             onRequestDelete(note)
-                        }}><Trash2 size={16} />Delete</button>
+                        }}><Trash2 size={16} /></button>
                 )}
             </div>
         </article>

@@ -64,8 +64,8 @@ function ViewNote() {
                 
                 <div className="view-note-container">
                     <div className="view-note-actions">
-                        <button onClick={() => navigate(`/notes/${note.id}/edit`)}><Edit2 size={16} />Edit</button>
-                        <button onClick={() => setShowDeleteModal(true)}><Trash2 size={16} />Delete</button>
+                        <button onClick={() => navigate(`/notes/${note.id}/edit`)}><Edit2 size={16} /></button>
+                        <button onClick={() => setShowDeleteModal(true)}><Trash2 size={16} /></button>
                     </div>
 
                     <h1 className="view-note-title">{note.title}</h1>

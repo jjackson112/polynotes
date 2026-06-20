@@ -12,6 +12,7 @@ function EditNote() {
     const [content, setContent] = useState("")
     const [languageCategory, setLanguageCategory] = useState("All")
     
+    const [tags, setTags] = useState([]) // parsed tags array
     const [tagInput, setTagInput] = useState("") // raw input string
 
     const [loading, setLoading] = useState(false)

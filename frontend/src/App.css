@@ -379,6 +379,24 @@ h2 {
   font-size: 0.85rem;
 }
 
+.note-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.language-banner, .tag-banner {
+  background: var(--accent-soft);
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
 mark {
   background-color: var(--border);
   padding: 3px;
