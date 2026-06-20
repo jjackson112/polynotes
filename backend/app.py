@@ -30,8 +30,14 @@ def create_app():
     # Init DB - connect 
     db.init_app(app)
 
-    # with app.app_context():
-    #    db.create_all()
+    # Import models so SQLAlchemy knows what tables to create
+    from models.user import User
+    from models.notes import Note
+    from models.tags import Tag
+    from models.favorites import Favorite
+
+    with app.app_context():
+        db.create_all()
 
     # Blueprints
     app.register_blueprint(auth_bp)
