@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
 import { useNavigate, useParams } from "react-router-dom";
-import Header from "../components/Header";
 
 // NewNote is create only, EditNote is update only
 
@@ -13,10 +12,11 @@ function EditNote() {
     const [content, setContent] = useState("")
     const [languageCategory, setLanguageCategory] = useState("All")
     
-    const [tags, setTags] = useState([]) // parsed tags array
     const [tagInput, setTagInput] = useState("") // raw input string
 
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState("")
+    const [success, setSuccess] = useState("")
 
     // load existing note
     useEffect(() => {
@@ -33,7 +33,7 @@ function EditNote() {
                 setTagInput((res.tags || []).join(","))
                 
             } catch (err) {
-                console.error(err)
+                setError(err)
             }
         }
         fetchNote()
@@ -43,11 +43,25 @@ function EditNote() {
     const handleUpdate = async (e) => {
         e.preventDefault()
         setLoading(true)
+        setError("")
+        setSuccess("")
+
+        if (title.trim().length < 3) {
+            setError("Title must be at least 3 characters.")
+            return
+        }
+
+        if (content.trim().length < 8) {
+            setError("Content must be at least 8 characters.")
+            return
+        }
 
         const parsedTags = tagInput
             .split(",")
             .map(tag => tag.trim().toLowerCase())
             .filter(Boolean)
+
+        setLoading(true)
 
         try {
             const res = await api.patch(`/notes/${id}`, {
@@ -57,9 +71,10 @@ function EditNote() {
                 tags: parsedTags
             })
 
-            navigate("/notes")
+            setSuccess("Note saved successfully.")
+            navigate(`/notes/${id}`)
         } catch (err) {
-            console.error("Failed to update note", err)
+            setError("Failed to update note", err)
         } finally {
             setLoading(false)
         }

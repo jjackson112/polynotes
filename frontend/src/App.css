@@ -360,17 +360,9 @@ h2 {
 
 .note-card-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-.note-card-actions button {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  border-radius: 8px;
-  padding: 0.5rem 0.85rem;
+  margin-top: 1.5rem;
 }
 
 .note-card-timestamp {
@@ -530,6 +522,25 @@ mark {
 }
 
 /* View Single Note */
+
+.view-note-actions { 
+  display: flex; 
+  justify-content: space-around; 
+  align-items: center; 
+  gap: 0.75rem; 
+  flex-wrap: wrap; 
+  margin: 2rem 0rem; 
+} 
+
+.view-note-actions button { 
+  display: flex; 
+  justify-content: space-around; 
+  align-items: center; 
+  gap: 0.35rem; 
+  border-radius: 8px; 
+  padding: 0.5rem 0.85rem; 
+}
+
 .view-note-container::before {
   content: "";
   display: block;

@@ -26,9 +26,21 @@ function NewNote() {
 
     const handleSave = async (e) => {
         e.preventDefault()
-        setLoading(true)
         setError("")
         setSuccess("")
+
+        if (title.trim().length < 3) {
+            setError("Title must be at least 3 characters.")
+            return
+        }
+
+        if (content.trim().length < 8) {
+            setError("Content must be at least 8 characters.")
+            return
+        }
+
+        // set after validation so button is not stuck on "saving"
+        setLoading(true)
 
         try {
             const res = await api.post("/notes", { title, content, language: languageCategory === "All" ? "english" : languageCategory, tags: tagList });
@@ -61,6 +73,7 @@ function NewNote() {
                 <form className="new-note-form" onSubmit={handleSave}>
                     {error && <p className="new-note-error">{error}</p>}
                     {success && <p className="new-note-success">{success}</p>}
+
                     <input 
                     className="new-note-title"
                     value={title} // controlled input
