@@ -1,5 +1,6 @@
 import { useEffect, createContext, useContext, useReducer } from "react";
 import { api } from "../api/api";
+import { useAuth } from "./AuthContext";
 
 // create context
 const FavoritesContext = createContext()
@@ -31,6 +32,7 @@ function favoritesReducer(state, action) {
 // const [state, dispatch] = useReducer(reducer, initialArg, init?)
 export function FavoriteProvider({ children }) {
     const [favorites, dispatch] = useReducer(favoritesReducer, [])
+    const { userLoggedIn } = useAuth()
 
     // initial load once
     useEffect(() => {
@@ -61,10 +63,13 @@ export function FavoriteProvider({ children }) {
             }
         }
         fetchFavorites()
-    }, [])    
+    }, [userLoggedIn])    
 
     // toggle with optimistic update + rollback
     const toggleFavorite = async (id) => {
+        const token = localStorage.getItem("token")
+        if (!token) return
+
         const previousState = favorites
 
         // optimistic update
