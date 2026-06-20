@@ -18,7 +18,7 @@ const handleResponse = async (res) => {
   }
 
   const text = await res.text()
-  const data = errorText ? JSON.parse(text) : null
+  const data = text ? JSON.parse(text) : null
 
   if (!res.ok) {
     throw new Error(data?.error || data?.message || `${res.status} - Request failed`)
