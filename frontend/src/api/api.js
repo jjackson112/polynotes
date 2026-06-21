@@ -18,7 +18,14 @@ const handleResponse = async (res) => {
   }
 
   const text = await res.text()
-  const data = text ? JSON.parse(text) : null
+
+  let data = null
+
+  try {
+    data = text ? JSON.parse(text) : null
+  } catch {
+    throw new Error(text.slice(0, 120) || "Server returned invalid JSON")
+  }
 
   if (!res.ok) {
     throw new Error(data?.error || data?.message || `${res.status} - Request failed`)
