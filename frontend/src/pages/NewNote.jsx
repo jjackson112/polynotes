@@ -61,7 +61,7 @@ function NewNote() {
 
         } catch (err) {
             console.error("Failed to save note", err)
-            setError("Note not saved. Try again.")
+            setError(err.message || "Note not saved. Try again.")
         } finally {
             setLoading(false)
         }
